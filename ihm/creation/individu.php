@@ -85,7 +85,7 @@
 <div class="row">
 <div class="col-md-2">
 <div id="datenaissance">
-Votre date de naissance :
+Date de naissance :
 <input type="date" max="2012-06-25" min="2011-08-13" name="datenaissance">
 </div>
 </div>
