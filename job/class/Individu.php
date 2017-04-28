@@ -6,7 +6,7 @@ class Individu {
     // AhMaD: les attributs pour individu ca-a-dire un utilisateur et peut etre une groupe
     private $idUser;
     private $ville;
-    private $rue;
+    private $Adresse;
     private $codePostal;
     private $dpt;
     private $email;
@@ -21,10 +21,10 @@ class Individu {
 
     // AhMaD: Le connecteur aves (id user =-1) cela pour eviter faire deuxime constructeur pour le BD.
     //comme ca si tu crée un nouveau objet avec id il vas prendre le prendre sinon l'id=-1 par defaut  
-    function __construct($ville, $rue, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser = -1) {
+    function __construct($ville, $adresse, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser = -1) {
         $this->idUser = $idUser;
         $this->ville = $ville;
-        $this->rue = $rue;
+        $this->adresse = $adresse;
         $this->codePostal = $codePostal;
         $this->dpt = $dpt;
         $this->email = $email;
@@ -139,13 +139,13 @@ class Individu {
         return $this->ville = $ville;
     }
 
-    // rue
-    public function getRue() {
-        return $this->rue;
+    // Adresse
+    public function getAdresse() {
+        return $this->Adresse;
     }
 
-    public function setRue($rue) {
-        return $this->rue = $rue;
+    public function setAdresse($Adresse) {
+        return $this->Adresse = $Adresse;
     }
 
     // codePostal
@@ -171,7 +171,7 @@ class Individu {
         return( "id= " . $this->idUser . ", Email :" . $this->email . ", N° tel: " . $this->telephone . ", Pseudo: " . $this->pseudo
                 . ", Date d'nscription: " . $this->dateInscription . ", Mot de passe : " . $this->mdp . ", Droit: " . $this->droit . ", Nom: "
                 . $this->nom . ", Prenom" . $this->prenom . ", Date de Naissance: " . $this->dateNaissance . ", Address complète est :  ville:" . $this->ville .
-                ", rue" . $this->rue . ", code postal" . $this->codePostal . ", departement:" . $this->dpt);
+                ", Adresse" . $this->Adresse . ", code postal" . $this->codePostal . ", departement:" . $this->dpt);
     }
 
 }

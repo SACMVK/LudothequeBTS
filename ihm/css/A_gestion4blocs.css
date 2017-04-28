@@ -16,7 +16,7 @@ img {
 #div_menu{
     position: fixed;
     left: 0px;
-    top: 220px;
+    top: 120px;
     width: 100px;
     height: 500px;
     background-color: #c9e2b3;
@@ -25,13 +25,13 @@ img {
 
 
 #div_contenuSansMenu{
-    margin-top: 220px;
+    margin-top: 120px;
     margin-bottom: 70px;
 }
 
 
 #div_contenuAvecMenu{
-    margin-top: 220px;
+    margin-top: 120px;
     margin-bottom: 70px;
     margin-left: 100px;
 }

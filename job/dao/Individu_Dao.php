@@ -54,7 +54,7 @@ function insert($list_Values) {
     //AhMaD:exécuter
     $stmt_individu->execute();
 
-
+    unset ($id_Individu);
 
 
 
@@ -70,7 +70,7 @@ function select($requete) {
     $db = openConnexion();
 
     //AhMaD:prepration de requete qiu vas trouver l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "SELECT * FROM " . TABLE_INDIVIDU . "JOIN" . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser " . $requete . ";";
+    $requete = "SELECT * FROM " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser " . $requete . ";";
 
     //AhMaD: préparer la requête pour ensuite l'exécuter
     $stmt = $db->prepare($requete);
@@ -81,13 +81,13 @@ function select($requete) {
 
     //AhMaD: je parcoure les tables pour afficher les resultats de ma requete.
     // mysql_fetch_assoc($result): permet de afficher les informations de toutes les champs
-    while ($champ = mysql_fetch_assoc($stmt)) {
+    while ($champ = $stmt->fetch(PDO::FETCH_ASSOC)) {
         //AhMaD:tant qu'il y a des informations dans chaque champ de la ligne je les prend el je les affiche 
         $idUser = $champ['idUser'];
         $ville = $champ['ville'];
         $adresse = $champ['adresse'];
         $codePostal = $champ['codePostal'];
-        $numDept = $champ['numDept'];
+        $dpt = $champ['numDept'];
         $email = $champ['email'];
         $telephone = $champ['telephone'];
         $pseudo = $champ['pseudo'];
@@ -96,11 +96,11 @@ function select($requete) {
         $droit = $champ['droit'];
         $nom = $champ['nom'];
         $prenom = $champ['prenom'];
-        $dateNaiss = $champ['dateNaiss'];
+        $dateNaissance = $champ['dateNaiss'];
 
         //AhMaD : on vas creer un nouveau objet avec les informations
         //AhMaD : on stocke ce objet dans l'array pour remplir l'array 
-        $individus[] = new Individu($ville, $rue, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser = -1);
+        $individus[] = new Individu($ville, $adresse, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser = -1);
     }
     //AhMaD: on ferme la conexion
     $db = closeConnexion();
@@ -178,11 +178,11 @@ function delete($idOfLineToDelete) {
     //AhMaD: on vas exécuter
     $stmt->execute();
 
-    //AhMaD:un petit test pour savoir si tu vas bien
+    //AhMaD:un petit test pour savoir si tout vas bien
     if ($stmt == true) {
         echo"l'utilisateur était supprimé avec succès";
     } else {
-        die("Il y a des erreures, veuillez modifier votre choix");
+        die("Il y a des erreurs, veuillez modifier votre choix");
     }
 
 
