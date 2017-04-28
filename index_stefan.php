@@ -8,12 +8,19 @@
 
     <body>
         <?php
-        $array = array(
-            "foo" => "bar",
-            "bar" => "foo",
-        );
+        echo "test";
+        echo phpinfo();
+print_r ($_POST);
+
+echo "<br>";
+if (!empty($_POST['objectToWorkWith'])) {
+    echo 'ojio';
+            saveTexte("fee");
+}
+
+
         ?>
-        <?php include '_old/tr.php'; ?>
+
 
 
 </body>

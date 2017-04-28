@@ -42,13 +42,3 @@ Function closeConnexion($pdo) {
 
 
 
-//AhMAD: function cherche la plus grand ID dans le tableau
-function getMaxId($maxId ,$TABLE){
-   
-    $maxId = 0;
-    $row = query("SELECT MAX(id) AS `maxId` FROM".$TABLE.";")->row();
-  if ($row) {
-     $maxId = $row->maxid; 
-   }
-    return $maxId;
- } 

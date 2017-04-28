@@ -34,7 +34,7 @@ use ludotheque;
 #  * editeur_d
 #  * difficulte_d
 #  * public_d
-#  * type_noteur_d
+
 
 # Création de la table compte (M)
 DROP TABLE IF EXISTS compte;

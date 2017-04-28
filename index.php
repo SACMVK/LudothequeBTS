@@ -31,12 +31,16 @@
          */
         if (!empty($_POST['connexion'])) {
             include 'controller/controllerConnexion.php';
+            unset($_POST);
         } else if (!empty($_GET['connexion'])) {
             include 'controller/controllerDeconnexion.php';
+            unset($_GET);
+        } else if (!empty($_POST['objectToWorkWith'])) {
+            include 'controller/controllerRequete.php';
+            unset($_POST);
         } else if (!empty($_GET['page'])) {
             $pageAAfficher = 'ihm/' . $_GET['page'];
-        } else if (strpbrk($_GET['page'], '+')) {
-            include 'controller/controllerRequete.php';
+            unset($_GET);
         } else {
             $pageAAfficher = 'ihm/pages/accueil.php';
         }
@@ -112,11 +116,11 @@
         <!-- ************************************************************************************************ -->
         <!-- **************************************** FOOTER (DEBUT) **************************************** -->
         <!-- ************************************************************************************************ -->
-        
+
         <div id='div_footer'><?php
         include 'ihm/footer/footer.php';
         ?></div>
-        
+
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** FOOTER (FIN) ***************************************** -->
         <!-- ************************************************************************************************ -->

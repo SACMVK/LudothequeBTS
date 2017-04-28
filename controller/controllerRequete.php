@@ -1,5 +1,6 @@
 <?php
 
+include 'job/dao/Connexion_Dao.php';
         
 /* stefan : Cette fonction a pour objectif
  * de créer une string de requête SQL (partie "WHERE")
@@ -49,12 +50,14 @@ function getValuesFormPOST(){
  * La première est l'objet avec lequel il faut faire l'action.
  * La deuxième est l'action.
  */
-$objectToWorkWith = explode("+", $_GET['page'])[0];
-$actionToDoWithObject = explode("+", $_GET['page'])[1];
+$objectToWorkWith = $_POST['objectToWorkWith'];
+$actionToDoWithObject = $_POST['actionToDoWithObject'];
 
 // stefan : On inclue le DAO relatif à l'objet
-include 'job/dao/'.$objetToWorkWith.'_dao.php';
-
+$dao = 'job/dao/'.$objectToWorkWith.'_Dao.php';
+saveTexte($dao);
+include 'job/dao/'.$objectToWorkWith.'_Dao.php';
+            
 // stefan : On réalise l'action passée depuis le formulaire.
 switch ($actionToDoWithObject)   {
     case "selectOne":
@@ -76,8 +79,7 @@ switch ($actionToDoWithObject)   {
         $valueToInsert = getValuesFormPOST();
         insert($valueToInsert);
         // stefan : Partie IHM
-        // mettre en type=hidden value=[nom_page] + controller en $_POST['page']
-        // $_GET['page'] = $_POST['page'];
+        $pageAAfficher = 'ihm/pages/_old/test.php';
         break;
     case "alter":
         // stefan : Partie DAO

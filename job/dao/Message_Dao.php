@@ -71,8 +71,7 @@ Function insert($requete) {
         "texte" => $requete['texte']
     ));
 
-//$id = getMaxId($table);
-//$message new Message ();
+
 
     closeConnexion($pdo);
 }
