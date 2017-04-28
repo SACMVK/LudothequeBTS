@@ -21,17 +21,6 @@ $affichage_connexion .= '<input name=mdp type=password class=input name=mdp></in
 $affichage_connexion .= '<br>';
 $affichage_connexion .= '<br>';
 $affichage_connexion .= '<br>';
-$affichage_connexion .= '<span style="color:red;font-weight:bold;">';
-$affichage_connexion .= 'Zone de test';
-$affichage_connexion .= '<br>';
-$affichage_connexion .= '<input type="radio" name="droits" value="user" checked>Utilisateur';
-$affichage_connexion .= '<br>';
-$affichage_connexion .= '<input type="radio" name="droits" value="admin">Admin';
-$affichage_connexion .= '<br>';
-$affichage_connexion .= '</span>';
-$affichage_connexion .= '<br>';
-$affichage_connexion .= '<br>';
-$affichage_connexion .= '<br>';
 $affichage_connexion .= '<div><input type=submit class=bouton_connexion value="Se connecter"/></div>';
 $affichage_connexion .= '</form></div>';
 

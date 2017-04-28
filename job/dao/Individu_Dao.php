@@ -191,6 +191,8 @@ function delete($idOfLineToDelete) {
         die("Il y a des erreures, veuillez modifier votre choix");
     }
 
+
     //AhMaD: on ferme la conexion
     closeConnexion($db);
 }
+

@@ -23,8 +23,33 @@ caption {
  font-weight:bold
  }
  
+ #div_header{
+     height: 70px;
+ }
+ #div_footer{
+         height: 22px;
+ }
  
- 
+ /*---SLID--*/
+
+.center-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 600px;
+    max-width: 100%;
+    min-height: 600px;
+    min-width: 100%;
+}
+
+.lead {
+    font-family: Time new roman;
+    color: #fff;
+}
+.contenu
+{
+       width: 100%;
+}
 
  
  

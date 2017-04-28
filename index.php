@@ -10,12 +10,21 @@
         // stefan : Cette ligne permet d'activer et d'entretenir la session ($_SESSION) avec ses variables
         session_start();
         // stefan : Ce fichier permet d'enregistrer des variables en cours d'exécution (je ne sais pas me servir du mode debug
-        include '_old/saveTexte.php';
-        include 'job/dao/fonctions_dao.php';
-        ?>
-        <!-- stefan : ccs juste pour les tests fonctionnels -->
+       @ include '_old/saveTexte.php';
+        @include 'job/dao/fonctions_dao.php';
+           require 'ihm/css/css.php';
+        ?>  
+      
+      
+        <!-- AhMaD : les fichier CSS et JS -->
         <link rel="stylesheet" type="text/css" href="ihm/css/A_gestion4blocs.css">
-
+       <link rel="stylesheet" type="text/css" href="ihm/css/styles.css">
+       <script src="<?php include_once 'ihm/js/js.php'; ?>"></script>
+     
+       <script src="ihm//js/jquery-3.1.1.min.js"></script>
+     
+         <script src="ihm//js/bootstrap.min.js"></script>
+           <script src="ihm//js/slideShow.js"></script>
         <!-- ************************************************************************************************ -->
         <!-- ************************************** CONTROLEUR (DEBUT) ************************************** -->
         <!-- ************************************************************************************************ -->
