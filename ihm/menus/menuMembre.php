@@ -1,5 +1,5 @@
 
-<div  class="container-fluid">
+<div  class="container">
 
 	<div class="row">
 		<div class=" col-md-3 col-sm-3 col-xs-12">
@@ -18,19 +18,19 @@
 							<table class="table">
 								<tr>
 									<td><span class="glyphicon glyphicon-pencil text-primary"></span><a
-										href="http://www.jquery2dotnet.com">Articles</a></td>
+										href="#">Articles</a></td>
 								</tr>
 								<tr>
 									<td><span class="glyphicon glyphicon-flash text-success"></span><a
-										href="http://www.jquery2dotnet.com">News</a></td>
+										href="#">News</a></td>
 								</tr>
 								<tr>
 									<td><span class="glyphicon glyphicon-file text-info"></span><a
-										href="http://www.jquery2dotnet.com">Newsletters</a></td>
+										href="#">Newsletters</a></td>
 								</tr>
 								<tr>
 									<td><span class="glyphicon glyphicon-comment text-success"></span><a
-										href="http://www.jquery2dotnet.com">Comments</a> <span
+										href="#">Comments</a> <span
 										class="badge">42</span></td>
 								</tr>
 							</table>
@@ -49,17 +49,17 @@
 						<div class="panel-body">
 							<table class="table">
 								<tr>
-									<td><a href="http://www.jquery2dotnet.com">Orders</a> <span
+									<td><a href="#">Orders</a> <span
 										class="label label-success">$ 320</span></td>
 								</tr>
 								<tr>
-									<td><a href="http://www.jquery2dotnet.com">Invoices</a></td>
+									<td><a href="#">Invoices</a></td>
 								</tr>
 								<tr>
-									<td><a href="http://www.jquery2dotnet.com">Shipments</a></td>
+									<td><a href="#">Shipments</a></td>
 								</tr>
 								<tr>
-									<td><a href="http://www.jquery2dotnet.com">Tex</a></td>
+									<td><a href="#">Tex</a></td>
 								</tr>
 							</table>
 						</div>
@@ -76,19 +76,19 @@
 						<div class="panel-body">
 							<table class="table">
 								<tr>
-									<td><a href="http://www.jquery2dotnet.com">Change Password</a>
+									<td><a href="#">Change Password</a>
 									</td>
 								</tr>
 								<tr>
-									<td><a href="http://www.jquery2dotnet.com">Notifications</a> <span
+									<td><a href="#">Notifications</a> <span
 										class="label label-info">5</span></td>
 								</tr>
 								<tr>
-									<td><a href="http://www.jquery2dotnet.com">Import/Export</a></td>
+									<td><a href="#">Import/Export</a></td>
 								</tr>
 								<tr>
 									<td><span class="glyphicon glyphicon-trash text-danger"></span><a
-										href="http://www.jquery2dotnet.com" class="text-danger">
+										href="#" class="text-danger">
 											Delete Account</a></td>
 								</tr>
 							</table>
@@ -107,20 +107,20 @@
 							<table class="table">
 								<tr>
 									<td><span class="glyphicon glyphicon-usd"></span><a
-										href="http://www.jquery2dotnet.com">Sales</a></td>
+										href="#">Sales</a></td>
 								</tr>
 								<tr>
 									<td><span class="glyphicon glyphicon-user"></span><a
-										href="http://www.jquery2dotnet.com">Customers</a></td>
+										href="#">Customers</a></td>
 								</tr>
 								<tr>
 									<td><span class="glyphicon glyphicon-tasks"></span><a
-										href="http://www.jquery2dotnet.com">Products</a></td>
+										href="#">Products</a></td>
 								</tr>
 								<tr>
 						
 									<td><span class="glyphicon glyphicon-shopping-cart"></span><a
-										href="http://www.jquery2dotnet.com">Shopping Cart</a></td>
+										href="#">Shopping Cart</a></td>
 								</tr>
 								
 							</table>

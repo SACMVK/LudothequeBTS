@@ -26,7 +26,7 @@ require 'connexion_dao.php';
        
         
         //AhMaD:la requete pour inserter dans le tableau jeu_p
-        $requete_jeu_p= "INSERT INTO ".TABLE_JEU_P. " (idJeuP, idJeuT, idUser, etat) VALUES ( ".'$idJeuP'.",".'$idJeuT'.",".'$idUser'.",".'$etat'.");";
+        $requete_jeu_p= "INSERT INTO ".TABLE_JEU_P. " (idJeuP, idJeuT, idUser, etat) VALUES ( '".$idJeuP."','".$idJeuT."','".$idUser."','".$etat."');";
 	
       //AhMaD: préparer la requête pour ensuite l'exécuter
         $stmt_jeu_p = $db->prepare($requete_jeu_p);
@@ -106,19 +106,19 @@ require 'connexion_dao.php';
             
             
              //AhMaD:on vas faire une requete pour savoir alter le table compte.  
-            $user_requete= "UPDATE ".TABLE_COMPTE." SET idUser = ".$idUser."WHERE ".TABLE_COMPTE.". idUser = ".TABLE_JEU_P.". idUser ;";
+            $user_requete= "UPDATE ".TABLE_COMPTE." SET idUser = '".$idUser."'WHERE ".TABLE_COMPTE.". idUser = ".TABLE_JEU_P.". idUser ;";
             $stmt = $db->prepare($user_requete);
             $stmt->execute();
             $user=$stmt->execute();
             
               //AhMaD:on vas faire une requete pour savoir alter le table jeu_t.  
-            $jeu_requete= "UPDATE ".TABLEJEUT." SET idJeuT = ".$idJeuT." WHERE ".TABLEJEUT.". idJeuT = ".TABLE_JEU_P.". idJeuT ;";
+            $jeu_requete= "UPDATE ".TABLEJEUT." SET idJeuT = '".$idJeuT."' WHERE ".TABLEJEUT.". idJeuT = ".TABLE_JEU_P.". idJeuT ;";
             $stmt = $db->prepare($jeu_requete);
             $stmt->execute();
             $jeu=$stmt->execute();
             
           //AhMaD:prepration de requete qui vas modifier l'utilisateur entre deux table pour cela il y a jointeur
-        $requete="UPDATE ".TABLE_JEU_P." SET idJeuP=".'$idJeuP'.",idUser =".'$user'.",idJeuT=".$jeu.", etat=".$etat.";";
+        $requete="UPDATE ".TABLE_JEU_P." SET idJeuP='".$idJeuP."',idUser ='".$user."',idJeuT='".$jeu."', etat='".$etat."' ;";
       
           
  
@@ -143,7 +143,7 @@ require 'connexion_dao.php';
         $db = openConnexion();
         
           //AhMaD:prepration de requete qui vas supprimer l'utilisateur entre deux table pour cela il y a jointeur
-        $requete="DELETE FROM ".TABLE_JEU_P." WHERE idJeuP = ".'$idOfLineToDelete'." ;";
+        $requete="DELETE FROM ".TABLE_JEU_P." WHERE idJeuP = '".$idOfLineToDelete."' ;";
       
      //AhMaD: on vas préparer la requête et l'exécuter et tu vas bien.
         $stmt= $db->prepare($requete);

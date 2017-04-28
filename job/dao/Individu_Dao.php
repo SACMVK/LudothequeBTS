@@ -59,7 +59,7 @@ require 'connexion_dao.php';
         
         
       //AhMaD: on cherche le plus grand ID du table
-          $idUserMax = getMaxId('idUser',TABLE_COMPTE);
+          $idUserMax = getMaxId("idUser",TABLE_COMPTE);
         
         //AhMaD:on créer un nouveau objet 
         return new Individu($idUserMax,$ville, $adresse, $codePostal, $numDept, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaiss);
@@ -152,7 +152,7 @@ require 'connexion_dao.php';
             
             
              //AhMaD:on vas faire une requete pour savoir si le droit était changé.    ps :   IN  ici  une oprétion logique comme (!=) ou (==) 
-            $droit_requete="UPDATE ".TABLE_COMPTE." SET droit = ".'$droit'." WHERE ".'$droit'." IN(SELECT".'$droit'." FROM droit);";
+            $droit_requete="UPDATE ".TABLE_COMPTE." SET droit = '".$droit."' WHERE '".$droit."' IN(SELECT'".$droit."' FROM droit);";
             $stmt = $db->prepare($droit_requete);
             $stmt->execute();
             $le_droit=$stmt->execute();
