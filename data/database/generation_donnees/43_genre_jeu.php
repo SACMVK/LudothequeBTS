@@ -28,6 +28,6 @@ function getAllGenreJeu() {
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $liste [] = $ligne['genre'];
     }
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
     return $liste;
 }

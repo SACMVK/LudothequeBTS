@@ -68,15 +68,6 @@ class emprunt {
     }
 
     private function getEtat() {
-//        $pdo = openConnexion();
-//        $requete = "SELECT * FROM etat_d;";
-//        $stmt = $pdo->prepare($requete);
-//        $stmt->execute();
-//        $listEtats = null;
-//        while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
-//            $listEtats [] = $ligne['etat'];
-//        }
-//        closeConnexion($pdo);
         $listEtats = ["Neuf", "Bon état","Usé", "Abimé"];
         return $listEtats[rand(0, count($listEtats) - 1)];
     }
@@ -100,7 +91,7 @@ class emprunt {
         while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $listEtats [] = $ligne;
         }
-        closeConnexion($pdo);
+        $pdo = closeConnexion();
         $notification = "<b>Prêteur : " . $listEtats[0]["sujetPreteur"] . "</b> " . $listEtats[0]["corpsPreteur"] . "<br><b>Emprunteur : " . $listEtats[0]["sujetEmprunteur"] . "</b> " . $listEtats[0]["corpsEmprunteur"] . "<br>";
         return str_replace($AnciennesValeurs, $NouvellesValeurs, $notification);
     }

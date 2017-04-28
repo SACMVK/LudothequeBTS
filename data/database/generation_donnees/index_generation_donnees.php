@@ -7,7 +7,7 @@
     <body>
         <?php
         // stefan : fichiers et méthodes de génération de données en masse
-        include '../../../job/dao/Connexion_Dao.php';
+        include '../../../job/dao/Connexion_DataBase.php';
         include '../../../_old/saveTexte.php';
         // individu
         include '31_32_individu.php';

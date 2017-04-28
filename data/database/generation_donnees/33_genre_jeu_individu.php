@@ -29,6 +29,6 @@ function getGenreIndividu() {
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $liste [] = $ligne['genre'];
     }
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
     return $liste[rand(0, count($liste) - 1)];
 }

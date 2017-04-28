@@ -20,7 +20,7 @@ Function selectFromWhere($select,$table,$where){
 	$stmtSFW->execute();
         /* M : Fermeture de la connexion
 	 */
-	closeConnexion($pdo);    
+	$pdo = closeConnexion();    
 }
 
 // M : Affichage d'un jeu_t

@@ -4,7 +4,7 @@
 
 
 Function loadDroits(){
-	include 'job/dao/connexion_dao.php';
+
 	/* stefan : Ouverture de la connexion
 	 */
 	$pdo = openConnexion();
@@ -47,7 +47,7 @@ Function loadDroits(){
 	
 	/* stefan : Fermeture de la connexion
 	 */
-	closeConnexion($pdo);
+	$pdo = closeConnexion();
 	
 	/* stefan : La valeur retourn�e est un array
 	 */

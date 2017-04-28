@@ -1,6 +1,6 @@
 <?php
 
-include 'job/dao/Connexion_Dao.php';
+
 // ouverture de la connexion
 // // declaration variable qui correspond à la table message
 $table = 'message';
@@ -41,7 +41,7 @@ Function select($requete) {
         $listeMessages[] = new Message($idExped, $idDest, $dateEnvoi, $sujet, $texte, $idMessage);
 //echo $donnees['texte'] ."   ". $donnees['sujet'] ."   ". $donnees['typeMessage'];
 // fermeture de la connexion
-        closeConnexion($pdo);
+        $pdo = closeConnexion();
 
 // retourne la liste de messages
         return $listeMessages;
@@ -73,7 +73,7 @@ Function insert($requete) {
 
 
 
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
 }
 
 // pour Modifier la table
@@ -100,7 +100,7 @@ Function alter($requete) {
 
 
 
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
 }
 
 function delete($id) {
@@ -120,7 +120,7 @@ function delete($id) {
     $stmt->execute();
 
 
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
 }
 
 

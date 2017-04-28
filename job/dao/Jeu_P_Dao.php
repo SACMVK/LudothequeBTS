@@ -34,7 +34,7 @@ function insert($list_Values) {
     $idJeuPMax = mysqli_insert_id($stmt_jeu_p);
 
     //AhMaD:fermateur  la connexion avec BD
-    closeConnexion($db);
+    $db = closeConnexion();
 
     //AhMaD:on créer un nouveau objet 
     return new Jeu_P($idJeuPMax, $idJeuT, $idUser, $etat);
@@ -48,7 +48,7 @@ function select($requete) {
     $db = openConnexion();
 
     //AhMaD:prepration de requete qiu vas trouver l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "SELECT * FROM '" . TABLE_JEU_P . "';";
+    $requete = "SELECT * FROM '" . TABLE_JEU_P . "' ".$requete.";";
 
     //AhMaD: préparer la requête pour ensuite l'exécuter
     $stmt = $db->prepare($requete);
@@ -73,7 +73,7 @@ function select($requete) {
         $Jeu_P_list[] = $jeu_p;
     }
     //AhMaD: on ferme la conexion
-    closeConnexion($db);
+    $db = closeConnexion();
 
     //AhMaD: finalement on vas retourner avec un tableaux qui remplit des objets :)
     return $Jeu_P_list;
@@ -90,9 +90,6 @@ function alter($list_Values) {
 
     //AhMaD:ouvrire la connexion avec BD  
     $db = openConnexion();
-
-
-
 
 
 
@@ -124,7 +121,7 @@ function alter($list_Values) {
 
 
     //AhMaD: on ferme la conexion
-    closeConnexion($db);
+    $db = closeConnexion();
 }
 
 //AhMaD: function supprimer pour supprimer un copte
@@ -152,5 +149,5 @@ function delete($idOfLineToDelete) {
     }
 
     //AhMaD: on ferme la conexion
-    closeConnexion($db);
+    $db = closeConnexion();
 }

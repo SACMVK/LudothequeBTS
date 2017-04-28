@@ -372,7 +372,7 @@ function getAllNomJeux() {
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $list [$ligne ["idJeuP"]] = ["nom" => $ligne ["nom"], "idProprietaire" => $ligne ["idProprietaire"], "idPC" => $ligne ["idPC"]];
     }
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
     return $list;
 }
 
@@ -385,6 +385,6 @@ function getAllUsers() {
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $list [$ligne ["idUser"]] = ["nom" => $ligne ["nom"], "prenom" => $ligne ["prenom"], "dateInscription" => $ligne ["dateInscription"]];
     }
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
     return $list;
 }

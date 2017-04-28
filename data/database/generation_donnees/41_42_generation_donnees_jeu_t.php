@@ -95,7 +95,7 @@ function getPublic() {
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $liste_public [] = $ligne['public'];
     }
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
     return $liste_public[rand(0, count($liste_public) - 1)];
 }
 
@@ -108,7 +108,7 @@ function getDifficulte() {
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $liste_difficulte [] = $ligne['difficulte'];
     }
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
     return $liste_difficulte[rand(0, count($liste_difficulte) - 1)];
 }
 
@@ -121,7 +121,7 @@ function getEditeur() {
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $liste_editeurs [] = $ligne['editeur'];
     }
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
     return $liste_editeurs[rand(0, count($liste_editeurs) - 1)];
 }
 

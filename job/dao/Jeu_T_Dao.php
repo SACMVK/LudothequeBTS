@@ -11,7 +11,7 @@
         const TABLEPCT = 'produit_culturel_t';
         const TABLE_EDITEUR_D = 'editeur_d';
 
-        include 'job/dao/Connexion_Dao.php';
+
         
 Function select($requete){
 	/* M : Ouverture de la connexion
@@ -67,7 +67,7 @@ Function select($requete){
 	
 	/* M : Fermeture de la connexion
 	 */
-	closeConnexion($pdo);
+	$pdo = closeConnexion();
 	
 	/* M : La valeur retournée est un array
 	 */
@@ -129,7 +129,7 @@ Function insert($valueToInsert){
 
 	/* M : Fermeture de la connexion
 	 */
-	closeConnexion($pdo);
+	$pdo = closeConnexion();
 }
 
 Function alter($valueToAlter){
@@ -183,7 +183,7 @@ Function alter($valueToAlter){
         
 	/* M : Fermeture de la connexion
 	 */
-	closeConnexion($pdo);    
+	$pdo = closeConnexion();    
 }
 
 //suppresssion d'un jeu par son idPC
@@ -209,5 +209,5 @@ Function delete($idOfLineToDelete){
         $stmtDeletePCT->execute();
         /* M : Fermeture de la connexion
 	 */
-	closeConnexion($pdo);    
+	$pdo = closeConnexion();    
 }

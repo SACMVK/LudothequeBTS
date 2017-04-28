@@ -156,7 +156,7 @@ function getDroits() {
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $liste_droits [] = $ligne['droit'];
     }
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
     return $liste_droits[rand(0, count($liste_droits) - 1)];
 }
 
@@ -196,7 +196,7 @@ function getDepartement() {
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $listDepartement [] = [$ligne['numDept'], $ligne['nom']];
     }
-    closeConnexion($pdo);
+    $pdo = closeConnexion();
     return $listDepartement[rand(0, count($listDepartement) - 1)];
 }
 

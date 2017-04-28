@@ -19,13 +19,13 @@ function insert($list_Values) {
     $email = $list_Values['email'];
     $telephone = $list_Values['telephone'];
     $pseudo = $list_Values['pseudo'];
-    $dateInscription = "14-02-2019";
+    $dateInscription = getAujourdhui();
     $mdp = $list_Values['mdp'];
     // stefan : par défaut, lorsque l'on s'inscrit, on est simple utilisateur. Seul l'admin peut modifier les droits.
     $droit = "Utilisateur";
     $prenom = $list_Values['prenom'];
     $nom = $list_Values['nom'];
-    $dateNaiss = $list_Values['dateNaiss'];
+    $dateNaiss = convertDateToSQLdate($list_Values['dateNaiss']);
 
     //AhMaD:ouvrire la connexion avec BD
     $db = openConnexion();
@@ -59,11 +59,7 @@ function insert($list_Values) {
 
 
     //AhMaD:fermateur  la connexion avec BD
-    closeConnexion($db);
-
-    include 'job/dao/';
-    //AhMaD:on créer un nouveau objet 
-    return new Individu($id_Individu, $ville, $adresse, $codePostal, $numDept, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaiss);
+    $db = closeConnexion();
 }
 
 //AMaD:function select en gros il s'agit de FIND!
@@ -74,14 +70,14 @@ function select($requete) {
     $db = openConnexion();
 
     //AhMaD:prepration de requete qiu vas trouver l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "SELECT * FROM " . TABLE_INDIVIDU . "JOIN" . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser ;";
+    $requete = "SELECT * FROM " . TABLE_INDIVIDU . "JOIN" . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser " . $requete . ";";
 
     //AhMaD: préparer la requête pour ensuite l'exécuter
     $stmt = $db->prepare($requete);
 
     $stmt->execute();
     //AhMaD: on vas creer un array pour stocker les informations
-    $individu = array();
+    $individus = null;
 
     //AhMaD: je parcoure les tables pour afficher les resultats de ma requete.
     // mysql_fetch_assoc($result): permet de afficher les informations de toutes les champs
@@ -103,16 +99,14 @@ function select($requete) {
         $dateNaiss = $champ['dateNaiss'];
 
         //AhMaD : on vas creer un nouveau objet avec les informations
-        $compte = new Individu($idUser, $adresse, $ville, $numDept, $email, $telephone, $pseudo, $dateInscription, $mdp, $codePostal, $droit, $nom, $prenom, $dateNaiss);
-
         //AhMaD : on stocke ce objet dans l'array pour remplir l'array 
-        $individu[] = $compte;
+        $individus[] = new Individu($ville, $rue, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser = -1);
     }
     //AhMaD: on ferme la conexion
-    closeConnexion($db);
+    $db = closeConnexion();
 
     //AhMaD: finalement on vas retourner avec un tableaux qui remplit des objets :)
-    return $individu;
+    return $individus;
 }
 
 //AhMaD: function updat pour modifer le table
@@ -164,7 +158,7 @@ function alter($list_Values) {
 
 
     //AhMaD: on ferme la conexion
-    closeConnexion($db);
+    $db = closeConnexion();
 }
 
 //AhMaD: function supprimer pour supprimer un copte
@@ -193,6 +187,5 @@ function delete($idOfLineToDelete) {
 
 
     //AhMaD: on ferme la conexion
-    closeConnexion($db);
+    $db = closeConnexion();
 }
-

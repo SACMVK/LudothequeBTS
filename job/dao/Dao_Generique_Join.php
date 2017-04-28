@@ -116,7 +116,7 @@ Function selectJoin($tablePK1,$table2,$table3,$onPK){
 	
 	/* M : Fermeture de la connexion
 	 */
-	closeConnexion($pdo);
+	$pdo = closeConnexion();
 	
 	/* M : La valeur retournÃ©e est un array
 	 */

@@ -1,6 +1,6 @@
 <?php
 
-include 'job/dao/Connexion_Dao.php';
+include 'job/dao/Connexion_DataBase.php';
         
 /* stefan : Cette fonction a pour objectif
  * de créer une string de requête SQL (partie "WHERE")
