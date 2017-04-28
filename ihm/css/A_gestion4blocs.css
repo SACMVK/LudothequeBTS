@@ -17,7 +17,7 @@ img {
     position: fixed;
     left: 0px;
     top: 120px;
-    width: 100px;
+    width: 200px;
     height: 500px;
     background-color: #c9e2b3;
 }
@@ -33,7 +33,7 @@ img {
 #div_contenuAvecMenu{
     margin-top: 120px;
     margin-bottom: 70px;
-    margin-left: 100px;
+    margin-left: 200px;
 }
 
 #div_footer{

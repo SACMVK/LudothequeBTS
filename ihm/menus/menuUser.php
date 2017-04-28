@@ -1,6 +1,11 @@
 Menu Utilisateur
-<a href='index.php?page=admin/config.php'>Ma ludothèque</a>
-<a href='index.php?page=admin/config.php'>Mes prêts</a>
-<a href='index.php?page=admin/config.php'>Mes emprunts</a>
-<a href='index.php?page=admin/config.php'>Mes messages</a>
+<br/>
+<a href='index.php?page=pages/_old/_enCours.php'>Ma ludothèque</a>
+<br/>
+<a href='index.php?page=pages/_old/_enCours.php'>Mes prêts</a>
+<br/>
+<a href='index.php?page=pages/_old/_enCours.php'>Mes emprunts</a>
+<br/>
+<a href='index.php?page=pages/_old/_enCours.php'>Mes messages</a>
+<br/>
 

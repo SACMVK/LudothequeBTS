@@ -8,23 +8,26 @@
         //include 'ihm/css/css.php';
         //
         // stefan : Cette ligne permet d'activer et d'entretenir la session ($_SESSION) avec ses variables
+        // stefan : on est obligé de déclarer la classe avant de pouvoir l'utiliser
+        include 'job/class/Individu.php';
         session_start();
+
         // stefan : Ce fichier permet d'enregistrer des variables en cours d'exécution (je ne sais pas me servir du mode debug
         include '_old/saveTexte.php';
         include 'job/dao/fonctions_dao.php';
-           require 'ihm/css/css.php';
+        require 'ihm/css/css.php';
         ?>  
-      
-      
+
+
         <!-- AhMaD : les fichier CSS et JS -->
         <link rel="stylesheet" type="text/css" href="ihm/css/A_gestion4blocs.css">
-       <link rel="stylesheet" type="text/css" href="ihm/css/styles.css">
-       <script src="<?php include_once 'ihm/js/js.php'; ?>"></script>
-     
-       <script src="ihm//js/jquery-3.1.1.min.js"></script>
-     
-         <script src="ihm//js/bootstrap.min.js"></script>
-           <script src="ihm//js/slideShow.js"></script>
+        <link rel="stylesheet" type="text/css" href="ihm/css/styles.css">
+        <script src="<?php include_once 'ihm/js/js.php'; ?>"></script>
+
+        <script src="ihm//js/jquery-3.1.1.min.js"></script>
+
+        <script src="ihm//js/bootstrap.min.js"></script>
+        <script src="ihm//js/slideShow.js"></script>
         <!-- ************************************************************************************************ -->
         <!-- ************************************** CONTROLEUR (DEBUT) ************************************** -->
         <!-- ************************************************************************************************ -->
@@ -68,8 +71,8 @@
         <!-- ************************************************************************************************ -->
 
         <div id='div_header'><?php
-        include ('ihm/header/header.php');
-        ?></div>
+            include ('ihm/header/header.php');
+            ?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** HEADER (FIN) ***************************************** -->
@@ -85,14 +88,14 @@
         <!-- stefan : S'il y a une session d'ouverte, on affiche le menu -->
         <?php if (!empty($_SESSION)): ?>
             <div id='div_menu'><?php
-            // stefan : Si le compte a des droits admin, on affiche d'abord le menu admin
-            if ($_SESSION["user"]->getDroit() == "Administrateur") {
-                include ('ihm/menus/menuAdmin.php');
-            }
-            // stefan : Puis on affiche le menu user
-            include ('ihm/menus/menuUser.php');
-            ?></div>
-            <?php endif; ?>
+                // stefan : Si le compte a des droits admin, on affiche d'abord le menu admin
+                if ($_SESSION["user"]->getDroit() == "Administrateur") {
+                    include ('ihm/menus/menuAdmin.php');
+                }
+                // stefan : Puis on affiche le menu user
+                include ('ihm/menus/menuUser.php');
+                ?></div>
+        <?php endif; ?>
 
         <!-- ************************************************************************************************ -->
         <!--  ********************** MENU A GAUCHE (AFFICHE QU'EN MODE CONNECTE) (FIN) ********************** -->
@@ -127,8 +130,8 @@
         <!-- ************************************************************************************************ -->
 
         <div id='div_footer'><?php
-        include 'ihm/footer/footer.php';
-        ?></div>
+            include 'ihm/footer/footer.php';
+            ?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** FOOTER (FIN) ***************************************** -->
