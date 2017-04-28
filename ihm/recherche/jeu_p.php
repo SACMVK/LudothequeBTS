@@ -8,13 +8,14 @@
                 <input type="text" name="nom" class="form-control input-lg" maxlength="12" placeholder="Nom de jeu"  /> 
 
                 <input type="text" name="etat" class="form-control input-lg" maxlength="12" placeholder="état de jeu"  />   
-                
+
                 <input type="date" name="anneeSortie" class="form-control input-lg" min="1920-01-01" maxlength="10" placeholder="Date De Sortie (mm/dd/yyyy)"/>
 
                 <input type="text" name="public" class="form-control input-lg" maxlength="12" placeholder="public "/>
 
-                <input type="hidden" name="page" value="jeu_p selectList"  />
-           
+                <input type=hidden name="objectToWorkWith" value="Jeu_P" />
+                <input type=hidden name="actionToDoWithObject" value="selectList" />
+
                 <input type="submit" name="submit" value="Recherche">
                 <input type="reset" value="Réinitialiser">
             </form>          

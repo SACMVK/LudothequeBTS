@@ -1,33 +1,34 @@
 <?php
 
 include 'job/dao/Connexion_DataBase.php';
-        
+
 /* stefan : Cette fonction a pour objectif
  * de créer une string de requête SQL (partie "WHERE")
  * à partir des éléments des formulaires de sélection,
  * éléments envoyés dans $_POST.
  */
+
 function createRequestFromPOST() {
     /* stefan : La requête par défaut est vide.
      * Elle restera vide s'il n'y a aucune variable
      * dans $_POST.
      */
     $stringRequest = '';
-    if (!empty($_POST)){
-    $stringRequest = 'WHERE ';
-	foreach ($_POST as $key => $value){
-            $stringRequest .= $key.'='.$value;
+    if (!empty($_POST)) {
+        $stringRequest = 'WHERE ';
+        foreach ($_POST as $key => $value) {
+            $stringRequest .= $key . '=' . $value;
             /* stefan : Après son ajout à la requête,
              * on supprime le couple clé-valeur du $_POST ...
              */
-            unset ($_POST [$key]);
+            unset($_POST [$key]);
             // stefan : ... de manière à pouvoir ajouter ou non "AND".
-            if (!(empty($_POST))){
-                $stringRequest .= ' AND ';  
+            if (!(empty($_POST))) {
+                $stringRequest .= ' AND ';
             }
-	}
+        }
     }
-        return $stringRequest;
+    return $stringRequest;
 }
 
 /* stefan : Cette fonction a pour objectif
@@ -36,9 +37,10 @@ function createRequestFromPOST() {
  * dans la base de données
  * (ajout, modification, suppression d'une ligne).
  */
-function getValuesFormPOST(){
+
+function getValuesFormPOST() {
     $listOfValues = array();
-    foreach ($_POST as $key => $value){
+    foreach ($_POST as $key => $value) {
         $listOfValues [$key] = $value;
     }
     return $listOfValues;
@@ -54,37 +56,52 @@ $objectToWorkWith = $_POST['objectToWorkWith'];
 $actionToDoWithObject = $_POST['actionToDoWithObject'];
 
 // stefan : On inclue le DAO relatif à l'objet
-$dao = 'job/dao/'.$objectToWorkWith.'_Dao.php';
+$dao = 'job/dao/' . $objectToWorkWith . '_Dao.php';
 saveTexte($dao);
-include 'job/dao/'.$objectToWorkWith.'_Dao.php';
-            
+include 'job/dao/' . $objectToWorkWith . '_Dao.php';
+
 // stefan : On réalise l'action passée depuis le formulaire.
-switch ($actionToDoWithObject)   {
+switch ($actionToDoWithObject) {
     case "selectOne":
         // stefan : Partie DAO
         $request = createRequestFromPOST();
-        $element = select ($request)[0];
+        $element = select($request)[0];
         // stefan : Partie IHM
-        $pageAAfficher =  'ihm/resultat/'.$objectToWorkWith.'.php';
+        $pageAAfficher = 'ihm/resultat/' . $objectToWorkWith . '.php';
         break;
     case "selectList":
         // stefan : Partie DAO
         $request = createRequestFromPOST();
-        $listOfElements = select ($request);
+        $listOfElements = select($request);
         // stefan : Partie IHM
-        $pageAAfficher =  'ihm/resultat/'.$objectToWorkWith.'_liste.php';
+        $pageAAfficher = 'ihm/resultat/' . $objectToWorkWith . '_liste.php';
         break;
     case "insert":
         // stefan : Partie DAO
-        $valueToInsert = getValuesFormPOST();
-        insert($valueToInsert);
+        $valuesToInsert = getValuesFormPOST();
+        $lastId = insert($valuesToInsert);
         // stefan : Partie IHM
-        $pageAAfficher = 'ihm/pages/_old/test.php';
+        switch ($objectToWorkWith) {
+            case "Individu":
+                // stefan : on met [0] car select retourne une liste (à un seul élément) et on ne prend que le premier
+                $_SESSION["user"] = select("WHERE individu.idUser = ".$lastId)[0];
+                $pageAAfficher = "ihm/pages/accueilConnected.php";
+                break;
+            case "Jeu_P":
+                $pageAAfficher = 'ihm/pages/_old/test.php';
+                break;
+            case "Jeu_T":
+                $pageAAfficher = 'ihm/pages/_old/test.php';
+                break;
+            case "Message":
+                $pageAAfficher = 'ihm/pages/_old/test.php';
+                break;
+        }
         break;
-    case "alter":
+    case "update":
         // stefan : Partie DAO
-        $valueToAlter = getValuesFormPOST();
-        alter($valueToAlter); //! alter ou update et non insert
+        $valuesToUpdate = getValuesFormPOST();
+        update($valuesToUpdate);
         // stefan : Partie IHM
         // mettre en type=hidden value=[nom_page] + controller en $_POST['page']
         // $_GET['page'] = $_POST['page'];

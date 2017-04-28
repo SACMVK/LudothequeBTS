@@ -15,7 +15,8 @@
                 
                 <input type="number" name="numDept" class="form-control input-lg" maxlength="5" placeholder="Numero de département"/>
 
-                <input type="hidden" name="page" value="individu selectList"  />
+                <input type=hidden name="objectToWorkWith" value="Individu" />
+                <input type=hidden name="actionToDoWithObject" value="selectList" />
            
                 <input type="submit" name="submit" value="Recherche">
                 <input type="reset" value="Réinitialiser">

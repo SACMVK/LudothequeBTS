@@ -43,23 +43,22 @@ function insert($list_Values) {
 
 
     //AhMaD: on recherche de la dernière id etait generaté par la precedent requete en utilisant la finction mysqli_insert_id();
-    $id_Individu = $db->lastInsertId();
+    $lastIdIndividu = $db->lastInsertId();
 
 
     //AhMaD:la requete pour inserter dans le tableau individu
-    $requete_individu = "INSERT INTO " . TABLE_INDIVIDU . "(nom,prenom,idUser,dateNaiss) VALUES ('" . $nom . "','" . $prenom . "','" . $id_Individu . "','" . $dateNaiss . "');";
+    $requete_individu = "INSERT INTO " . TABLE_INDIVIDU . "(nom,prenom,idUser,dateNaiss) VALUES ('" . $nom . "','" . $prenom . "','" . $lastIdIndividu . "','" . $dateNaiss . "');";
     //AhMaD: préparer la requête pour ensuite l'exécuter
     $stmt_individu = $db->prepare($requete_individu);
 
     //AhMaD:exécuter
     $stmt_individu->execute();
 
-    unset ($id_Individu);
 
-
-
-    //AhMaD:fermateur  la connexion avec BD
+    //AhMaD:fermeture de la connexion avec BD
     $db = closeConnexion();
+
+    return $lastIdIndividu;
 }
 
 //AMaD:function select en gros il s'agit de FIND!
@@ -110,7 +109,7 @@ function select($requete) {
 }
 
 //AhMaD: function updat pour modifer le table
-function alter($list_Values) {
+function update($list_Values) {
 
     //AhMaD: déclaration les values
     $idUser = $list_Values['idUser'];

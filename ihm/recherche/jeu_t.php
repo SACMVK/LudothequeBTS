@@ -1,5 +1,5 @@
-</br></br>
-<h1>Rechercher un jeu théorique</h1>
+
+<h1>Rechercher un jeu</h1>
 
 <div class="container" id="wrap">
     <div class="row">
@@ -7,7 +7,7 @@
             <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
                 <label class="form-control input-lg" maxlength="12">Type de produit recherché
                     <select name="typePC">
-                        <?php selectDico("type_p_c_d","typePC") ?>
+                        <?php selectDico("type_p_c_d", "typePC") ?>
                     </select>
                 </label>
                 <label class="form-control input-lg" maxlength="12">Nom du produit: 
@@ -16,7 +16,7 @@
                 </br>
                 <label class="form-control input-lg" maxlength="12">Nom de l'éditeur
                     <select name="editeur">
-                        <?php selectDico("editeur_d","editeur") ?>
+                        <?php selectDico("editeur_d", "editeur") ?>
                     </select>
                 </label>
                 <label class="form-control input-lg" maxlength="12">Ville: 
@@ -28,35 +28,36 @@
                 </label>
                 <label class="form-control input-lg" maxlength="5">Département
                     <select name="departement">
-                        <?php selectDico("departement","numDept") ?>
+                        <?php selectDico("departement", "numDept") ?>
                     </select>
                 </label>
                 </br>
                 <label class="form-control input-lg" maxlength="5">Nombre de joueurs maximum
                     <select name="nbJoueurMax">
-                        <?php selectDico("jeu_t","nbJoueursMax") ?>
+                        <?php selectDico("jeu_t", "nbJoueursMax") ?>
                     </select>
                 </label>
                 <label class="form-control input-lg" maxlength="12">Public
                     <select name="public">
-                        <?php selectDico("public_d","public") ?>
+                        <?php selectDico("public_d", "public") ?>
                     </select>
                 </label>
                 </br>
                 <label class="form-control input-lg" maxlength="12">Difficulté
                     <select name="difficulte">
-                        <?php selectDico("difficulte_d","difficulte") ?>
+                        <?php selectDico("difficulte_d", "difficulte") ?>
                     </select>
                 </label>
                 <label class="form-control input-lg" maxlength="5">Durée de la partie
                     <select name="dureePartie">
-                        <?php selectDico("jeu_t","dureePartie") ?>
+                        <?php selectDico("jeu_t", "dureePartie") ?>
                     </select>
                 </label>
                 </br>
 
-                <input type="hidden" name="page" value="jeu_t selectList"  />
-           
+                <input type=hidden name="objectToWorkWith" value="Individu" />
+                <input type=hidden name="actionToDoWithObject" value="selectList" />
+
                 <input type="submit" name="submit" value="Recherche jeu">
                 <input type="reset" value="Réinitialiser">
             </form>

@@ -1,6 +1,7 @@
 <form method="post" action="">
     <!-- size : taille cellule | maxlength : nombre maximum de caractères autorisé -->
     <!-- Ajouter expressions régulières mail, code postal, téléphone + check conformitée mot de passe -->
+    <p style="color:red;">@team : Attention, le mail et le pseudo doivent être uniques dans la BD, il faut modifier les valeurs par défaut</p>
     Nom :
     <input type="text" name="nom" size="10" maxlength="10" required="required" value="nom"/>
     <br/>

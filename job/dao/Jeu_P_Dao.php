@@ -31,13 +31,13 @@ function insert($list_Values) {
 
 
     //AhMaD: on recherche de la dernière id etait generaté par la precedent requete en utilisant la finction mysqli_insert_id();
-    $idJeuPMax = mysqli_insert_id($stmt_jeu_p);
+    $lastIdJeuP = $db->lastInsertId();
 
     //AhMaD:fermateur  la connexion avec BD
     $db = closeConnexion();
 
     //AhMaD:on créer un nouveau objet 
-    return new Jeu_P($idJeuPMax, $idJeuT, $idUser, $etat);
+    return $lastIdJeuP;
 }
 
 //AMaD:function select en gros il s'agit de FIND!
@@ -75,12 +75,12 @@ function select($requete) {
     //AhMaD: on ferme la conexion
     $db = closeConnexion();
 
-    //AhMaD: finalement on vas retourner avec un tableaux qui remplit des objets :)
+    //AhMaD: finalement on va retourner avec un tableau qui remplit des objets :)
     return $Jeu_P_list;
 }
 
-//AhMaD: function updat pour modifer le table
-function alter($list_Values) {
+//AhMaD: function updat pour modifer la table
+function update($list_Values) {
 
     //AhMaD: déclaration les values
     $idUser = $list_Values['idUser'];
@@ -93,13 +93,13 @@ function alter($list_Values) {
 
 
 
-    //AhMaD:on vas faire une requete pour savoir alter le table compte.  
+    //AhMaD:on vas faire une requete pour savoir update le table compte.  
     $user_requete = "UPDATE " . TABLE_COMPTE . " SET idUser = " . $idUser . "WHERE " . TABLE_COMPTE . ". idUser = " . TABLE_JEU_P . ". idUser ;";
     $stmt = $db->prepare($user_requete);
     $stmt->execute();
     $user = $stmt->execute();
 
-    //AhMaD:on vas faire une requete pour savoir alter le table jeu_t.  
+    //AhMaD:on vas faire une requete pour savoir update le table jeu_t.  
     $jeu_requete = "UPDATE " . TABLEJEUT . " SET idJeuT = " . $idJeuT . " WHERE " . TABLEJEUT . ". idJeuT = " . TABLE_JEU_P . ". idJeuT ;";
     $stmt = $db->prepare($jeu_requete);
     $stmt->execute();

@@ -1,6 +1,5 @@
 <?php
 
-
 // ouverture de la connexion
 // // declaration variable qui correspond à la table message
 $table = 'message';
@@ -71,13 +70,14 @@ Function insert($requete) {
         "texte" => $requete['texte']
     ));
 
-
+    $lastIdMessage = $pdo->lastInsertId();
 
     $pdo = closeConnexion();
+    return $lastIdMessage;
 }
 
 // pour Modifier la table
-Function alter($requete) {
+Function update($requete) {
 // ouverture de la connexion
     $pdo = openConnexion();
 
@@ -112,18 +112,15 @@ function delete($id) {
     $requeteDelete = "DELETE  FROM " . $table . " WHERE idMessage = :idMessage ;";
     $stmt = $pdo->prepare($requeteDelete);
 
-    $stmt->bindValue(':idMessage',$id);
-    
-    
-    
+    $stmt->bindValue(':idMessage', $id);
+
+
+
 // execution de la requete
     $stmt->execute();
 
 
     $pdo = closeConnexion();
 }
-
-
-
 
 ?>

@@ -130,9 +130,10 @@ Function insert($valueToInsert){
 	/* M : Fermeture de la connexion
 	 */
 	$pdo = closeConnexion();
+        return $lastIdPC;
 }
 
-Function alter($valueToAlter){
+Function update($valuesToUpdate){
 	/* M : Ouverture de la connexion
 	 */
 	$pdo = openConnexion();
@@ -140,7 +141,7 @@ Function alter($valueToAlter){
         // M :Vérification si l'editeur existe déjà dans le dico editeur_d, 1 ligne si oui, 0 sinon
         $edi = "SELECT * FROM editeur_d WHERE editeur=:editeur;";
         $query = $pdo->prepare($edi);
-	$query->execute(array('editeur'=>$valueToAlter['editeur'])) ;
+	$query->execute(array('editeur'=>$valuesToUpdate['editeur'])) ;
         $count = $query->rowCount();
         
          //M : Requetes sur les tables jeu_t et produit_c_t 
@@ -157,28 +158,28 @@ Function alter($valueToAlter){
         if ($count==0){
             $requeteEditeur_d = "INSERT INTO ".TABLE_EDITEUR_D."(editeur) VALUES (:editeur);";
             $stmtEditeur_d = $pdo->prepare($requeteEditeur_d);
-            $stmtEditeur_d->execute(array("editeur" => $valueToAlter['editeur']));
+            $stmtEditeur_d->execute(array("editeur" => $valuesToUpdate['editeur']));
         }
 
         //On execute 
         $stmtJeuT->execute(array(
-            "idPC" => $valueToAlter['idPC'],
-            "nbJoueursMin" => $valueToAlter['nbJoueursMin'],
-            "nbJoueursMax" => $valueToAlter['nbJoueursMax'],
-            "nom" => $valueToAlter['nom'],
-            "editeur" => $valueToAlter['editeur'],
-            "regles" => $valueToAlter['regles'],
-            "difficulte" => $valueToAlter['difficulte'],
-            "public" => $valueToAlter['public'],
-            "listePieces" => $valueToAlter['listePieces'],
-            "dureePartie" => $valueToAlter['dureePartie']
+            "idPC" => $valuesToUpdate['idPC'],
+            "nbJoueursMin" => $valuesToUpdate['nbJoueursMin'],
+            "nbJoueursMax" => $valuesToUpdate['nbJoueursMax'],
+            "nom" => $valuesToUpdate['nom'],
+            "editeur" => $valuesToUpdate['editeur'],
+            "regles" => $valuesToUpdate['regles'],
+            "difficulte" => $valuesToUpdate['difficulte'],
+            "public" => $valuesToUpdate['public'],
+            "listePieces" => $valuesToUpdate['listePieces'],
+            "dureePartie" => $valuesToUpdate['dureePartie']
         ));
         
         $stmtPCT->execute(array(
-            "idPC" => $valueToAlter['idPC'],
-            ":typePC" => $valueToAlter['typePC'],
-            ":anneeSortie" => $valueToAlter['anneeSortie'],
-            ":description" => $valueToAlter['description']
+            "idPC" => $valuesToUpdate['idPC'],
+            ":typePC" => $valuesToUpdate['typePC'],
+            ":anneeSortie" => $valuesToUpdate['anneeSortie'],
+            ":description" => $valuesToUpdate['description']
         ));
         
 	/* M : Fermeture de la connexion

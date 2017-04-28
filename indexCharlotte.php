@@ -90,7 +90,7 @@ $list['texte'] = " bonjour, ceci est un test pour voir si la fonction insert fon
                 'idMessage'=>2);
             
             
-              alter($message1);
+              update($message1);
 
           
            // $list = [$message1, $message2];
