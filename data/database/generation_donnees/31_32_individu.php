@@ -1,6 +1,7 @@
 <?php
 
 function generer_donnees_individu(int $nombreIndividus) {
+    $listeDepartement = getDepartements();
     for ($indice = 1; $indice <= $nombreIndividus; $indice++) {
 
         $list['prenom'] = getPrenom();
@@ -11,9 +12,9 @@ function generer_donnees_individu(int $nombreIndividus) {
         //echo $prenomMinuscule . " " . $nomMinuscule . "<br>";
         $list['email'] = getMail($prenomMinuscule, $nomMinuscule);
         //echo $list['email']. "<br>";
-        $departement = getDepartement();
-        $list['numDept'] = $departement[0];
-        $list['codePostal'] = getCodePostal($departement[0]);
+        $departement = $listeDepartement[rand(0, count($listeDepartement) - 1)];
+        $list['numDept'] = $departement;
+        $list['codePostal'] = getCodePostal($departement);
         $list['droit'] = getDroits();
         $list['dateNaiss'] = getDate_(1950, 2010);
         $list['dateInscription'] = getDate_(2016);
@@ -39,8 +40,8 @@ function generer_donnees_individu(int $nombreIndividus) {
 //        echo "Mot de passe : " . $list['mdp'] . "<br>";
 //        echo "Inscrit(e) le : " . $list['dateInscription'] . "<br>";
 //        echo $list['adresse'] . " à " . $list['ville'] . ", " . $list['codePostal'] . " dans le " . $list['numDept'] . " (" . $departement[1] . ")<br><br>";
-      
-        
+
+
         echo 'INSERT INTO compte (adresse,ville,email,telephone,pseudo,dateInscription,mdp,codePostal,numDept,droit)';
         echo 'VALUES ("' . $list['adresse'] . '","' . $list['ville'] . '","' . $list['email'] . '","' . $list['telephone'] . '","' . $list['pseudo'] . '","' . $list['dateInscription'] . '","' . $list['mdp'] . '","' . $list['codePostal'] . '","' . $list['numDept'] . '","' . $list['droit'] . '");';
         echo '<br>';
@@ -144,7 +145,13 @@ function getTelephone() {
 }
 
 function getCodePostal($departement) {
-    return $departement . rand(0, 9) . "00";
+    $codePostal = null;
+    if (strlen($departement) == 2) {
+        $codePostal =  $departement . rand(0, 9) . "00";
+    } else if (strlen ($departement) == 3) {
+        $codePostal =  $departement . "00";
+    }
+    return $codePostal;
 }
 
 function getDroits() {
@@ -187,17 +194,17 @@ function getDate_(int $dateMini, int $dateMax = 0) {
     return $annee . "-" . $mois . "-" . $jour;
 }
 
-function getDepartement() {
+function getDepartements() {
     $pdo = openConnexion();
     $requete = "SELECT * FROM departement;";
     $stmt = $pdo->prepare($requete);
     $stmt->execute();
-    $listDepartement = null;
+    $listDepartements = null;
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $listDepartement [] = [$ligne['numDept'], $ligne['nom']];
+        $listDepartements [] = $ligne['numDept'];
     }
     $pdo = closeConnexion();
-    return $listDepartement[rand(0, count($listDepartement) - 1)];
+    return $listDepartements;
 }
 
 // stefan : fonction prise sur internet basé sur les expressions régulières

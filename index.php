@@ -88,12 +88,7 @@
         <!-- stefan : S'il y a une session d'ouverte, on affiche le menu -->
         <?php if (!empty($_SESSION)): ?>
             <div id='div_menu'><?php
-                // stefan : Si le compte a des droits admin, on affiche d'abord le menu admin
-                if ($_SESSION["user"]->getDroit() == "Administrateur") {
-                    include ('ihm/menus/menuAdmin.php');
-                }
-                // stefan : Puis on affiche le menu user
-                include ('ihm/menus/menuUser.php');
+                include ('ihm/menus/menu.php');
                 ?></div>
         <?php endif; ?>
 

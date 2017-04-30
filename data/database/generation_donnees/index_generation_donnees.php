@@ -56,7 +56,7 @@
         $nombreCommentaires_pc = 800;
 
         //
-        //generer_donnees_individu($nombreIndividus);
+        generer_donnees_individu($nombreIndividus);
         //generer_donnees_genre_individu($nombreGenreIndividu,$nombreIndividus);
         //generer_donnees_jeu_t($nombreJeuxT);
         //generer_donnees_genre_jeu($nombreJeuxT);
@@ -67,7 +67,7 @@
 
 
 
-        generer_prets($nombreIndividus, $nombreJeuxP, $aujourdhui, $nombreMessages);
+        //generer_prets($nombreIndividus, $nombreJeuxP, $aujourdhui, $nombreMessages);
 
 
         ?>

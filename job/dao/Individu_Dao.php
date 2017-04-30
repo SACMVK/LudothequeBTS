@@ -15,7 +15,18 @@ function insert($list_Values) {
     $adresse = $list_Values['adresse'];
     $codePostal = $list_Values['codePostal'];
     // stefan : le numéro de département est déduit du code postal
-    $numDept = substr($codePostal, 0, 2);
+    if (strlen ($codePostal) == 5) {
+        $numDept = substr($codePostal, 0, 2);
+        // stefan : cas où le code postal ne compte que 4 chiffres
+    } else if (strlen ($codePostal) == 4) {
+        $numDept = substr($codePostal, 0, 1);
+        // stefan : cas où le code postal a été entré avec un 0 au début
+    } else if (substr($codePostal, 0, 1)=="0"){
+        $numDept = substr($codePostal, 1, 2);
+        // stefan : cas des DOM-TOM
+    } else if (substr($codePostal, 0, 2)==97 || substr($codePostal, 0, 2)==98){
+        $numDept = substr($codePostal, 0, 3);
+    }
     $email = $list_Values['email'];
     $telephone = $list_Values['telephone'];
     $pseudo = $list_Values['pseudo'];
