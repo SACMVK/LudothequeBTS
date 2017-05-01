@@ -4,9 +4,6 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>Ludothèque</title>
         <?php
-// Include de la totalité des fichiers css
-        //include 'ihm/css/css.php';
-        //
         // stefan : Cette ligne permet d'activer et d'entretenir la session ($_SESSION) avec ses variables
         // stefan : on est obligé de déclarer la classe avant de pouvoir l'utiliser
         include 'job/class/Individu.php';
@@ -15,12 +12,11 @@
         // stefan : Ce fichier permet d'enregistrer des variables en cours d'exécution (je ne sais pas me servir du mode debug
         include '_old/saveTexte.php';
         include 'job/dao/fonctions_dao.php';
-        require 'ihm/css/css.php';
+        include 'ihm/css/css.php';
         ?>  
 
 
-        <!-- AhMaD : les fichier CSS et JS -->
-        <link rel="stylesheet" type="text/css" href="ihm/css/styles.css">
+
 
         <!-- ************************************************************************************************ -->
         <!-- ************************************** CONTROLEUR (DEBUT) ************************************** -->
@@ -65,8 +61,8 @@
         <!-- ************************************************************************************************ -->
 
         <div id='div_header'><?php
-            include ('ihm/header/header.php');
-            ?></div>
+        include ('ihm/header/header.php');
+        ?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** HEADER (FIN) ***************************************** -->
@@ -82,9 +78,9 @@
         <!-- stefan : S'il y a une session d'ouverte, on affiche le menu -->
         <?php if (!empty($_SESSION)): ?>
             <div id='div_menu'><?php
-                include ('ihm/menus/menu.php');
-                ?></div>
-        <?php endif; ?>
+            include ('ihm/menus/menu.php');
+            ?></div>
+            <?php endif; ?>
 
         <!-- ************************************************************************************************ -->
         <!--  ********************** MENU A GAUCHE (AFFICHE QU'EN MODE CONNECTE) (FIN) ********************** -->
@@ -119,8 +115,8 @@
         <!-- ************************************************************************************************ -->
 
         <div id='div_footer'><?php
-            include 'ihm/footer/footer.php';
-            ?></div>
+        include 'ihm/footer/footer.php';
+        ?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** FOOTER (FIN) ***************************************** -->
@@ -132,7 +128,7 @@
 
 
         <?php
-include 'ihm/js/js_effets.php';
+        include 'ihm/js/js_effets.php';
         ?>
 
     </body>
