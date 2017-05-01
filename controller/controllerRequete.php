@@ -56,8 +56,6 @@ $objectToWorkWith = $_POST['objectToWorkWith'];
 $actionToDoWithObject = $_POST['actionToDoWithObject'];
 
 // stefan : On inclue le DAO relatif à l'objet
-$dao = 'job/dao/' . $objectToWorkWith . '_Dao.php';
-saveTexte($dao);
 include 'job/dao/' . $objectToWorkWith . '_Dao.php';
 
 // stefan : On réalise l'action passée depuis le formulaire.
@@ -84,7 +82,7 @@ switch ($actionToDoWithObject) {
         switch ($objectToWorkWith) {
             case "Individu":
                 // stefan : on met [0] car select retourne une liste (à un seul élément) et on ne prend que le premier
-                $_SESSION["user"] = select("WHERE individu.idUser = ".$lastId)[0];
+                $_SESSION["user"] = select("WHERE individu.idUser = " . $lastId)[0];
                 $pageAAfficher = "ihm/pages/accueilConnected.php";
                 break;
             case "Jeu_P":
@@ -103,8 +101,12 @@ switch ($actionToDoWithObject) {
         $valuesToUpdate = getValuesFormPOST();
         update($valuesToUpdate);
         // stefan : Partie IHM
-        // mettre en type=hidden value=[nom_page] + controller en $_POST['page']
-        // $_GET['page'] = $_POST['page'];
+        // Si on modifie un individu et que c'est l'utilisateur qui modifie ses propres informations,
+        // il faut mettre à jour l'objet dans la RAM
+        if ($objectToWorkWith == "Individu" && $_POST["idUser"] == $_SESSION["user"]->getIdUser()) {
+            
+        }
+        $pageAAfficher = 'ihm/' . $_POST['page'];
         break;
     case "delete":
         // stefan : Partie DAO
@@ -112,8 +114,6 @@ switch ($actionToDoWithObject) {
         $idOfLineToDelete = getValuesFormPOST()[0];
         delete($idOfLineToDelete);
         // stefan : Partie IHM
-        // mettre en type=hidden value=[nom_page] + controller en $_POST['page']
-        // $_GET['page'] = $_POST['page'];
         break;
 }     
         

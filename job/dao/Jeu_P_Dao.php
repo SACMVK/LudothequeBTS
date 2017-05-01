@@ -85,7 +85,6 @@ function update($list_Values) {
     //AhMaD: déclaration les values
     $idUser = $list_Values['idUser'];
     $idJeuT = $list_Values['idJeuT'];
-    $idJeuP = $list_Values['idJeuP'];
     $etat = $list_Values['etat'];
 
     //AhMaD:ouvrire la connexion avec BD  

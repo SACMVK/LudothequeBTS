@@ -86,7 +86,7 @@ Function update($requete) {
 
 
 
-    $stmt = $pdo->prepare("UPDATE " . $table . " SET 'idExped' = :idExped, 'idDest' = :idDest, 'dateEnvoi' = :dateEnvoi, 'sujet' = :sujet, 'texte' = :texte, 'idMessage' = :idMessage)");
+    $stmt = $pdo->prepare("UPDATE " . $table . " SET 'idExped' = :idExped, 'idDest' = :idDest, 'dateEnvoi' = :dateEnvoi, 'sujet' = :sujet, 'texte' = :texte, idMessage =:idMessage)");
 
     $stmt->execute(array(
         ":idExped" => $requete['idExped'],

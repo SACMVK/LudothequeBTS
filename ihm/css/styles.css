@@ -67,7 +67,7 @@ caption {
  }
  
  /*AhMaD:: text acceuil*/
- .pargraphe_acceuil{
+ .paragraphe_accueil{
      text-align: center;
      color: #000;
      font-size: 20px;
@@ -75,7 +75,7 @@ caption {
      letter-spacing: 1px;
      margin-bottom: 20px;
  }
- .pargraphe_acceuil:hover{
+ .paragraphe_accueil:hover{
      text-decoration: none;
      color: #245580;
      

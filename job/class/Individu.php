@@ -6,7 +6,7 @@ class Individu {
     // AhMaD: les attributs pour individu ca-a-dire un utilisateur et peut etre une groupe
     private $idUser;
     private $ville;
-    private $Adresse;
+    private $adresse;
     private $codePostal;
     private $dpt;
     private $email;
@@ -138,22 +138,14 @@ class Individu {
     public function setVille($ville) {
         return $this->ville = $ville;
     }
-     // rue
-    public function getRue() {
-        return $this->rue;
-    }
-
-    public function setRue($rue) {
-        return $this->rue = $rue;
-    }
 
     // Adresse
     public function getAdresse() {
-        return $this->Adresse;
+        return $this->adresse;
     }
 
-    public function setAdresse($Adresse) {
-        return $this->Adresse = $Adresse;
+    public function setAdresse($adresse) {
+        return $this->adresse = $adresse;
     }
 
     // codePostal
@@ -179,7 +171,7 @@ class Individu {
         return( "id= " . $this->idUser . ", Email :" . $this->email . ", N° tel: " . $this->telephone . ", Pseudo: " . $this->pseudo
                 . ", Date d'nscription: " . $this->dateInscription . ", Mot de passe : " . $this->mdp . ", Droit: " . $this->droit . ", Nom: "
                 . $this->nom . ", Prenom" . $this->prenom . ", Date de Naissance: " . $this->dateNaissance . ", Address complète est :  ville:" . $this->ville .
-                ", Adresse" . $this->Adresse . ", code postal" . $this->codePostal . ", departement:" . $this->dpt);
+                ", Adresse" . $this->adresse . ", code postal" . $this->codePostal . ", departement:" . $this->dpt);
     }
 
 }

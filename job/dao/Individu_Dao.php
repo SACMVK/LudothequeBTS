@@ -15,16 +15,16 @@ function insert($list_Values) {
     $adresse = $list_Values['adresse'];
     $codePostal = $list_Values['codePostal'];
     // stefan : le numéro de département est déduit du code postal
-    if (strlen ($codePostal) == 5) {
+    if (strlen($codePostal) == 5) {
         $numDept = substr($codePostal, 0, 2);
         // stefan : cas où le code postal ne compte que 4 chiffres
-    } else if (strlen ($codePostal) == 4) {
+    } else if (strlen($codePostal) == 4) {
         $numDept = substr($codePostal, 0, 1);
         // stefan : cas où le code postal a été entré avec un 0 au début
-    } else if (substr($codePostal, 0, 1)=="0"){
+    } else if (substr($codePostal, 0, 1) == "0") {
         $numDept = substr($codePostal, 1, 2);
         // stefan : cas des DOM-TOM
-    } else if (substr($codePostal, 0, 2)==97 || substr($codePostal, 0, 2)==98){
+    } else if (substr($codePostal, 0, 2) == 97 || substr($codePostal, 0, 2) == 98) {
         $numDept = substr($codePostal, 0, 3);
     }
     $email = $list_Values['email'];
@@ -110,7 +110,7 @@ function select($requete) {
 
         //AhMaD : on vas creer un nouveau objet avec les informations
         //AhMaD : on stocke ce objet dans l'array pour remplir l'array 
-        $individus[] = new Individu($ville, $adresse, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser = -1);
+        $individus[] = new Individu($ville, $adresse, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser);
     }
     //AhMaD: on ferme la conexion
     $db = closeConnexion();
@@ -147,13 +147,12 @@ function update($list_Values) {
 
 
     //AhMaD:on vas faire une requete pour savoir si le droit était changé.    ps :   IN  ici  une oprétion logique comme (!=) ou (==) 
-    $droit_requete = "UPDATE " . TABLE_COMPTE . " SET droit = " . '$droit' . " WHERE " . '$droit' . " IN(SELECT" . '$droit' . " FROM droit);";
-    $stmt = $db->prepare($droit_requete);
-    $stmt->execute();
-    $le_droit = $stmt->execute();
-
+//    $droit_requete = "UPDATE " . TABLE_COMPTE . " SET droit = " . '$droit' . " WHERE " . '$droit' . " IN(SELECT" . '$droit' . " FROM droit);";
+//    $stmt = $db->prepare($droit_requete);
+//    $stmt->execute();
+//    $le_droit = $stmt->execute();
     //AhMaD:prepration de requete qui vas modifier l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "UPDATE " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . "." . $idUser . " = " . TABLE_COMPTE . "." . $idUser . " SET ville = " . $ville . ",adresse =" . $adresse . ", codePostal = " . $codePostal . ",numDept = " . $numDept . ", email = " . $email . ", telephone = " . $telephone . ", pseudo = " . $pseudo . ", dateInscription = " . $dateInscription . ", mdp = " . $mdp . ", droit = " . $droit . ", nom = " . $nom . ",  prenom = " . $prenom . ", dateNaiss= " . $dateNaiss . ";";
+    $requete = "UPDATE " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser SET ville = '" . $ville . "', adresse = '" . $adresse . "', codePostal = '" . $codePostal . "', numDept = '" . $numDept . "', email = '" . $email . "', telephone = '" . $telephone . "', pseudo = '" . $pseudo . "', dateInscription = '" . $dateInscription . "', mdp = '" . $mdp . "', droit = '" . $droit . "', nom = '" . $nom . "',  prenom = '" . $prenom . "', dateNaiss= '" . $dateNaiss . "' WHERE " . TABLE_INDIVIDU . ".idUser = " . $idUser . ";";
 
 
 
