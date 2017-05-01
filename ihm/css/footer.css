@@ -9,8 +9,8 @@
 	flex-wrap: wrap; /* ken : permet un retour à la ligne si la page web devient trop petite */
 }
 
-#element3 a {
-   text-decoration: none;
+#element2 a {
+   color: #fff;
 }
 
 #element1{

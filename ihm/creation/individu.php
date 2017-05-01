@@ -1,52 +1,27 @@
-<form method="post" action="">
-    <!-- size : taille cellule | maxlength : nombre maximum de caractères autorisé -->
-    <!-- Ajouter expressions régulières mail, code postal, téléphone + check conformitée mot de passe -->
-    <p style="color:red;">@team : Attention, le mail et le pseudo doivent être uniques dans la BD, il faut modifier les valeurs par défaut</p>
-    Nom :
-    <input type="text" name="nom" size="10" maxlength="10" required="required" value="nom"/>
-    <br/>
-    Prénom :
-    <input type="text" name="prenom" size="10" maxlength="10" required="required" value="prenom"/>
-    <br/>
-    Date de naissance :
-    <input type="date" name="dateNaiss" size="10" maxlength="10" required="required" value="14-02-1990"/>
-    <br/>
-    <br/>
 
+<div class="container" id="wrap">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <p style="color:red;">@team : Attention, le mail et le pseudo doivent être uniques dans la BD, il faut modifier les valeurs par défaut</p>
+            <form action=" " method="post" accept-charset="utf-8" class="form" role="form">   
+                <legend> Créer votre compte</legend>
+                Nom : <input type="text" name="nom" size="10" maxlength="10" required="required" value="nom" class="form-control input-lg"  placeholder="Nom"/>
+                Prénom : <input type="text" name="prenom" size="10" maxlength="10" required="required" value="prenom" class="form-control input-lg" placeholder="Prénom"/>             
+                Date de naissance :<input type="date" name="dateNaiss" size="10" maxlength="10" required="required" value="14-02-1990" class="form-control input-lg" placeholder="Date de naissance"/>
+                Pseudo :<input type="text" name="pseudo" size="20" maxlength="20" required="required" value="pseudo"  class="form-control input-lg" placeholder="Pseudo"/>        
+                Mot de passe:<input type="password" name="mdp" size="20" maxlength="20" required="required" value="mdp"  class="form-control input-lg" placeholder=" Mot de passe"/>
+                Confirmation du mot de passe :<input type="password" name="mdp2" size="20" maxlength="20" required="required" value="mdp"  class="form-control input-lg" placeholder=" Confirmation du mot de passe"/>
+                Adresse e-mail : <input type="text" name="email" size="100" maxlength="100" required="required" value="a@a.fr"  class="form-control input-lg" placeholder="   Adresse e-mail"/>
+                Téléphone: <input type="text" name="telephone" size="10" maxlength="10" required="required"  value="0612345678"  class="form-control input-lg" placeholder="Téléphone"/>
+                Adresse : <input type=text name="adresse" size="100" maxlength="100" required="required" value="9 rue test"  class="form-control input-lg" placeholder="Adresse"/>
+                Code Postal :<input type=text name="codePostal" size="5" maxlength="5" required="required" value="56000"  class="form-control input-lg" placeholder="Code Postal"/>
+                Ville : <input type=text name="ville" rows="5" size="100" maxlength="100" required="required" value="Vannes"  class="form-control input-lg" placeholder="Ville"/>
+                <input type=hidden name="objectToWorkWith" value="Individu" />
+                <input type=hidden name="actionToDoWithObject" value="insert" />
 
-    Pseudo :
-    <input type="text" name="pseudo" size="20" maxlength="20" required="required" value="pseudo"/>
-    <br/>
-    Mot de passe:
-    <input type="password" name="mdp" size="20" maxlength="20" required="required" value="mdp"/>
-    <br/>
-    Confirmation du mot de passe :
-    <input type="password" name="mdp2" size="20" maxlength="20" required="required" value="mdp"/>
-    <br/>
-    <br/>
-
-
-    Adresse e-mail :
-    <input type="text" name="email" size="100" maxlength="100" required="required" value="a@a.fr"/>
-    <br/>
-    Téléphone:
-    <input type="text" name="telephone" size="10" maxlength="10" required="required"  value="0612345678"/>
-    <br/>
-    Adresse :
-    <input type=text name="adresse" size="100" maxlength="100" required="required" value="9 rue test"/>
-    <br/>
-    Code Postal :
-    <input type=text name="codePostal" size="5" maxlength="5" required="required" value="56000"/>
-    <br/>
-    Ville :
-    <input type=text name="ville" rows="5" size="100" maxlength="100" required="required" value="Vannes"/>
-    <br/>
-    <br/>
-
-    <input type=hidden name="objectToWorkWith" value="Individu" />
-    <input type=hidden name="actionToDoWithObject" value="insert" />
-
-    <input type="submit" name="submit" value="S'inscrire"/>
-</form>
-
-
+                <input type="submit" name="submit" value="S'inscrire"/>
+                <input type="reset" value="Réinitialiser">
+            </form>          
+        </div>
+    </div>            
+</div>

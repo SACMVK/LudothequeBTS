@@ -138,6 +138,14 @@ class Individu {
     public function setVille($ville) {
         return $this->ville = $ville;
     }
+     // rue
+    public function getRue() {
+        return $this->rue;
+    }
+
+    public function setRue($rue) {
+        return $this->rue = $rue;
+    }
 
     // Adresse
     public function getAdresse() {

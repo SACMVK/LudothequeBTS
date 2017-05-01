@@ -11,7 +11,12 @@ if ($_POST['connexion'] == "on") {
     if ($connexionValide[0]) {
         include 'job/dao/Individu_Dao.php';
         $_SESSION["user"] = select("WHERE individu.idUser = ".$connexionValide[1])[0];
-        $pageAAfficher = "ihm/pages/accueilConnected.php";
+      /*
+       *     $pageAAfficher = "ihm/resultat/individu.php";
+       *   $pageAAfficher = "ihm/pages/accueilConnected.php":
+      ;*/
+           $pageAAfficher = "ihm/resultat/individu.php";
+    
     } else {
         $pageAAfficher = "ihm/connexion/echecConnexion.php";
     }

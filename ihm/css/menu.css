@@ -1,0 +1,63 @@
+.menu_side{
+    height: 300px;
+        width: 100px;;
+        position: fixed;
+        left: 0px;
+        
+}
+.sidebar2 {
+        background-color: #1a1f27;
+    padding: 0px !important;
+    box-shadow: 2px 2px 5px #262a35;
+    height: 443px;
+    position: fixed;
+    top: 125px;
+    left: 0px;
+    width: 15%;
+    border-radius: 20px;
+
+}
+#titre_menu{
+    text-align: center;
+    color: #fff;
+    font-weight: bolder;
+}
+
+
+.btn.Add-friend:hover,.btn.Add-friend:active,.btn.Add-friend:active:focus,.btn.Add-friend:active:hover,.btn.Add-friend:visited,.btn.Add-friend:focus
+{
+  background-color:#F17153;
+  border: 0.5px solid transparent;
+  color:white;
+  outline:none;
+  font-weight:600;
+}
+
+.list {
+    color: #eee;
+    list-style: none;
+    padding-left: 0px;
+}
+li:nth-child(odd) {
+    background-color:#13171d;
+}
+li>i {margin-right:15px;
+}
+.list> li {
+    padding: 5px 0px 5px 20px;
+    font-size: 14px;
+    font-weight:bold;
+}
+.list>li:hover {
+
+    color: white;
+    box-shadow:1px 1px 10px 1px #50e6df inset;
+    transition: padding-left 0.2s linear;
+    padding-left: 60px;
+
+}
+
+.main-content{ 
+    color:#fff; 
+    text-align:center;
+}

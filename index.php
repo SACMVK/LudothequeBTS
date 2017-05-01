@@ -20,14 +20,8 @@
 
 
         <!-- AhMaD : les fichier CSS et JS -->
-        <link rel="stylesheet" type="text/css" href="ihm/css/A_gestion4blocs.css">
         <link rel="stylesheet" type="text/css" href="ihm/css/styles.css">
-        <script src="<?php include_once 'ihm/js/js.php'; ?>"></script>
 
-        <script src="ihm//js/jquery-3.1.1.min.js"></script>
-
-        <script src="ihm//js/bootstrap.min.js"></script>
-        <script src="ihm//js/slideShow.js"></script>
         <!-- ************************************************************************************************ -->
         <!-- ************************************** CONTROLEUR (DEBUT) ************************************** -->
         <!-- ************************************************************************************************ -->
@@ -138,8 +132,7 @@
 
 
         <?php
-// Include de la totalité des fichiers js
-//include 'ihm/js/js.php';
+include 'ihm/js/js_effets.php';
         ?>
 
     </body>

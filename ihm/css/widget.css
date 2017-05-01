@@ -1,0 +1,201 @@
+/* AhMaD: CSS  pour les widgets  */
+
+.collection-accueil{
+    float: left;
+    width: 34%;
+        padding: 0 7px;
+   box-sizing: border-box;
+   text-align: center;
+   color: #fff;
+}
+.collection-accueil-title{
+ float: left;
+width: 100%;
+padding: 10px 0;
+color:  #fff;
+background: #585858;
+font-size: 24px;
+font-weight: 600;
+text-align: center;
+text-transform: uppercase;
+position: relative;
+    margin-bottom: 0px;
+}
+.collection-accueil-title::after {
+    color: #fff;
+    content: '';
+    font-weight: 900;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+     background: url(../img/plus.png) no-repeat center center #585858;
+    
+    height: 30px;
+    width: 40px;
+    margin-left: -20px;
+    line-height: 30px;
+    text-align: center;
+}
+.collection-accueil:hover  .collection-accueil-title{
+    background: rgba(120, 0, 2,0.9);
+  border-bottom: 2px solid #fff;
+  height: 66px;
+display: flex;
+justify-content: center;
+align-items: end;
+}
+.collection-accueil:hover .collection-accueil-title::after {
+   display: none;
+}
+
+.collection-accueil-item{
+    float: left;
+    width: 100%;
+    height: 280px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+   text-align: center;
+}
+.collection-accueil:hover  .collection-accueil-item-image{
+    height: 205px;
+}
+.collection-accueil:hover .collection-accueil-item-plus{
+    color: #8d2232;
+}
+.collection-accueil:hover .collection-accueil-item-text{
+    color: #FFF;
+}
+.collection-accueil:hover .collection-accueil-item-title{
+    color:#FFF;
+}
+.collection-accueil:hover .collection-accueil-item-tarif {
+    color: #FFF;
+}
+.collection-accueil:hover .collection-accueil-item-tarif span{
+    color: #FFF;
+}
+.collection-accueil:hover .collection-accueil-item-content-limiter{
+    color:#FFF;
+}
+
+.collection-accueil-item:last-child{
+    display: block;
+   margin-bottom: 11px;
+}
+.collection-accueil-item-image{
+    float: left;
+    width: 100%;
+    height: 270px;
+    background: no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+.collection-accueil-item-tarif{
+    text-align: center;
+    font-size: 20px;
+}
+.collection-accueil-item-tarif span{
+    font-size: 15px;
+    text-align: center; 
+}
+.collection-accueil:hover .collection-accueil-item-tarif span{
+    color: #FFF;
+}
+.collection-accueil-item-content{
+    float: left;
+    width: 100%;
+    height: 245px;
+    padding-top: 10px;
+    position: relative;
+   text-align: center;
+ background: rgba(120, 0, 2,0.9);
+}
+.collection-accueil:hover .collection-accueil-item-content{
+    top:-205px;
+	height: 205px;
+}
+.collection-accueil-item-content-limiter{
+    float: left;
+    width: 100%;
+    height: 160px;
+    line-height: 20px;
+    overflow: hidden;
+    text-align: center;
+}
+.collection-accueil-item-title{
+   float: left;
+width: 100%;
+color: #fff;
+font-size: 20px;
+font-weight: 600;
+text-align: center;
+margin-top: -2px;
+line-height: 21px;
+}
+.collection-accueil-item-type{
+    float: left;
+    width: 100%;
+   color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+.collection-accueil-item-text{
+    float: left;
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 40px;
+}
+.collection-accueil-item-plus{
+   justify-content: center;
+   align-content: center;
+   align-items: center;
+    height: 35px;
+    width: 35px;
+    
+	position: relative;
+	bottom: 25px;
+    padding: 3px;
+}
+.collection-accueil-item-bp {
+    float: right;
+    margin-top: 16px;
+    margin-left: 5px;
+    height: 30px;
+    line-height: 30px;
+    color: #ffffff;
+    background: #c50e1f;
+    padding: 0 10px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+}
+#titre_component{
+    background-color: #8d2232;
+    position: relative;
+    
+}
+
+@media(max-width:1024px){
+    .collection-accueil{
+        float: left;
+        width: 100%;
+        height: auto;
+       box-sizing: border-box;
+       text-align: center;
+       margin-top: 40px;
+    }
+}
+
+@media (max-width: 700px) {
+    .collection-accueil{
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        color: #b7b7b7;
+    }
+
+}
