@@ -83,7 +83,6 @@ switch ($actionToDoWithObject) {
             case "Individu":
                 // stefan : on met [0] car select retourne une liste (à un seul élément) et on ne prend que le premier
                 $_SESSION["user"] = select("WHERE individu.idUser = " . $lastId)[0];
-                $pageAAfficher = "ihm/pages/accueilConnected.php";
                 break;
             case "Jeu_P":
                 $pageAAfficher = 'ihm/pages/_old/test.php';
@@ -103,8 +102,16 @@ switch ($actionToDoWithObject) {
         // stefan : Partie IHM
         // Si on modifie un individu et que c'est l'utilisateur qui modifie ses propres informations,
         // il faut mettre à jour l'objet dans la RAM
-        if ($objectToWorkWith == "Individu" && $_POST["idUser"] == $_SESSION["user"]->getIdUser()) {
-            
+        $idUserConnected = $_SESSION["user"]->getIdUser();
+        $idUserUpdated = $_POST["idUser"];
+        $isUpdatedConnected = $idUserConnected == $idUserUpdated;
+        if (($objectToWorkWith == "Individu") && ($idUserConnected == $idUserUpdated)) {
+            // stefan : récupération de l'id
+            $idUserConnecte = $_SESSION["user"]->getIdUser();
+            // stefan : suppression de l'utilisateur
+            unset($_SESSION["user"]);
+            // stefan : recréation de l'utilisateur depuis la base de données
+            $_SESSION["user"] = select("WHERE individu.idUser = " . $idUserConnecte)[0];
         }
         $pageAAfficher = 'ihm/' . $_POST['page'];
         break;
@@ -115,8 +122,6 @@ switch ($actionToDoWithObject) {
         delete($idOfLineToDelete);
         // stefan : Partie IHM
         break;
-}     
-        
-
+}
 
 

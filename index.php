@@ -31,21 +31,17 @@
          * les demandes de connexions (avec pseudo et mdp)
          * et de déconnexion
          */
-        if (!empty($_POST['connexion'])) {
+        if (!empty($_REQUEST['connexion'])) {
             include 'controller/controllerConnexion.php';
-            unset($_POST);
-        } else if (!empty($_GET['connexion'])) {
-            include 'controller/controllerDeconnexion.php';
-            unset($_GET);
-        } else if (!empty($_POST['objectToWorkWith'])) {
+        } else if (!empty($_REQUEST['objectToWorkWith'])) {
             include 'controller/controllerRequete.php';
-            unset($_POST);
-        } else if (!empty($_GET['page'])) {
-            $pageAAfficher = 'ihm/' . $_GET['page'];
-            unset($_GET);
-        } else {
+        } else if (!empty($_REQUEST['page'])) {
+            $pageAAfficher = 'ihm/' . $_REQUEST['page'];
+        }
+        if (empty($pageAAfficher)) {
             $pageAAfficher = 'ihm/pages/accueil.php';
         }
+        unset($_REQUEST);
         ?>
 
         <!-- ************************************************************************************************ -->
@@ -61,8 +57,8 @@
         <!-- ************************************************************************************************ -->
 
         <div id='div_header'><?php
-        include ('ihm/header/header.php');
-        ?></div>
+            include ('ihm/header/header.php');
+            ?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** HEADER (FIN) ***************************************** -->
@@ -78,9 +74,9 @@
         <!-- stefan : S'il y a une session d'ouverte, on affiche le menu -->
         <?php if (!empty($_SESSION)): ?>
             <div id='div_menu'><?php
-            include ('ihm/menus/menu.php');
-            ?></div>
-            <?php endif; ?>
+                include ('ihm/menus/menu.php');
+                ?></div>
+        <?php endif; ?>
 
         <!-- ************************************************************************************************ -->
         <!--  ********************** MENU A GAUCHE (AFFICHE QU'EN MODE CONNECTE) (FIN) ********************** -->
@@ -115,8 +111,8 @@
         <!-- ************************************************************************************************ -->
 
         <div id='div_footer'><?php
-        include 'ihm/footer/footer.php';
-        ?></div>
+            include 'ihm/footer/footer.php';
+            ?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** FOOTER (FIN) ***************************************** -->

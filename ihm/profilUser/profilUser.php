@@ -18,10 +18,10 @@
                 <input type="hidden" name="dateInscription" value="<?= $_SESSION["user"]->getDateInscription() ?>" />
                 Niveau de droits :
                 <input type="date" name="droit" size="20" maxlength="20" required value="<?= $_SESSION["user"]->getDroit() ?>" class="form-control input-lg"   placeholder="Niveau de droits" disabled/>
-                <input type="hidden" name="droit" value="<?= $_SESSION["user"]->getDroit() ?> " />
+                <input type="hidden" name="droit" value="<?= $_SESSION["user"]->getDroit() ?>" />
                 Identifiant :
                 <input type="date" name="idUser" size="20" maxlength="20" required value="<?= $_SESSION["user"]->getIdUser() ?>" class="form-control input-lg"   placeholder="Identifiant" disabled/>
-                <input type="hidden" name="idUser" value="<?= $_SESSION["user"]->getIdUser() ?> " />
+                <input type="hidden" name="idUser" value="<?= $_SESSION["user"]->getIdUser() ?>" />
                 Pseudo :
                 <input type="text" name="pseudo" size="20" maxlength="20" required value="<?= $_SESSION["user"]->getPseudo() ?>" class="form-control input-lg"  placeholder="Pseudo"/>
                 Mot de passe :

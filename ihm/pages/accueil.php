@@ -3,14 +3,14 @@
         <div class="paragraphe_accueil">
             <?php if (empty($_SESSION)): ?>
                 <a class="paragraphe_accueil"  href="index.php?page=creation/individu.php">
-                    Bienvenus dans la Ludothèque du BTS,<br/>
+                    Bienvenu.e dans la Ludothèque du BTS,<br/>
                     première plate-forme d'échange de jeux !<br/>
                     Partagez vos jeux et jouez avec les autres,<br/>
                     Rejoignez-nous !
                 </a>
             <?php else: ?>
                 <p class="paragraphe_accueil" >
-                    Bienvenus dans votre Ludothèque, <?= $_SESSION["user"]->getPseudo() ?> !
+                    Bienvenu.e dans votre Ludothèque, <?= $_SESSION["user"]->getPseudo() ?> !
                 </p>
             <?php endif; ?>
         </div>

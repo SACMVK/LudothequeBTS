@@ -1,12 +1,12 @@
 .menu_side{
     height: 300px;
-        width: 100px;;
-        position: fixed;
-        left: 0px;
-        
+    width: 100px;;
+    position: fixed;
+    left: 0px;
+
 }
 .sidebar2 {
-        background-color: #1a1f27;
+    background-color: #1a1f27;
     padding: 0px !important;
     box-shadow: 2px 2px 5px #262a35;
     height: 443px;
@@ -26,11 +26,11 @@
 
 .btn.Add-friend:hover,.btn.Add-friend:active,.btn.Add-friend:active:focus,.btn.Add-friend:active:hover,.btn.Add-friend:visited,.btn.Add-friend:focus
 {
-  background-color:#F17153;
-  border: 0.5px solid transparent;
-  color:white;
-  outline:none;
-  font-weight:600;
+    background-color:#F17153;
+    border: 0.5px solid transparent;
+    color:white;
+    outline:none;
+    font-weight:600;
 }
 
 .list {
@@ -38,9 +38,9 @@
     list-style: none;
     padding-left: 0px;
 }
-li:nth-child(odd) {
+/*li:nth-child(odd) {
     background-color:#13171d;
-}
+}*/
 li>i {margin-right:15px;
 }
 .list> li {
@@ -48,13 +48,20 @@ li>i {margin-right:15px;
     font-size: 14px;
     font-weight:bold;
 }
+
+.list li a {
+    color : #eee;
+}
+
+.list li a:hover {
+    color : #eee;
+    text-decoration: none;
+}
+
 .list>li:hover {
-
-    color: white;
-    box-shadow:1px 1px 10px 1px #50e6df inset;
+    box-shadow:1px 1px 10px 1px rgba(255,255,255,0.6) inset;
     transition: padding-left 0.2s linear;
-    padding-left: 60px;
-
+    padding-left: 30px;
 }
 
 .main-content{ 

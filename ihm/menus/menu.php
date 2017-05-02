@@ -1,16 +1,18 @@
+<?php $droitsUser = $_SESSION["user"]->getDroit(); ?>
 <section class="menu_side">
     <div class="container-fluid" >
         <div class="row">
             <div class="col-md-3 col-sm-3 sidebar2">
                 <div class="left-navigation">
-                    <h2 id="titre_menu"> Votre menu </h2>
+                    <br/>
+<!--                    <h2 id="titre_menu"> Votre menu </h2>-->
                     <ul class="list">
-                        <?php if ($_SESSION["user"]->getDroit() == "Administrateur"): ?>
+                        <?php if ($droitsUser == "Administrateur" ): ?>
                             <h4 id="titre_menu">Menu administrateur</h4>
                             <li><a href='index.php?page=admin/config.php'>Configuration</a></li>
                             <li><a href='index.php?page=pages/_old/_enCours.php'>Administrer les utilisateurs</a></li>
                         <?php endif; ?>
-                        <?php if (!$_SESSION["user"]->getDroit() == "Modérateur"): ?>
+                        <?php if ($droitsUser == "Modérateur" || $droitsUser == "Administrateur"): ?>
                             <h4 id="titre_menu">Menu modérateur</h4>
                             <li> <a href='index.php?page=pages/_old/_enCours.php'>Valider un jeu</a></li>
                         <?php endif; ?>
