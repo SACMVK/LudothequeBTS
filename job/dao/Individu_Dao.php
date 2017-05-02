@@ -53,7 +53,7 @@ function insert($list_Values) {
 
 
 
-    //AhMaD: on recherche de la dernière id etait generaté par la precedent requete en utilisant la finction mysqli_insert_id();
+    //AhMaD: on recherche la dernière id générée par la precedente requete en utilisant la fonction lastInsertId();
     $lastIdIndividu = $db->lastInsertId();
 
 

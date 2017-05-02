@@ -7,9 +7,6 @@
                 Nom :
                 <input type="text" name="nom" size="10" maxlength="10" required value="nom" class="form-control input-lg"  placeholder="Nom"/>
 
-
-
-
                 <input type=hidden name="objectToWorkWith" value="Jeu_T" />
                 <input type=hidden name="actionToDoWithObject" value="insert" />
 

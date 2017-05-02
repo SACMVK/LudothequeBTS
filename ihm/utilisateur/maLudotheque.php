@@ -17,7 +17,7 @@
                                     <input type=hidden name="objectToWorkWith" value="Jeu_P" />
                                     <input type=hidden name="actionToDoWithObject" value="delete" />
                                     <input type="hidden" name="idJeuP" value="<?=$jeuP->getIdJeuP() ?>" />
-                                    <input type="submit" value="Supprimer ce jeu de ma ludothèque" />
+                                    <button type="submit" name="submit" class="btn btn-primary pull-right">Supprimer ce jeu de ma ludothèque</button>
                                 </form>
                             </td>
                         </tr> 
@@ -32,7 +32,8 @@
                 endif;
                 ?>
             </table>
-            <a href='index.php?page=creation/jeu_p.php'>Ajouter un jeu à ma ludothèque</a>
+            <a href='index.php?page=creation/jeu_p.php'><button class="btn btn-primary pull-right">Ajouter un jeu à ma ludothèque</button></a>
+
         </div>
     </div>
 </div>

@@ -26,12 +26,16 @@
                 <input type=text name="codePostal" size="5" maxlength="5" required value="56000"  class="form-control input-lg" placeholder="Code Postal"/>
                 Ville :
                 <input type=text name="ville" rows="5" size="100" maxlength="100" required value="Vannes"  class="form-control input-lg" placeholder="Ville"/>
-                
+
                 <input type=hidden name="objectToWorkWith" value="Individu" />
                 <input type=hidden name="actionToDoWithObject" value="insert" />
 
-                <input type="submit" name="submit" value="S'inscrire"/>
-                <input type="reset" value="Réinitialiser">
+
+
+                <button type="submit" name="submit" class="btn btn-primary pull-right">S'inscrire</button>
+                <button type="reset" name="reset" class="btn btn-primary pull-left">Réinitialiser</button>
+
+
             </form>          
         </div>
     </div>            

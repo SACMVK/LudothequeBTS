@@ -85,13 +85,14 @@ switch ($actionToDoWithObject) {
                 $_SESSION["monProfil"] = select("WHERE individu.idUser = " . $lastId)[0];
                 break;
             case "Jeu_P":
-                $pageAAfficher = 'ihm/pages/_old/test.php';
+                $_SESSION["maLudotheque"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+                $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';
                 break;
             case "Jeu_T":
-                $pageAAfficher = 'ihm/pages/_old/test.php';
+                $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';// ?
                 break;
             case "Message":
-                $pageAAfficher = 'ihm/pages/_old/test.php';
+                $pageAAfficher = 'ihm/utilisateur/mesMessages.php';
                 break;
         }
         break;
@@ -109,8 +110,9 @@ switch ($actionToDoWithObject) {
             unset($_SESSION["monProfil"]);
             // stefan : recréation de l'utilisateur depuis la base de données
             $_SESSION["monProfil"] = select("WHERE individu.idUser = " . $idUserConnecte)[0];
+            $pageAAfficher = 'ihm/utilisateur/monProfil.php';
         }
-        $pageAAfficher = 'ihm/' . $_POST['page'];
+        
         break;
     case "delete":
         // stefan : Partie DAO
@@ -118,6 +120,21 @@ switch ($actionToDoWithObject) {
         $idOfLineToDelete = getValuesFromPOST();
         delete($idOfLineToDelete);
         // stefan : Partie IHM
+        switch ($objectToWorkWith) {
+            case "Individu":
+
+                break;
+            case "Jeu_P":
+                $_SESSION["maLudotheque"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+                $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';
+                break;
+            case "Jeu_T":
+                $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';// ?
+                break;
+            case "Message":
+                $pageAAfficher = 'ihm/utilisateur/mesMessages.php';
+                break;
+        }        
         break;
 }
 

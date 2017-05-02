@@ -4,22 +4,22 @@
 Function loadConfig() {
 	// stefan : Chargement du fichier
 	$xml_config = simplexml_load_file ( 'data/config/config.xml' );
-	// stefan : création d'un array
+	// stefan : crï¿½ation d'un array
 	$config = [];
-	// stefan : pour chaque élément ...
+	// stefan : pour chaque Ã©lÃ©ment ...
 	foreach ( $xml_config as  $xml_option ) {
 		// stefan : on ajoute l'option ainsi que son texte
 		$xml_nom_option = utf8_decode(strval($xml_option->nom));
 		$xml_texte_affichage_option = utf8_decode(strval($xml_option->texte_affichage));
 		$xml_valeur_option = utf8_decode(strval($xml_option->valeur));
 
-		/* stefan : concernant les valeurs booléennes
-		 * elles sont stockées en tant que string.
+		/* stefan : concernant les valeurs boolï¿½ennes
+		 * elles sont stockÃ©es en tant que string.
 		 * is_bool ne permet pas de faire la conversion
 		 * en boolean.
 		 * On passe donc par un test de valeur de la string :
-		 * si c'est 'true', alors on stocke une valeur booléenne true,
-		 * si c'est 'false', alors on stocke une valeur booléenne false.
+		 * si c'est 'true', alors on stocke une valeur boolÃ©enne true,
+		 * si c'est 'false', alors on stocke une valeur boolÃ©enne false.
 		 */
 		if ($xml_valeur_option=='true'){
 			$xml_valeur_option = true;
@@ -29,7 +29,7 @@ Function loadConfig() {
 		}
 		/* stefan : le seul test automatisable concerne les nombre.
 		 * is_numeric permet de parser (parcourir) la string.
-		 * Si tous les caractères sont des nombres, alors il s'agit
+		 * Si tous les caractï¿½res sont des nombres, alors il s'agit
 		 * bien d'un numeric (integer, float, ...).
 		 */
 		else if (is_numeric ($xml_valeur_option)){
@@ -48,16 +48,16 @@ Function loadConfig() {
 
 Function saveConfig($config) {
 	$xml_config_output = new DOMImplementation ();
-	// Création d'une instance DOMDocumentType (dtd)
+	// CrÃ©ation d'une instance DOMDocumentType (dtd)
 	$dtd = $xml_config_output->createDocumentType ( 'config', '', 'data/config/config.dtd' );
-	// Création d'une instance DOMDocument
+	// CrÃ©ation d'une instance DOMDocument
 	$root = $xml_config_output->createDocument ( "", "", $dtd );
 	$root->encoding = "utf-8";
 	
-	// Gestion de l'affichage (passage à la ligne à chaque noeud enfant de la racine
+	// Gestion de l'affichage (passage Ã  la ligne Ã  chaque noeud enfant de la racine
 	$root->formatOutput = true;
 	
-	// Création de la racine et ajout au document
+	// Crï¿½ation de la racine et ajout au document
 	$config_node = $root->createElement ( 'config' );
 	$root->appendChild ( $config_node );
 	

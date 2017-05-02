@@ -13,10 +13,8 @@ const TABLE_INDIVIDU = "individu";
 function insert($list_Values) {
 
     //AhMaD: déclaration les values
-    $idUser = $list_Values['idUser'];
-    $idJeuT = $list_Values['idJeuT'];
-    $idJeuP = $list_Values['idJeuP'];
-    $etat = $list_Values['etat'];
+    $idProprietaire = $list_Values['idProprietaire'];
+    $idPC = $list_Values['idPC'];
 
 
     //AhMaD:ouvrire la connexion avec BD
@@ -25,14 +23,14 @@ function insert($list_Values) {
 
 
     //AhMaD:la requete pour inserter dans le tableau jeu_p
-    $requete_jeu_p = "INSERT INTO " . TABLE_JEU_P . " (idJeuP, idJeuT, idUser, etat) VALUES ( '" . $idJeuP . "','" . $idJeuT . "','" . $idUser . "','" . $etat . "');";
+    $requete_jeu_p = "INSERT INTO " . TABLE_JEU_P . " (idPC, idProprietaire) VALUES ( '" . $idPC . "', '" . $idProprietaire . "');";
 
     //AhMaD: préparer la requête pour ensuite l'exécuter
     $stmt_jeu_p = $db->prepare($requete_jeu_p);
     $stmt_jeu_p->execute();
 
 
-    //AhMaD: on recherche de la dernière id etait generaté par la precedent requete en utilisant la finction mysqli_insert_id();
+    //AhMaD: on recherche la dernière id générée par la precedente requete en utilisant la fonction lastInsertId();
     $lastIdJeuP = $db->lastInsertId();
 
     //AhMaD:fermateur  la connexion avec BD
@@ -178,12 +176,7 @@ function delete($id) {
     //AhMaD: on vas exécuter
     $stmt->execute();
 
-    //AhMaD:un petit test pour savoir si tu vas bien
-    if ($stmt == true) {
-        echo"la jeux était supprimé avec succès";
-    } else {
-        die("Il y a des erreures, veuillez modifier votre choix");
-    }
+
 
     //AhMaD: on ferme la conexion
     $db = closeConnexion();

@@ -47,7 +47,9 @@
                 <input type=hidden name="actionToDoWithObject" value="update" />
                 <input type=hidden name="page" value="profilUser/profilUser.php" />
 
-                <input type="submit" name="submit" value="Modifier mon profil"/>
+
+                <button type="submit" name="submit" class="btn btn-primary pull-right">Modifier mon profil</button>
+
             </form>
         </div>
     </div>            

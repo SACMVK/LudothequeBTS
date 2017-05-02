@@ -5,8 +5,9 @@
 echo '<h1>Configuration</h1>';
 
 // stefan : liste des fichiers à inclure
-        include 'job/dao/config_dao.php';
-        include 'job/dao/droits_dao.php';
+        include 'job/dao/Connexion_DataBase.php';
+        include 'job/dao/Config_Dao.php';
+        include 'job/dao/Droits_Dao.php';
 
         /* stefan : récupération de la configuration enregistrée
          * ainsi que de la liste des droits dans la base de données.
