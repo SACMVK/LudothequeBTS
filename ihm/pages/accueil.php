@@ -10,7 +10,7 @@
                 </a>
             <?php else: ?>
                 <p class="paragraphe_accueil" >
-                    Bienvenu.e dans votre Ludothèque, <?= $_SESSION["user"]->getPseudo() ?> !
+                    Bienvenu.e dans votre Ludothèque, <?= $_SESSION["monProfil"]->getPseudo() ?> !
                 </p>
             <?php endif; ?>
         </div>

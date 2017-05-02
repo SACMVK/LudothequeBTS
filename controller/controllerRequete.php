@@ -38,7 +38,7 @@ function createRequestFromPOST() {
  * (ajout, modification, suppression d'une ligne).
  */
 
-function getValuesFormPOST() {
+function getValuesFromPOST() {
     $listOfValues = array();
     foreach ($_POST as $key => $value) {
         $listOfValues [$key] = $value;
@@ -76,13 +76,13 @@ switch ($actionToDoWithObject) {
         break;
     case "insert":
         // stefan : Partie DAO
-        $valuesToInsert = getValuesFormPOST();
+        $valuesToInsert = getValuesFromPOST();
         $lastId = insert($valuesToInsert);
         // stefan : Partie IHM
         switch ($objectToWorkWith) {
             case "Individu":
                 // stefan : on met [0] car select retourne une liste (à un seul élément) et on ne prend que le premier
-                $_SESSION["user"] = select("WHERE individu.idUser = " . $lastId)[0];
+                $_SESSION["monProfil"] = select("WHERE individu.idUser = " . $lastId)[0];
                 break;
             case "Jeu_P":
                 $pageAAfficher = 'ihm/pages/_old/test.php';
@@ -97,28 +97,25 @@ switch ($actionToDoWithObject) {
         break;
     case "update":
         // stefan : Partie DAO
-        $valuesToUpdate = getValuesFormPOST();
+        $valuesToUpdate = getValuesFromPOST();
         update($valuesToUpdate);
         // stefan : Partie IHM
         // Si on modifie un individu et que c'est l'utilisateur qui modifie ses propres informations,
-        // il faut mettre à jour l'objet dans la RAM
-        $idUserConnected = $_SESSION["user"]->getIdUser();
-        $idUserUpdated = $_POST["idUser"];
-        $isUpdatedConnected = $idUserConnected == $idUserUpdated;
-        if (($objectToWorkWith == "Individu") && ($idUserConnected == $idUserUpdated)) {
+        // il faut mettre à jour l'objet dans la RAM depuis la base de données
+        if (($objectToWorkWith == "Individu") && ($_SESSION["monProfil"]->getIdUser() == $_POST["idUser"])) {
             // stefan : récupération de l'id
-            $idUserConnecte = $_SESSION["user"]->getIdUser();
+            $idUserConnecte = $_SESSION["monProfil"]->getIdUser();
             // stefan : suppression de l'utilisateur
-            unset($_SESSION["user"]);
+            unset($_SESSION["monProfil"]);
             // stefan : recréation de l'utilisateur depuis la base de données
-            $_SESSION["user"] = select("WHERE individu.idUser = " . $idUserConnecte)[0];
+            $_SESSION["monProfil"] = select("WHERE individu.idUser = " . $idUserConnecte)[0];
         }
         $pageAAfficher = 'ihm/' . $_POST['page'];
         break;
     case "delete":
         // stefan : Partie DAO
         // stefan : Ici, on ne récupère qu'une valeur (ID).
-        $idOfLineToDelete = getValuesFormPOST()[0];
+        $idOfLineToDelete = getValuesFromPOST();
         delete($idOfLineToDelete);
         // stefan : Partie IHM
         break;

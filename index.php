@@ -7,6 +7,9 @@
         // stefan : Cette ligne permet d'activer et d'entretenir la session ($_SESSION) avec ses variables
         // stefan : on est obligé de déclarer la classe avant de pouvoir l'utiliser
         include 'job/class/Individu.php';
+        include 'job/class/Jeu_P.php';
+        include 'job/class/Jeu_T.php';
+        include 'job/class/Message.php';
         session_start();
 
         // stefan : Ce fichier permet d'enregistrer des variables en cours d'exécution (je ne sais pas me servir du mode debug
@@ -35,9 +38,12 @@
             include 'controller/controllerConnexion.php';
         } else if (!empty($_REQUEST['objectToWorkWith'])) {
             include 'controller/controllerRequete.php';
+        } else if (!empty($_REQUEST['user'])) {
+            include 'controller/controllerUser.php';            
         } else if (!empty($_REQUEST['page'])) {
             $pageAAfficher = 'ihm/' . $_REQUEST['page'];
         }
+        // si jamais il n'y a rien à afficher, on affiche la page d'accueil
         if (empty($pageAAfficher)) {
             $pageAAfficher = 'ihm/pages/accueil.php';
         }

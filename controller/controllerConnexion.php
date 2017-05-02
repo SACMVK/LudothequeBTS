@@ -11,7 +11,7 @@ if (!empty($_POST['connexion'])) {
         // stefan : $connexionValide retourne un array avec en 0 un boolean et en 1 l'id
         if ($connexionValide[0]) {
             include 'job/dao/Individu_Dao.php';
-            $_SESSION["user"] = select("WHERE individu.idUser = " . $connexionValide[1])[0];
+            $_SESSION["monProfil"] = select("WHERE individu.idUser = " . $connexionValide[1])[0];
             $pageAAfficher = "ihm/pages/accueil.php";
         } else {
             $pageAAfficher = "ihm/connexion/echecConnexion.php";

@@ -1,4 +1,4 @@
-
+<?php include 'job/dao/Connexion_DataBase.php'; ?>
 <h1>Rechercher un jeu</h1>
 
 <div class="container" id="wrap">

@@ -3,7 +3,7 @@
         <div class="col-md-6 col-md-offset-3">
             <p style="color:red;">@team : Attention, le mail et le pseudo doivent être uniques dans la BD, il faut modifier les valeurs par défaut</p>
             <form action=" " method="post" accept-charset="utf-8" class="form" role="form">   
-                <legend> Créer votre compte</legend>
+                <legend>Créer mon compte</legend>
                 Nom :
                 <input type="text" name="nom" size="10" maxlength="10" required value="nom" class="form-control input-lg"  placeholder="Nom"/>
                 Prénom :
@@ -26,6 +26,7 @@
                 <input type=text name="codePostal" size="5" maxlength="5" required value="56000"  class="form-control input-lg" placeholder="Code Postal"/>
                 Ville :
                 <input type=text name="ville" rows="5" size="100" maxlength="100" required value="Vannes"  class="form-control input-lg" placeholder="Ville"/>
+                
                 <input type=hidden name="objectToWorkWith" value="Individu" />
                 <input type=hidden name="actionToDoWithObject" value="insert" />
 

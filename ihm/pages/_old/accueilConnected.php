@@ -1,4 +1,4 @@
 <?php
-echo 'Bienvenu(e) '.$_SESSION["user"]->getPseudo(); 
+echo 'Bienvenu(e) '.$_SESSION["monProfil"]->getPseudo(); 
 
 ?>

@@ -3,7 +3,6 @@
 class Jeu_T {
 
     // M: les attributs pour Jeu_T
-    //private $idJeuT;
     private $idPC;
     private $nbJoueursMin;
     private $nbJoueursMax;
@@ -23,10 +22,8 @@ class Jeu_T {
      *  constructeur on définit la clé primaire nécessaire aux recherches par id à -1 par défaut
      */
 
-    function __construct($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $genre, $idPC = -1/* ,$idJeuT=-1 */) {
-        //$this->idJeuT = $idJeuT;
+    function __construct($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $genre, $idPC = -1) {
         $this->idPC = $idPC;
-
         $this->nbJoueursMin = $nbJoueursMin;
         $this->nbJoueursMax = $nbJoueursMax;
         $this->nom = $nom;
@@ -130,7 +127,7 @@ class Jeu_T {
     }
 
     public function setDureePartie($dureePartie) {
-        return $this->dureePartie;
+        return $this->dureePartie = $dureePartie;
     }
 
     /* M : AJOUT DES PARAMETRES DE LA TABLE produit_culturel_t */
@@ -141,7 +138,7 @@ class Jeu_T {
     }
 
     public function setAnneeSortie($anneeSortie) {
-        return $this->anneeSortie;
+        return $this->anneeSortie = $anneeSortie;
     }
 
     //M : $description
@@ -150,7 +147,7 @@ class Jeu_T {
     }
 
     public function setDescription($description) {
-        return $this->description;
+        return $this->description = $description;
     }
 
     //M : $typePC
@@ -159,7 +156,7 @@ class Jeu_T {
     }
 
     public function setTypePC($typePC) {
-        return $this->typePC;
+        return $this->typePC = $typePC;
     }
 
     //M : $typePC
@@ -168,7 +165,7 @@ class Jeu_T {
     }
 
     public function setGenre($genre) {
-        return $this->genre;
+        return $this->genre = $genre;
     }
 
     // AhMaD: ToString pour afficher l'objet, le point pour concaténer, cela comme (+) en java

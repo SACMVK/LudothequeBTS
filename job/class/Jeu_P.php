@@ -1,7 +1,4 @@
-
 <?php
-require('Jeu_T.php');
-require('Individu.php');
 
 class Jeu_P {
 
@@ -9,16 +6,12 @@ class Jeu_P {
     private $idJeuP;
     private $jeuT;
     private $proprietaire;
-    private $etat;
 
 // AhMaD: Le connecteur 
-    function __construct($id_proprietaire, $etat, $id_jeuT, $idJeuP = -1) {
-        $jeuT = new Jeu_T();
-        $proprietaire = new Individu();
+    function __construct($proprietaire, $jeuT, $idJeuP = -1) {
         $this->idJeuP = $idJeuP;
-        $this->id_jeuT = $jeuT->getIdPC();
-        $this->id_proprietaire = $proprietaire->getIdUser();
-        $this->etat = $etat;
+        $this->jeuT = $jeuT;
+        $this->proprietaire = $proprietaire;
     }
 
     // AhMaD: getter et setter
@@ -32,36 +25,27 @@ class Jeu_P {
     }
 
     // idProprietaire
-    function getIdProprietaire() {
+    function getProprietaire() {
         return $this->proprietaire;
     }
 
-    function setNbIdProprietaire($proprietaire) {
+    function setProprietaire($proprietaire) {
         return $this->proprietaire = $proprietaire;
     }
 
-    // etat
-    function getEtat() {
-        return $this->etat;
-    }
-
-    function setEtat($etat) {
-        return $this->etat = $etat;
-    }
 
     // idJeuT
-    function getIdJeuT() {
+    function getJeuT() {
         return $this->jeuT;
     }
 
-    function setIdJeuT($jeuT) {
+    function setJeuT($jeuT) {
         return $this->jeuT = $jeuT;
     }
 
     // AhMaD: ToString pour afficher l'objet, le point pour concaténer, cela comme (+) en java
     function __toString() {
-        return ("id= " . $this->idJeuP . ", Proprietaire :" . $this->idProprietaire . ", Etat: " . $this->etat .
-                ", JeuT: " . $this->idJeuT);
+        return ("id= " . $this->idJeuP . ", Proprietaire :" . $this->proprietaire . ", JeuT: " . $this->jeuT);
     }
 
 }

@@ -24,19 +24,19 @@
                     foreach ($listOfElements as $value) :
                         ?>
                         <tr> 
-                            <td id="table-recherche"><? = $value->getIdUser() ?></td>
-                            <td id="table-recherche"><? = $value->getNom()?></td>
-                            <td id="table-recherche"><? = $value->getPrenom()?></td>
-                            <td id="table-recherche"><? = $value->getRue()?></td>
-                            <td id="table-recherche"><? = $value->getVille()?></td>
-                            <td id="table-recherche"><? = $value->getCodePostal()?></td>
-                            <td id="table-recherche"><? = $value->getDept()?></td>
-                            <td id="table-recherche"><? = $value->getEmail()?></td>
-                            <td id="table-recherche"><? = $value->getTelephone()?></td>
-                            <td id="table-recherche"><? = $value->getDateNaissance()?></td>
-                            <td id="table-recherche"><? = $value->getDroit()?></td>
-                            <td id="table-recherche"><? = $value->getDateInscription()?></td>
-                            <td id="table-recherche"><? = $value->getPseudo()?></td>
+                            <td id="table-recherche"><?= $value->getIdUser() ?></td>
+                            <td id="table-recherche"><?= $value->getNom()?></td>
+                            <td id="table-recherche"><?= $value->getPrenom()?></td>
+                            <td id="table-recherche"><?= $value->getRue()?></td>
+                            <td id="table-recherche"><?= $value->getVille()?></td>
+                            <td id="table-recherche"><?= $value->getCodePostal()?></td>
+                            <td id="table-recherche"><?= $value->getDept()?></td>
+                            <td id="table-recherche"><?= $value->getEmail()?></td>
+                            <td id="table-recherche"><?= $value->getTelephone()?></td>
+                            <td id="table-recherche"><?= $value->getDateNaissance()?></td>
+                            <td id="table-recherche"><?= $value->getDroit()?></td>
+                            <td id="table-recherche"><?= $value->getDateInscription()?></td>
+                            <td id="table-recherche"><?= $value->getPseudo()?></td>
                         </tr> 
                     <?php
                     endforeach;

@@ -9,7 +9,7 @@ $table = 'message';
 Function select($requete) {
 
     $pdo = openConnexion();
-    $table = 'message';
+
 
 
 // on recupere le contenu de la table message
@@ -55,7 +55,7 @@ Function insert($requete) {
 // ouverture de la connexion
     $pdo = openConnexion();
 
-    $table = 'message';
+
 
 // on recupere le contenu de la table message
 //prepare =avant query pour éviter faille de sécurité
@@ -81,10 +81,6 @@ Function update($requete) {
 // ouverture de la connexion
     $pdo = openConnexion();
 
-// declaration variable qui correspond à la table message
-    $table = 'message';
-
-
 
     $stmt = $pdo->prepare("UPDATE " . $table . " SET 'idExped' = :idExped, 'idDest' = :idDest, 'dateEnvoi' = :dateEnvoi, 'sujet' = :sujet, 'texte' = :texte, idMessage =:idMessage)");
 
@@ -105,9 +101,8 @@ Function update($requete) {
 
 function delete($id) {
     $pdo = openConnexion();
-    $table = 'message';
 
-// 
+
 //prepare =avant query pour éviter faille de sécurité
     $requeteDelete = "DELETE  FROM " . $table . " WHERE idMessage = :idMessage ;";
     $stmt = $pdo->prepare($requeteDelete);
