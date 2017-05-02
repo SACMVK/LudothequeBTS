@@ -23,6 +23,7 @@
                         <li><a href='index.php?user=mesEmprunts'>Mes emprunts</a></li>
                         <li><a href='index.php?user=mesMessages'>Mes messages</a></li>
                         <li><a href='index.php?page=creation/jeu_t.php'>Proposer un nouveau jeu</a></li>
+                        <li><a href='index.php?page=creation/message.php'>Envoyer un message</a></li>
                     </ul>
                 </div>
             </div>
