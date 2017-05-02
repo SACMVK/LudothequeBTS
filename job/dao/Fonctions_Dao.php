@@ -31,7 +31,7 @@ Function selectDico($table, $colonne) {
     $stmt->execute();
     // Apparait champs de recherche en blanc si ne souhaite pas recherche sur ce champs
     ?>
-    <option value="aucune"> </option>
+    <option value="">-----</option>
     <?php
     //Création d'une liste pour y insérer les résultat du dico et pouvoir les trier
     $listeValidation = array();
