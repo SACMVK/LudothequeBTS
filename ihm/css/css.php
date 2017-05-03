@@ -24,6 +24,6 @@ if ($dossier = opendir($cssDirectory)) {
 }
 ?>
 
-<link rel="stylesheet" type="text/css" href="ihm/css/styles.css">
+
 
 
