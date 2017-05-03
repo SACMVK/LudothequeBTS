@@ -14,23 +14,29 @@
 .widget .collection-accueil{
     float: left;
     width: 34%;
-        padding: 0 7px;
-   box-sizing: border-box;
-   text-align: center;
-   color: #fff;
+    padding: 0 7px;
+    box-sizing: border-box;
+    text-align: center;
+    color: #fff;
 }
+.widget .collection-accueil a {
+        border-radius: 0px 0px 20px 20px;
+}
+
 .widget .collection-accueil-title{
- float: left;
-width: 100%;
-padding: 10px 0;
-color:  #fff;
-background: #585858;
-font-size: 24px;
-font-weight: 600;
-text-align: center;
-text-transform: uppercase;
-position: relative;
+    float: left;
+    width: 100%;
+    padding: 10px;
+    color:  #fff;
+    background: #1f2021;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
     margin-bottom: 0px;
+            border-radius: 20px 20px 0px 0px;
+
 }
 .widget .collection-accueil-title::after {
     color: #fff;
@@ -39,8 +45,8 @@ position: relative;
     position: absolute;
     bottom: -30px;
     left: 50%;
-     background: url(../img/plus.png) no-repeat center center #585858;
-    
+    background: url(../img/plus.png) no-repeat center center #585858;
+
     height: 30px;
     width: 40px;
     margin-left: -20px;
@@ -48,15 +54,15 @@ position: relative;
     text-align: center;
 }
 .widget .collection-accueil:hover  .collection-accueil-title{
-    background: rgba(120, 0, 2,0.9);
-  border-bottom: 2px solid #fff;
-  height: 66px;
-display: flex;
-justify-content: center;
-align-items: end;
+    background: #208f8f;
+    border-bottom: 2px solid #fff;
+    height: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
 }
 .widget .collection-accueil:hover .collection-accueil-title::after {
-   display: none;
+    display: none;
 }
 
 .widget .collection-accueil-item{
@@ -66,7 +72,7 @@ align-items: end;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
-   text-align: center;
+    text-align: center;
 }
 .widget .collection-accueil:hover  .collection-accueil-item-image{
     height: 205px;
@@ -92,7 +98,7 @@ align-items: end;
 
 .widget .collection-accueil-item:last-child{
     display: block;
-   margin-bottom: 11px;
+    margin-bottom: 11px;
 }
 .widget .collection-accueil-item-image{
     float: left;
@@ -101,6 +107,7 @@ align-items: end;
     background: no-repeat center center;
     background-size: cover;
     position: relative;
+
 }
 .widget .collection-accueil-item-tarif{
     text-align: center;
@@ -119,12 +126,13 @@ align-items: end;
     height: 245px;
     padding-top: 10px;
     position: relative;
-   text-align: center;
- background: rgba(120, 0, 2,0.9);
+    text-align: center;
+    background: rgba(32,143,143,0.8);
+    
 }
 .widget .collection-accueil:hover .collection-accueil-item-content{
     top:-205px;
-	height: 205px;
+    height: 205px;
 }
 .widget .collection-accueil-item-content-limiter{
     float: left;
@@ -135,19 +143,19 @@ align-items: end;
     text-align: center;
 }
 .widget .collection-accueil-item-title{
-   float: left;
-width: 100%;
-color: #fff;
-font-size: 20px;
-font-weight: 600;
-text-align: center;
-margin-top: -2px;
-line-height: 21px;
+    float: left;
+    width: 100%;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: -2px;
+    line-height: 21px;
 }
 .widget .collection-accueil-item-type{
     float: left;
     width: 100%;
-   color: #fff;
+    color: #fff;
     font-weight: 600;
     text-align: center;
 }
@@ -157,17 +165,18 @@ line-height: 21px;
     color: #fff;
     font-size: 14px;
     text-align: center;
-    margin-top: 40px;
+    padding : 10px;
+    line-height: 1.2em;
 }
 .widget .collection-accueil-item-plus{
-   justify-content: center;
-   align-content: center;
-   align-items: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     height: 35px;
     width: 35px;
-    
-	position: relative;
-	bottom: 25px;
+
+    position: relative;
+    bottom: 25px;
     padding: 3px;
 }
 .widget .collection-accueil-item-bp {
@@ -194,9 +203,9 @@ line-height: 21px;
         float: left;
         width: 100%;
         height: auto;
-       box-sizing: border-box;
-       text-align: center;
-       margin-top: 40px;
+        box-sizing: border-box;
+        text-align: center;
+        margin-top: 40px;
     }
 }
 

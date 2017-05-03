@@ -1,7 +1,7 @@
 body {
     background-color: #f9f9f9 !important;
     font-family: 'Open Sans', sans-serif!important;
-    font-size:11px;
+    font-size:16px;
 }
 
 h1{
@@ -63,17 +63,19 @@ caption {
 /*AhMaD:: text acceuil*/
 .paragraphe_accueil{
     text-align: center;
-    color: #000;
     font-size: 20px;
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    text-decoration: none;
 }
-.paragraphe_accueil:hover{
+.paragraphe_accueil a:hover{
     text-decoration: none;
-    color: #245580;
+    color: #208f8f;
+}
 
+.paragraphe_accueil a{
+    text-decoration: none;
+    color: black;
 }
 
 /*.image_acceuil{
