@@ -5,25 +5,25 @@ include 'job/dao/Connexion_DataBase.php';
 /* stefan : Cette fonction a pour objectif
  * de créer une string de requête SQL (partie "WHERE")
  * à partir des éléments des formulaires de sélection,
- * éléments envoyés dans $_POST.
+ * éléments envoyés dans $_REQUEST.
  */
 
-function createRequestFromPOST() {
+function createRequestFromREQUEST() {
     /* stefan : La requête par défaut est vide.
      * Elle restera vide s'il n'y a aucune variable
-     * dans $_POST.
+     * dans $_REQUEST.
      */
     $stringRequest = '';
-    if (!empty($_POST)) {
+    if (!empty($_REQUEST)) {
         $stringRequest = 'WHERE ';
-        foreach ($_POST as $key => $value) {
+        foreach ($_REQUEST as $key => $value) {
             $stringRequest .= $key . '=' . $value;
             /* stefan : Après son ajout à la requête,
-             * on supprime le couple clé-valeur du $_POST ...
+             * on supprime le couple clé-valeur du $_REQUEST ...
              */
-            unset($_POST [$key]);
+            unset($_REQUEST [$key]);
             // stefan : ... de manière à pouvoir ajouter ou non "AND".
-            if (!(empty($_POST))) {
+            if (!(empty($_REQUEST))) {
                 $stringRequest .= ' AND ';
             }
         }
@@ -32,15 +32,15 @@ function createRequestFromPOST() {
 }
 
 /* stefan : Cette fonction a pour objectif
- * de récupérer dans $_POST la liste des valeurs
+ * de récupérer dans $_REQUEST la liste des valeurs
  * afin de permettre des modifications
  * dans la base de données
  * (ajout, modification, suppression d'une ligne).
  */
 
-function getValuesFromPOST() {
+function getValuesFromREQUEST() {
     $listOfValues = array();
-    foreach ($_POST as $key => $value) {
+    foreach ($_REQUEST as $key => $value) {
         $listOfValues [$key] = $value;
     }
     return $listOfValues;
@@ -52,8 +52,8 @@ function getValuesFromPOST() {
  * La première est l'objet avec lequel il faut faire l'action.
  * La deuxième est l'action.
  */
-$objectToWorkWith = $_POST['objectToWorkWith'];
-$actionToDoWithObject = $_POST['actionToDoWithObject'];
+$objectToWorkWith = $_REQUEST['objectToWorkWith'];
+$actionToDoWithObject = $_REQUEST['actionToDoWithObject'];
 
 // stefan : On inclue le DAO relatif à l'objet
 include 'job/dao/' . $objectToWorkWith . '_Dao.php';
@@ -62,21 +62,21 @@ include 'job/dao/' . $objectToWorkWith . '_Dao.php';
 switch ($actionToDoWithObject) {
     case "selectOne":
         // stefan : Partie DAO
-        $request = createRequestFromPOST();
+        $request = createRequestFromREQUEST();
         $element = select($request)[0];
         // stefan : Partie IHM
         $pageAAfficher = 'ihm/resultat/' . $objectToWorkWith . '.php';
         break;
     case "selectList":
         // stefan : Partie DAO
-        $request = createRequestFromPOST();
+        $request = createRequestFromREQUEST();
         $listOfElements = select($request);
         // stefan : Partie IHM
         $pageAAfficher = 'ihm/resultat/' . $objectToWorkWith . '_liste.php';
         break;
     case "insert":
         // stefan : Partie DAO
-        $valuesToInsert = getValuesFromPOST();
+        $valuesToInsert = getValuesFromREQUEST();
         $lastId = insert($valuesToInsert);
         // stefan : Partie IHM
         switch ($objectToWorkWith) {
@@ -98,12 +98,12 @@ switch ($actionToDoWithObject) {
         break;
     case "update":
         // stefan : Partie DAO
-        $valuesToUpdate = getValuesFromPOST();
+        $valuesToUpdate = getValuesFromREQUEST();
         update($valuesToUpdate);
         // stefan : Partie IHM
         // Si on modifie un individu et que c'est l'utilisateur qui modifie ses propres informations,
         // il faut mettre à jour l'objet dans la RAM depuis la base de données
-        if (($objectToWorkWith == "Individu") && ($_SESSION["monProfil"]->getIdUser() == $_POST["idUser"])) {
+        if (($objectToWorkWith == "Individu") && ($_SESSION["monProfil"]->getIdUser() == $_REQUEST["idUser"])) {
             // stefan : récupération de l'id
             $idUserConnecte = $_SESSION["monProfil"]->getIdUser();
             // stefan : suppression de l'utilisateur
@@ -117,7 +117,7 @@ switch ($actionToDoWithObject) {
     case "delete":
         // stefan : Partie DAO
         // stefan : Ici, on ne récupère qu'une valeur (ID).
-        $idOfLineToDelete = getValuesFromPOST();
+        $idOfLineToDelete = getValuesFromREQUEST();
         delete($idOfLineToDelete);
         // stefan : Partie IHM
         switch ($objectToWorkWith) {

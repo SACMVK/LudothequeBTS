@@ -1,36 +1,36 @@
- #listejeu{
-        height: 90%;
-        overflow:auto;
-        margin: 10%;
-    }
+#listejeu{
+    height: 90%;
+    overflow:auto;
+    margin: 10%;
+}
 
 h1{
     text-align: center;
 }
 
 table {
- border-collapse:collapse;
- width:100%;
- }
+    border-collapse:collapse;
+    width:100%;
+}
 th, td {
- border:1px solid black;
- width:20%;
- }
+    border:1px solid black;
+    width:20%;
+}
 td {
- text-align:center;
- }
+    text-align:center;
+}
 caption {
- font-weight:bold
- }
- 
- #div_header{
-     height: 70px;
- }
- #div_footer{
-         height: 22px;
- }
- 
- /*---AhMaD:SLID--*/
+    font-weight:bold
+}
+
+#div_header{
+    height: 70px;
+}
+#div_footer{
+    height: 22px;
+}
+
+/*---AhMaD:SLID--*/
 
 .center-block {
     display: flex;
@@ -49,7 +49,7 @@ caption {
 }
 .contenu
 {
-       width: 100%;
+    width: 100%;
 }
 .carousel {
     position: relative;
@@ -59,66 +59,66 @@ caption {
 }
 
 
- /*AhMaD: BODY */
- body{
-     background-color: #fff;
-     font-family: Time New Roman;
-     font-size: 16px;
- }
- 
- /*AhMaD:: text acceuil*/
- .paragraphe_accueil{
-     text-align: center;
-     color: #000;
-     font-size: 20px;
-     justify-content: center;
-     letter-spacing: 1px;
-     margin-bottom: 20px;
- }
- .paragraphe_accueil:hover{
-     text-decoration: none;
-     color: #245580;
-     
- }
- 
- .image_acceuil{
-      position: absolute;
-      right: 250px;
+/*AhMaD: BODY */
+body{
+    background-color: #fff;
+    font-family: Time New Roman;
+    font-size: 16px;
+}
+
+/*AhMaD:: text acceuil*/
+.paragraphe_accueil{
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+    justify-content: center;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.paragraphe_accueil:hover{
+    text-decoration: none;
+    color: #245580;
+
+}
+
+.image_acceuil{
+    position: absolute;
+    right: 250px;
     top: 250px;
     width: 100px;
     height: 300px;
     z-index: 3;
- }
- .image_acceuil img{
-         width: 400px;
- }
- @media (max-width:1200px){
-      .image_acceuil{
-      position: relative;
-    top: 1px;
-    width: 100%;
-    height: 100%;
+}
+.image_acceuil img{
+    width: 400px;
+}
+@media (max-width:1200px){
+    .image_acceuil{
+        position: relative;
+        top: 1px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        right: 0px;
+    }
+}
+
+/*widget*/
+.widget{
+    width: 900px;
+    margin-left: 120px;
     display: flex;
-    text-align: center;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    right: 0px;
- }
- }
- 
- /*widget*/
- .widget{
-     width: 900px;
-     margin-left: 120px;
-     display: flex;
-     flex-direction: row;
-     justify-content: center;
-     align-items: center;
-     text-align: center;
- }
- /*profil*/
- .img-circle {
- display: none;
+    text-align: center;
+}
+/*profil*/
+.img-circle {
+    display: none;
 }
 .user-row {
     margin-bottom: 14px;
@@ -143,12 +143,12 @@ caption {
 }
 
 .table-user-information > tbody > tr:first-child {
- border: none ;
+    border: none ;
 }
 
 
 .table-user-information > tbody > tr > td {
-  border: none ;
+    border: none ;
 }
 .toppad
 {margin-top:50px;

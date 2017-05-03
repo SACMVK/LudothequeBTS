@@ -1,70 +1,62 @@
-.menu_side{
-    height: 300px;
-    width: 100px;;
-    position: fixed;
-    left: 0px;
-
-}
 .sidebar2 {
-    background-color: #1a1f27;
+    background-color: #1f2021;
     padding: 0px !important;
-    box-shadow: 2px 2px 5px #262a35;
-    height: 443px;
+    box-shadow: 1px 5px 5px rgba(38,42,53,0.5);
+    /* stefan : il ne faut pas mettre de hauteur afin que la hauteur du menu soit ajusté au contenu
+/*    height: 480px;*/
     position: fixed;
-    top: 125px;
-    left: 0px;
+    top: 100px;
+    left: 1%;
     width: 15%;
     border-radius: 20px;
-
 }
-#titre_menu{
+
+.sidebar2 hr{
+    margin: 0px 15px 5px 15px;
+    /* stefan : on met les deux pour les différents navigateurs */
+    background:#dfe8ee;
+    color:#dfe8ee;
+    height: 1px;
+    border : 0px;
+}
+
+.sidebar2 .titre_menu{
     text-align: center;
     color: #fff;
     font-weight: bolder;
+    margin-top:1em;
+    margin-bottom:0em;
 }
 
 
-.btn.Add-friend:hover,.btn.Add-friend:active,.btn.Add-friend:active:focus,.btn.Add-friend:active:hover,.btn.Add-friend:visited,.btn.Add-friend:focus
-{
-    background-color:#F17153;
-    border: 0.5px solid transparent;
-    color:white;
-    outline:none;
-    font-weight:600;
-}
-
-.list {
-    color: #eee;
+.sidebar2 .list {
     list-style: none;
     padding-left: 0px;
 }
-/*li:nth-child(odd) {
-    background-color:#13171d;
-}*/
-li>i {margin-right:15px;
-}
-.list> li {
-    padding: 5px 0px 5px 20px;
-    font-size: 14px;
-    font-weight:bold;
+
+.sidebar2 .list li {
+    padding-left: 10px;
+    font-size: 16px;
+    height: 25px;
+    margin-left:5px;
+    margin-right:5px;
+    color: #dfe8ee;
 }
 
-.list li a {
-    color : #eee;
-}
-
-.list li a:hover {
-    color : #eee;
+.sidebar2 .list  a {
     text-decoration: none;
 }
 
-.list>li:hover {
-    box-shadow:1px 1px 10px 1px rgba(255,255,255,0.6) inset;
+.sidebar2 .list a li:hover {
+    box-shadow:1px 1px 10px 1px rgba(255,255,255,0.1) ;
+    border: solid 1px #208f8f;
+    border-radius: 5px;
     transition: padding-left 0.2s linear;
-    padding-left: 30px;
+    padding-left: 15px;
+    color:#fff;
 }
 
-.main-content{ 
-    color:#fff; 
-    text-align:center;
+/* stefan : afin d'un espace en fin de liste */
+.sidebar2 .list:last-child {
+    margin-bottom : 20px;
 }

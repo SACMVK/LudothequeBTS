@@ -1,16 +1,17 @@
 <div class="container" id="wrap">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <p style="color:red;">@team : TOFINISH</p>
+            <p style="color:red;">@team : TOFINISH - ajouter un test de vérification de l'existence du destinataire</p>
             <form action=" " method="post" accept-charset="utf-8" class="form" role="form"> 
                 <legend>Envoyer un message</legend>
                 Pseudo du destinataire :
-                <select name="idDest" class="form-control input-lg" required>
+                <input type="text" name="idUser" class="form-control input-lg" required />
+<!--                <select name="idDest" class="form-control input-lg" required>
                     <?php
-                    include 'job/dao/Connexion_DataBase.php';
-                    selectValuesWithId("compte", "pseudo", "idUser");
+                    //include 'job/dao/Connexion_DataBase.php';
+                    //selectValuesWithId("compte", "pseudo", "idUser");
                     ?>
-                </select>
+                </select>-->
 
 
                 <input type="text" name="sujet" class="form-control input-lg" placeholder="sujet" required />

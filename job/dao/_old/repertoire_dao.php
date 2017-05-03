@@ -2,7 +2,7 @@
 
 Function getFichiersAutorises (){
     // stefan : On commence par lister les répertoires
-    $listeRepertoiresAutorises = ['ihm/menus','ihm/pages'];
+    $listeRepertoiresAutorises = ['ihm/menu','ihm/pages'];
     $listeFichiersAutorises = array();
 
     foreach ($listeRepertoiresAutorises as $repertoire){
