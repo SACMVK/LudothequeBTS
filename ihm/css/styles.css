@@ -1,7 +1,7 @@
-#listejeu{
-    height: 90%;
-    overflow:auto;
-    margin: 10%;
+body {
+    background-color: #f9f9f9 !important;
+    font-family: 'Open Sans', sans-serif!important;
+    font-size:11px;
 }
 
 h1{

@@ -1,22 +1,6 @@
-#connexion .input, #connexion .bouton_connexion{
-		/* stefan : deux lignes afin de centrer les champs de données */
-	display: block;
-	margin: auto;
-	text-align: center;
-}
 
 
-#connexion .text{
-	text-align: center;
-	/* stefan : on est obligé de mettre une largeur afin qu'il se centre */
-	width: 100px;
-	display: block;
-	margin: auto;
-}
-
-
-
-body {
+/*body {
     background-color: #f9f9f9 !important;
     font-family: 'Open Sans', sans-serif!important;
     font-size:11px;
@@ -28,7 +12,7 @@ body {
 }
 
 .well.login-box {
-    /*width:400px; */
+    width:400px; 
     border:#d1d1d1 solid 1px;
     margin:0 auto;
     margin-top:30px;
@@ -51,11 +35,11 @@ body {
 
 .well.welcome-text{
     font-size:21px;
-}
+}*/
 
 /* Notifications */
 
-.notification{
+/*.notification{
     position:fixed;
     top: 20px;
     right:0;
@@ -71,7 +55,7 @@ body {
 
 .notification-show{
     display:block!important;
-}
+}*/
 
 /*Loged in*/
 .btn-default {

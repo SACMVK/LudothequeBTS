@@ -1,13 +1,14 @@
  
 <!-- charlotte -- A propos-->
 
-<div class="article1" id="about">
+<div class="article-clean" id="about">
     
     <div class="container">
         <div class="row">
             <!-- découpage de la page( col-lg 8 ...etc) par boostrapp afin que ce soir responsive-->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <h1 class="text-center">A propos</h1>
+                <img class="img-responsive" src="data/images/pc.jpg">
                 <div class="text">
                     <br>
                     <p>Sed lobortis mi. Suspendisse vel placerat ligula. ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in
@@ -19,7 +20,7 @@
         </div>
     </div>
 
-    <div class="article" id="mentions">
+    <div class="article-clean" id="mentions">
         <div class="container">
             <div class="row">
                 <!-- découpage de la page( col-lg 8 ...etc) par boostrapp afin que ce soir responsive-->
@@ -49,7 +50,7 @@
                 <!-- découpage de la page( col-lg 8 ...etc) par boostrapp afin que ce soit responsive-->
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="intro">
-                        <h1 class="text-center">aide</h1><img class="img-responsive" src="data/images/pc.jpg"></div>
+                        <h1 class="text-center">Aide</h1></div>
                     <div class="text">
                         <p>Sed lobortis mi. Suspendisse vel placerat ligula. ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in
                             justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
@@ -72,7 +73,7 @@
                 <!-- découpage de la page( col-lg 8 ...etc) par boostrapp afin que ce soir responsive-->
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="intro">
-                        <h1 class="text-center">contact</h1><img class="img-responsive" src="data/images/pc.jpg"></div>
+                        <h1 class="text-center">contact</h1></div>
                     <div class="text">
                         <p>Sed lobortis mi. Suspendisse vel placerat ligula. ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in
                             justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
