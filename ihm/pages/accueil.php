@@ -1,4 +1,4 @@
-<div class="contenu">
+
     <div class="container">
         <div class="paragraphe_accueil">
             <?php if (empty($_SESSION)): ?>
@@ -177,6 +177,3 @@
 
     </div>
 
-
-
-</div>
