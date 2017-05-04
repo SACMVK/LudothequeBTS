@@ -3,18 +3,18 @@
 // AhMaD: les variables static
 const TABLE_JEU_P = "jeu_p";
 const CLE_PRIMAIRE_JEU_P = "idJeuP";
-const TABLEJEUT = "jeu_t";
+const TABLE_JEUT = 'jeu_t';
+const TABLE_PCT = 'produit_culturel_t';
 const TABLE_COMPTE = "compte";
+const TABLE_INDIVIDU = "individu";
 
 //AhMaD: functioin qui sert a integrer un valeur dans le table
 
 function insert($list_Values) {
 
     //AhMaD: déclaration les values
-    $idUser = $list_Values['idUser'];
-    $idJeuT = $list_Values['idJeuT'];
-    $idJeuP = $list_Values['idJeuP'];
-    $etat = $list_Values['etat'];
+    $idProprietaire = $list_Values['idProprietaire'];
+    $idPC = $list_Values['idPC'];
 
 
     //AhMaD:ouvrire la connexion avec BD
@@ -23,14 +23,14 @@ function insert($list_Values) {
 
 
     //AhMaD:la requete pour inserter dans le tableau jeu_p
-    $requete_jeu_p = "INSERT INTO " . TABLE_JEU_P . " (idJeuP, idJeuT, idUser, etat) VALUES ( '" . $idJeuP . "','" . $idJeuT . "','" . $idUser . "','" . $etat . "');";
+    $requete_jeu_p = "INSERT INTO " . TABLE_JEU_P . " (idPC, idProprietaire) VALUES ( '" . $idPC . "', '" . $idProprietaire . "');";
 
     //AhMaD: préparer la requête pour ensuite l'exécuter
     $stmt_jeu_p = $db->prepare($requete_jeu_p);
     $stmt_jeu_p->execute();
 
 
-    //AhMaD: on recherche de la dernière id etait generaté par la precedent requete en utilisant la finction mysqli_insert_id();
+    //AhMaD: on recherche la dernière id générée par la precedente requete en utilisant la fonction lastInsertId();
     $lastIdJeuP = $db->lastInsertId();
 
     //AhMaD:fermateur  la connexion avec BD
@@ -47,8 +47,14 @@ function select($requete) {
     //AhMaD:ouvrire la connexion avec BD
     $db = openConnexion();
 
+
     //AhMaD:prepration de requete qiu vas trouver l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "SELECT * FROM '" . TABLE_JEU_P . "' ".$requete.";";
+    $requete = "SELECT * FROM " . TABLE_INDIVIDU
+            . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser "
+            . " JOIN " . TABLE_JEU_P . " ON " . TABLE_JEU_P . ".idProprietaire = " . TABLE_COMPTE . ".idUser "
+            . " JOIN " . TABLE_PCT . " ON " . TABLE_JEU_P . ".idPC = " . TABLE_PCT . ".idPC "
+            . " JOIN " . TABLE_JEUT . " ON " . TABLE_JEUT . ".idPC = " . TABLE_PCT . ".idPC "
+            . $requete . ";";
 
     //AhMaD: préparer la requête pour ensuite l'exécuter
     $stmt = $db->prepare($requete);
@@ -59,18 +65,48 @@ function select($requete) {
 
     //AhMaD: je parcoure les tables pour afficher les resultats de ma requete.
     // mysql_fetch_assoc($result): permet de afficher les informations de toutes les champs
-    while ($champ = mysql_fetch_assoc($stmt)) {
+    while ($champ = $stmt->fetch(PDO::FETCH_ASSOC)) {
         //AhMaD:tant qu'il y a des informations dans chaque champ de la ligne je les prend el je les affiche 
         $idUser = $champ['idUser'];
-        $idJeuT = $champ['idJeuT'];
-        $idJeuP = $champ['idJeuP'];
-        $etat = $champ['etat'];
+        $ville = $champ['ville'];
+        $adresse = $champ['adresse'];
+        $codePostal = $champ['codePostal'];
+        $dpt = $champ['numDept'];
+        $email = $champ['email'];
+        $telephone = $champ['telephone'];
+        $pseudo = $champ['pseudo'];
+        $dateInscription = $champ['dateInscription'];
+        $mdp = $champ['mdp'];
+        $droit = $champ['droit'];
+        $nom = $champ['nom'];
+        $prenom = $champ['prenom'];
+        $dateNaissance = $champ['dateNaiss'];
 
         //AhMaD : on vas creer un nouveau objet avec les informations
-        $jeu_p = new Jeu_P($idJeuP, $idJeuT, $idUser, $etat);
+        $proprietaire = new Individu($ville, $adresse, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser);
 
-        //AhMaD : on stocke ce objet dans l'array pour remplir l'array 
-        $Jeu_P_list[] = $jeu_p;
+        $nbJoueursMin = $champ['nbJoueursMin'];
+        $nbJoueursMax = $champ['nbJoueursMax'];
+        $nomJeu = $champ['nom'];
+        $editeur = $champ['editeur'];
+        $regles = $champ['regles'];
+        $difficulte = $champ['difficulte'];
+        $public = $champ['public'];
+        $listePieces = $champ['listePieces'];
+        $dureePartie = $champ['dureePartie'];
+        $anneeSortie = $champ['anneeSortie'];
+        $description = $champ['description'];
+        $idPC = $champ['idPC'];
+        $typePC = $champ['typePC'];
+
+        /* création du nouvel objet Jeu_T */
+        $jeuT = new Jeu_T($nbJoueursMin, $nbJoueursMax, $nomJeu, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $idPC);
+
+        $idJeuP = $champ['idJeuP'];
+
+        //AhMaD : on vas creer un nouveau objet avec les informations
+        //AhMaD : on stocke ce objet dans l'array pour remplir l'array         
+        $Jeu_P_list[] = new Jeu_P($proprietaire, $jeuT, $idJeuP);
     }
     //AhMaD: on ferme la conexion
     $db = closeConnexion();
@@ -85,7 +121,6 @@ function update($list_Values) {
     //AhMaD: déclaration les values
     $idUser = $list_Values['idUser'];
     $idJeuT = $list_Values['idJeuT'];
-    $idJeuP = $list_Values['idJeuP'];
     $etat = $list_Values['etat'];
 
     //AhMaD:ouvrire la connexion avec BD  
@@ -100,7 +135,7 @@ function update($list_Values) {
     $user = $stmt->execute();
 
     //AhMaD:on vas faire une requete pour savoir update le table jeu_t.  
-    $jeu_requete = "UPDATE " . TABLEJEUT . " SET idJeuT = " . $idJeuT . " WHERE " . TABLEJEUT . ". idJeuT = " . TABLE_JEU_P . ". idJeuT ;";
+    $jeu_requete = "UPDATE " . TABLE_JEUT . " SET idJeuT = " . $idJeuT . " WHERE " . TABLE_JEUT . ". idJeuT = " . TABLE_JEU_P . ". idJeuT ;";
     $stmt = $db->prepare($jeu_requete);
     $stmt->execute();
     $jeu = $stmt->execute();
@@ -125,14 +160,14 @@ function update($list_Values) {
 }
 
 //AhMaD: function supprimer pour supprimer un copte
-function delete($idOfLineToDelete) {
+function delete($id) {
 
 
     //AhMaD:ouvrire la connexion avec BD  
     $db = openConnexion();
 
     //AhMaD:prepration de requete qui vas supprimer l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "DELETE FROM " . TABLE_JEU_P . " WHERE idJeuP = " . '$idOfLineToDelete' . " ;";
+    $requete = "DELETE FROM " . TABLE_JEU_P . " WHERE idJeuP = " . $id["idJeuP"] . " ;";
 
     //AhMaD: on vas préparer la requête et l'exécuter et tu vas bien.
     $stmt = $db->prepare($requete);
@@ -141,12 +176,7 @@ function delete($idOfLineToDelete) {
     //AhMaD: on vas exécuter
     $stmt->execute();
 
-    //AhMaD:un petit test pour savoir si tu vas bien
-    if ($stmt == true) {
-        echo"la jeux était supprimé avec succès";
-    } else {
-        die("Il y a des erreures, veuillez modifier votre choix");
-    }
+
 
     //AhMaD: on ferme la conexion
     $db = closeConnexion();

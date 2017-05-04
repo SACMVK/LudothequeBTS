@@ -45,7 +45,7 @@ CREATE TABLE compte (
   ville varchar(30) NOT NULL,
   numDept smallint(2) unsigned NOT NULL, #FK dico dpt
   email varchar(255) NOT NULL UNIQUE, #index UNIQUE car évite qu un email soit enregistré deux fois
-  telephone int(15) NOT NULL,
+  telephone varchar(15) NOT NULL,
   pseudo varchar(30) NOT NULL UNIQUE, #index UNIQUE évite doublon pseudos
   dateInscription date NOT NULL,
   mdp varchar(50) NOT NULL,
@@ -373,7 +373,7 @@ ADD CONSTRAINT fk_droit_compte FOREIGN KEY (droit) REFERENCES droit_d(droit);
 # Clés étrangères de la table individu
   # Clé étrangère idUser
 ALTER TABLE individu 
-ADD CONSTRAINT fk_idUser_individu FOREIGN KEY (idUser) REFERENCES compte(idUser);
+ADD CONSTRAINT fk_idUser_individu FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
 
 
 
@@ -384,11 +384,11 @@ ADD CONSTRAINT fk_idUser_individu FOREIGN KEY (idUser) REFERENCES compte(idUser)
 # Clés étrangères de la table jeu_p
   # Clé étrangère idPC
 ALTER TABLE jeu_p 
-ADD CONSTRAINT fk_idPC_jeu_p FOREIGN KEY (idPC) REFERENCES jeu_t(idPC);
+ADD CONSTRAINT fk_idPC_jeu_p FOREIGN KEY (idPC) REFERENCES jeu_t(idPC) ON DELETE CASCADE;
 
   # Clé étrangère idProprietaire
 ALTER TABLE jeu_p 
-ADD CONSTRAINT fk_idProprietaire_jeu_p FOREIGN KEY (idProprietaire) REFERENCES compte(idUser);
+ADD CONSTRAINT fk_idProprietaire_jeu_p FOREIGN KEY (idProprietaire) REFERENCES compte(idUser) ON DELETE CASCADE;
 
 
 
@@ -397,11 +397,11 @@ ADD CONSTRAINT fk_idProprietaire_jeu_p FOREIGN KEY (idProprietaire) REFERENCES c
 #Clés étrangères de la table pret_p
   # Clé étrangère idJeuP
 ALTER TABLE pret_p 
-ADD CONSTRAINT fk_idJeuP_pret_p FOREIGN KEY (idJeuP) REFERENCES jeu_p(idJeuP);
+ADD CONSTRAINT fk_idJeuP_pret_p FOREIGN KEY (idJeuP) REFERENCES jeu_p(idJeuP) ON DELETE CASCADE;
 
   # Clé étrangère idEmprunteur
 ALTER TABLE pret_p 
-ADD CONSTRAINT fk_idEmprunteur_pret_p FOREIGN KEY (idEmprunteur) REFERENCES compte(idUser);
+ADD CONSTRAINT fk_idEmprunteur_pret_p FOREIGN KEY (idEmprunteur) REFERENCES compte(idUser) ON DELETE CASCADE;
 
   # Clé étrangère notification
 ALTER TABLE pret_p 
@@ -414,7 +414,7 @@ ADD CONSTRAINT fk_statut_demande FOREIGN KEY (statutDemande) REFERENCES statut_d
 # Clés étrangères de la table user_prefere_genre
   # Clé étrangère idUser
 ALTER TABLE user_prefere_genre 
-ADD CONSTRAINT fk_idUser_user_prefere_genre FOREIGN KEY (idUser) REFERENCES compte(idUser);
+ADD CONSTRAINT fk_idUser_user_prefere_genre FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
 
   # Clé étrangère genre 
 ALTER TABLE user_prefere_genre 
@@ -428,16 +428,16 @@ ADD CONSTRAINT fk_typePC_produit_culturel_t FOREIGN KEY (typePC) REFERENCES type
 # Clés étrangères de la table a_pour_image
   # Clé étrangère typePC
 ALTER TABLE a_pour_image 
-ADD CONSTRAINT fk_idPC_a_pour_image FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC);
+ADD CONSTRAINT fk_idPC_a_pour_image FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC) ON DELETE CASCADE;
 
 # Clés étrangères de la table jeu_t
   # Clé étrangère typePC
 ALTER TABLE jeu_t 
-ADD CONSTRAINT fk_idPC_jeu_t FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC);
+ADD CONSTRAINT fk_idPC_jeu_t FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC) ON DELETE CASCADE;
 
   # Clé étrangère editeur
 ALTER TABLE jeu_t 
-ADD CONSTRAINT fk_editeur_jeu_t FOREIGN KEY (editeur) REFERENCES editeur_d(editeur);
+ADD CONSTRAINT fk_editeur_jeu_t FOREIGN KEY (editeur) REFERENCES editeur_d(editeur) ON DELETE CASCADE;
 
   # Clé étrangère difficulte
 ALTER TABLE jeu_t 
@@ -450,16 +450,16 @@ ADD CONSTRAINT fk_public_jeu_t FOREIGN KEY (public) REFERENCES public_d(public);
 # Clés étrangères de la table commentaire_p_c_t
   # Clé étrangère idPC
 ALTER TABLE commentaire_p_c_t 
-ADD CONSTRAINT fk_idPC_commentaire_p_c_t FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC);
+ADD CONSTRAINT fk_idPC_commentaire_p_c_t FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC) ON DELETE CASCADE;
 
   # Clé étrangère idUser
 ALTER TABLE commentaire_p_c_t 
-ADD CONSTRAINT fk_idUser_commentaire_p_c_t FOREIGN KEY (idUser) REFERENCES compte(idUser);
+ADD CONSTRAINT fk_idUser_commentaire_p_c_t FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
 
 # Clés étrangères de la table jeu_a_pour_genre
   # Clé étrangère idPC
 ALTER TABLE jeu_a_pour_genre 
-ADD CONSTRAINT fk_idPC_jeu_a_pour_genre FOREIGN KEY (idPC) REFERENCES jeu_t(idPC);
+ADD CONSTRAINT fk_idPC_jeu_a_pour_genre FOREIGN KEY (idPC) REFERENCES jeu_t(idPC) ON DELETE CASCADE;
 
   # Clé étrangère genre
 ALTER TABLE jeu_a_pour_genre 
@@ -468,23 +468,23 @@ ADD CONSTRAINT fk_genre_jeu_a_pour_genre FOREIGN KEY (genre) REFERENCES genre(ge
 # Clés étrangères de la table message
   # Clé étrangère idExped
 ALTER TABLE message 
-ADD CONSTRAINT fk_idExped_message FOREIGN KEY (idExped) REFERENCES compte(idUser);
+ADD CONSTRAINT fk_idExped_message FOREIGN KEY (idExped) REFERENCES compte(idUser) ON DELETE CASCADE;
 
   # Clé étrangère idDest
 ALTER TABLE message 
-ADD CONSTRAINT fk_idDest_message FOREIGN KEY (idDest) REFERENCES compte(idUser);
+ADD CONSTRAINT fk_idDest_message FOREIGN KEY (idDest) REFERENCES compte(idUser) ON DELETE CASCADE;
 
 # Clés étrangères de la table pret_a_pour_message
 ALTER TABLE pret_a_pour_message 
-ADD CONSTRAINT fk_idPret FOREIGN KEY (idPret) REFERENCES pret_p(idPret);
+ADD CONSTRAINT fk_idPret FOREIGN KEY (idPret) REFERENCES pret_p(idPret) ON DELETE CASCADE;
 ALTER TABLE pret_a_pour_message 
-ADD CONSTRAINT fk_idMessage FOREIGN KEY (idMessage) REFERENCES message(idMessage);
+ADD CONSTRAINT fk_idMessage FOREIGN KEY (idMessage) REFERENCES message(idMessage) ON DELETE CASCADE;
 ALTER TABLE pret_a_pour_message 
 ADD CONSTRAINT fk_idNotification FOREIGN KEY (idNotification) REFERENCES notification(idNotification);
 
 # Clés étrangères de la table expedition
 ALTER TABLE expedition 
-ADD CONSTRAINT fk_idPretExpedition FOREIGN KEY (idPret) REFERENCES pret_p(idPret);
+ADD CONSTRAINT fk_idPretExpedition FOREIGN KEY (idPret) REFERENCES pret_p(idPret) ON DELETE CASCADE;
 ALTER TABLE expedition 
 ADD CONSTRAINT fk_idEtatEnvoi FOREIGN KEY (envoiEtatJeu) REFERENCES etat_d(etat);
 ALTER TABLE expedition 
@@ -494,12 +494,12 @@ ADD CONSTRAINT fk_idEtatReception FOREIGN KEY (retourEtatJeu) REFERENCES etat_d(
 # Clés étrangères de la table note_jeu_t
   # Clé étrangère idJeuP
 ALTER TABLE note_jeu_t 
-ADD CONSTRAINT fk_note_jeu_t_idPC FOREIGN KEY (idPC) REFERENCES jeu_t(idPC);
+ADD CONSTRAINT fk_note_jeu_t_idPC FOREIGN KEY (idPC) REFERENCES jeu_t(idPC) ON DELETE CASCADE;
 ALTER TABLE note_jeu_t 
-ADD CONSTRAINT fk_note_jeu_t_idUser FOREIGN KEY (idUser) REFERENCES compte(idUser);
+ADD CONSTRAINT fk_note_jeu_t_idUser FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
 
 
 # Clés étrangères de la table commentaire_jeu_p
   # Clé étrangère idJeuP
 ALTER TABLE commentaire_jeu_p 
-ADD CONSTRAINT fk_idJeuP_commentaire_jeu_p FOREIGN KEY (idPret) REFERENCES pret_p(idPret);
+ADD CONSTRAINT fk_idJeuP_commentaire_jeu_p FOREIGN KEY (idPret) REFERENCES pret_p(idPret) ON DELETE CASCADE;

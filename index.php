@@ -4,59 +4,51 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>Ludothèque</title>
         <?php
-// Include de la totalité des fichiers css
-        //include 'ihm/css/css.php';
-        //
         // stefan : Cette ligne permet d'activer et d'entretenir la session ($_SESSION) avec ses variables
         // stefan : on est obligé de déclarer la classe avant de pouvoir l'utiliser
         include 'job/class/Individu.php';
-        session_start();
-
-        // stefan : Ce fichier permet d'enregistrer des variables en cours d'exécution (je ne sais pas me servir du mode debug
-        include '_old/saveTexte.php';
+        include 'job/class/Jeu_P.php';
+        include 'job/class/Jeu_T.php';
+        include 'job/class/Message.php';
         include 'job/dao/fonctions_dao.php';
-        require 'ihm/css/css.php';
+        include 'ihm/css/css.php';
+
+        session_start();
         ?>  
 
 
-        <!-- AhMaD : les fichier CSS et JS -->
-        <link rel="stylesheet" type="text/css" href="ihm/css/A_gestion4blocs.css">
-        <link rel="stylesheet" type="text/css" href="ihm/css/styles.css">
-        <script src="<?php include_once 'ihm/js/js.php'; ?>"></script>
 
-        <script src="ihm//js/jquery-3.1.1.min.js"></script>
 
-        <script src="ihm//js/bootstrap.min.js"></script>
-        <script src="ihm//js/slideShow.js"></script>
         <!-- ************************************************************************************************ -->
         <!-- ************************************** CONTROLEUR (DEBUT) ************************************** -->
         <!-- ************************************************************************************************ -->
 
-        <?php
-        /* stefan : On récupère par $_GET['page'],
-         * - ou bien une page à afficher directement
-         * - ou bien un appel au contrôleur si la chaine contient "+"
-         * par ex : Individu+selectOne
-         * On récupère par $_POST["connexion"] et $_GET["connexion]
-         * les demandes de connexions (avec pseudo et mdp)
-         * et de déconnexion
-         */
-        if (!empty($_POST['connexion'])) {
-            include 'controller/controllerConnexion.php';
-            unset($_POST);
-        } else if (!empty($_GET['connexion'])) {
-            include 'controller/controllerDeconnexion.php';
-            unset($_GET);
-        } else if (!empty($_POST['objectToWorkWith'])) {
-            include 'controller/controllerRequete.php';
-            unset($_POST);
-        } else if (!empty($_GET['page'])) {
-            $pageAAfficher = 'ihm/' . $_GET['page'];
-            unset($_GET);
-        } else {
-            $pageAAfficher = 'ihm/pages/accueil.php';
-        }
-        ?>
+<?php
+/* stefan : On récupère par $_REQUEST['page'],
+ * - ou bien une page à afficher directement
+ * - ou bien un appel au contrôleur si la chaine contient "+"
+ * par ex : Individu+selectOne
+ * On récupère par $_REQUEST["connexion"]
+ * les demandes de connexions (avec pseudo et mdp)
+ * et de déconnexion
+ * $_REQUEST est une variable globale
+ * qui inclue $_POST et $_GET
+ */
+if (!empty($_REQUEST['connexion'])) {
+    include 'controller/controllerConnexion.php';
+} else if (!empty($_REQUEST['objectToWorkWith'])) {
+    include 'controller/controllerRequete.php';
+} else if (!empty($_REQUEST['user'])) {
+    include 'controller/controllerUser.php';
+} else if (!empty($_REQUEST['page'])) {
+    $pageAAfficher = 'ihm/' . $_REQUEST['page'];
+}
+// si jamais il n'y a rien à afficher, on affiche la page d'accueil
+if (empty($pageAAfficher)) {
+    $pageAAfficher = 'ihm/pages/accueil.php';
+}
+unset($_REQUEST);
+?>
 
         <!-- ************************************************************************************************ -->
         <!-- *************************************** CONTROLEUR (FIN) *************************************** -->
@@ -71,8 +63,8 @@
         <!-- ************************************************************************************************ -->
 
         <div id='div_header'><?php
-            include ('ihm/header/header.php');
-            ?></div>
+        include ('ihm/header/header.php');
+?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** HEADER (FIN) ***************************************** -->
@@ -86,11 +78,11 @@
         <!-- ************************************************************************************************ -->
 
         <!-- stefan : S'il y a une session d'ouverte, on affiche le menu -->
-        <?php if (!empty($_SESSION)): ?>
+<?php if (!empty($_SESSION)): ?>
             <div id='div_menu'><?php
-                include ('ihm/menus/menu.php');
-                ?></div>
-        <?php endif; ?>
+            include ('ihm/menu/menu.php');
+            ?></div>
+            <?php endif; ?>
 
         <!-- ************************************************************************************************ -->
         <!--  ********************** MENU A GAUCHE (AFFICHE QU'EN MODE CONNECTE) (FIN) ********************** -->
@@ -104,12 +96,12 @@
         <!-- ************************************ CONTENU CENTRAL (DEBUT) *********************************** -->
         <!-- ************************************************************************************************ -->
 
-        <?php
-        $classEspace = "div_contenuSansMenu";
-        if (!empty($_SESSION)) {
-            $classEspace = "div_contenuAvecMenu";
-        }
-        ?>
+<?php
+$classEspace = "div_contenuSansMenu";
+if (!empty($_SESSION)) {
+    $classEspace = "div_contenuAvecMenu";
+}
+?>
         <div id= <?php echo $classEspace; ?> > <?php include $pageAAfficher; ?></div>
 
         <!-- ************************************************************************************************ -->
@@ -125,8 +117,8 @@
         <!-- ************************************************************************************************ -->
 
         <div id='div_footer'><?php
-            include 'ihm/footer/footer.php';
-            ?></div>
+        include 'ihm/footer/footer.php';
+?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** FOOTER (FIN) ***************************************** -->
@@ -137,10 +129,9 @@
 
 
 
-        <?php
-// Include de la totalité des fichiers js
-//include 'ihm/js/js.php';
-        ?>
+<?php
+include 'ihm/js/js_effets.php';
+?>
 
     </body>
 </html>

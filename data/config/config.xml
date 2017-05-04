@@ -4,7 +4,7 @@
   <option>
     <nom>afficherIdPreteurDansNotation</nom>
     <texte_affichage>Faut-il montrer le nom du prêteur dans la notation ?</texte_affichage>
-    <valeur>false</valeur>
+    <valeur>true</valeur>
   </option>
   <option>
     <nom>nbEmpruntsAvantDemandePartageJeu</nom>
@@ -19,12 +19,12 @@
   <option>
     <nom>validationNouvelleFicheProduitCulturel</nom>
     <texte_affichage>Qui valide une nouvelle fiche de produit ?</texte_affichage>
-    <valeur>mid-admin</valeur>
+    <valeur>Administrateur</valeur>
   </option>
   <option>
     <nom>validationNouvelUser</nom>
     <texte_affichage>Qui valide l'inscription d'un nouvel utilisateur ?</texte_affichage>
-    <valeur>user</valeur>
+    <valeur>Administrateur</valeur>
   </option>
   <option>
     <nom>autoriserCommentairesSurUser</nom>
@@ -54,7 +54,7 @@
   <option>
     <nom>moderation</nom>
     <texte_affichage>Qui s'occupe de la modération ?</texte_affichage>
-    <valeur>mid-admin</valeur>
+    <valeur>Administrateur</valeur>
   </option>
   <option>
     <nom>limiteMinimumAgePublic</nom>

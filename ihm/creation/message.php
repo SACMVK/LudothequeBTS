@@ -1,44 +1,28 @@
-
-<style>
-    .form-area{
-
-        background-color: #FAFAFA;
-        padding: 10px 40px 60px;
-        margin: 10px 0px 60px;
-        border: 1px solid GREY;
-        border:none;
-       
-
-
-
-        font-size:28px;
-        margin-bottom:36px;
-        color:inherit;
-    }
+<div class="container" id="wrap">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <p style="color:red;">@team : TOFINISH - ajouter un test de vérification de l'existence du destinataire</p>
+            <form action=" " method="post" accept-charset="utf-8" class="form" role="form"> 
+                <legend>Envoyer un message</legend>
+                Pseudo du destinataire :
+                <input type="text" name="idUser" class="form-control input-lg" required />
+<!--                <select name="idDest" class="form-control input-lg" required>
+                    <?php
+                    //include 'job/dao/Connexion_DataBase.php';
+                    //selectValuesWithId("compte", "pseudo", "idUser");
+                    ?>
+                </select>-->
 
 
+                <input type="text" name="sujet" class="form-control input-lg" placeholder="sujet" required />
+                <textarea type="textarea" name="texte" class="form-control input-lg" placeholder="texte" maxlength="140" rows="7" /></textarea>
 
-</style>
+                <input type=hidden name="idExped" value="<?= $_SESSION["monProfil"]->getIdUser(); ?>" />
 
+                <input type=hidden name="objectToWorkWith" value="Message" />
+                <input type=hidden name="actionToDoWithObject" value="insert" />
 
-
-<div class="container">
-    <div class="col-md-5">
-        <div class="form-area">  
-            <form role="form">
-                <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">Contact</h3>
-             
-            
-                <div class="form-group">
-                    <input type="text" class="form-control" id="subject" name="Object" placeholder="Objet" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
-                               
-                </div>
-
-                <button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Envoyer</button>
+                <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Envoyer</button>
             </form>
         </div>
     </div>

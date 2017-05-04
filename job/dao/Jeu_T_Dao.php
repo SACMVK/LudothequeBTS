@@ -38,7 +38,7 @@ Function select($requete){
 	 */
 	while ($donnees = $stmt->fetch(PDO::FETCH_ASSOC)) // Chaque entrée sera récupérée et placée dans un array.
         {
-            echo $donnees['nom'];
+
             
             /* M :création des variable en local qui récupèrent les données de la table pour chaque champs de l'objet
              *  en fonction du constructeur défini dans Jeu_T
@@ -55,11 +55,11 @@ Function select($requete){
             $anneeSortie = $donnees['anneeSortie'];
             $description = $donnees['description'];
             $idPC = $donnees['idPC'];
-            //$idJeuT = $donnees['idJeuT'];
+            $idJeuT = $donnees['idJeuT'];
             $typePC = $donnees['typePC'];
             
             /* création du nouvel objet Jeu_T */
-            $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$idPC/*,$idJeuT*/);
+            $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$idPC,$idJeuT);
             // ajout de l'objet à la liste
             $liste_jeuT []= $jeuT;
 	}

@@ -2,15 +2,15 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	background-color: black;
+	background-color: #1f2021;
 	position: fixed;
 	bottom: 0px;
 	width: 100%; /* ken : permet au footer de prendre toute la largeur, très important sinon il reste dans son coin */
 	flex-wrap: wrap; /* ken : permet un retour à la ligne si la page web devient trop petite */
 }
 
-#element3 a {
-   text-decoration: none;
+#element2 a {
+   color: #fff;
 }
 
 #element1{

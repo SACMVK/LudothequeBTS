@@ -29,21 +29,21 @@ Function selectFromWhere($select,$table,$where){
     foreach ($Elements as $jeu_t) :
         if (!empty($Elements)):
     ?> 
-<div><h1><?=  $jeu->getNom() ?></h1></div>      <div><img src="" /></div>
+<div><h1><?=  $jeu_t->getNom() ?></h1></div>      <div><img src="" /></div>
 
 </br>
 </br>
     <h2>Editeur : </h2>
-        <p><?= $jeu->getEditeur() ?></p>
+        <p><?= $jeu_t->getEditeur() ?></p>
         </br>  
     <h2>Année de sortie : </h2>
-        <p><?= $jeu->getAnneeSortie() ?></p>
+        <p><?= $jeu_t->getAnneeSortie() ?></p>
         </br>  
     <h2>Nombre de joueurs : </h2>
-        <p>De <?= $jeu->getNbJoueursMin() ?> à <?= $jeu->getNbJoueursMax() ?> joueurs</p>
+        <p>De <?= $jeu_t->getNbJoueursMin() ?> à <?= $jeu->getNbJoueursMax() ?> joueurs</p>
         </br>
 <h2>Genre : </h2>
-        <p><?= selectFromWhere("genre","jeu_a_pour_genre","WHERE idPC = ".$jeu->getIdPC()) ?></p>
+        <p><?= selectFromWhere("genre","jeu_a_pour_genre","WHERE idPC = ".$jeu_t->getIdPC()) ?></p>
         </br>
 <?php
   endif;

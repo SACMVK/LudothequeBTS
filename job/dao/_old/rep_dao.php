@@ -1,7 +1,7 @@
 <?php
 
 // On commence par lister les répertoires
-$listeRepertoires = ['ihm/menus','ihm/pages'];
+$listeRepertoires = ['ihm/menu','ihm/pages'];
 
 // 
 foreach ($listeRepertoires as $repertoire){
