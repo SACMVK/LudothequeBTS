@@ -14,35 +14,38 @@
         <?php endif; ?>
     </p>
 
-
-    <div id="slide" class="carousel slide" data-ride="carousel">
+    
+    <?php 
+    $repertoireCarrousel = "ihm/img/";
+    $carrousel = [
+        ["carte.jpg","Jeu de carte"],
+        ["jeu.jpg","Jamaïca"],
+        ["roll.jpg","text1"],
+        ["jeu1.jpg","text1"],
+        ["monopoly.jpg","Monopoly"],
+        ["pc.jpg","text1"],
+        ["poker.jpg","text1"],
+        ["uno.jpg","Uno"]
+    ];
+            ?>
+       <div id="slide" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img class="center-block" src=" ihm/img/carte.jpg">
-            </div>
-            <div class="item">
-                <img class="center-block" src="ihm/img/jeu.jpg" alt="jeu">
-            </div>
-            <div class="item">
-                <img class="center-block" src="ihm/img/roll.jpg" alt="jeu">
-            </div>
-            <div class="item">
-                <img class="center-block" src="ihm/img/jeu1.jpg" alt="jeu">
-            </div>
-            <div class="item">
-                <img class="center-block" src="ihm/img/monopoly.jpg" alt="jeu">
-            </div>
-            <div class="item">
-                <img class="center-block" src="ihm/img/pc.jpg" alt="jeu">
-            </div>
-            <div class="item">
-                <img class="center-block" src="ihm/img/poker.jpg" alt="jeu">
-            </div>
-            <div class="item">
-                <img class="center-block" src="ihm/img/uno.jpg" alt="jeu">
+            <?php for ($indexCarrousel = 0; $indexCarrousel < count($carrousel) - 1; $indexCarrousel++) : ?>
+                <?php if ($indexCarrousel == 0) : ?>
+                    <div class="item active">
+                    <?php else : ?>
+                        <div class="item">
+                        <?php endif; ?>
+                        <img class="center-block" src="<?= $repertoireCarrousel . $carrousel[$indexCarrousel][0] ?>" alt="jeu">
+                        <div class="carousel-caption texte_carrousel">
+                            <?= $carrousel[$indexCarrousel][1]; ?>
+                        </div>
+                    </div>
+                <?php endfor; ?>
             </div>
         </div>
-    </div>
+
+
 
     <br/><br/><br/><br/><br/><br/>
     

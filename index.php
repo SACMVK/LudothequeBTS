@@ -23,32 +23,32 @@
         <!-- ************************************** CONTROLEUR (DEBUT) ************************************** -->
         <!-- ************************************************************************************************ -->
 
-<?php
-/* stefan : On récupère par $_REQUEST['page'],
- * - ou bien une page à afficher directement
- * - ou bien un appel au contrôleur si la chaine contient "+"
- * par ex : Individu+selectOne
- * On récupère par $_REQUEST["connexion"]
- * les demandes de connexions (avec pseudo et mdp)
- * et de déconnexion
- * $_REQUEST est une variable globale
- * qui inclue $_POST et $_GET
- */
-if (!empty($_REQUEST['connexion'])) {
-    include 'controller/controllerConnexion.php';
-} else if (!empty($_REQUEST['objectToWorkWith'])) {
-    include 'controller/controllerRequete.php';
-} else if (!empty($_REQUEST['user'])) {
-    include 'controller/controllerUser.php';
-} else if (!empty($_REQUEST['page'])) {
-    $pageAAfficher = 'ihm/' . $_REQUEST['page'];
-}
+        <?php
+        /* stefan : On récupère par $_REQUEST['page'],
+         * - ou bien une page à afficher directement
+         * - ou bien un appel au contrôleur si la chaine contient "+"
+         * par ex : Individu+selectOne
+         * On récupère par $_REQUEST["connexion"]
+         * les demandes de connexions (avec pseudo et mdp)
+         * et de déconnexion
+         * $_REQUEST est une variable globale
+         * qui inclue $_POST et $_GET
+         */
+        if (!empty($_REQUEST['connexion'])) {
+            include 'controller/controllerConnexion.php';
+        } else if (!empty($_REQUEST['objectToWorkWith'])) {
+            include 'controller/controllerRequete.php';
+        } else if (!empty($_REQUEST['user'])) {
+            include 'controller/controllerUser.php';
+        } else if (!empty($_REQUEST['page'])) {
+            $pageAAfficher = 'ihm/' . $_REQUEST['page'];
+        }
 // si jamais il n'y a rien à afficher, on affiche la page d'accueil
-if (empty($pageAAfficher)) {
-    $pageAAfficher = 'ihm/pages/accueil.php';
-}
-unset($_REQUEST);
-?>
+        if (empty($pageAAfficher)) {
+            $pageAAfficher = 'ihm/pages/accueil.php';
+        }
+        unset($_REQUEST);
+        ?>
 
         <!-- ************************************************************************************************ -->
         <!-- *************************************** CONTROLEUR (FIN) *************************************** -->
@@ -63,8 +63,8 @@ unset($_REQUEST);
         <!-- ************************************************************************************************ -->
 
         <div id='div_header'><?php
-        include ('ihm/header/header.php');
-?></div>
+            include ('ihm/header/header.php');
+            ?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** HEADER (FIN) ***************************************** -->
@@ -78,11 +78,11 @@ unset($_REQUEST);
         <!-- ************************************************************************************************ -->
 
         <!-- stefan : S'il y a une session d'ouverte, on affiche le menu -->
-<?php if (!empty($_SESSION)): ?>
+        <?php if (!empty($_SESSION)): ?>
             <div id='div_menu'><?php
-            include ('ihm/menu/menu.php');
-            ?></div>
-            <?php endif; ?>
+                include ('ihm/menu/menu.php');
+                ?></div>
+        <?php endif; ?>
 
         <!-- ************************************************************************************************ -->
         <!--  ********************** MENU A GAUCHE (AFFICHE QU'EN MODE CONNECTE) (FIN) ********************** -->
@@ -96,12 +96,12 @@ unset($_REQUEST);
         <!-- ************************************ CONTENU CENTRAL (DEBUT) *********************************** -->
         <!-- ************************************************************************************************ -->
 
-<?php
-$classEspace = "div_contenuSansMenu";
-if (!empty($_SESSION)) {
-    $classEspace = "div_contenuAvecMenu";
-}
-?>
+        <?php
+        $classEspace = "div_contenuSansMenu";
+        if (!empty($_SESSION)) {
+            $classEspace = "div_contenuAvecMenu";
+        }
+        ?>
         <div id= <?php echo $classEspace; ?> > <?php include $pageAAfficher; ?></div>
 
         <!-- ************************************************************************************************ -->
@@ -117,8 +117,8 @@ if (!empty($_SESSION)) {
         <!-- ************************************************************************************************ -->
 
         <div id='div_footer'><?php
-        include 'ihm/footer/footer.php';
-?></div>
+            include 'ihm/footer/footer.php';
+            ?></div>
 
         <!-- ************************************************************************************************ -->
         <!-- ***************************************** FOOTER (FIN) ***************************************** -->
@@ -129,9 +129,9 @@ if (!empty($_SESSION)) {
 
 
 
-<?php
-include 'ihm/js/js_effets.php';
-?>
+        <?php
+        include 'ihm/js/js_effets.php';
+        ?>
 
     </body>
 </html>
