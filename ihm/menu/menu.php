@@ -2,7 +2,7 @@
 <section>
     <div class="container-fluid" >
         <div class="row">
-            <div class="col-md-3 col-sm-3 sidebar2">
+            <div class="col-md-3 col-sm-3 menu">
                 <div class="left-navigation">
                     <ul class="list">
                         <?php if ($droitsUser == "Administrateur" ): ?>

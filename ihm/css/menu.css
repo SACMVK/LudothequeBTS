@@ -1,4 +1,4 @@
-.sidebar2 {
+.menu {
     background-color: #1f2021;
     padding: 0px !important;
     box-shadow: 1px 5px 5px rgba(38,42,53,0.5);
@@ -11,7 +11,7 @@
     border-radius: 20px;
 }
 
-.sidebar2 hr{
+.menu hr{
     margin: 0px 15px 5px 15px;
     /* stefan : on met les deux pour les différents navigateurs */
     background:#dfe8ee;
@@ -20,7 +20,7 @@
     border : 0px;
 }
 
-.sidebar2 .titre_menu{
+.menu .titre_menu{
     text-align: center;
     color: #fff;
     font-weight: bolder;
@@ -29,12 +29,12 @@
 }
 
 
-.sidebar2 .list {
+.menu .list {
     list-style: none;
     padding-left: 0px;
 }
 
-.sidebar2 .list li {
+.menu .list li {
     padding-left: 10px;
     font-size: 16px;
     height: 25px;
@@ -43,11 +43,11 @@
     color: #dfe8ee;
 }
 
-.sidebar2 .list  a {
+.menu .list  a {
     text-decoration: none;
 }
 
-.sidebar2 .list a li:hover {
+.menu .list a li:hover {
     box-shadow:1px 1px 10px 1px rgba(255,255,255,0.1) ;
     border: solid 1px #208f8f;
     border-radius: 5px;
@@ -57,6 +57,6 @@
 }
 
 /* stefan : afin d'un espace en fin de liste */
-.sidebar2 .list:last-child {
+.menu .list:last-child {
     margin-bottom : 20px;
 }
