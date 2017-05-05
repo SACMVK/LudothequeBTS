@@ -27,3 +27,7 @@ Méthode d'installation :
     Récupérer l'url (https://github.com/SACMVK/LudothequeBTS.git).
     Sous votre IDE faites un Git > Clone et insérer l'url copiée au préalable.
     Le contenu étant important, le chargement peut durer.
+    Dans un premier temps, il faut insérer le script de création de la base de donnée.
+    Les fichiers sql sont dans data/databse/etape.
+    Le fichier 0 reprend l'intégralité des autres fichiers.
+    Pour pouvoir l'utiliser, il faut faire un fichier zip et l'importer dans phpMyAdmin
