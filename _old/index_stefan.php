@@ -3,26 +3,14 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>Ludothèque</title>
+        <link rel="stylesheet" type="text/css" href="../ihm/css/boutonBleu.css">
+        <link rel="stylesheet" type="text/css" href="../ihm/css/style.css">
     </head>
 
 
     <body>
-        <?php
-        echo "test";
-        echo phpinfo();
-print_r ($_POST);
-
-echo "<br>";
-if (!empty($_POST['objectToWorkWith'])) {
-    echo 'ojio';
-            saveTexte("fee");
-}
-
-
-        ?>
-
-
-
-</body>
+        <button class="boutonBleu">S'incrire</button>
+        <button class="boutonBleu">Ajouter ce jeu à ma ludothèque</button>
+    </body>
 </html>
 

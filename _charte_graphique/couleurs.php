@@ -13,3 +13,5 @@ $texteSurGrisFonce = "rgba(223,232,238,1)";
 $bleu = "#208f8f";
 $bleu = "rgba(32,143,143,1)";
 
+$couleurFond ="#f9f9f9";
+
