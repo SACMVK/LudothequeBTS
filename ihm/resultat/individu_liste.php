@@ -1,7 +1,7 @@
-<br/>
-<br/>
 <p id='titre'>Les résultats de votre recherche : </p>
-<div class="container"> <div class="table-responsive"> <table class="table" id="table-recherche" > 
+<div class="container">
+    <div class="table-responsive">
+        <table class="table" id="table-recherche" > 
             <thead> 
                 <tr class="tr">  
                     <th id="table-recherche">Pseudo</th> 
@@ -36,7 +36,8 @@
                 ?>
             </tbody>
         </table> ";
-        <div id="button-table" ><br /><input id="submit" type="submit" name="submit" value="Modifier votre recherche" />
+        <div id="button-table" ><br />
+            <input id="submit" type="submit" name="submit" value="Modifier votre recherche" />
             <br />
             <br />
         </div>

@@ -37,12 +37,8 @@ caption {
     font-weight:bold
 }
 
-#div_header{
-    height: 70px;
-}
-#div_footer{
-    height: 22px;
-}
+
+
 
 /*---AhMaD:SLID--*/
 
@@ -51,25 +47,18 @@ caption {
     justify-content: center;
     align-items: center;
     max-height: 300px;
-    max-width: 900px;
+    max-width: 500px;
     min-height: 300px;
-    min-width: 900px;
+    min-width: 500px;
     overflow: hidden;
 }
 
-/*.lead {
-    font-family: Time new roman;
-    color: #fff;
-}*/
-/*.contenu
-{
-    width: 100%;
-}*/
+
 .carousel {
     position: relative;
     overflow: hidden;
-    width: 900px;
-    margin-left: 120px;
+    width: 500px;
+
 }
 
 
@@ -92,30 +81,7 @@ caption {
     color: black;
 }
 
-/*.image_acceuil{
-    position: absolute;
-    right: 250px;
-    top: 250px;
-    width: 100px;
-    height: 300px;
-    z-index: 3;
-}
-.image_acceuil img{
-    width: 400px;
-}
-@media (max-width:1200px){
-    .image_acceuil{
-        position: relative;
-        top: 1px;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        right: 0px;
-    }
-}*/
+
 
 
 /*profil*/
@@ -129,16 +95,7 @@ caption {
 .user-row:last-child {
     margin-bottom: 0;
 }
-/*
-.dropdown-user {
-    margin: 13px 0;
-    padding: 5px;
-    height: 100%;
-}
 
-.dropdown-user:hover {
-    cursor: pointer;
-}*/
 
 .table-user-information > tbody > tr {
     border: none ;
@@ -152,8 +109,8 @@ caption {
 .table-user-information > tbody > tr > td {
     border: none ;
 }
-.toppad
-{margin-top:50px;
+.toppad {
+    margin-top:100px;
 }
 .col-lg-9 {
     width: 100%;
@@ -161,3 +118,14 @@ caption {
 .panel {
     background: #ddd;
 }
+
+/* zone de saisie */
+.input-lg, .select-lg{
+    height: 25px;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-bottom: 2px;
+    font-size: 16px;
+    margin-bottom: 0.5em;
+}
+

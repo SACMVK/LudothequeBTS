@@ -1,54 +1,55 @@
 
-<div class="container">
-    
-    <p class="paragraphe_accueil" >
-        <?php if (empty($_SESSION)): ?>
-            <a href="index.php?page=creation/individu.php">
-                Bienvenu.e dans la Ludothèque du BTS,<br/>
-                première plate-forme d'échange de jeux !<br/>
-                Partagez vos jeux et jouez avec les autres,<br/>
-                Rejoignez-nous !
-            </a>
-        <?php else: ?>
-            Bienvenu.e dans votre Ludothèque, <?= $_SESSION["monProfil"]->getPseudo() ?> !
-        <?php endif; ?>
-    </p>
 
-    
-    <?php 
-    $repertoireCarrousel = "ihm/img/";
-    $carrousel = [
-        ["carte.jpg","Jeu de carte"],
-        ["jeu.jpg","Jamaïca"],
-        ["roll.jpg","text1"],
-        ["jeu1.jpg","text1"],
-        ["monopoly.jpg","Monopoly"],
-        ["pc.jpg","text1"],
-        ["poker.jpg","text1"],
-        ["uno.jpg","Uno"]
-    ];
-            ?>
-       <div id="slide" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner" role="listbox">
-            <?php for ($indexCarrousel = 0; $indexCarrousel < count($carrousel) - 1; $indexCarrousel++) : ?>
-                <?php if ($indexCarrousel == 0) : ?>
-                    <div class="item active">
-                    <?php else : ?>
-                        <div class="item">
-                        <?php endif; ?>
-                        <img class="center-block" src="<?= $repertoireCarrousel . $carrousel[$indexCarrousel][0] ?>" alt="jeu">
-                        <div class="carousel-caption texte_carrousel">
-                            <?= $carrousel[$indexCarrousel][1]; ?>
-                        </div>
+<!-- Paragraphe d'accueil -->
+<p class="paragraphe_accueil" >
+    <?php if (empty($_SESSION)): ?>
+        <a href="index.php?page=creation/individu.php">
+            Bienvenu.e dans la Ludothèque du BTS,<br/>
+            première plate-forme d'échange de jeux !<br/>
+            Partagez vos jeux et jouez avec les autres,<br/>
+            Rejoignez-nous !
+        </a>
+    <?php else: ?>
+        Bienvenu.e dans votre Ludothèque, <?= $_SESSION["monProfil"]->getPseudo() ?> !
+    <?php endif; ?>
+</p>
+
+<!-- Caroussel -->
+<?php
+$repertoireCarrousel = "ihm/img/";
+$carrousel = [
+    ["carte.jpg", "Jeu de carte"],
+    ["jeu.jpg", "Jamaïca"],
+    ["roll.jpg", "text1"],
+    ["jeu1.jpg", "text1"],
+    ["monopoly.jpg", "Monopoly"],
+    ["pc.jpg", "text1"],
+    ["poker.jpg", "text1"],
+    ["uno.jpg", "Uno"]
+];
+?>
+<div id="slide" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+        <?php for ($indexCarrousel = 0; $indexCarrousel < count($carrousel) - 1; $indexCarrousel++) : ?>
+            <?php if ($indexCarrousel == 0) : ?>
+                <div class="item active">
+                <?php else : ?>
+                    <div class="item">
+                    <?php endif; ?>
+                    <img class="center-block" src="<?= $repertoireCarrousel . $carrousel[$indexCarrousel][0] ?>" alt="jeu">
+                    <div class="carousel-caption texte_carrousel">
+                        <?= $carrousel[$indexCarrousel][1]; ?>
                     </div>
-                <?php endfor; ?>
-            </div>
+                </div>
+            <?php endfor; ?>
         </div>
+    </div>
 
 
 
     <br/><br/><br/><br/><br/><br/>
-    
+
+    <!-- 3 widgets -->
     <div class="widget">
         <!--AhMaD: premier widget-->
         <div class="collection-accueil">
@@ -105,5 +106,5 @@
     </div>
 
 
-</div>
+
 

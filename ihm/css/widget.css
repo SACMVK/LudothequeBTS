@@ -3,7 +3,6 @@
 /*widget*/
 .widget{
     width: 900px;
-    margin-left: 120px;
     display: flex;
     flex-direction: row;
     justify-content: center;
