@@ -20,7 +20,7 @@ function createRequestFromREQUEST() {
             $addKey = false;
             if ($key != "objectToWorkWith" && $key != "actionToDoWithObject" && $key != "submit" && $key != "reset" && $key != "page") {
                 if ($value != null && $value != "" && $value != "-----") {
-                    $stringRequest .= $key . '=' . $value;
+                    $stringRequest .= $key . '="' . $value .'"';
                     $addKey = true;
                 }
             }
