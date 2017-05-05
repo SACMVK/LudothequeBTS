@@ -37,7 +37,7 @@
             </tbody>
         </table> ";
         <div id="button-table" ><br />
-            <input id="submit" type="submit" name="submit" value="Modifier votre recherche" />
+            <a href="index.php?page=recherche/individu.php" class="boutonBleu">Modifier ma recherche</a>
             <br />
             <br />
         </div>

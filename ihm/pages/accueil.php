@@ -47,7 +47,7 @@ $carrousel = [
 
 
 
-    <br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/>
 
     <!-- 3 widgets -->
     <div class="widget">

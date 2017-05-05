@@ -42,9 +42,6 @@ Function afficherConfig($config, $liste_droits) {
      */
     //$affichage_config = '<DIV id=config><FORM name=config action="index.php" method="POST"><HR/>';
     ?>
-    <div class="container" id="wrap">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
                 <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
                     <p style="color:red;">@team : les modifications sont enregistrées mais ne sont pas encore prises en compte</p>
                     <legend>Configuration</legend>
@@ -82,7 +79,7 @@ Function afficherConfig($config, $liste_droits) {
                             case 'boolean':$xml_nom_option;
                                 /* stefan : Ouverture de la balise de liste déroulante
                                  */
-                                echo '<SELECT class=valeur_option_boolean name="' . utf8_encode($xml_nom_option) . '"  class="form-control input-lg">';
+                                echo '<SELECT class="form-control select-lg" name="' . utf8_encode($xml_nom_option) . '"  class="form-control input-lg">';
                                 /* stefan : si le boolean == true,
                                  * alors on créé la liste avec "oui" sélectionné.
                                  */
@@ -104,14 +101,14 @@ Function afficherConfig($config, $liste_droits) {
                              * J'ai également mis un minimum (min=0) afin d'éviter les valeurs négatives.
                              */
                             case 'integer':
-                                echo '<INPUT type=number class=valeur_option_number name="' . utf8_encode($xml_nom_option) . '"  value=' . $option[1] . ' min=0  class="form-control input-lg"></INPUT>';
+                                echo '<INPUT type=number class="form-control input-lg" name="' . utf8_encode($xml_nom_option) . '"  value=' . $option[1] . ' min=0  class="form-control input-lg"></INPUT>';
                                 break;
                             /* stefan : par défaut, il s'agit du select box des droits.
                              */
                             default:
                                 /* stefan : Balise d'ouverture de la liste déroulante
                                  */
-                                echo '<SELECT class=valeur_option_select name="' . utf8_encode($xml_nom_option) . '"  class="form-control input-lg">';
+                                echo '<SELECT class="form-control select-lg" name="' . utf8_encode($xml_nom_option) . '"  class="form-control input-lg">';
                                 /* stefan : On parcours la liste des droits issus de la base de données
                                  * afin de créer la liste déroulante des droits.
                                  */
@@ -139,17 +136,14 @@ Function afficherConfig($config, $liste_droits) {
                     /* Saut de ligne pour espacer la liste des options avec le bouton de sauvegarde.
                      */
                     ?>
-                    <br><br>
+
 
                     <!--stefan : ajout du bouton de sauvegarde-->
 <!--                    <INPUT type=submit class=bouton_config value="Sauvegarder la configuration"/>-->
-                    <button type="submit" name="submit" class="btn btn-primary">Sauvegarder la configuration</button>
+                    <button type="submit" name="submit" class="boutonBleu">Sauvegarder la configuration</button>
 
                     <!--  stefan : balise de fermeture du formulaire-->
                 </FORM>
-            </div>
-        </div>
-    </div>
     <?php
 }
 

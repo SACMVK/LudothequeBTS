@@ -6,11 +6,11 @@
     Prénom :
     <input type="text" name="prenom" class="form-control input-lg" maxlength="12" placeholder="Prénom" />
     Pseudo :
-    <input type="text" name="Pseudo" class="form-control input-lg" maxlength="12" placeholder="Prénom" />
+    <input type="text" name="pseudo" class="form-control input-lg" maxlength="12" placeholder="Prénom" />
     Ville :
     <input type="text" name="ville" class="form-control input-lg" maxlength="12" placeholder="Ville" />
     Département :
-    <select class="form-control select-lg" name="departement">
+    <select class="form-control select-lg" name="numDept">
         <?php selectDico("departement", "numDept") ?>
     </select>
 

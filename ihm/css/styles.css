@@ -5,7 +5,6 @@ body {
 }
 
 .texte_carrousel {
-
     background-color: white;
     color : #208f8f;
     padding: 5px;
@@ -58,7 +57,8 @@ caption {
     position: relative;
     overflow: hidden;
     width: 500px;
-
+    /* stefan : permet de centrer le contenu */
+    margin: auto;
 }
 
 
@@ -111,6 +111,7 @@ caption {
 }
 .toppad {
     margin-top:100px;
+    margin-bottom:50px;
 }
 .col-lg-9 {
     width: 100%;

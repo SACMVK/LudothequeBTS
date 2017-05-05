@@ -17,16 +17,28 @@ function createRequestFromREQUEST() {
     if (!empty($_REQUEST)) {
         $stringRequest = 'WHERE ';
         foreach ($_REQUEST as $key => $value) {
-            $stringRequest .= $key . '=' . $value;
+            $addKey = false;
+            if ($key != "objectToWorkWith" && $key != "actionToDoWithObject" && $key != "submit" && $key != "reset" && $key != "page") {
+                if ($value != null && $value != "" && $value != "-----") {
+                    $stringRequest .= $key . '=' . $value;
+                    $addKey = true;
+                }
+            }
             /* stefan : Après son ajout à la requête,
              * on supprime le couple clé-valeur du $_REQUEST ...
              */
             unset($_REQUEST [$key]);
             // stefan : ... de manière à pouvoir ajouter ou non "AND".
-            if (!(empty($_REQUEST))) {
+            if (!(empty($_REQUEST)) && $addKey) {
                 $stringRequest .= ' AND ';
             }
         }
+    }
+    if (substr($stringRequest, strlen($stringRequest)-5, 4)==" AND"){
+        $stringRequest = substr($stringRequest, 0, strlen($stringRequest)-5);
+    }
+    if ($stringRequest == 'WHERE '){
+        $stringRequest = "";
     }
     return $stringRequest;
 }
@@ -89,7 +101,7 @@ switch ($actionToDoWithObject) {
                 $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';
                 break;
             case "Jeu_T":
-                $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';// ?
+                $pageAAfficher = 'ihm/utilisateur/maLudotheque.php'; // ?
                 break;
             case "Message":
                 $pageAAfficher = 'ihm/utilisateur/mesMessages.php';
@@ -112,7 +124,7 @@ switch ($actionToDoWithObject) {
             $_SESSION["monProfil"] = select("WHERE individu.idUser = " . $idUserConnecte)[0];
             $pageAAfficher = 'ihm/utilisateur/monProfil.php';
         }
-        
+
         break;
     case "delete":
         // stefan : Partie DAO
@@ -129,12 +141,12 @@ switch ($actionToDoWithObject) {
                 $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';
                 break;
             case "Jeu_T":
-                $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';// ?
+                $pageAAfficher = 'ihm/utilisateur/maLudotheque.php'; // ?
                 break;
             case "Message":
                 $pageAAfficher = 'ihm/utilisateur/mesMessages.php';
                 break;
-        }        
+        }
         break;
 }
 
