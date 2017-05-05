@@ -22,7 +22,7 @@
                 <input type=hidden name="objectToWorkWith" value="Message" />
                 <input type=hidden name="actionToDoWithObject" value="insert" />
 
-                <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Envoyer</button>
+                <button type="submit" id="submit" name="submit" class="boutonBleu">Envoyer</button>
             </form>
         </div>
     </div>

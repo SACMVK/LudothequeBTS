@@ -10,8 +10,8 @@
                 <input type=hidden name="objectToWorkWith" value="Jeu_T" />
                 <input type=hidden name="actionToDoWithObject" value="insert" />
 
-                <input type="submit" name="submit" value="Proposer ce jeu"/>
-                <input type="reset" value="Réinitialiser">
+                <input type="submit" name="submit" class="boutonBleu" value="Proposer ce jeu"/>
+                <input type="reset" class="boutonBleu" value="Réinitialiser">
             </form>          
         </div>
     </div>            

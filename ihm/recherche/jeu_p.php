@@ -13,11 +13,20 @@
 
                 <input type="text" name="public" class="form-control input-lg" maxlength="12" placeholder="public "/>
 
+                <label class="form-control input-lg" maxlength="12">Ville: 
+                    <input type="text" name="ville"/>
+                </label>
+                <label class="form-control input-lg" maxlength="5">Département
+                    <select name="departement">
+                        <?php selectDico("departement", "numDept") ?>
+                    </select>
+                </label>
+
                 <input type=hidden name="objectToWorkWith" value="Jeu_P" />
                 <input type=hidden name="actionToDoWithObject" value="selectList" />
 
-                <input type="submit" name="submit" value="Recherche">
-                <input type="reset" value="Réinitialiser">
+                <input type="submit" name="submit" class="boutonBleu" value="Recherche">
+                <input type="reset" class="boutonBleu" value="Réinitialiser">
             </form>          
         </div>
     </div>            

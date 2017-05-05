@@ -34,10 +34,10 @@
                 <!-- stefan : S'il n'y a pas de session ouverte, affichage inscription et connexion -->
                 <?php if (empty($_SESSION)): ?>
                     <a class="navbar-link login" href="index.php?page=creation/individu.php">S'inscrire</a>
-                    <a class="btn btn-default action-button" role="button" href="index.php?page=connexion/connexion.php">Se connecter</a>
+                    <a class="boutonBleu" role="button" href="index.php?page=connexion/connexion.php">Se connecter</a>
                      <!-- stefan : sinon affichage déconnexion -->
                 <?php else: ?>
-                    <a class="btn btn-default action-button" role="button" href="index.php?connexion=off">Se déconnecter</a>
+                    <a class="boutonBleu" role="button" href="index.php?connexion=off">Se déconnecter</a>
                 <?php endif; ?>
             </p>
 

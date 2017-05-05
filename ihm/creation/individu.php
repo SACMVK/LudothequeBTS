@@ -32,8 +32,8 @@
 
 
 
-                <button type="submit" name="submit" class="btn btn-primary pull-right">S'inscrire</button>
-                <button type="reset" name="reset" class="btn btn-primary pull-left">Réinitialiser</button>
+                <button type="submit" name="submit" class="boutonBleu">S'inscrire</button>
+                <button type="reset" name="reset" class="boutonBleu">Réinitialiser</button>
 
 
             </form>          

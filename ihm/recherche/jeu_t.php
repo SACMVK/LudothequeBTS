@@ -19,18 +19,11 @@
                         <?php selectDico("editeur_d", "editeur") ?>
                     </select>
                 </label>
-                <label class="form-control input-lg" maxlength="12">Ville: 
-                    <input type="text" name="ville"/>
-                </label>
                 </br>
                 <label class="form-control input-lg" min="1000" maxlength="10">Année de sortie: 
                     <input type="year" name="anneeSortie" placeholder="Année (yyyy)"/>
                 </label>
-                <label class="form-control input-lg" maxlength="5">Département
-                    <select name="departement">
-                        <?php selectDico("departement", "numDept") ?>
-                    </select>
-                </label>
+
                 </br>
                 <label class="form-control input-lg" maxlength="5">Nombre de joueurs maximum
                     <select name="nbJoueurMax">
@@ -58,8 +51,8 @@
                 <input type=hidden name="objectToWorkWith" value="Individu" />
                 <input type=hidden name="actionToDoWithObject" value="selectList" />
 
-                <input type="submit" name="submit" value="Recherche jeu">
-                <input type="reset" value="Réinitialiser">
+                <input type="submit" name="submit" class="boutonBleu" value="Recherche jeu">
+                <input type="reset" class="boutonBleu" value="Réinitialiser">
             </form>
         </div>
     </div>            

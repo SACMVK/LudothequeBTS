@@ -21,8 +21,8 @@
                 <input type=hidden name="actionToDoWithObject" value="selectList" />
 
 
-                <button type="submit" name="submit" class="btn btn-primary pull-right">Rechercher</button>
-                <button type="reset" name="reset" class="btn btn-primary pull-left">Réinitialiser</button>
+                <button type="submit" name="submit" class="boutonBleu">Rechercher</button>
+                <button type="reset" name="reset" class="boutonBleu">Réinitialiser</button>
 
             </form>          
         </div>

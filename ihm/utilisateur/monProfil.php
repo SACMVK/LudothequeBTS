@@ -48,7 +48,7 @@
                 <input type=hidden name="page" value="profilUser/profilUser.php" />
 
 
-                <button type="submit" name="submit" class="btn btn-primary pull-right">Modifier mon profil</button>
+                <button type="submit" name="submit" class="boutonBleu">Modifier mon profil</button>
 
             </form>
         </div>
