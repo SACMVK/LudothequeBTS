@@ -4,7 +4,7 @@
     <legend>Ajouter un jeu à ma ludothèque</legend>
     Nom du jeu :
     <select name="idPC" class="form-control input-lg">
-        <?php selectValuesWithId("jeu_t", "nom", "idPC"); ?>
+        <?php selectDico("jeu_t", "nom", "idPC"); ?>
     </select>
 
     Etat du jeu (en cours de développement):
