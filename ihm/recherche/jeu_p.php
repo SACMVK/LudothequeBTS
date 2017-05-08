@@ -37,7 +37,7 @@
     <input type="text" class="form-control input-lg" name="ville"/>
     Département :
     <select class="form-control select-lg" name="departement">
-        <?php selectDico("departement", "numDept") ?>
+        <?php selectDico("departement", "nom", "numDept", true) ?>
     </select>
 
 

@@ -11,7 +11,7 @@
     <input type="text" name="ville" class="form-control input-lg" maxlength="12" placeholder="Ville" />
     Département :
     <select class="form-control select-lg" name="numDept">
-        <?php selectDico("departement", "numDept") ?>
+        <?php selectDico("departement", "nom", "numDept", true) ?>
     </select>
 
     <input type=hidden name="objectToWorkWith" value="Individu" />

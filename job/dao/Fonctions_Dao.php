@@ -22,42 +22,20 @@ function convertDateToSQLdate(string $stringDate) {
     return $convertedDate;
 }
 
-Function selectDico($table, $colonne) {
+// Fonction permettant l'affichage d'une liste déroulante
+// L'attribut $colonneId est optionnel, il est utilisé dans le cas où
+// la valeur qui doit être envoyée est différente de celle affichée.
+// L'attribut $isColonneIdVisible est optionnel permet d'afficher l'attribut $colonneId dans le cas où
+// celui-ci est utilisé.
+Function selectDico(string $table, string $colonneNom, string $colonneId = "", bool $isColonneIdVisible = false) {
 
     // M : Connecxion a la BD
     $pdo = openConnexion();
-    $reponse = "SELECT * FROM " . $table . "";
+    $reponse = "SELECT * FROM " . $table . ";";
     $stmt = $pdo->prepare($reponse);
     $stmt->execute();
     // Apparait champs de recherche en blanc si ne souhaite pas recherche sur ce champs
-    ?>
-    <option value="">-----</option>
-    <?php
-    //Création d'une liste pour y insérer les résultat du dico et pouvoir les trier
-    $listeValidation = array();
-    while ($donnees = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $estDedans = in_array($donnees[$colonne], $listeValidation);
-        if (!$estDedans) {
-            $listeValidation[] = $donnees[$colonne];
-        } //Je souhaite insérer la valeurs si elle n'est pas déjà présente dans la liste
-        // $listeValidation[]=$donnees[$colonne];
-    }
-    asort($listeValidation);
-    foreach ($listeValidation as $valueDico) {
-        ?>
-        <option value="<?php echo $valueDico; ?>"><?php echo $valueDico; ?></option>
-        <?php
-    }
-}
-
-Function selectValuesWithId(string $table, string $colonneNom, string $colonneId) {
-
-    // M : Connecxion a la BD
-    $pdo = openConnexion();
-    $reponse = "SELECT * FROM " . $table . "";
-    $stmt = $pdo->prepare($reponse);
-    $stmt->execute();
-    // Apparait champs de recherche en blanc si ne souhaite pas recherche sur ce champs
+    // Cette valeur ne sera pas prise en compte dans le contrôleur
     ?>
     <option value="">-----</option>
     <?php
@@ -66,16 +44,32 @@ Function selectValuesWithId(string $table, string $colonneNom, string $colonneId
     $liste = array();
     while ($donnees = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $estDedans = in_array($donnees[$colonneNom], $listeValidation);
+        // La valeur est ajoutée à la liste déroulante si elle n'est pas déjà présente
         if (!$estDedans) {
+            // Si elle n'est pas déjà présente, elle est ajouté à la liste des valeurs déjà présentes
             $listeValidation[] = $donnees[$colonneNom];
-            $liste[$donnees[$colonneNom]] = $donnees[$colonneId];
+            // Enregistrement des valeurs retournées si on enregistre l'ID
+            if ($colonneId != "") {
+                $liste[$donnees[$colonneNom]] = $donnees[$colonneId];
+                // Enregistrement des valeurs retournées si on n'enregistre pas l'ID
+            } else {
+                $liste[$donnees[$colonneNom]] = $donnees[$colonneNom];
+            }
         }
     }
+    // Ordonnancement de la liste par ordre alphabétique de la colonne des données
     ksort($liste);
+
     foreach ($liste as $colonneNom => $colonneId) {
-        ?>
-        <option value="<?= $colonneId; ?>"><?= $colonneNom; ?></option>
-        <?php
+        if ($isColonneIdVisible) {
+            ?>
+            <option value="<?= $colonneId; ?>"><?= $colonneId . " - " . $colonneNom; ?></option>
+            <?php
+        } else {
+            ?>
+            <option value="<?= $colonneId; ?>"><?= $colonneNom; ?></option>
+            <?php
+        }
     }
 }
 ?>
