@@ -55,14 +55,17 @@ Function select($requete){
             $anneeSortie = $donnees['anneeSortie'];
             $description = $donnees['description'];
             $idPC = $donnees['idPC'];
-            $idJeuT = $donnees['idJeuT'];
             $typePC = $donnees['typePC'];
             
-            // TODO utiliser $idJeuT pour récupérer note moyenne (AVG) et liste images et liste commentaires
-            // faire jointure commentaire avec user pour afficher le pseudo du commentateur
+            // TODO utiliser $idJeuT pour récupérer note moyenne (AVG) et liste images et liste commentaires et liste genre
+            // faire jointure commentaire avec user pour afficher le pseudo du commentateur $listeCommentaires [] = [$pseudo, $commentaire]
+            $listeGenres = array();
+            $listeImages = array();
+            $listeCommentaires = array();
+            $noteMoyenne = 5;
             
             /* création du nouvel objet Jeu_T */
-            $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$idPC,$idJeuT);
+            $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$listeGenres,$noteMoyenne,$listeImages,$listeCommentaires,$idPC);
             // ajout de l'objet à la liste
             $liste_jeuT []= $jeuT;
 	}

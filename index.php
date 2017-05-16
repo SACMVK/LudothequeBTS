@@ -6,9 +6,11 @@
         <?php
         // stefan : Cette ligne permet d'activer et d'entretenir la session ($_SESSION) avec ses variables
         // stefan : on est obligé de déclarer la classe avant de pouvoir l'utiliser
+        include 'job/class/Compte.php';
         include 'job/class/Individu.php';
-        include 'job/class/Jeu_P.php';
+        include 'job/class/ProduitCulturel.php';
         include 'job/class/Jeu_T.php';
+        include 'job/class/Jeu_P.php';
         include 'job/class/Message.php';
         include 'job/dao/fonctions_dao.php';
         include 'ihm/css/css.php';

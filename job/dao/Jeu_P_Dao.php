@@ -85,22 +85,29 @@ function select($requete) {
         //AhMaD : on vas creer un nouveau objet avec les informations
         $proprietaire = new Individu($ville, $adresse, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser);
 
-        $nbJoueursMin = $champ['nbJoueursMin'];
-        $nbJoueursMax = $champ['nbJoueursMax'];
-        $nomJeu = $champ['nom'];
-        $editeur = $champ['editeur'];
-        $regles = $champ['regles'];
-        $difficulte = $champ['difficulte'];
-        $public = $champ['public'];
-        $listePieces = $champ['listePieces'];
-        $dureePartie = $champ['dureePartie'];
-        $anneeSortie = $champ['anneeSortie'];
-        $description = $champ['description'];
-        $idPC = $champ['idPC'];
-        $typePC = $champ['typePC'];
+            $nbJoueursMin = $champ['nbJoueursMin'];
+            $nbJoueursMax = $champ['nbJoueursMax'];
+            $nom = $champ['nom'];
+            $editeur = $champ['editeur'];
+            $regles = $champ['regles'];
+            $difficulte = $champ['difficulte'];
+            $public = $champ['public'];
+            $listePieces = $champ['listePieces'];
+            $dureePartie = $champ['dureePartie'];
+            $anneeSortie = $champ['anneeSortie'];
+            $description = $champ['description'];
+            $idPC = $champ['idPC'];
+            $typePC = $champ['typePC'];
+            
+            // TODO utiliser $idJeuT pour récupérer note moyenne (AVG) et liste images et liste commentaires et liste genre
+            // faire jointure commentaire avec user pour afficher le pseudo du commentateur $listeCommentaires [] = [$pseudo, $commentaire]
+            $listeGenres = array();
+            $listeImages = array();
+            $listeCommentaires = array();
+            $noteMoyenne = 5;
 
         /* création du nouvel objet Jeu_T */
-        $jeuT = new Jeu_T($nbJoueursMin, $nbJoueursMax, $nomJeu, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $idPC);
+        $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$listeGenres,$noteMoyenne,$listeImages,$listeCommentaires,$idPC);
 
         $idJeuP = $champ['idJeuP'];
 

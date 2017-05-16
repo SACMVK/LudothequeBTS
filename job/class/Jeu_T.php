@@ -1,9 +1,8 @@
 <?php
 
-class Jeu_T {
+class Jeu_T extends ProduitCulturel {
 
     // M: les attributs pour Jeu_T
-    private $idPC;
     private $nbJoueursMin;
     private $nbJoueursMax;
     private $nom;
@@ -13,16 +12,17 @@ class Jeu_T {
     private $public;
     private $listePieces;
     private $dureePartie;
-    private $anneeSortie;
-    private $description;
-    private $typePC;
-    private $genre;
+    private $listeGenres;
+    private $noteMoyenne;
+    private $listeImages;
+    private $listeCommentaires;
 
     /* M - Pour pouvoir faire de la surcharge et donc avoir accès à un second
      *  constructeur on définit la clé primaire nécessaire aux recherches par id à -1 par défaut
      */
 
-    function __construct($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $genre, $idPC = -1) {
+    function __construct($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $noteMoyenne, $listeImages,$listeCommentaires,$idPC = -1) {
+        parent::__construct($anneeSortie, $description, $typePC, $idPC);
         $this->idPC = $idPC;
         $this->nbJoueursMin = $nbJoueursMin;
         $this->nbJoueursMax = $nbJoueursMax;
@@ -33,21 +33,14 @@ class Jeu_T {
         $this->public = $public;
         $this->listePieces = $listePieces;
         $this->dureePartie = $dureePartie;
-        $this->anneeSortie = $anneeSortie;
-        $this->description = $description;
-        $this->typePC = $typePC;
-        $this->genre = $genre;
+        $this->listeGenres = $listeGenres;
+        $this->noteMoyenne = $noteMoyenne;
+        $this->listeImages = $listeImages;
+        $this->listeCommentaires = $listeCommentaires;
     }
 
     //M : Getters and Setters
-    //M : IdPC
-    public function getIdPC() {
-        return $this->idPC;
-    }
 
-    public function setIdPC($idPC) {
-        return $this->idPC = $idPC;
-    }
 
     //M : NbJoueursMin
     public function getNbJoueursMin() {
@@ -128,35 +121,6 @@ class Jeu_T {
 
     public function setDureePartie($dureePartie) {
         return $this->dureePartie = $dureePartie;
-    }
-
-    /* M : AJOUT DES PARAMETRES DE LA TABLE produit_culturel_t */
-
-    //M : $anneeSortie
-    public function getAnneeSortie() {
-        return $this->anneeSortie;
-    }
-
-    public function setAnneeSortie($anneeSortie) {
-        return $this->anneeSortie = $anneeSortie;
-    }
-
-    //M : $description
-    public function getDescription() {
-        return $this->description;
-    }
-
-    public function setDescription($description) {
-        return $this->description = $description;
-    }
-
-    //M : $typePC
-    public function getTypePC() {
-        return $this->typePC;
-    }
-
-    public function setTypePC($typePC) {
-        return $this->typePC = $typePC;
     }
 
     //M : $typePC

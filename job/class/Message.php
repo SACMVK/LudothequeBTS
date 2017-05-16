@@ -4,20 +4,20 @@ class Message {
 
     // Charlotte
 
-    private $idMessage = -1;
-    private $idExped = -1;
-    private $idDest = -1;
-    private $dateEnvoi = "";
-    private $sujet = "";
-    private $texte = "";
+    private $idMessage;
+    private $exp;// Objet Class Compte (Individu)
+    private $dest;// Objet Class Compte (Individu)
+    private $dateEnvoi;
+    private $sujet;
+    private $texte;
 
     //charlotte :constructeur 
 
 
-    function __construct($idExped, $idDest, $dateEnvoi, $sujet, $texte, $idMessage = -1) {
+    function __construct($exp, $dest, $dateEnvoi, $sujet, $texte, $idMessage = -1) {
         $this->idMessage = $idMessage;
-        $this->idExped = $idExped;
-        $this->idDest = $idDest;
+        $this->exp = $exp;
+        $this->dest = $dest;
         $this->dateEnvoi = $dateEnvoi;
         $this->sujet = $sujet;
         $this->texte = $texte;
@@ -34,21 +34,21 @@ class Message {
     }
 
     // id expéditeur
-    public function getIdExped() {
-        return $this->idExped;
+    public function getExp() {
+        return $this->exp;
     }
 
-    public function setIdExped($idExped) {
-        return $this->idExped = $idExped;
+    public function setExp($exp) {
+        return $this->exp = $exp;
     }
 
     // id destinataire
-    public function getIdDest() {
-        return $this->idDest;
+    public function getDest() {
+        return $this->dest;
     }
 
-    public function setIdDest($idDest) {
-        return $this->idDest = $idDest;
+    public function setDest($dest) {
+        return $this->dest = $dest;
     }
 
     // type de Message
