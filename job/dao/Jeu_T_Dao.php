@@ -58,6 +58,9 @@ Function select($requete){
             $idJeuT = $donnees['idJeuT'];
             $typePC = $donnees['typePC'];
             
+            // TODO utiliser $idJeuT pour récupérer note moyenne (AVG) et liste images et liste commentaires
+            // faire jointure commentaire avec user pour afficher le pseudo du commentateur
+            
             /* création du nouvel objet Jeu_T */
             $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$idPC,$idJeuT);
             // ajout de l'objet à la liste
