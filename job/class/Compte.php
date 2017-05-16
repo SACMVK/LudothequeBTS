@@ -1,6 +1,6 @@
 <?php
 
-class Compte {
+abstract class Compte {
 
     private $idUser;
     private $ville;

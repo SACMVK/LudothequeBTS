@@ -1,6 +1,6 @@
 <?php
 
-class ProduitCulturel {
+abstract class ProduitCulturel {
 
     private $idPC;
     private $typePC;
