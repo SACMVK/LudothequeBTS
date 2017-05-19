@@ -1,15 +1,15 @@
 <legend>Ma ludothèque</legend>
-<table border= 1px solid black>
+<table>
     <?php
     if (!empty($_SESSION["maLudotheque"])):
         foreach ($_SESSION["maLudotheque"] as $jeuP) :
             ?>
             <tr> 
-                <td id="table-recherche"><?= $jeuP->getIdJeuP() ?></td>
-                <td id="table-recherche"><?= $jeuP->getJeuT()->getNom() ?></td>
-                <td id="table-recherche"><?= $jeuP->getJeuT()->getEditeur() ?></td>
-                <td id="table-recherche"><?= $jeuP->getProprietaire()->getPseudo() ?></td>
-                <td id="table-recherche">
+                <td><?= $jeuP->getIdJeuP() ?></td>
+                <td><?= $jeuP->getJeuT()->getNom() ?></td>
+                <td><?= $jeuP->getJeuT()->getEditeur() ?></td>
+                <td><?= $jeuP->getProprietaire()->getPseudo() ?></td>
+                <td>
                     <form action=" " method="post" accept-charset="utf-8">
                         <input type=hidden name="objectToWorkWith" value="Jeu_P" />
                         <input type=hidden name="actionToDoWithObject" value="delete" />
