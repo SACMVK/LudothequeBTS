@@ -34,7 +34,7 @@
     foreach ($arrayPseudo as $pseudo){
         $stringPseudo.=$pseudo."#";
     }
-    $stringPseudo = substr($stringPseudo,strlen($stringPseudo)-2,strlen($stringPseudo)-1);
+    $stringPseudo = substr($stringPseudo,0,strlen($stringPseudo)-1);
     ?>
     <input type="hidden" name="listePseudo" value="<?=$stringPseudo ?>" />
 
@@ -44,9 +44,9 @@
     foreach ($arrayEmail as $email){
         $stringEmail.=$email."#";
     }
-    $stringEmail = substr($stringEmail,strlen($stringEmail)-2,strlen($stringEmail)-1);
+    $stringEmail = substr($stringEmail,0,strlen($stringEmail)-1);
     ?>
-    <input type="hidden" name="listePseudo" value="<?=$stringEmail ?>" />
+    <input type="hidden" name="listeMail" value="<?=$stringEmail ?>" />
     
     <button type="submit" name="submit" class="boutonBleu">S'inscrire</button>
     <button type="reset" name="reset" class="boutonBleu">Réinitialiser</button>
