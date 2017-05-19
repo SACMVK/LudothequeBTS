@@ -19,8 +19,8 @@ switch ($_GET['user']) {
         break;
     case "mesMessages";
         include 'job/dao/Connexion_DataBase.php';
-        include 'job/dao/Jeu_P_Dao.php';
-        $_SESSION["mesMessages"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+        include 'job/dao/Message_Dao.php';
+        $_SESSION["mesMessages"] = select("WHERE message.idDest = " . $_SESSION["monProfil"]->getIdUser());
         break;
 }
 
