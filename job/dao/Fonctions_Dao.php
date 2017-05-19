@@ -72,4 +72,20 @@ Function selectDico(string $table, string $colonneNom, string $colonneId = "", b
         }
     }
 }
+
+
+function getArrayFromSQL(string $table, string $colonne){
+        $pdo = openConnexion();
+    $reponse = "SELECT ".$colonne." FROM " . $table . ";";
+    $stmt = $pdo->prepare($reponse);
+    $stmt->execute();
+        $array = array();
+    while ($donnees = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $array [] = $donnees["$colonne"];
+    }
+    return $array;
+}
+
+
+
 ?>

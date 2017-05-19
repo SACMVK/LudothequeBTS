@@ -55,7 +55,7 @@ class Message {
 
 
     public function getDateEnvoi() {
-        return $this->typeMessage;
+        return $this->dateEnvoi;
     }
 
     public function setDateEnvoi($dateEnvoi) {

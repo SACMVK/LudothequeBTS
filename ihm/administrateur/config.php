@@ -4,7 +4,6 @@
 
 
 // stefan : liste des fichiers à inclure
-include 'job/dao/Connexion_DataBase.php';
 include 'job/dao/Config_Dao.php';
 include 'job/dao/Droits_Dao.php';
 

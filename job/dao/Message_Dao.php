@@ -9,7 +9,7 @@ $table = 'message';
 Function select($requete) {
 
     $pdo = openConnexion();
-
+    $table = 'message';
 
 
 // on recupere le contenu de la table message
@@ -34,9 +34,6 @@ Function select($requete) {
         $sujet = $requete['sujet'];
         $dateEnvoi = $requete['dateEnvoi'];
 
-
-
-
         $listeMessages[] = new Message($idExped, $idDest, $dateEnvoi, $sujet, $texte, $idMessage);
 //echo $donnees['texte'] ."   ". $donnees['sujet'] ."   ". $donnees['typeMessage'];
 // fermeture de la connexion
@@ -54,7 +51,7 @@ Function insert($requete) {
 
 // ouverture de la connexion
     $pdo = openConnexion();
-
+    $table = 'message';
 
 
 // on recupere le contenu de la table message

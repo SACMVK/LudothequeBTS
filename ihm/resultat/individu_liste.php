@@ -35,7 +35,7 @@
                 endif;
                 ?>
             </tbody>
-        </table> ";
+        </table>
         <div id="button-table" ><br />
             <a href="index.php?page=recherche/individu.php" class="boutonBleu">Modifier ma recherche</a>
             <br />

@@ -28,8 +28,26 @@
     <input type=hidden name="objectToWorkWith" value="Individu" />
     <input type=hidden name="actionToDoWithObject" value="insert" />
 
+    <?php
+    $arrayPseudo = getArrayFromSQL("compte","pseudo");
+    $stringPseudo = "";
+    foreach ($arrayPseudo as $pseudo){
+        $stringPseudo.=$pseudo."#";
+    }
+    $stringPseudo = substr($stringPseudo,0,strlen($stringPseudo)-1);
+    ?>
+    <input type="hidden" name="listePseudo" value="<?=$stringPseudo ?>" />
 
-
+        <?php
+    $arrayEmail = getArrayFromSQL("compte","email");
+    $stringEmail = "";
+    foreach ($arrayEmail as $email){
+        $stringEmail.=$email."#";
+    }
+    $stringEmail = substr($stringEmail,0,strlen($stringEmail)-1);
+    ?>
+    <input type="hidden" name="listeMail" value="<?=$stringEmail ?>" />
+    
     <button type="submit" name="submit" class="boutonBleu">S'inscrire</button>
     <button type="reset" name="reset" class="boutonBleu">Réinitialiser</button>
 

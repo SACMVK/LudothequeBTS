@@ -1,4 +1,3 @@
-<?php include 'job/dao/Connexion_DataBase.php'; ?>            
 <form action=" " method="post" accept-charset="utf-8" class="form" role="form">   
     <legend>Trouver un compte</legend>
     Nom :

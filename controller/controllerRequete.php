@@ -1,6 +1,6 @@
 <?php
 
-include 'job/dao/Connexion_DataBase.php';
+
 
 /* stefan : Cette fonction a pour objectif
  * de créer une string de requête SQL (partie "WHERE")
@@ -18,7 +18,7 @@ function createRequestFromREQUEST() {
         $stringRequest = 'WHERE ';
         foreach ($_REQUEST as $key => $value) {
             $addKey = false;
-            if ($key != "objectToWorkWith" && $key != "actionToDoWithObject" && $key != "submit" && $key != "reset" && $key != "page") {
+            if ($key != "objectToWorkWith" && $key != "actionToDoWithObject" && $key != "submit" && $key != "reset" && $key != "page" && stristr($key, 'liste') === FALSE) {
                 if ($value != null && $value != "" && $value != "-----") {
                     $stringRequest .= $key . '="' . $value .'"';
                     $addKey = true;
