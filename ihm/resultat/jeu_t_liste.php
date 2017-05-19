@@ -36,6 +36,12 @@ function str_truncate($text, $length) {
                 <td><?= $jeu_t->getDureePartie() ?></td>
                 <td><?= $jeu_t->getAnneeSortie() ?></td>
                 <td><?= str_truncate($jeu_t->getDescription(), 100) ?> ...</td>
+                <td>
+                    <input type=hidden name="objectToWorkWith" value="Jeu_T" />
+                    <input type=hidden name="actionToDoWithObject" value="selectOne" />
+
+                    <input type="submit" name="submit" class="boutonBleu" value="Voir la fiche complète">
+                </td>
             </tr>
             <?php
         endforeach;
