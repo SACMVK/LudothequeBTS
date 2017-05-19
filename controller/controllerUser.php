@@ -14,9 +14,13 @@ switch ($_GET['user']) {
         include 'job/dao/Jeu_P_Dao.php';
         $_SESSION["mesEmprunts"] = select("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
         break;
-    case "mesMessages";
+    case "mesMessagesEnvoyes";
         include 'job/dao/Message_Dao.php';
-        $_SESSION["mesMessages"] = select("WHERE message.idDest = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesMessagesEnvoyes"] = select("WHERE message.idExped = " . $_SESSION["monProfil"]->getIdUser());
+        break;
+    case "mesMessagesRecus";
+        include 'job/dao/Message_Dao.php';
+        $_SESSION["mesMessagesRecus"] = select("WHERE message.idDest = " . $_SESSION["monProfil"]->getIdUser());
         break;
 }
 
