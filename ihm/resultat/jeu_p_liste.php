@@ -16,15 +16,15 @@
         foreach ($listOfElements as $jeu_t) :
             ?>        
             <tr>
-                <td><?= $jeu->getNbJoueursMin() ?> à <?= $jeu->getNbJoueursMax() ?></td>
-                <td><?= $jeu->getEditeur() ?></td>
-                <td><?= str_truncate($jeu->getRegles(), 100) ?> ...</td>
-                <td><?= $jeu->getDifficulte() ?></td>
-                <td><?= $jeu->getpublic() ?></td>
-                <td><?= $jeu->getListePiecese() ?></td>
-                <td><?= $jeu->getDureePartie() ?></td>
-                <td><?= $jeu->getAnneeSortie() ?></td>
-                <td><?= str_truncate($jeu->getDescription(), 100) ?> ...</td>
+                <td><?= $jeu_t->getNbJoueursMin() ?> à <?= $jeu_t->getNbJoueursMax() ?></td>
+                <td><?= $jeu_t->getEditeur() ?></td>
+                <td><?= str_truncate($jeu_t->getRegles(), 100) ?> ...</td>
+                <td><?= $jeu_t->getDifficulte() ?></td>
+                <td><?= $jeu_t->getpublic() ?></td>
+                <td><?= $jeu_t->getListePiecese() ?></td>
+                <td><?= $jeu_t->getDureePartie() ?></td>
+                <td><?= $jeu_t->getAnneeSortie() ?></td>
+                <td><?= str_truncate($jeu_t->getDescription(), 100) ?> ...</td>
             </tr>
             <?php
         endforeach;

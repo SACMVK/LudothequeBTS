@@ -21,7 +21,7 @@ Function select($requete){
 	
 	/* M : préparation de la requete - permet d'adapter les requetes en fonctions de variables
 	 */
-	$requete = "SELECT * FROM ".TABLEJEUT." jt JOIN ".TABLEPCT." pct ON pct.idPC=jt.idPC;";
+	$requete = "SELECT * FROM ".TABLEJEUT." JOIN ".TABLEPCT." ON ".TABLEPCT.".idPC=".TABLEJEUT.".idPC ".$requete.";";
 	$stmt = $pdo->prepare($requete);
 	
 	
