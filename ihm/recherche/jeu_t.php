@@ -37,7 +37,7 @@
 
 
 
-    <input type=hidden name="objectToWorkWith" value="Individu" />
+    <input type=hidden name="objectToWorkWith" value="Jeu_T" />
     <input type=hidden name="actionToDoWithObject" value="selectList" />
 
     <input type="submit" name="submit" class="boutonBleu" value="Recherche jeu">
