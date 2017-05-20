@@ -1,51 +1,45 @@
 <?php
-Function selectFromWhere($select,$table,$where){
-    /* M : Ouverture de la connexion
-     * $select: ce que l'on veut récuperer (1 valeur par exemple l'idPC
-     * $table : dans quelle table?
-     * $where : toute le weher (ex : "WHERE idPC = 10") -> peremet de ne pas mettre de clause where si l'on ne veut pas
-     * ceci permet de récuperer une valeur d'une table
-	 */
-	$pdo = openConnexion();
-
-	
-	/* M : préparation de la requete - permet d'adapter les requetes en fonctions de variables
-	 */
-	$requeteSFW = "SELECT ".$select." FROM ".$table." ".$where.";";
-        
-	$stmtSFW = $pdo->prepare($requeteSFW);
-	
-	/* M : 
-	 */
-	$stmtSFW->execute();
-        /* M : Fermeture de la connexion
-	 */
-	$pdo = closeConnexion();    
-}
-
 // M : Affichage d'un jeu_t
 ?>
  <?php
-    foreach ($Elements as $jeu_t) :
-        if (!empty($Elements)):
-    ?> 
-<div><h1><?=  $jeu_t->getNom() ?></h1></div>      <div><img src="" /></div>
+    if (!empty($element)):
+        foreach ($element as $jeu_t) :
+ ?> 
+<div><h1><?=  $element->getNom() ?></h1></div>     
 
 </br>
 </br>
     <h2>Editeur : </h2>
-        <p><?= $jeu_t->getEditeur() ?></p>
+        <p><?= $element->getEditeur() ?></p>
         </br>  
     <h2>Année de sortie : </h2>
-        <p><?= $jeu_t->getAnneeSortie() ?></p>
+        <p><?= $element->getAnneeSortie() ?></p>
         </br>  
     <h2>Nombre de joueurs : </h2>
-        <p>De <?= $jeu_t->getNbJoueursMin() ?> à <?= $jeu->getNbJoueursMax() ?> joueurs</p>
+        <p>De <?= $element->getNbJoueursMin() ?> à <?= $element->getNbJoueursMax() ?> joueurs</p>
         </br>
-<h2>Genre : </h2>
-        <p><?= selectFromWhere("genre","jeu_a_pour_genre","WHERE idPC = ".$jeu_t->getIdPC()) ?></p>
+    <h2>Règles du jeu : </h2>
+        <p><?= $element->getRegles() ?></p>
+        </br>
+    <h2>Difficulté : </h2>
+        <p><?= $element->getDifficulte() ?></p>
+        </br>
+    <h2>Public concerné : </h2>
+        <p><?= $element->getpublic() ?></p>
+        </br> 
+    <h2>Liste de pièces : </h2>
+        <p><?= $element->getListePieces() ?></p>
+        </br> 
+    <h2>Durée de la partie : </h2>
+        <p><?= $element->getDureePartie() ?></p>
+        </br>
+    <h2>Genres : </h2>
+        <p><?= $element->getListeGenres() ?></p>
+        </br> 
+    
         </br>
 <?php
-  endif;
+  
 endforeach;
+endif;
 ?>

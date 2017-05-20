@@ -15,11 +15,11 @@
     Année de sortie : 
     <input class="form-control input-lg" type="year" name="anneeSortie" placeholder="Année (yyyy)"/>
     Nombre de joueurs minimum :
-    <select class="form-control select-lg" name="nbJoueurMin">
+    <select class="form-control select-lg" name="nbJoueursMin">
         <?php selectDico("jeu_t", "nbJoueursMax") ?>
     </select>
     Nombre de joueurs maximum :
-    <select class="form-control select-lg" name="nbJoueurMax">
+    <select class="form-control select-lg" name="nbJoueursMax">
         <?php selectDico("jeu_t", "nbJoueursMax") ?>
     </select>
     Public :
@@ -37,7 +37,7 @@
 
 
 
-    <input type=hidden name="objectToWorkWith" value="Jeu_T" />
+    <input type=hidden name="objectToWorkWith" value="jeu_t" />
     <input type=hidden name="actionToDoWithObject" value="selectList" />
 
     <input type="submit" name="submit" class="boutonBleu" value="Recherche jeu">

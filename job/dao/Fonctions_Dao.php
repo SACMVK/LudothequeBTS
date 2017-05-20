@@ -86,6 +86,28 @@ function getArrayFromSQL(string $table, string $colonne){
     return $array;
 }
 
+Function selectFromWhere($select,$table,$where){
+    /* M : Ouverture de la connexion
+     * $select: ce que l'on veut récuperer (1 valeur par exemple l'idPC
+     * $table : dans quelle table?
+     * $where : toute le weher (ex : "WHERE idPC = 10") -> peremet de ne pas mettre de clause where si l'on ne veut pas
+     * ceci permet de récuperer une valeur d'une table
+	 */
+	$pdo = openConnexion();
 
+	
+	/* M : préparation de la requete - permet d'adapter les requetes en fonctions de variables
+	 */
+	$requeteSFW = "SELECT ".$select." FROM ".$table." ".$where.";";
+        
+	$stmtSFW = $pdo->prepare($requeteSFW);
+	
+	/* M : 
+	 */
+	$stmtSFW->execute();
+        /* M : Fermeture de la connexion
+	 */
+	$pdo = closeConnexion();    
+}
 
 ?>

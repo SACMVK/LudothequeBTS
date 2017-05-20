@@ -106,7 +106,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     //M : listePieces
-    public function getListePiecese() {
+    public function getListePieces() {
         return $this->listePieces;
     }
 
@@ -124,14 +124,27 @@ class Jeu_T extends ProduitCulturel {
     }
 
     //M : $typePC
-    public function getGenre() {
-        return $this->genre;
+    public function getListeGenres() {
+        return $this->listeGenres;
     }
 
-    public function setGenre($genre) {
-        return $this->genre = $genre;
+    public function setListeGenres($listeGenres) {
+        return $this->listeGenres = listeGenres;
+    }
+    
+    function getNoteMoyenne() {
+        return $this->noteMoyenne;
     }
 
+    function getListeImages() {
+        return $this->listeImages;
+    }
+
+    function getListeCommentaires() {
+        return $this->listeCommentaires;
+    }
+
+    
     // AhMaD: ToString pour afficher l'objet, le point pour concaténer, cela comme (+) en java
     function __toString() {
         return ("<h2>" . $this->nom . "</h2><br/>id= " . $this->idPC . "<br/> Nombre de joueurs : de " . $this->nbJoueursMin . " à " . $this->nbJoueursMax . " joueurs." .
