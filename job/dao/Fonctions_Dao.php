@@ -27,7 +27,7 @@ function convertDateToSQLdate(string $stringDate) {
 // la valeur qui doit être envoyée est différente de celle affichée.
 // L'attribut $isColonneIdVisible est optionnel permet d'afficher l'attribut $colonneId dans le cas où
 // celui-ci est utilisé.
-Function selectDico(string $table, string $colonneNom, string $colonneId = "", bool $isColonneIdVisible = false) {
+Function selectDico(string $table, string $colonneNom, string $colonneId = "#", bool $isColonneIdVisible = false) {
 
     // M : Connecxion a la BD
     $pdo = openConnexion();
@@ -49,7 +49,7 @@ Function selectDico(string $table, string $colonneNom, string $colonneId = "", b
             // Si elle n'est pas déjà présente, elle est ajouté à la liste des valeurs déjà présentes
             $listeValidation[] = $donnees[$colonneNom];
             // Enregistrement des valeurs retournées si on enregistre l'ID
-            if ($colonneId != "") {
+            if ($colonneId != "#") {
                 $liste[$donnees[$colonneNom]] = $donnees[$colonneId];
                 // Enregistrement des valeurs retournées si on n'enregistre pas l'ID
             } else {
