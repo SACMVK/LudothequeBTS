@@ -34,7 +34,7 @@ function str_truncate($text, $length) {
                     <td><?= str_truncate($jeu_t->getRegles(), 100) ?> ...</td>
                     <td><?= $jeu_t->getDifficulte() ?></td>
                     <td><?= $jeu_t->getpublic() ?></td>
-                    <td><?= $jeu_t->getListePiecese() ?></td>
+                    <td><?= $jeu_t->getListePieces() ?></td>
                     <td><?= $jeu_t->getDureePartie() ?></td>
                     <td><?= $jeu_t->getAnneeSortie() ?></td>
                     <td><?= str_truncate($jeu_t->getDescription(), 100) ?> ...</td>
