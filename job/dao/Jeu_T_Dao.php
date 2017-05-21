@@ -10,8 +10,31 @@
 	const TABLEJEUT = 'jeu_t';
         const TABLEPCT = 'produit_culturel_t';
         const TABLE_EDITEUR_D = 'editeur_d';
+        const TABLE_JEU_A_POUR_GENRE = 'jeu_a_pour_genre';
+        const TABLE_A_POUR_IMAGE = 'a_pour_image';
 
+        /*
+         * Fonction permettant de récupérer la liste d'un champs dans une autre table pour une valeur donnée (exemple idPC=1)
+         * @param $table est la table dans laquelle on souhaite récupérer les données
+         * @param $var est la valeur donnée dans le WHERE
+         * @param $champsSelect est la colonne de laquelle nous souhaitons récupérer les données
+         * Retourne une liste de valeurs
+         */
+Function selectListe($table,$var,$champsSelect){
+        $pdo = openConnexion();
 
+            $liste = array();
+            $requete = "SELECT ".$champsSelect." FROM ".$table." WHERE idPC=".$var.";";
+            $stmtListe = $pdo->prepare($requete);
+	
+            $stmtListe->execute() ;
+
+            while ($donnees = $stmtListe->fetch(PDO::FETCH_ASSOC))
+            {
+                $liste[]=$donnees[$champsSelect];
+            }
+            return $liste;
+}
         
 Function select($requete){
 	/* M : Ouverture de la connexion
@@ -23,7 +46,6 @@ Function select($requete){
 	 */
 	$requete = "SELECT * FROM ".TABLEJEUT." JOIN ".TABLEPCT." ON ".TABLEPCT.".idPC=".TABLEJEUT.".idPC ".$requete.";";
 	$stmt = $pdo->prepare($requete);
-	
 	
 	/* M : 
 	 */
@@ -59,8 +81,12 @@ Function select($requete){
             
             // TODO utiliser $idJeuT pour récupérer note moyenne (AVG) et liste images et liste commentaires et liste genre
             // faire jointure commentaire avec user pour afficher le pseudo du commentateur $listeCommentaires [] = [$pseudo, $commentaire]
-            $listeGenres = array();
-            $listeImages = array();
+
+            
+            $listeGenres = selectListe(TABLE_JEU_A_POUR_GENRE,$idPC,'genre');
+            
+            $listeImages = selectListe(TABLE_A_POUR_IMAGE,$idPC,'source');
+            
             $listeCommentaires = array();
             $noteMoyenne = 5;
             

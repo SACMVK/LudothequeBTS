@@ -1,5 +1,6 @@
 <?php
 // M : Affichage d'un jeu_t
+
 ?>
  <?php
     if (!empty($element)):
@@ -34,7 +35,9 @@
         <p><?= $element->getDureePartie() ?></p>
         </br>
     <h2>Genres : </h2>
-        <p><?= $element->getListeGenres() ?></p>
+        <?php foreach ($element->getListeGenres() as $value): ?>
+            <p><?= $value ?></p>
+        <?php endforeach; ?>
         </br> 
     
         </br>

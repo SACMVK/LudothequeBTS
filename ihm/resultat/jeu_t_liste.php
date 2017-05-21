@@ -39,6 +39,7 @@ function str_truncate($text, $length) {
                     <td><?= $jeu_t->getAnneeSortie() ?></td>
                     <td><?= str_truncate($jeu_t->getDescription(), 100) ?> ...</td>
                     <td>
+    <!--                    <input type=hidden name="nom" value="<?= $jeu_t->getNom() ?>" /> A reprendre car ne transmet pas la bonne ligne selectionnée par le bouton -->
                         <input type=hidden name="objectToWorkWith" value="jeu_t" />
                         <input type=hidden name="actionToDoWithObject" value="selectOne" />
 

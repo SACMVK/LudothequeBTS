@@ -40,8 +40,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     //M : Getters and Setters
-
-
+    
     //M : NbJoueursMin
     public function getNbJoueursMin() {
         return $this->nbJoueursMin;
@@ -123,7 +122,7 @@ class Jeu_T extends ProduitCulturel {
         return $this->dureePartie = $dureePartie;
     }
 
-    //M : $typePC
+    //M : $listeGenres
     public function getListeGenres() {
         return $this->listeGenres;
     }
