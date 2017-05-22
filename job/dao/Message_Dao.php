@@ -4,22 +4,24 @@
 // // declaration variable qui correspond à la table message
 $table = 'message';
 
+
 // Charlotte
 // function select == function find()
 Function select($requete) {
-
     $pdo = openConnexion();
-    $table = 'message';
-
-
+    $table = "message";
 // on recupere le contenu de la table message
 //prepare =avant query pour éviter faille de sécurité
-    $stmt = $pdo->prepare("SELECT * FROM " . $table . ";");
-
+    $requete = "SELECT * FROM message 
+            join individu as destIndividu on idDest=destIndividu.idUser
+            join compte as destCompte on destCompte.idUser=destindividu.idUser
+            join individu as expedIndividu on idExped=expedIndividu.idUser
+            join compte as expedCompte on expedCompte.idUser=expedIndividu.idUser"
+            .$requete.";";
+    
 // execution de la requete
+    $stmt = $pdo->prepare($requete);
     $stmt->execute();
-
-
 // declaration de la variable qui sera retourner à la fin de la fonction
     $listeMessages = array();
 
