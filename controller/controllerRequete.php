@@ -40,7 +40,11 @@ function createRequestFromREQUEST() {
     if ($stringRequest == 'WHERE '){
         $stringRequest = "";
     }
-    return $stringRequest;
+    /* stefan : Un nom d'input ne peut avoir un point (par exemple jeu_t.nom
+     * Il faut donc mettre jeu_t#nom et la fonction str_replace
+     * va faire la modification.
+     */
+    return str_replace("#",".",$stringRequest);
 }
 
 /* stefan : Cette fonction a pour objectif

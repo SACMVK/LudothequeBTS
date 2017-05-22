@@ -20,7 +20,7 @@
                 <br><br>
                 <label>Message à destination du prêteur</label>
                 <textarea class="form-control" rows="7" name="text"></textarea>
-                <input class="btn btn-info active" type="submit">	
+                <input class="boutonBleu" type="submit">	
             </div>
         </div>
     </form>

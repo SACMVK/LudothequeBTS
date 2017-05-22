@@ -16,7 +16,7 @@
                 <br><br /><br />
                 <label>Commentaire à destination de l'emprunteur</label>
                 <textarea class="form-control" rows="7" name="text"></textarea> <br />
-                <button class="btn btn-info active" type="submit">Envoyer</button>
+                <button class="boutonBleu" type="submit">Envoyer</button>
             </div>
         </div>
     </form>
