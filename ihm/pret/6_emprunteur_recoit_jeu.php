@@ -37,7 +37,7 @@
                     <textarea class="form-control" rows="7" name="com_emp"></textarea>
                     <br />
                     
-                    <button class="btn btn-info active" type="submit">Envoyer</button>
+                    <button class="boutonBleu" type="submit">Envoyer</button>
                     
             </div>
         </div>
