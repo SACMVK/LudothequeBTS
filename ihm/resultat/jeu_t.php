@@ -6,7 +6,20 @@
     if (!empty($element)):
         foreach ($element as $jeu_t) :
  ?> 
-<div><h1><?=  $element->getNom() ?></h1></div>     
+<div>
+    <h1><?=  $element->getNom() ?></h1>  
+    <div class="slideshowJeuT">
+        <ul>
+        <?php
+        $carrouselDirectory = "data/images/vignettes/";
+        $listeDesImages = $element->getListeImages();
+        foreach ($listeDesImages as $image) :
+        ?>
+            <li><img src="<?= $carrouselDirectory.$image ?>"></li>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+</div>     
 
 </br>
 </br>
@@ -39,6 +52,14 @@
             <p><?= $value ?></p>
         <?php endforeach; ?>
         </br> 
+    <h2>Note Moyenne (Notation sur 5): </h2>
+        <?php $listeDesNotes = $element->getListeNotes();
+            if (!empty($listeDesNotes)):?>
+                <p><?= array_sum($listeDesNotes)/ sizeof($listeDesNotes) ?>/5 (<?= sizeof($listeDesNotes) ?> votes)</p>
+        <?php else:?>  
+                <p>Personne n'a encore évalué ce jeu</p>
+        <?php endif ?>    
+        </br>  
     
         </br>
 <?php
@@ -46,3 +67,8 @@
 endforeach;
 endif;
 ?>
+<form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+    <input type=hidden name="nom" value="<?=$element->getNom() ?>" />
+    <input type='hidden' name='page' value='recherche/jeu_p.php' />
+    <input type="submit" name="submit" class="boutonBleu" value="Recherche un exemplaire de ce jeu">
+</form>

@@ -13,7 +13,7 @@ class Jeu_T extends ProduitCulturel {
     private $listePieces;
     private $dureePartie;
     private $listeGenres;
-    private $noteMoyenne;
+    private $listeNotes;
     private $listeImages;
     private $listeCommentaires;
 
@@ -21,7 +21,7 @@ class Jeu_T extends ProduitCulturel {
      *  constructeur on définit la clé primaire nécessaire aux recherches par id à -1 par défaut
      */
 
-    function __construct($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $noteMoyenne, $listeImages,$listeCommentaires,$idPC = -1) {
+    function __construct($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages,$listeCommentaires,$idPC = -1) {
         parent::__construct($anneeSortie, $description, $typePC, $idPC);
         $this->idPC = $idPC;
         $this->nbJoueursMin = $nbJoueursMin;
@@ -34,7 +34,7 @@ class Jeu_T extends ProduitCulturel {
         $this->listePieces = $listePieces;
         $this->dureePartie = $dureePartie;
         $this->listeGenres = $listeGenres;
-        $this->noteMoyenne = $noteMoyenne;
+        $this->listeNotes = $listeNotes;
         $this->listeImages = $listeImages;
         $this->listeCommentaires = $listeCommentaires;
     }
@@ -131,8 +131,12 @@ class Jeu_T extends ProduitCulturel {
         return $this->listeGenres = listeGenres;
     }
     
-    function getNoteMoyenne() {
-        return $this->noteMoyenne;
+    function getListeNotes() {
+        return $this->listeNotes;
+    }
+    
+    public function setListeNotes($listeNotes) {
+        return $this->listeNotes = listeNotes;
     }
 
     function getListeImages() {

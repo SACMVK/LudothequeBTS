@@ -1,7 +1,12 @@
 <form action=" " method="post" accept-charset="utf-8" class="form" role="form">   
     <legend>Rechercher un exemplaire</legend>
     Nom du jeu : 
+    <?php
+    if (!empty($_REQUEST['nom'])):?>
+    <input class="form-control input-lg" type="text" name="nom" value="<?=$_REQUEST['nom'] ?>"/>
+    <?php else : ?>
     <input class="form-control input-lg" type="text" name="nom"/>
+    <?php endif; ?>
     Nom de l'éditeur :
     <select class="form-control select-lg" name="editeur">
         <?php selectDico("editeur_d", "editeur") ?>

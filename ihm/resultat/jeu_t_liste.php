@@ -9,7 +9,7 @@ function str_truncate($text, $length) {
 
 // M : Affihage de la liste des jeu_t
 ?>
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+
     <table>
         <tr>
             <th>Nom du jeu</th>
@@ -39,11 +39,13 @@ function str_truncate($text, $length) {
                     <td><?= $jeu_t->getAnneeSortie() ?></td>
                     <td><?= str_truncate($jeu_t->getDescription(), 100) ?> ...</td>
                     <td>
-    <!--                    <input type=hidden name="nom" value="<?= $jeu_t->getNom() ?>" /> A reprendre car ne transmet pas la bonne ligne selectionnée par le bouton -->
-                        <input type=hidden name="objectToWorkWith" value="jeu_t" />
-                        <input type=hidden name="actionToDoWithObject" value="selectOne" />
+                        <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+                            <input type=hidden name="nom" value="<?= $jeu_t->getNom() ?>" />  <!--<input type=hidden name="idPC" value="<?= $jeu_t->getIdPC() ?>" />A reprendre car ne transmet pas la bonne ligne selectionnée par le bouton -->
+                            <input type=hidden name="objectToWorkWith" value="jeu_t" />
+                            <input type=hidden name="actionToDoWithObject" value="selectOne" />
 
-                        <input type="submit" name="submit" class="boutonBleu" value="Voir la fiche complète">
+                            <input type="submit" name="submit" class="boutonBleu" value="Voir la fiche complète">
+                        </form>
                     </td>
                 </tr>
                 <?php
@@ -57,4 +59,4 @@ function str_truncate($text, $length) {
         endif;
         ?>
     </table>
-</form>
+

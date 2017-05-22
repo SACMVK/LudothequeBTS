@@ -12,30 +12,10 @@
         const TABLE_EDITEUR_D = 'editeur_d';
         const TABLE_JEU_A_POUR_GENRE = 'jeu_a_pour_genre';
         const TABLE_A_POUR_IMAGE = 'a_pour_image';
+        const TABLE_NOTE_JEU_T = 'note_jeu_t';
+        const TABLE_COMMENTAIRE_P_C_T = 'commentaire_p_c_t';
+        const TABLE_COMPTE = 'compte';
 
-        /*
-         * Fonction permettant de récupérer la liste d'un champs dans une autre table pour une valeur donnée (exemple idPC=1)
-         * @param $table est la table dans laquelle on souhaite récupérer les données
-         * @param $var est la valeur donnée dans le WHERE
-         * @param $champsSelect est la colonne de laquelle nous souhaitons récupérer les données
-         * Retourne une liste de valeurs
-         */
-Function selectListe($table,$var,$champsSelect){
-        $pdo = openConnexion();
-
-            $liste = array();
-            $requete = "SELECT ".$champsSelect." FROM ".$table." WHERE idPC=".$var.";";
-            $stmtListe = $pdo->prepare($requete);
-	
-            $stmtListe->execute() ;
-
-            while ($donnees = $stmtListe->fetch(PDO::FETCH_ASSOC))
-            {
-                $liste[]=$donnees[$champsSelect];
-            }
-            return $liste;
-}
-        
 Function select($requete){
 	/* M : Ouverture de la connexion
 	 */
@@ -86,12 +66,18 @@ Function select($requete){
             $listeGenres = selectListe(TABLE_JEU_A_POUR_GENRE,$idPC,'genre');
             
             $listeImages = selectListe(TABLE_A_POUR_IMAGE,$idPC,'source');
+                       
+            $listeNotes = selectListe(TABLE_NOTE_JEU_T,$idPC,'note');
             
+           /* //=========================== LISTE COMMENTAIRES ====================================================
+            $requete = "SELECT pseudo, commentaireT  FROM ".TABLE_COMMENTAIRE_P_C_T." JOIN ".TABLE_COMPTE." ON ".TABLE_COMMENTAIRE_P_C_T.".idUser=".TABLE_COMPTE.".idUser WHERE idPC=$idPC;";
+            $stmt = $pdo->prepare($requete);
+	
+            $stmt->execute() ;*/
             $listeCommentaires = array();
-            $noteMoyenne = 5;
             
             /* création du nouvel objet Jeu_T */
-            $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$listeGenres,$noteMoyenne,$listeImages,$listeCommentaires,$idPC);
+            $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$listeGenres,$listeNotes,$listeImages,$listeCommentaires,$idPC);
             // ajout de l'objet à la liste
             $liste_jeuT []= $jeuT;
 	}

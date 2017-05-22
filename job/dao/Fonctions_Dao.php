@@ -86,28 +86,27 @@ function getArrayFromSQL(string $table, string $colonne){
     return $array;
 }
 
-Function selectFromWhere($select,$table,$where){
-    /* M : Ouverture de la connexion
-     * $select: ce que l'on veut récuperer (1 valeur par exemple l'idPC
-     * $table : dans quelle table?
-     * $where : toute le weher (ex : "WHERE idPC = 10") -> peremet de ne pas mettre de clause where si l'on ne veut pas
-     * ceci permet de récuperer une valeur d'une table
-	 */
-	$pdo = openConnexion();
+/*
+ * Fonction permettant de récupérer la liste d'un champs dans une autre table pour une valeur donnée (exemple idPC=1)
+ * @param $table est la table dans laquelle on souhaite récupérer les données
+ * @param $var est la valeur donnée dans le WHERE
+ * @param $champsSelect est la colonne de laquelle nous souhaitons récupérer les données
+ * Retourne une liste de valeurs
+ */
+Function selectListe($table,$var,$champsSelect){
+        $pdo = openConnexion();
 
+            $liste = array();
+            $requete = "SELECT ".$champsSelect." FROM ".$table." WHERE idPC=".$var.";";
+            $stmtListe = $pdo->prepare($requete);
 	
-	/* M : préparation de la requete - permet d'adapter les requetes en fonctions de variables
-	 */
-	$requeteSFW = "SELECT ".$select." FROM ".$table." ".$where.";";
-        
-	$stmtSFW = $pdo->prepare($requeteSFW);
-	
-	/* M : 
-	 */
-	$stmtSFW->execute();
-        /* M : Fermeture de la connexion
-	 */
-	$pdo = closeConnexion();    
+            $stmtListe->execute() ;
+
+            while ($donnees = $stmtListe->fetch(PDO::FETCH_ASSOC))
+            {
+                $liste[]=$donnees[$champsSelect];
+            }
+            return $liste;
 }
 
 ?>

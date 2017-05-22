@@ -50,7 +50,7 @@
         if (empty($pageAAfficher)) {
             $pageAAfficher = 'ihm/pages/accueil.php';
         }
-        unset($_REQUEST);
+        //unset($_REQUEST); enlevé pour pouvoir récupérer la variable dans le REQUEST lors de la recherche d'un exemplaire de jeu
         ?>
 
         <!-- ************************************************************************************************ -->
