@@ -73,13 +73,12 @@ Function selectDico(string $table, string $colonneNom, string $colonneId = "", b
     }
 }
 
-
-function getArrayFromSQL(string $table, string $colonne){
-        $pdo = openConnexion();
-    $reponse = "SELECT ".$colonne." FROM " . $table . ";";
+function getArrayFromSQL(string $table, string $colonne) {
+    $pdo = openConnexion();
+    $reponse = "SELECT " . $colonne . " FROM " . $table . ";";
     $stmt = $pdo->prepare($reponse);
     $stmt->execute();
-        $array = array();
+    $array = array();
     while ($donnees = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $array [] = $donnees["$colonne"];
     }
@@ -93,20 +92,19 @@ function getArrayFromSQL(string $table, string $colonne){
  * @param $champsSelect est la colonne de laquelle nous souhaitons récupérer les données
  * Retourne une liste de valeurs
  */
-Function selectListe($table,$var,$champsSelect){
-        $pdo = openConnexion();
 
-            $liste = array();
-            $requete = "SELECT ".$champsSelect." FROM ".$table." WHERE idPC=".$var.";";
-            $stmtListe = $pdo->prepare($requete);
-	
-            $stmtListe->execute() ;
+Function selectListe($table, $var, $champsSelect) {
+    $pdo = openConnexion();
 
-            while ($donnees = $stmtListe->fetch(PDO::FETCH_ASSOC))
-            {
-                $liste[]=$donnees[$champsSelect];
-            }
-            return $liste;
+    $liste = array();
+    $requete = "SELECT " . $champsSelect . " FROM " . $table . " WHERE idPC=" . $var . ";";
+    $stmtListe = $pdo->prepare($requete);
+
+    $stmtListe->execute();
+
+    while ($donnees = $stmtListe->fetch(PDO::FETCH_ASSOC)) {
+        $liste[] = $donnees[$champsSelect];
+    }
+    return $liste;
 }
-
 ?>
