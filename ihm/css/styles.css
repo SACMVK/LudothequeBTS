@@ -37,12 +37,14 @@ caption {
 }
 
 /* M : Affichage liste jeu_t */
-.conteneur {
-    display: flex;
+
+.blocList {
+    border : none;
     border: solid 1px #208f8f;
-    flex-wrap: nowrap;
     border-radius: 20px;
+    padding: 20px;
 }
+
 
 
 /*---AhMaD:SLID--*/
