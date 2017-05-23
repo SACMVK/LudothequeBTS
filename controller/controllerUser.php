@@ -1,7 +1,7 @@
 <?php
 
 // stefan : un cas n'est pas visible : celui de l'affichage du profil qui va directement afficher ce qui est dans la RAM
-switch ($_GET['user']) {
+switch ($_REQUEST['user']) {
     case "maLudotheque":
         include 'job/dao/Jeu_P_Dao.php';
         $_SESSION["maLudotheque"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
