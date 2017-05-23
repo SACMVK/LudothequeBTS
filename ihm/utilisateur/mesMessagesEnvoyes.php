@@ -5,7 +5,7 @@
         foreach ($_SESSION["mesMessagesEnvoyes"] as $message) :
             ?>
             <tr> 
-                <td><?= $message->getIdMessage() ?></td>
+           
                 <td><?= $message->getDestinataire->getNom  ?></td>
                 <td><?= $message->getDateEnvoi() ?></td>
                 <td><?= $message->getSujet()?></td>
