@@ -147,8 +147,14 @@ switch ($actionToDoWithObject) {
             case "Jeu_T":
                 $pageAAfficher = 'ihm/utilisateur/maLudotheque.php'; // ?
                 break;
-            case "Message":
-                $pageAAfficher = 'ihm/utilisateur/mesMessages.php';
+            case "mesMessageRecus":
+                 $_SESSION["mesMessagesRecus"] = select("WHERE idDest = " . $_SESSION["monProfil"]->getIdUser());
+                $pageAAfficher = $_REQUEST["page"];
+                break;
+            
+            case "mesMessageEnvoyes":
+                $_SESSION["mesMessagesEnvoyes"] = select("WHERE idExped = " . $_SESSION["monProfil"]->getIdUser());
+                $pageAAfficher = $_REQUEST["page"];
                 break;
         }
         break;
