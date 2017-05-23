@@ -1,30 +1,30 @@
-<table border= 1px solid black>
-    <caption><?= $jeu->getNom() ?></caption>
+
+<table>
+
     <tr>
-        <th>Nombre de joueurs</th>
-        <th>Editeur</th>
-        <th>Règles</th>
-        <th>Difficulté</th>
-        <th>Public</th>
-        <th>Liste des pièces</th>
-        <th>Durée de la partie</th>
-        <th>Année de sortie</th>
-        <th>Description</th>
+        <th>Nom du jeu</th>
+        <th>Propriétaire</th>
+        <th>Code postal</th>
+
     </tr>
     <?php
     if (!empty($listOfElements)):
-        foreach ($listOfElements as $jeu_t) :
+        foreach ($listOfElements as $jeu_p) :
             ?>        
             <tr>
-                <td><?= $jeu_t->getNbJoueursMin() ?> à <?= $jeu_t->getNbJoueursMax() ?></td>
-                <td><?= $jeu_t->getEditeur() ?></td>
-                <td><?= str_truncate($jeu_t->getRegles(), 100) ?> ...</td>
-                <td><?= $jeu_t->getDifficulte() ?></td>
-                <td><?= $jeu_t->getpublic() ?></td>
-                <td><?= $jeu_t->getListePiecese() ?></td>
-                <td><?= $jeu_t->getDureePartie() ?></td>
-                <td><?= $jeu_t->getAnneeSortie() ?></td>
-                <td><?= str_truncate($jeu_t->getDescription(), 100) ?> ...</td>
+                <td><?= $jeu_p->getJeuT()->getNom() ?></td>
+                <td><?= $jeu_p->getProprietaire()->getPseudo() ?></td>
+                <td><?= $jeu_p->getProprietaire()->getCodePostal() ?></td>
+
+                <td>
+                    
+                    <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+                        <input type=hidden name="idJeuP" value="<?= $jeu_p->getIdJeuP() ?>" />
+                        <input type=hidden name="objectToWorkWith" value="jeu_p" />
+                        <input type=hidden name="actionToDoWithObject" value="selectOne" />
+                        <input type="submit" name="submit" class="boutonBleu" value="Voir la fiche complète">
+                    </form>
+                </td>
             </tr>
             <?php
         endforeach;

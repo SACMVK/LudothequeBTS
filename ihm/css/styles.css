@@ -36,7 +36,13 @@ caption {
     font-weight:bold
 }
 
-
+/* M : Affichage liste jeu_t */
+.conteneur {
+    display: flex;
+    border: solid 1px #208f8f;
+    flex-wrap: nowrap;
+    border-radius: 20px;
+}
 
 
 /*---AhMaD:SLID--*/

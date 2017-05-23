@@ -18,9 +18,9 @@
                 <label>Commentaire a destination de l'emprunteur</label>
                 <textarea class="form-control" rows="7" name="text"></textarea>
 
-                <button class="btn btn-info active" type="submit">Accepter</button>
-                <button class="btn btn-info active" type="submit">Proposer dates</button>
-                <button class="btn btn-info active" type="submit">Refuser</button>
+                <button class="boutonBleu" type="submit">Accepter</button>
+                <button class="boutonBleu" type="submit">Proposer dates</button>
+                <button class="boutonBleu" type="submit">Refuser</button>
             </div>
         </div>
     </form>
