@@ -38,13 +38,11 @@ function str_truncate($text, $length) {
 
                     <input type="submit" name="submit" class="boutonBleu" value="Voir la fiche complète">
                 </form>
-      
+      </div>
 
             <?php
         endforeach;
-        ?>
-    </div>
-<?php
+        
     else:
         ?>
         <div>
