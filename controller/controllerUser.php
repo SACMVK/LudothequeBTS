@@ -16,11 +16,11 @@ switch ($_GET['user']) {
         break;
     case "mesMessagesEnvoyes";
         include 'job/dao/Message_Dao.php';
-        $_SESSION["mesMessagesEnvoyes"] = select("WHERE message.idExped = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesMessagesEnvoyes"] = select("WHERE idExped = " . $_SESSION["monProfil"]->getIdUser());
         break;
     case "mesMessagesRecus";
         include 'job/dao/Message_Dao.php';
-        $_SESSION["mesMessagesRecus"] = select("WHERE message.idDest = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesMessagesRecus"] = select("WHERE idDest = " . $_SESSION["monProfil"]->getIdUser());
         break;
 }
 
