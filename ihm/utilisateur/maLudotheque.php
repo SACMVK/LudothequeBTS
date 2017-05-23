@@ -1,10 +1,11 @@
 <legend>Ma ludothèque</legend>
-<table>
+<a href='index.php?page=creation/jeu_p.php'><button class="boutonBlanc">Ajouter un jeu à ma ludothèque</button></a>
+<br/>
     <?php
     if (!empty($_SESSION["maLudotheque"])):
         foreach ($_SESSION["maLudotheque"] as $jeuP) :
             ?>
-            <tr> 
+            <div class=""> 
                 <td><?= $jeuP->getIdJeuP() ?></td>
                 <td><?= $jeuP->getJeuT()->getNom() ?></td>
                 <td><?= $jeuP->getJeuT()->getEditeur() ?></td>
@@ -28,7 +29,7 @@
     <?php
     endif;
     ?>
-</table>
-<a href='index.php?page=creation/jeu_p.php'><button class="boutonBleu">Ajouter un jeu à ma ludothèque</button></a>
+
+<a href='index.php?page=creation/jeu_p.php'><button class="boutonBlanc">Ajouter un jeu à ma ludothèque</button></a>
 
 
