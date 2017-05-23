@@ -35,16 +35,13 @@ function str_truncate($text, $length) {
                         <input type=hidden name="nom" value="<?= $jeu_t->getNom() ?>" />  <!--<input type=hidden name="idPC" value="<?= $jeu_t->getIdPC() ?>" />A reprendre car ne transmet pas la bonne ligne selectionnée par le bouton -->
                     <input type=hidden name="objectToWorkWith" value="jeu_t" />
                     <input type=hidden name="actionToDoWithObject" value="selectOne" />
-
                     <input type="submit" name="submit" class="boutonBleu" value="Voir la fiche complète">
                 </form>
-      
+      </div>
 
             <?php
         endforeach;
-        ?>
-    </div>
-<?php
+        
     else:
         ?>
         <div>
