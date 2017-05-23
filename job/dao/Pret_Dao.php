@@ -1,10 +1,7 @@
 <?php
 
-
-
-
 function select($requete) {
-    
+
 
     //AhMaD:ouvrire la connexion avec BD
     $db = openConnexion();
@@ -16,70 +13,115 @@ function select($requete) {
             . " JOIN jeu_p ON jeu_p.idJeuP = pret_p.idJeuP "
             . " JOIN produit_culturel_t ON jeu_p.idPC = produit_culturel_t.idPC "
             . " JOIN jeu_t ON jeu_t.idPC = produit_culturel_t.idPC "
+            . " JOIN compte as compteProprietaire ON jeu_p.idProprietaire = compteProprietaire.idUser "
+            . " JOIN individu as individuProprietaire ON jeu_p.idProprietaire = individuProprietaire.idUser "
+            . " JOIN statut_demande_d ON statut_demande_d.statut = pret_p.statutDemande "
             . $requete . ";";
 
-        $requete = "SELECT * FROM " . TABLE_INDIVIDU
-            . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser "
-            . " JOIN " . TABLE_JEU_P . " ON " . TABLE_JEU_P . ".idProprietaire = " . TABLE_COMPTE . ".idUser "
-            . " JOIN " . TABLE_PCT . " ON " . TABLE_JEU_P . ".idPC = " . TABLE_PCT . ".idPC "
-            . " JOIN " . TABLE_JEUT . " ON " . TABLE_JEUT . ".idPC = " . TABLE_PCT . ".idPC ";
 
     $stmt = $db->prepare($requete);
 
     $stmt->execute();
 
-     $pret_list = array();
+    $pret_list = array();
+
+/* stefan : PDO ne permet pas d'avoir les noms de colonnes retournées de type table.colonne
+ * En cas de nom doublon (par exemple nom emprunteur, nom propriétaire et nom jeu),
+ * FETCH_ASSOC écrase les valeurs car il ne peut retourner que "nom".
+ * FETCH_NAMED créé des tableaux lorsque plusieurs colonnes ont le même nom.
+ * Il faut donc aller chercher les index.
+ * On peut se repérer car les tableaux sont créé au fur et à mesure de la déclaration
+ * des tables dans le JOIN.
+ * D'où l'intérêt d'avoir des noms de colonnes intégrant le nom
+ * de la table : table_colonne.
+ */
+    while ($champ = $stmt->fetch(PDO::FETCH_NAMED)) {
+        $idUserProprietaire = $champ['idUser']["2"];
+        $villeProprietaire = $champ['ville']["1"];
+        $adresseProprietaire = $champ['adresse']["1"];
+        $codePostalProprietaire = $champ['codePostal']["1"];
+        $dptProprietaire = $champ['numDept']["1"];
+        $emailProprietaire = $champ['email']["1"];
+        $telephoneProprietaire = $champ['telephone']["1"];
+        $pseudoProprietaire = $champ['pseudo']["1"];
+        $dateInscriptionProprietaire = $champ['dateInscription']["1"];
+        $mdpProprietaire = $champ['mdp']["1"];
+        $droitProprietaire = $champ['droit']["1"];
+        $nomProprietaire = $champ['nom']["2"];
+        $prenomProprietaire = $champ['prenom']["1"];
+        $dateNaissanceProprietaire = $champ['dateNaiss']["1"];
+
+        $proprietaire = new Individu($villeProprietaire, $adresseProprietaire, $codePostalProprietaire, $dptProprietaire, $emailProprietaire, $telephoneProprietaire, $pseudoProprietaire, $dateInscriptionProprietaire, $mdpProprietaire, $droitProprietaire, $nomProprietaire, $prenomProprietaire, $dateNaissanceProprietaire, $idUserProprietaire);
+
+        $nbJoueursMinJeuT = $champ['nbJoueursMin'];
+        $nbJoueursMaxJeuT = $champ['nbJoueursMax'];
+        $nomJeuT = $champ['nom']["1"];
+        $editeurJeuT = $champ['editeur'];
+        $reglesJeuT = $champ['regles'];
+        $difficulteJeuT = $champ['difficulte'];
+        $publicJeuT = $champ['public'];
+        $listePiecesJeuT = $champ['listePieces'];
+        $dureePartieJeuT = $champ['dureePartie'];
+        $anneeSortieJeuT = $champ['anneeSortie'];
+        $descriptionJeuT = $champ['description'];
+        $idPCJeuT = $champ['idPC']["0"];
+        $typePCJeuT = $champ['typePC'];
+
+        $listeGenresJeuT = array();
+        $listeImagesJeuT = array();
+        $listeCommentairesJeuT = array();
+        $noteMoyenneJeuT = 5;
 
 
-    while ($champ = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $idUser = $champ['idUser'];
-        $ville = $champ['ville'];
-        $adresse = $champ['adresse'];
-        $codePostal = $champ['codePostal'];
-        $dpt = $champ['numDept'];
-        $email = $champ['email'];
-        $telephone = $champ['telephone'];
-        $pseudo = $champ['pseudo'];
-        $dateInscription = $champ['dateInscription'];
-        $mdp = $champ['mdp'];
-        $droit = $champ['droit'];
-        $nom = $champ['nom'];
-        $prenom = $champ['prenom'];
-        $dateNaissance = $champ['dateNaiss'];
+        $jeuT = new Jeu_T($nbJoueursMinJeuT, $nbJoueursMaxJeuT, $nomJeuT, $editeurJeuT, $reglesJeuT, $difficulteJeuT, $publicJeuT, $listePiecesJeuT, $dureePartieJeuT, $anneeSortieJeuT, $descriptionJeuT, $typePCJeuT, $listeGenresJeuT, $noteMoyenneJeuT, $listeImagesJeuT, $listeCommentairesJeuT, $idPCJeuT);
 
-        $proprietaire = new Individu($ville, $adresse, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser);
+        $idJeuP = $champ['idJeuP']["0"];
 
-            $nbJoueursMin = $champ['nbJoueursMin'];
-            $nbJoueursMax = $champ['nbJoueursMax'];
-            $nom = $champ['nom'];
-            $editeur = $champ['editeur'];
-            $regles = $champ['regles'];
-            $difficulte = $champ['difficulte'];
-            $public = $champ['public'];
-            $listePieces = $champ['listePieces'];
-            $dureePartie = $champ['dureePartie'];
-            $anneeSortie = $champ['anneeSortie'];
-            $description = $champ['description'];
-            $idPC = $champ['idPC'];
-            $typePC = $champ['typePC'];
-            
-            $listeGenres = array();
-            $listeImages = array();
-            $listeCommentaires = array();
-            $noteMoyenne = 5;
+        $jeuP = new Jeu_P($proprietaire, $jeuT, $idJeuP);
 
-  
-        $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$listeGenres,$noteMoyenne,$listeImages,$listeCommentaires,$idPC);
+        $idUserEmprunteur = $champ['idUser']["0"];
+        $villeEmprunteur = $champ['ville']["0"];
+        $adresseEmprunteur = $champ['adresse']["0"];
+        $codePostalEmprunteur = $champ['codePostal']["0"];
+        $dptEmprunteur = $champ['numDept']["0"];
+        $emailEmprunteur = $champ['email']["0"];
+        $telephoneEmprunteur = $champ['telephone']["0"];
+        $pseudoEmprunteur = $champ['pseudo']["0"];
+        $dateInscriptionEmprunteur = $champ['dateInscription']["0"];
+        $mdpEmprunteur = $champ['mdp']["0"];
+        $droitEmprunteur = $champ['droit']["0"];
+        $nomEmprunteur = $champ['nom']["0"];
+        $prenomEmprunteur = $champ['prenom']["0"];
+        $dateNaissanceEmprunteur = $champ['dateNaiss']["0"];
 
-        $idJeuP = $champ['idJeuP'];
-        
-         $pret_list[] = new Jeu_P($proprietaire, $jeuT, $idJeuP);
+        $emprunteur = new Individu($villeEmprunteur, $adresseEmprunteur, $codePostalEmprunteur, $dptEmprunteur, $emailEmprunteur, $telephoneEmprunteur, $pseudoEmprunteur, $dateInscriptionEmprunteur, $mdpEmprunteur, $droitEmprunteur, $nomEmprunteur, $prenomEmprunteur, $dateNaissanceEmprunteur, $idUserEmprunteur);
+
+        $propositionEmprunteurDateDebut = $champ['propositionEmprunteurDateDebut'];
+        $propositionEmprunteurDateFin = $champ['propositionEmprunteurDateFin'];
+        $propositionPreteurDateDebut = $champ['propositionPreteurDateDebut'];
+        $propositionPreteurDateFin = $champ['propositionPreteurDateFin'];
+        $notification = $champ['notification'];
+        $statutDemande = $champ['statutDemande'];
+        $idPret = $champ['idPret'];
+
+        $requete = "SELECT * FROM notification WHERE idNotification = " . $notification . ";";
+        $stmtNotification = $db->prepare($requete);
+        $stmtNotification->execute();
+        $notification_dic = array();
+        while ($champNotification = $stmtNotification->fetch(PDO::FETCH_ASSOC)) {
+            $notification_dic ["sujetPreteur"] = $champNotification["sujetPreteur"];
+            $notification_dic ["corpsPreteur"] = $champNotification["corpsPreteur"];
+            $notification_dic ["sujetEmprunteur"] = $champNotification["sujetEmprunteur"];
+            $notification_dic ["corpsEmprunteur"] = $champNotification["corpsEmprunteur"];
+        }
+
+        $pret_list[] = new Pret($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $notification_dic, $statutDemande, $idPret);
     }
 
     $db = closeConnexion();
 
 
-    return  $pret_list;
+    return $pret_list;
 }
 
 function insert($requete) {
@@ -93,4 +135,3 @@ function update($requete) {
 function delete($id) {
     
 }
-

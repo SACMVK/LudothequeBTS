@@ -9,7 +9,7 @@ class Pret {
     private $propositionEmprunteurDateFin;
     private $propositionPreteurDateDebut;
     private $propositionPreteurDateFin;
-    private $notification;
+    private $notification;// Dictionnaire avec pour clés : sujetPreteur, corpsPreteur, sujetEmprunteur, corpsEmprunteur
     private $statutDemande;
 
     function __construct($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $notification, $statutDemande, $idPret = -1) {
@@ -80,7 +80,7 @@ class Pret {
         return $this->propositionPreteurDateFin = $propositionPreteurDateFin;
     }
 
-    public function getNostification() {
+    public function getNotification() {
         return $this->notification;
     }
 

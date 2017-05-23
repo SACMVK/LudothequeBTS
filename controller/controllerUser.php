@@ -7,11 +7,11 @@ switch ($_REQUEST['user']) {
         $_SESSION["maLudotheque"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
         break;
     case "mesPrets";
-        include 'job/dao/Jeu_P_Dao.php';
+        include 'job/dao/Pret_Dao.php';
         $_SESSION["mesPrets"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
         break;
     case "mesEmprunts";
-        include 'job/dao/Jeu_P_Dao.php';
+        include 'job/dao/Pret_Dao.php';
         $_SESSION["mesEmprunts"] = select("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
         break;
     case "mesMessagesEnvoyes";
