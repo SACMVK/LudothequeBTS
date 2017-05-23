@@ -1,5 +1,5 @@
 <?php
-
+// Charlotte
 // ouverture de la connexion
 // // declaration variable qui correspond à la table message
 
@@ -8,7 +8,7 @@ const TABLE_COMPTE = "compte";
 const TABLE_INDIVIDU = "individu";
 
 
-// Charlotte
+
 // function select == function find()
 Function select($requete) {
     
@@ -134,18 +134,14 @@ Function update($requete) {
     $pdo = closeConnexion();
 }
 
-function delete($id) {
+function delete($idOfLineToDelete) {
     $pdo = openConnexion();
 
 
 //prepare =avant query pour éviter faille de sécurité
-    $requeteDelete = "DELETE  FROM " . $table . " WHERE idMessage = :idMessage ;";
+    $requeteDelete = "DELETE  FROM " . TABLE_MESSAGE . " WHERE idMessage =".$idOfLineToDelete['idMessage'].";";
     $stmt = $pdo->prepare($requeteDelete);
-
-    $stmt->bindValue(':idMessage', $id);
-
-
-
+ 
 // execution de la requete
     $stmt->execute();
 
