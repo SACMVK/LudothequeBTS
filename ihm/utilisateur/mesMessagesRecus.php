@@ -14,8 +14,7 @@
                     <form action=" " method="post" accept-charset="utf-8">
                         <input type=hidden name="objectToWorkWith" value="Message" />
                         <input type=hidden name="actionToDoWithObject" value="read" />
-                        <input type="hidden" name="idMessage" value="<?= $message->getIdMessage() ?>" />
-                       
+                                               
                     </form>
                 </td>
             </tr> 
