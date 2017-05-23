@@ -14,7 +14,7 @@
                         <input type=hidden name="objectToWorkWith" value="Jeu_P" />
                         <input type=hidden name="actionToDoWithObject" value="delete" />
                         <input type="hidden" name="idJeuP" value="<?= $jeuP->getIdJeuP() ?>" />
-                        <button type="submit" name="submit" class="boutonBleu">Supprimer ce jeu de ma ludothèque</button>
+                        <input type="image" name="submit" class="boutonTransparent" value="Supprimer ce jeu de ma ludothèque" src="ihm/img/delete.png">
                     </form>
                 </td>
             </tr> 
