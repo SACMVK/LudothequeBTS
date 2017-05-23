@@ -2,21 +2,25 @@
 
 // ouverture de la connexion
 // // declaration variable qui correspond à la table message
-$table = 'message';
+
+const TABLE_MESSAGE = "message";
+const TABLE_COMPTE = "compte";
+const TABLE_INDIVIDU = "individu";
 
 
 // Charlotte
 // function select == function find()
 Function select($requete) {
+    
     $pdo = openConnexion();
-    $table = "message";
 // on recupere le contenu de la table message
 //prepare =avant query pour éviter faille de sécurité
-    $requete = "SELECT * FROM message 
-            join individu as destIndividu on idDest=destIndividu.idUser
-            join compte as destCompte on destCompte.idUser=destindividu.idUser
-            join individu as expedIndividu on idExped=expedIndividu.idUser
-            join compte as expedCompte on expedCompte.idUser=expedIndividu.idUser"
+   
+    $requete = "SELECT * FROM ".TABLE_MESSAGE."
+            join ".TABLE_INDIVIDU." as destIndividu on idDest=destIndividu.idUser
+            join ".TABLE_COMPTE." as destCompte on destCompte.idUser=destindividu.idUser
+            join ".TABLE_INDIVIDU." as expedIndividu on idExped=expedIndividu.idUser
+            join ".TABLE_COMPTE." as expedCompte on expedCompte.idUser=expedIndividu.idUser "
             .$requete.";";
     
 // execution de la requete
@@ -29,21 +33,53 @@ Function select($requete) {
     while ($donnees = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 // creation des variable correspondant aux attributs de la class Message
-        $idMessage = $requete['idMessage'];
-        $idExped = $requete['idExped'];
-        $idDest = $requete['idDest'];
-        $texte = $requete['texte'];
-        $sujet = $requete['sujet'];
-        $dateEnvoi = $requete['dateEnvoi'];
+        $idMessage = $donnees['idMessage'];
+        $idExped = $donnees['idExped'];
+        $idDest = $donnees['idDest'];
+        $texte = $donnees['texte'];
+        $sujet = $donnees['sujet'];
+        $dateEnvoi = $donnees['dateEnvoi'];
+        
+        $destVille = $donnees['ville'];
+        $destAdresse = $donnees['adresse'];
+        $destCodePostal = $donnees['codePostal'];
+        $destDpt = $donnees['numDept'];
+        $destEmail = $donnees['email'];
+        $destTelephone = $donnees['telephone'];
+        $destPseudo = $donnees['pseudo'];
+        $destDateInscription = $donnees['dateInscription'];
+        $destMdp = $donnees['mdp'];
+        $destDroit = $donnees['droit'];
+        $destNom = $donnees['nom'];
+        $destPrenom = $donnees['prenom'];
+        $destDN = $donnees['dateNaiss'];
+        
+        $expVille = $donnees['ville'];
+        $expAdresse = $donnees['adresse'];
+        $expCodePostal = $donnees['codePostal'];
+        $expDpt = $donnees['numDept'];
+        $expEmail = $donnees['email'];
+        $expTelephone = $donnees['telephone'];
+        $expPseudo = $donnees['pseudo'];
+        $expDateInscription = $donnees['dateInscription'];
+        $expMdp = $donnees['mdp'];
+        $expDroit = $donnees['droit'];
+        $expNom = $donnees['nom'];
+        $expPrenom = $donnees['prenom'];
+        $expDN = $donnees['dateNaiss'];
 
-        $listeMessages[] = new Message($idExped, $idDest, $dateEnvoi, $sujet, $texte, $idMessage);
+        $dest = new Individu($destVille, $destAdresse, $destCodePostal, $destDpt, $destEmail, $destTelephone, $destPseudo, $destDateInscription, $destMdp, $destDroit, $destNom, $destPrenom, $destDN);
+        $exp = new Individu($expVille, $expAdresse, $expCodePostal, $expDpt, $expEmail, $expTelephone, $expPseudo, $expDateInscription, $expMdp, $expDroit, $expNom, $expPrenom, $expDN);
+    
+        $listeMessages[] = new Message($exp, $dest, $dateEnvoi, $sujet, $texte, $idMessage);
+    }
 //echo $donnees['texte'] ."   ". $donnees['sujet'] ."   ". $donnees['typeMessage'];
 // fermeture de la connexion
         $pdo = closeConnexion();
 
 // retourne la liste de messages
         return $listeMessages;
-    }
+    
 }
 
 // &$ = passage par reference

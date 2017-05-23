@@ -13,6 +13,7 @@
                         <?php if ($droitsUser == "Modérateur" || $droitsUser == "Administrateur"): ?>
                             <p class="titre_menu">Menu modérateur</p><hr/>
                             <a href='index.php?page=pages/_old/_enCours.php'><li>Valider un jeu</li></a>
+                            <a href='index.php?page=pages/_old/_enCours.php'><li>Modifier un jeu</li></a>
                         <?php endif; ?>
                         <p class="titre_menu">Menu utilisateur</p><hr/>
                         <a href='index.php?user=monProfil'><li>Mon profil</li></a>

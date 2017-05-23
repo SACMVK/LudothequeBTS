@@ -4,19 +4,19 @@
 <p class="paragraphe_accueil" >
     <?php if (empty($_SESSION)): ?>
         <a href="index.php?page=creation/individu.php">
-            Bienvenu.e dans la Ludothèque du BTS,<br/>
+            Bienvenue dans la Ludothèque du BTS,<br/>
             première plate-forme d'échange de jeux !<br/>
             Partagez vos jeux et jouez avec les autres,<br/>
             Rejoignez-nous !
         </a>
     <?php else: ?>
-        Bienvenu.e dans votre Ludothèque, <?= $_SESSION["monProfil"]->getPseudo() ?> !
+        Bienvenue dans votre Ludothèque, <?= $_SESSION["monProfil"]->getPseudo() ?> !
     <?php endif; ?>
 </p>
 
 <!-- Caroussel -->
 <?php
-$repertoireCarrousel = "ihm/img/";
+$repertoireCarrousel = "data/images/";
 $carrousel = [
     ["carte.jpg", "Jeu de carte"],
     ["jeu.jpg", "Jamaïca"],
