@@ -22,7 +22,7 @@
                         <input type=hidden name="idJeuP" value="<?= $jeu_p->getIdJeuP() ?>" />
                         <input type=hidden name="objectToWorkWith" value="jeu_p" />
                         <input type=hidden name="actionToDoWithObject" value="selectOne" />
-                        <input type="submit" name="submit" class="boutonBleu" value="Voir la fiche complète">
+                        <input type="image" name="submit" class="boutonTransparent" value="Voir la fiche complète" src="ihm/img/loupe.png">
                     </form>
                 </td>
             </tr>

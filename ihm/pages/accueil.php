@@ -16,7 +16,7 @@
 
 <!-- Caroussel -->
 <?php
-$repertoireCarrousel = "ihm/img/";
+$repertoireCarrousel = "data/images/";
 $carrousel = [
     ["carte.jpg", "Jeu de carte"],
     ["jeu.jpg", "Jamaïca"],
