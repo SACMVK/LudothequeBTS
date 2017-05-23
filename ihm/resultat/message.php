@@ -1,4 +1,7 @@
-             <?= $message->getExp()->getNom()  ?> 
-             <?= $message->getExp()->getPrenom()  ?>           
-             <?= $message->getSujet()?>  
-             <?= $message->getTexte()?> 
+            <div class="blocList">
+             <?=  $element->getExp()->getNom()  ?> 
+             <?=  $element->getExp()->getPrenom()  ?>           
+             <?=  $element->getSujet()?>  
+             <?=  $element->getTexte()?> 
+                
+            </div>
