@@ -10,13 +10,11 @@
 
     <legend>Proposer un nouveau jeu à la ludothèque</legend>
     Type de produit culturel :
-    <input type="text" list="typePCdata" name="typePC">
+    <!-- Autocmplétion : Si fait de cette manière il faut ajouter dans le insert du Jeu_T_Dao la Vérification si le typePC existe déjà dans le dico type_p_c_d -->
+    <input type="text" list="typePCdata" name="typePC" required>
     <datalist id="typePCdata">
-        <label for="typePC">ou sélectionner dans la liste</label>
-        <select name="typePC" id="typePC">
             <?php selectDico("type_p_c_d", "typePC", ""); ?>
-        </select>
-    </datalist><br/>
+    </datalist><br/><br/>
 
     Nom :
     <input type="text" name="nom" size="10" maxlength="10" class="form-control input-lg"  placeholder="Nom" required/>
@@ -35,22 +33,33 @@
 
     <!-- Pour l'editeur donne la possibilité d'écrire un nom d'éditeur si n'apparait pas dans la liste ou de le selectionner directement -->
     Editeur :
-    <input type="text" list="editeurdata" name="editeur">
+    <input type="text" list="editeurdata" name="editeur" required>
     <datalist id="editeurdata">
-        <label for="editeur">ou sélectionner dans la liste</label>
-        <select name="editeur" id="editeur">
-            <?php selectDico("editeur_d", "editeur"); ?>
-        </select>
-    </datalist><br/>
+        <?php selectDico("editeur_d", "editeur"); ?>
+    </datalist><br/><br/>
 
     Règles du jeu :
     <input type="text" name="regles" class="form-control input-lg"  placeholder="Le but du jeu est de se débarrasser de toutes ses cartes..." required/>
 
     Difficulté :
-    <select type="range" class="form-control select-lg" name="difficulte">
+    <select type="text" class="form-control select-lg" name="difficulte" required>
         <?php selectDico("difficulte_d", "difficulte") ?>
     </select>
+    
+    Public :
+    <select type="text" class="form-control select-lg" name="public" required>
+        <?php selectDico("public_d", "public") ?>
+    </select>
 
+    Liste des pièces du jeu :
+    <input type="text" name="listePieces" class="form-control input-lg"  placeholder="un jeu de 52 cartes et un sablier ..." required/>
+    
+    Durée de la partie :
+    <input type="text" list="dureePartie" name="dureePartie" placeholder="ex : 15 minutes, 2 heures , 2 jours" required>
+    <datalist id="dureePartie">
+            <?php selectDico("jeu_t", "dureePartie"); ?>
+    </datalist><br/><br/>
+    
     <input type=hidden name="objectToWorkWith" value="Jeu_T" />
     <input type=hidden name="actionToDoWithObject" value="insert" />
 
