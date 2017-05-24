@@ -2,10 +2,10 @@
     <legend>
         Rechercher un jeu
     </legend>
-    <!--    Type de produit recherché
-        <select class="form-control select-lg" name="typePC">
-    <?php selectDico("type_p_c_d", "typePC") ?>
-        </select>-->
+    Type de produit recherché
+    <select class="form-control select-lg" name="typePC">
+        <?php selectDico("type_p_c_d", "typePC") ?>
+    </select>
     Nom du jeu : 
     <input class="form-control input-lg" type="text" name="nom"/>
     Nom de l'éditeur :
