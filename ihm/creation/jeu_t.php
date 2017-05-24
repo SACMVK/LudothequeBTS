@@ -17,7 +17,7 @@
     </datalist><br/><br/>
 
     Nom :
-    <input type="text" name="nom" size="10" maxlength="10" class="form-control input-lg"  placeholder="Nom" required/>
+    <input type="text" name="nom" class="form-control input-lg"  placeholder="Nom" required/>
 
     Année de sortie :
     <input type="number" step="1" name="anneeSortie" min="1900" max="2100" class="form-control input-lg"  placeholder="2000" required/>
