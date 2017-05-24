@@ -57,7 +57,8 @@ if (!empty($element)):
         <?php endforeach; ?>
         </br> 
         <h2>Note Moyenne (Notation sur 5): </h2>
-        <?php $listeDesNotes = $element->getListeNotes();
+        <?php
+        $listeDesNotes = $element->getListeNotes();
         if (!empty($listeDesNotes)):
             ?>
             <p><?= round(array_sum($listeDesNotes) / sizeof($listeDesNotes), 1) ?>/5 (<?= sizeof($listeDesNotes) ?> votes)</p>
@@ -69,14 +70,18 @@ if (!empty($element)):
         <h2>Commentaires de joueurs : </h2>
         <?php
         $listeCommentaires = $element->getListeCommentaires();
-        foreach ($listeCommentaires as $commentaireT) :
-            foreach ($commentaireT as $pseudo => $valueComment):
-                ?>
-                <em>"<?= $valueComment ?>"</em><strong><?= $pseudo ?></strong><br/><br/>
-                <?php
+        if (!empty($listeCommentaires)):
+            foreach ($listeCommentaires as $commentaireT) :
+                foreach ($commentaireT as $pseudo => $valueComment):
+                    ?>
+                    <em>"<?= $valueComment ?>"</em><strong><?= $pseudo ?></strong><br/><br/>       
+                    <?php
+                endforeach;
             endforeach;
-        endforeach;
-        ?>
+        else:
+            ?>
+            <p>Personne n'a encore commenté ce jeu</p>
+        <?php endif; ?>
 
         <?php
     endforeach;
