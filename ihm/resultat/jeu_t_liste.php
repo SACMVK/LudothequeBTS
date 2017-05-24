@@ -32,10 +32,10 @@ function str_truncate($text, $length) {
                 <p><strong>Description :</strong> <?= str_truncate($jeu_t->getDescription(), 100) ?> ...</p>
         
                 <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
-                        <input type=hidden name="nom" value="<?= $jeu_t->getNom() ?>" />  <!--<input type=hidden name="idPC" value="<?= $jeu_t->getIdPC() ?>" />A reprendre car ne transmet pas la bonne ligne selectionnée par le bouton -->
+                    <input type=hidden name="nom" value="<?= $jeu_t->getNom() ?>" />  <!--<input type=hidden name="idPC" value="<?= $jeu_t->getIdPC() ?>" />A reprendre car ne transmet pas la bonne ligne selectionnée par le bouton -->
                     <input type=hidden name="objectToWorkWith" value="jeu_t" />
                     <input type=hidden name="actionToDoWithObject" value="selectOne" />
-                    <input type="submit" name="submit" class="boutonBleu" value="Voir la fiche complète">
+                    <input type="image" name="submit" class="boutonTransparent" value="Voir la fiche complète" src="ihm/img/loupe.png">
                 </form>
       </div>
 

@@ -13,7 +13,7 @@
   </option>
   <option>
     <nom>nbEmpruntsAvantDemandeInvitation</nom>
-    <texte_affichage>Quel est le nombre d'emprunts possibles avant la demande de'invitation' ?</texte_affichage>
+    <texte_affichage>Quel est le nombre d'emprunts possibles avant la demande d'invitation ?</texte_affichage>
     <valeur>4</valeur>
   </option>
   <option>
@@ -38,7 +38,7 @@
   </option>
   <option>
     <nom>autoriserCommentairesSurProduitCulturelT</nom>
-    <texte_affichage>Les commentaires sur le produit culturel sont-ils autorisées ?</texte_affichage>
+    <texte_affichage>Les commentaires sur le produit culturel sont-ils autorisés ?</texte_affichage>
     <valeur>true</valeur>
   </option>
   <option>

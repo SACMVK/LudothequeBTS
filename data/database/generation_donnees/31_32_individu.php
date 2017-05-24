@@ -21,6 +21,7 @@ function generer_donnees_individu(int $nombreIndividus) {
         $list['adresse'] = getAdresse();
         $list['ville'] = getVille();
         $list['telephone'] = getTelephone();
+        $list['typeCompte'] = getTypeCompte();
         // stefan : petite méthode permettant de relancer un pseudo s'il existe déjà
         $listePseudo [] = "";
         do {
@@ -42,8 +43,8 @@ function generer_donnees_individu(int $nombreIndividus) {
 //        echo $list['adresse'] . " à " . $list['ville'] . ", " . $list['codePostal'] . " dans le " . $list['numDept'] . " (" . $departement[1] . ")<br><br>";
 
 
-        echo 'INSERT INTO compte (adresse,ville,email,telephone,pseudo,dateInscription,mdp,codePostal,numDept,droit)';
-        echo 'VALUES ("' . $list['adresse'] . '","' . $list['ville'] . '","' . $list['email'] . '","' . $list['telephone'] . '","' . $list['pseudo'] . '","' . $list['dateInscription'] . '","' . $list['mdp'] . '","' . $list['codePostal'] . '","' . $list['numDept'] . '","' . $list['droit'] . '");';
+        echo 'INSERT INTO compte (adresse,ville,email,telephone,pseudo,dateInscription,mdp,codePostal,numDept,droit,typeCompte)';
+        echo 'VALUES ("' . $list['adresse'] . '","' . $list['ville'] . '","' . $list['email'] . '","' . $list['telephone'] . '","' . $list['pseudo'] . '","' . $list['dateInscription'] . '","' . $list['mdp'] . '","' . $list['codePostal'] . '","' . $list['numDept'] . '","' . $list['droit'] . '","' . $list['typeCompte'] . '");';
         echo '<br>';
         echo 'INSERT INTO individu (idUser,nom,prenom,dateNaiss)';
         echo 'VALUES ("' . $indice . '","' . $list['nom'] . '","' . $list['prenom'] . '","' . $list['dateNaiss'] . '");';
@@ -165,6 +166,19 @@ function getDroits() {
     }
     $pdo = closeConnexion();
     return $liste_droits[rand(0, count($liste_droits) - 1)];
+}
+
+function getTypeCompte() {
+    $pdo = openConnexion();
+    $requete = "SELECT * FROM type_compte_d;";
+    $stmt = $pdo->prepare($requete);
+    $stmt->execute();
+    $liste_type_compte = null;
+    while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $liste_type_compte [] = $ligne['typeCompte'];
+    }
+    $pdo = closeConnexion();
+    return $liste_type_compte[rand(0, count($liste_type_compte) - 1)];
 }
 
 // stefan : nom pourri car on ne peut utiliser getDate()

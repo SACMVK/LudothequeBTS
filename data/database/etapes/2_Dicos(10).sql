@@ -2,6 +2,9 @@
 # Insertion de données de la table droit_d
 INSERT INTO droit_d (droit) VALUES ("Administrateur"), ("Modérateur"), ("Utilisateur");
 
+# Insertion de données de la table droit_d
+INSERT INTO type_compte_d (typeCompte) VALUES ("Individu"), ("Association"), ("Groupe");
+
 # Insertion de données de la table etat_d
 INSERT INTO etat_d (etat) VALUES ("Neuf"), ("Bon état"),("Usé"), ("Abimé");
 

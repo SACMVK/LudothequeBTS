@@ -34,6 +34,7 @@ use ludotheque;
 #  * editeur_d
 #  * difficulte_d
 #  * public_d
+#  * type_compte_d      Created on 23/05/2107
 
 
 # Création de la table compte (M)
@@ -51,6 +52,7 @@ CREATE TABLE compte (
   mdp varchar(50) NOT NULL,
   codePostal int(5) unsigned NOT NULL,
   droit varchar(20) NOT NULL, #FK dico
+  typeCompte VARCHAR(30) NOT NULL DEFAULT 'Individu', -- #FK dico - Created on 23/05/2107
 
   PRIMARY KEY (idUser)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -73,7 +75,7 @@ DROP TABLE IF EXISTS jeu_p;
 
 CREATE TABLE jeu_p (
   idJeuP smallint(8) UNSIGNED NOT NULL AUTO_INCREMENT,  
-  idPC SMALLINT(8) UNSIGNED NOT NULL, #FK   à modifier en idPC si modif dans la table jeu_t
+  idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
   idProprietaire smallint(8) unsigned NOT NULL, #FK
 
   PRIMARY KEY (idJeuP)
@@ -156,6 +158,7 @@ create table produit_culturel_t(
   typePC VARCHAR(50) NOT NULL,	#FK
   anneeSortie	year NOT NULL,
   description TEXT NOT NULL,
+  valider TINYINT(1) NOT NULL DEFAULT '1',
 
   PRIMARY KEY (idPC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -349,6 +352,14 @@ CREATE TABLE statut_demande_d (
   PRIMARY KEY (statut)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+# Création de la table Dico type_compte_d du compte - Created: 23 mai 2017(M)
+DROP TABLE IF EXISTS type_compte_d;
+
+CREATE TABLE type_compte_d (
+  typeCompte VARCHAR(30) NOT NULL,
+
+  PRIMARY KEY (typeCompte)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -370,15 +381,14 @@ ADD CONSTRAINT fk_numDept_compte          # On donne un nom à notre clé
 ALTER TABLE compte 
 ADD CONSTRAINT fk_droit_compte FOREIGN KEY (droit) REFERENCES droit_d(droit);
 
+  # Clé étrangère typeCompte - Created on 23/05/2017
+ALTER TABLE compte 
+ADD CONSTRAINT fk_typeCompte_compte FOREIGN KEY (typeCompte) REFERENCES type_compte_d(typeCompte);
+
 # Clés étrangères de la table individu
   # Clé étrangère idUser
 ALTER TABLE individu 
 ADD CONSTRAINT fk_idUser_individu FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
-
-
-
-
-
 
 
 # Clés étrangères de la table jeu_p
