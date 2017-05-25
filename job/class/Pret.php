@@ -9,10 +9,11 @@ class Pret {
     private $propositionEmprunteurDateFin;
     private $propositionPreteurDateDebut;
     private $propositionPreteurDateFin;
-    private $notification;// Dictionnaire avec pour clés : sujetPreteur, corpsPreteur, sujetEmprunteur, corpsEmprunteur
+    private $idNotification;
+    private $notification; // Dictionnaire avec pour clés : sujetPreteur, corpsPreteur, sujetEmprunteur, corpsEmprunteur
     private $statutDemande;
 
-    function __construct($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $notification, $statutDemande, $idPret = -1) {
+    function __construct($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification, $statutDemande, $idPret = -1) {
         $this->idPret = $idPret;
         $this->jeuP = $jeuP;
         $this->emprunteur = $emprunteur;
@@ -20,6 +21,7 @@ class Pret {
         $this->propositionEmprunteurDateFin = $propositionEmprunteurDateFin;
         $this->propositionPreteurDateDebut = $propositionPreteurDateDebut;
         $this->propositionPreteurDateFin = $propositionPreteurDateFin;
+        $this->idNotification = $idNotification;
         $this->notification = $notification;
         $this->statutDemande = $statutDemande;
     }
@@ -78,6 +80,14 @@ class Pret {
 
     public function setPropositionPreteurDateFin($propositionPreteurDateFin) {
         return $this->propositionPreteurDateFin = $propositionPreteurDateFin;
+    }
+
+    public function getIdNotification() {
+        return $this->idNotification;
+    }
+
+    public function setIdNotification($idNotification) {
+        return $this->idNotification = $idNotification;
     }
 
     public function getNotification() {

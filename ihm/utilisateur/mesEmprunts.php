@@ -14,6 +14,10 @@ if (!empty($_SESSION["mesEmprunts"])):
             $corpsEmprunteur = $emprunt->getNotification()["corpsEmprunteur"];
             $corpsEmprunteur = str_replace ("#nomPreteur#",$emprunt->getJeuP()->getProprietaire()->getPseudo(),$corpsEmprunteur);
             $corpsEmprunteur = str_replace ("#nomJeu#",$emprunt->getJeuP()->getJeuT()->getNom(),$corpsEmprunteur);
+            $corpsEmprunteur = str_replace ("#propositionEmprunteurDateDebut#",$emprunt->getPropositionEmprunteurDateDebut(),$corpsEmprunteur);
+            $corpsEmprunteur = str_replace ("#propositionEmprunteurDateFin#",$emprunt->getPropositionEmprunteurDateFin(),$corpsEmprunteur);
+            $corpsEmprunteur = str_replace ("#propositionPreteurDateDebut#",$emprunt->getPropositionPreteurDateDebut(),$corpsEmprunteur);
+            $corpsEmprunteur = str_replace ("#propositionPreteurDateFin#",$emprunt->getPropositionPreteurDateFin(),$corpsEmprunteur);
             ?>
             Corps notification : <?= $corpsEmprunteur ?><br/>
         </div> 

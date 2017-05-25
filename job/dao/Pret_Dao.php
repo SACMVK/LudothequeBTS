@@ -100,11 +100,11 @@ function select($requete) {
         $propositionEmprunteurDateFin = $champ['propositionEmprunteurDateFin'];
         $propositionPreteurDateDebut = $champ['propositionPreteurDateDebut'];
         $propositionPreteurDateFin = $champ['propositionPreteurDateFin'];
-        $notification = $champ['notification'];
+        $idNotification = $champ['notification'];
         $statutDemande = $champ['statutDemande'];
         $idPret = $champ['idPret'];
 
-        $requete = "SELECT * FROM notification WHERE idNotification = " . $notification . ";";
+        $requete = "SELECT * FROM notification WHERE idNotification = " . $idNotification . ";";
         $stmtNotification = $db->prepare($requete);
         $stmtNotification->execute();
         $notification_dic = array();
@@ -115,7 +115,7 @@ function select($requete) {
             $notification_dic ["corpsEmprunteur"] = $champNotification["corpsEmprunteur"];
         }
 
-        $pret_list[] = new Pret($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $notification_dic, $statutDemande, $idPret);
+        $pret_list[] = new Pret($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification_dic, $statutDemande, $idPret);
     }
 
     $db = closeConnexion();

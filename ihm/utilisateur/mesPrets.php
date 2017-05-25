@@ -12,8 +12,12 @@ if (!empty($_SESSION["mesPrets"])):
             Sujet notification : <?= $pret->getNotification()["sujetPreteur"] ?><br/>
             <?php
             $corpsPreteur = $pret->getNotification()["corpsPreteur"];
-            $corpsPreteur = str_replace ("#nomEmprunteur#",$pret->getEmprunteur()->getPseudo(),$corpsPreteur);
-            $corpsPreteur = str_replace ("#nomJeu#",$pret->getJeuP()->getJeuT()->getNom(),$corpsPreteur);
+            $corpsPreteur = str_replace("#nomEmprunteur#", $pret->getEmprunteur()->getPseudo(), $corpsPreteur);
+            $corpsPreteur = str_replace("#nomJeu#", $pret->getJeuP()->getJeuT()->getNom(), $corpsPreteur);
+            $corpsPreteur = str_replace("#propositionEmprunteurDateDebut#", $pret->getPropositionEmprunteurDateDebut(), $corpsPreteur);
+            $corpsPreteur = str_replace("#propositionEmprunteurDateFin#", $pret->getPropositionEmprunteurDateFin(), $corpsPreteur);
+            $corpsPreteur = str_replace("#propositionPreteurDateDebut#", $pret->getPropositionPreteurDateDebut(), $corpsPreteur);
+            $corpsPreteur = str_replace("#propositionPreteurDateFin#", $pret->getPropositionPreteurDateFin(), $corpsPreteur);
             ?>
             Corps notification : <?= $corpsPreteur ?><br/>               
         </div> 
