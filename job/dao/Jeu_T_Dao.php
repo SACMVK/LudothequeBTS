@@ -113,12 +113,14 @@ Function insert($valueToInsert) {
     //M : Requetes sur les tables jeu_t et produit_c_t 
     $requetePCT = "INSERT INTO " . TABLEPCT . " (typePC,anneeSortie,description) VALUES (:typePC,:anneeSortie,:description);";
     $requeteJeuT = "INSERT INTO " . TABLEJEUT . " (idPC,nbJoueursMin,nbJoueursMax,nom,editeur,regles,difficulte,public,listePieces,dureePartie) VALUES (:idPC,:nbJoueursMin,:nbJoueursMax,:nom,:editeur,:regles,:difficulte,:public,:listePieces,:dureePartie);";
+    $requeteJAPG = "INSERT INTO " . TABLE_JEU_A_POUR_GENRE . " (idPC, genre) VALUES (:idPC, : genre);";
 
     // M : préparation des requêtes
     $stmtPCT = $pdo->prepare($requetePCT);
     $stmtJeuT = $pdo->prepare($requeteJeuT);
+    
 
-    // M : Vérification si   l'editeur existe dans le dictionnaire, sinon, je l'ajoute à celui ci
+    // M : Vérification si l'editeur existe dans le dictionnaire, sinon, je l'ajoute à celui-ci
     if ($count == 0) {
         $requeteEditeur_d = "INSERT INTO " . TABLE_EDITEUR_D . "(editeur) VALUES (:editeur);";
         $stmtEditeur_d = $pdo->prepare($requeteEditeur_d);
@@ -148,6 +150,22 @@ Function insert($valueToInsert) {
         "listePieces" => $valueToInsert['listePieces'],
         "dureePartie" => $valueToInsert['dureePartie']
     ));
+
+    //TODO problème dans l'insertion des données dans la table JAPG
+    // M : Remplissage de la table jeu_a_pour_genre (JAPG)
+    $listGenreFromCreation_jeu_t = $valueToInsert['genre'];
+    
+    for ($j = 0; $j < count($listGenreFromCreation_jeu_t); $j++) {
+        //$IdPC_Genre = (int)$lastIdPC;
+        $genreGenre = $listGenreFromCreation_jeu_t[$j];
+        $stmtJAPG = $pdo->prepare($requeteJAPG);
+        $stmtJAPG->execute(array(
+            "idPC" => $lastIdPC,
+            "genre" => $genreGenre
+        ));
+        //$listeGenres[]=$listGenreFromCreation_jeu_t[$j];
+    }
+
 
     /* M : Fermeture de la connexion
      */

@@ -35,7 +35,7 @@ function str_truncate($text, $length) {
                     <input type=hidden name="nom" value="<?= $jeu_t->getNom() ?>" />  <!--<input type=hidden name="idPC" value="<?= $jeu_t->getIdPC() ?>" />A reprendre car ne transmet pas la bonne ligne selectionnée par le bouton -->
                     <input type=hidden name="objectToWorkWith" value="jeu_t" />
                     <input type=hidden name="actionToDoWithObject" value="selectOne" />
-                    <input type="image" name="submit" class="boutonTransparent" value="Voir la fiche complète" src="ihm/img/loupe.png">
+                    <input type="image" name="submit" title="Fiche complète" class="boutonTransparent" value="Voir la fiche complète" src="ihm/img/loupe.png">
                 </form>
       </div>
 
