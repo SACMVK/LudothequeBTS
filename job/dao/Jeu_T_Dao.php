@@ -113,7 +113,7 @@ Function insert($valueToInsert) {
     //M : Requetes sur les tables jeu_t et produit_c_t 
     $requetePCT = "INSERT INTO " . TABLEPCT . " (typePC,anneeSortie,description) VALUES (:typePC,:anneeSortie,:description);";
     $requeteJeuT = "INSERT INTO " . TABLEJEUT . " (idPC,nbJoueursMin,nbJoueursMax,nom,editeur,regles,difficulte,public,listePieces,dureePartie) VALUES (:idPC,:nbJoueursMin,:nbJoueursMax,:nom,:editeur,:regles,:difficulte,:public,:listePieces,:dureePartie);";
-    $requeteJAPG = "INSERT INTO " . TABLE_JEU_A_POUR_GENRE . " (idPC, genre) VALUES (:idPC, : genre);";
+    $requeteJAPG = "INSERT INTO " . TABLE_JEU_A_POUR_GENRE . " (idPC, genre) VALUES (:idPC, :genre);";
 
     // M : préparation des requêtes
     $stmtPCT = $pdo->prepare($requetePCT);
