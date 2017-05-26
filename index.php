@@ -5,14 +5,17 @@
         <title>Ludothèque</title>
         <?php
         // stefan : Cette ligne permet d'activer et d'entretenir la session ($_SESSION) avec ses variables
-        // stefan : on est obligé de déclarer la classe avant de pouvoir l'utiliser
+        // stefan : on est obligé de déclarer les classes avant de pouvoir les utiliser
+        // stefan : on ne peut pas faire une lecture de répertoire car les class doivent être déclarées dans un ordre précis
         include 'job/class/Compte.php';
         include 'job/class/Individu.php';
         include 'job/class/ProduitCulturel.php';
         include 'job/class/Jeu_T.php';
         include 'job/class/Jeu_P.php';
         include 'job/class/Message.php';
+        include 'job/class/Expedition.php';
         include 'job/class/Pret.php';
+        
         include 'job/dao/fonctions_dao.php';
         include 'ihm/css/css.php';
         include 'job/dao/Connexion_DataBase.php';

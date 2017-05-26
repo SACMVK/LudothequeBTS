@@ -25,7 +25,7 @@ class Expedition {
     function setEnvoiDateEnvoi($envoiDateEnvoi){
         $this->envoiDateEnvoi = $envoiDateEnvoi;
     }
-    function getEvoiDateEnvoi(){
+    function getEnvoiDateEnvoi(){
         return $this->envoiDateEnvoi;
     }
     function setEnvoiDateReception($envoiDateReception){
@@ -34,7 +34,7 @@ class Expedition {
     function getEnvoiDateReception(){
         return $this->envoiDateReception;
     }
-    function setEvoiEtatJeu($envoiEtatJeu){
+    function setEnvoiEtatJeu($envoiEtatJeu){
         $this->envoiEtatJeu = $envoiEtatJeu;
     }
     function getEnvoiEtatJeu(){

@@ -15,7 +15,6 @@ function select($requete) {
             . " JOIN jeu_t ON jeu_t.idPC = produit_culturel_t.idPC "
             . " JOIN compte as compteProprietaire ON jeu_p.idProprietaire = compteProprietaire.idUser "
             . " JOIN individu as individuProprietaire ON jeu_p.idProprietaire = individuProprietaire.idUser "
-            . " JOIN statut_demande_d ON statut_demande_d.statut = pret_p.statutDemande "
             . $requete . ";";
 
 
@@ -25,16 +24,16 @@ function select($requete) {
 
     $pret_list = array();
 
-/* stefan : PDO ne permet pas d'avoir les noms de colonnes retournées de type table.colonne
- * En cas de nom doublon (par exemple nom emprunteur, nom propriétaire et nom jeu),
- * FETCH_ASSOC écrase les valeurs car il ne peut retourner que "nom".
- * FETCH_NAMED créé des tableaux lorsque plusieurs colonnes ont le même nom.
- * Il faut donc aller chercher les index.
- * On peut se repérer car les tableaux sont créé au fur et à mesure de la déclaration
- * des tables dans le JOIN.
- * D'où l'intérêt d'avoir des noms de colonnes intégrant le nom
- * de la table : table_colonne.
- */
+    /* stefan : PDO ne permet pas d'avoir les noms de colonnes retournées de type table.colonne
+     * En cas de nom doublon (par exemple nom emprunteur, nom propriétaire et nom jeu),
+     * FETCH_ASSOC écrase les valeurs car il ne peut retourner que "nom".
+     * FETCH_NAMED créé des tableaux lorsque plusieurs colonnes ont le même nom.
+     * Il faut donc aller chercher les index.
+     * On peut se repérer car les tableaux sont créé au fur et à mesure de la déclaration
+     * des tables dans le JOIN.
+     * D'où l'intérêt d'avoir des noms de colonnes intégrant le nom
+     * de la table : table_colonne.
+     */
     while ($champ = $stmt->fetch(PDO::FETCH_NAMED)) {
         $idUserProprietaire = $champ['idUser']["2"];
         $villeProprietaire = $champ['ville']["1"];
@@ -104,8 +103,8 @@ function select($requete) {
         $statutDemande = $champ['statutDemande'];
         $idPret = $champ['idPret'];
 
-        $requete = "SELECT * FROM notification WHERE idNotification = " . $idNotification . ";";
-        $stmtNotification = $db->prepare($requete);
+        $requeteNotification = "SELECT * FROM notification WHERE idNotification = " . $idNotification . ";";
+        $stmtNotification = $db->prepare($requeteNotification);
         $stmtNotification->execute();
         $notification_dic = array();
         while ($champNotification = $stmtNotification->fetch(PDO::FETCH_ASSOC)) {
@@ -115,7 +114,27 @@ function select($requete) {
             $notification_dic ["corpsEmprunteur"] = $champNotification["corpsEmprunteur"];
         }
 
-        $pret_list[] = new Pret($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification_dic, $statutDemande, $idPret);
+        $nouveauPret = new Pret($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification_dic, $statutDemande, $idPret);
+
+        $requeteExpedition = "SELECT * FROM expedition WHERE idPret = " . $idPret . ";";
+        $stmtExpedition = $db->prepare($requeteExpedition);
+        $stmtExpedition->execute();
+        while ($champExpedition = $stmtExpedition->fetch(PDO::FETCH_ASSOC)) {
+            $envoiDateEnvoi = $champExpedition["envoiDateEnvoi"];
+            $envoiDateReception = $champExpedition["envoiDateReception"];
+            $envoiEtatJeu = $champExpedition["envoiEtatJeu"];
+            $envoiPiecesManquantes = $champExpedition["envoiPiecesManquantes"];
+            $retourDateEnvoi = $champExpedition["retourDateEnvoi"];
+            $retourDateReception =  $champExpedition["retourDateReception"];
+            $retourEtatJeu = $champExpedition["retourEtatJeu"];
+            $retourPiecesManquantes = $champExpedition["retourPiecesManquantes"];
+            $expedition = new Expedition($envoiDateEnvoi, $envoiDateReception, $envoiEtatJeu, $envoiPiecesManquantes, $retourDateEnvoi, $retourDateReception, $retourEtatJeu, $retourPiecesManquantes);
+            $nouveauPret->setExpedition($expedition);
+        }
+
+
+
+        $pret_list[] = $nouveauPret;
     }
 
     $db = closeConnexion();
