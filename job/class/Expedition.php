@@ -22,7 +22,54 @@ class Expedition {
         $this->retourPiecesManquantes = $retourPiecesManquantes;
     }
 
-
+    function setEnvoiDateEnvoi($envoiDateEnvoi){
+        $this->envoiDateEnvoi = $envoiDateEnvoi;
+    }
+    function getEvoiDateEnvoi(){
+        return $this->envoiDateEnvoi;
+    }
+    function setEnvoiDateReception($envoiDateReception){
+        $this->envoiDateReception = $envoiDateReception;
+    }
+    function getEnvoiDateReception(){
+        return $this->envoiDateReception;
+    }
+    function setEvoiEtatJeu($envoiEtatJeu){
+        $this->envoiEtatJeu = $envoiEtatJeu;
+    }
+    function getEnvoiEtatJeu(){
+        return $this->envoiEtatJeu;
+    }
+    function setEnvoiPiecesManquantes($envoiPiecesManquantes){
+        $this->envoiPiecesManquantes = $envoiPiecesManquantes;
+    }
+    function getEnvoiPiecesManquantes(){
+        return $this->envoiPiecesManquantes;
+    }
+    function setRetourDateEnvoi($retourDateEnvoi){
+        $this->retourDateEnvoi = $retourDateEnvoi;
+    }
+    function getRetourDateEnvoi(){
+        return $this->retourDateEnvoi;
+    }
+    function setRetourDateReception($retourDateReception){
+        $this->retourDateReception = $retourDateReception;
+    }
+    function getRetourDateReception(){
+        return $this->retourDateReception;
+    }
+    function setRetourEtatJeu($retourEtatJeu){
+        $this->retourEtatJeu = $retourEtatJeu;
+    }
+    function getRetourEtatJeu(){
+        return $this->retourEtatJeu;
+    }
+    function setRetourPiecesManquantes($retourPiecesManquantes){
+        $this->retourPiecesManquantes = $retourPiecesManquantes;
+    }
+    function getRetourPiecesManquantes(){
+        return $this->retourPiecesManquantes;
+    }
 
     
     

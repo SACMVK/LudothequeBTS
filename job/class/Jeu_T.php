@@ -46,7 +46,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setNbJoueursMin($nbJoueursMin) {
-        return $this->nbJoueursMin = $nbJoueursMin;
+        $this->nbJoueursMin = $nbJoueursMin;
     }
 
     //M : editeur
@@ -55,7 +55,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setEditeur($editeur) {
-        return $this->editeur = $editeur;
+        $this->editeur = $editeur;
     }
 
     //M : $nbJoueursMax
@@ -64,7 +64,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setNbJoueursMax($nbJoueursMax) {
-        return $this->$nbJoueursMax = $nbJoueursMax;
+        $this->$nbJoueursMax = $nbJoueursMax;
     }
 
     //M : difficulte
@@ -73,7 +73,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setDifficulte($difficulte) {
-        return $this->difficulte = $difficulte;
+        $this->difficulte = $difficulte;
     }
 
     //M : droit
@@ -91,7 +91,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setNom($nom) {
-        return $this->nom = $nom;
+        $this->nom = $nom;
     }
 
     //M : public
@@ -100,7 +100,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setPublic($public) {
-        return $this->public = $public;
+        $this->public = $public;
     }
 
     //M : listePieces
@@ -109,7 +109,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setListePieces($listePieces) {
-        return $this->listePieces = $listePieces;
+        $this->listePieces = $listePieces;
     }
 
     //M : $dureePartie
@@ -118,7 +118,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setDureePartie($dureePartie) {
-        return $this->dureePartie = $dureePartie;
+        $this->dureePartie = $dureePartie;
     }
 
     //M : $listeGenres
@@ -127,7 +127,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setListeGenres($listeGenres) {
-        return $this->listeGenres = listeGenres;
+        $this->listeGenres = $listeGenres;
     }
 
     function getListeNotes() {
@@ -135,11 +135,19 @@ class Jeu_T extends ProduitCulturel {
     }
 
     public function setListeNotes($listeNotes) {
-        return $this->listeNotes = listeNotes;
+        $this->listeNotes = $listeNotes;
+    }
+
+    function setListeImages($listeImages) {
+        $this->listeImages = listeImages;
     }
 
     function getListeImages() {
         return $this->listeImages;
+    }
+
+    function setListeCommentaires($listeCommentaires) {
+        $this->listeCommentaires = $listeCommentaires;
     }
 
     function getListeCommentaires() {

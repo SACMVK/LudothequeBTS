@@ -34,7 +34,7 @@ abstract class Compte {
     }
 
     public function setVille($ville) {
-        return $this->ville = $ville;
+        $this->ville = $ville;
     }
 
     // Adresse
@@ -43,7 +43,7 @@ abstract class Compte {
     }
 
     public function setAdresse($adresse) {
-        return $this->adresse = $adresse;
+        $this->adresse = $adresse;
     }
 
     // codePostal
@@ -52,7 +52,7 @@ abstract class Compte {
     }
 
     public function setCodePostal($codePostal) {
-        return $this->codePostal = $codePostal;
+        $this->codePostal = $codePostal;
     }
 
     // departement
@@ -61,7 +61,7 @@ abstract class Compte {
     }
 
     public function setDept($dpt) {
-        return $this->dpt = $dpt;
+        $this->dpt = $dpt;
     }
 
     public function getIdUser() {
@@ -69,7 +69,7 @@ abstract class Compte {
     }
 
     public function setIdUser($idUser) {
-        return $this->idUser = $idUser;
+        $this->idUser = $idUser;
     }
 
     // email
@@ -78,7 +78,7 @@ abstract class Compte {
     }
 
     public function setEmail($email) {
-        return $this->email = $email;
+        $this->email = $email;
     }
 
     // telephone
@@ -87,7 +87,7 @@ abstract class Compte {
     }
 
     public function setTelephone($telephone) {
-        return $this->telephone = $telephone;
+        $this->telephone = $telephone;
     }
 
     // pseudo
@@ -96,7 +96,7 @@ abstract class Compte {
     }
 
     public function setPseudo($Pseudo) {
-        return $this->pseudo = $Pseudo;
+        $this->pseudo = $Pseudo;
     }
 
     // dateinscription
@@ -105,7 +105,7 @@ abstract class Compte {
     }
 
     public function setDateInscription($dateInscription) {
-        return $this->dateInscription = $dateInscription;
+        $this->dateInscription = $dateInscription;
     }
 
     // Mdp
@@ -114,7 +114,7 @@ abstract class Compte {
     }
 
     public function setMdp($mdp) {
-        return $this->mdp = $mdp;
+        $this->mdp = $mdp;
     }
 
     // droit

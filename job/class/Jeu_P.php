@@ -21,7 +21,7 @@ class Jeu_P {
     }
 
     function setdJeuP($idJeuP) {
-        return $this->idJeuP = $idJeuP;
+        $this->idJeuP = $idJeuP;
     }
 
     // idProprietaire
@@ -30,7 +30,7 @@ class Jeu_P {
     }
 
     function setProprietaire($proprietaire) {
-        return $this->proprietaire = $proprietaire;
+        $this->proprietaire = $proprietaire;
     }
 
 
@@ -40,7 +40,7 @@ class Jeu_P {
     }
 
     function setJeuT($jeuT) {
-        return $this->jeuT = $jeuT;
+        $this->jeuT = $jeuT;
     }
 
     // AhMaD: ToString pour afficher l'objet, le point pour concaténer, cela comme (+) en java

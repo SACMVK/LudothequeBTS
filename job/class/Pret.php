@@ -12,6 +12,7 @@ class Pret {
     private $idNotification;
     private $notification; // Dictionnaire avec pour clés : sujetPreteur, corpsPreteur, sujetEmprunteur, corpsEmprunteur
     private $statutDemande;
+    private $expedition;
 
     function __construct($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification, $statutDemande, $idPret = -1) {
         $this->idPret = $idPret;
@@ -104,6 +105,14 @@ class Pret {
 
     public function setStatutDemande($statutDemande) {
         return $this->statutDemande = $statutDemande;
+    }
+
+    public function getExpedition() {
+        return $this->expedition;
+    }
+
+    public function setExpedition($expedition) {
+        return $this->expedition = $expedition;
     }
 
 }

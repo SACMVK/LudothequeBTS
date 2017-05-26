@@ -19,7 +19,7 @@ abstract class ProduitCulturel {
     }
 
     public function setIdPC($idPC) {
-        return $this->idPC = $idPC;
+        $this->idPC = $idPC;
     }
 
     /* M : AJOUT DES PARAMETRES DE LA TABLE produit_culturel_t */
@@ -30,7 +30,7 @@ abstract class ProduitCulturel {
     }
 
     public function setAnneeSortie($anneeSortie) {
-        return $this->anneeSortie = $anneeSortie;
+        $this->anneeSortie = $anneeSortie;
     }
 
     //M : $description
@@ -39,7 +39,7 @@ abstract class ProduitCulturel {
     }
 
     public function setDescription($description) {
-        return $this->description = $description;
+        $this->description = $description;
     }
 
     //M : $typePC
@@ -48,7 +48,7 @@ abstract class ProduitCulturel {
     }
 
     public function setTypePC($typePC) {
-        return $this->typePC = $typePC;
+        $this->typePC = $typePC;
     }
 
 }

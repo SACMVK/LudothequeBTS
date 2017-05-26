@@ -30,7 +30,7 @@ class Message {
     }
 
     public function setIdMessage($idMessage) {
-        return $this->idMessage = $idMessage;
+        $this->idMessage = $idMessage;
     }
 
     // id expéditeur
@@ -39,7 +39,7 @@ class Message {
     }
 
     public function setExp($exp) {
-        return $this->exp = $exp;
+        $this->exp = $exp;
     }
 
     // id destinataire
@@ -48,7 +48,7 @@ class Message {
     }
 
     public function setDest($dest) {
-        return $this->dest = $dest;
+        $this->dest = $dest;
     }
 
     // type de Message
@@ -59,7 +59,7 @@ class Message {
     }
 
     public function setDateEnvoi($dateEnvoi) {
-        return $this->dateEnvoi = $dateEnvoi;
+        $this->dateEnvoi = $dateEnvoi;
     }
 
     // sujet
@@ -70,7 +70,7 @@ class Message {
     }
 
     public function setSujet($sujet) {
-        return $this->sujet = $sujet;
+        $this->sujet = $sujet;
     }
 
     // texte
@@ -80,13 +80,12 @@ class Message {
     }
 
     public function setTexte($texte) {
-
-        return $this->texte = $texte;
+        $this->texte = $texte;
     }
 
     // charlotte: ToString pour afficher 
     public function __toString() {
-        return ( "idMessage= " . $this->idMessage . ", idExpediteur :" . $this->idExped . ", idDestinataire: " . $this->idDest . ", date d'envoi: " . $this->dateEnvoi . "sujet : " . $this->sujet . "texte : " . $this->texte);
+        return ( "idMessage= " . $this->idMessage . ", expediteur :" . $this->exp . ", destinataire: " . $this->dest . ", date d'envoi: " . $this->dateEnvoi . "sujet : " . $this->sujet . "texte : " . $this->texte);
     }
 
 }

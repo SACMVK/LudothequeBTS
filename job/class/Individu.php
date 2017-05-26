@@ -29,7 +29,7 @@ class Individu extends Compte {
     }
 
     public function setNom($nom) {
-        return $this->nom = $nom;
+        $this->nom = $nom;
     }
 
     // prenom
@@ -38,7 +38,7 @@ class Individu extends Compte {
     }
 
     public function setPrenom($prenom) {
-        return $this->prenom = $prenom;
+        $this->prenom = $prenom;
     }
 
     // date naissance
@@ -47,7 +47,7 @@ class Individu extends Compte {
     }
 
     public function setDateNaissance($dateNaissance) {
-        return $this->dateNaissance = $dateNaissance;
+        $this->dateNaissance = $dateNaissance;
     }
 
 
