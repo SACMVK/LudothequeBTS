@@ -1,6 +1,6 @@
 <?php
 
-function select($requete) {
+function selectPrets($requete) {
 
 
     //AhMaD:ouvrire la connexion avec BD
@@ -125,7 +125,7 @@ function select($requete) {
             $envoiEtatJeu = $champExpedition["envoiEtatJeu"];
             $envoiPiecesManquantes = $champExpedition["envoiPiecesManquantes"];
             $retourDateEnvoi = $champExpedition["retourDateEnvoi"];
-            $retourDateReception =  $champExpedition["retourDateReception"];
+            $retourDateReception = $champExpedition["retourDateReception"];
             $retourEtatJeu = $champExpedition["retourEtatJeu"];
             $retourPiecesManquantes = $champExpedition["retourPiecesManquantes"];
             $expedition = new Expedition($envoiDateEnvoi, $envoiDateReception, $envoiEtatJeu, $envoiPiecesManquantes, $retourDateEnvoi, $retourDateReception, $retourEtatJeu, $retourPiecesManquantes);
@@ -143,14 +143,106 @@ function select($requete) {
     return $pret_list;
 }
 
-function insert($requete) {
+function insertPret($requete) {
     
 }
 
-function update($requete) {
+function insertExpedition($requete) {
     
 }
 
-function delete($id) {
+function insertMessagePret($requete) {
+    
+}
+
+function insertNote($requete) {
+    
+}
+
+function insertCommentaire($requete) {
+    
+}
+
+function updatePret($list_Values) {
+    $idPret = $list_Values["idPret"];
+    $listeSet = [];
+    if (!empty($list_Values["idJeuP"])) {
+        $listeSet [] = "idJeuP = '" . $list_Values["idJeuP"] . "'";
+    }
+    if (!empty($list_Values["idEmprunteur"])) {
+        $listeSet [] = "idEmprunteur = '" . $list_Values["idEmprunteur"] . "'";
+    }
+    if (!empty($list_Values["propositionEmprunteurDateDebut"])) {
+        $listeSet [] = "propositionEmprunteurDateDebut = '" . $list_Values["propositionEmprunteurDateDebut"] . "'";
+    }
+    if (!empty($list_Values["propositionEmprunteurDateFin"])) {
+        $listeSet [] = "propositionEmprunteurDateFin = '" . $list_Values["propositionEmprunteurDateFin"] . "'";
+    }
+    if (!empty($list_Values["propositionPreteurDateDebut"])) {
+        $listeSet [] = "propositionPreteurDateDebut = '" . $list_Values["propositionPreteurDateDebut"] . "'";
+    }
+    if (!empty($list_Values["propositionPreteurDateFin"])) {
+        $listeSet [] = "propositionPreteurDateFin = '" . $list_Values["propositionPreteurDateFin"] . "'";
+    }
+    if (!empty($list_Values["idNotification"])) {
+        $listeSet [] = "idNotification = '" . $list_Values["idNotification"] . "'";
+    }
+    if (!empty($list_Values["statutDemande"])) {
+        $listeSet [] = "statutDemande = '" . $list_Values["statutDemande"] . "'";
+    }
+    $set = "";
+    for ($i = 0; $i < count($listeSet) - 1; $i++) {
+        $set .= $listeSet[$i] . ", ";
+    }
+    $set .= $listeSet[count($listeSet) - 1];
+
+    $requete = "UPDATE pret_p SET " . $set . " WHERE idPret = " . $idPret . ";";
+
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $db = closeConnexion();
+}
+
+function updateExpedition($list_Values) {
+    $idPret = $list_Values["idPret "];
+    if (!empty($list_Values["envoiDateEnvoi"])) {
+        $listeSet [] = "envoiDateEnvoi = '" . $list_Values["envoiDateEnvoi"] . "'";
+    }
+    if (!empty($list_Values["envoiDateReception"])) {
+        $listeSet [] = "envoiDateReception = '" . $list_Values["envoiDateReception"] . "'";
+    }
+    if (!empty($list_Values["envoiEtatJeu"])) {
+        $listeSet [] = "envoiEtatJeu = '" . $list_Values["envoiEtatJeu"] . "'";
+    }
+    if (!empty($list_Values["envoiPiecesManquantes"])) {
+        $listeSet [] = "envoiPiecesManquantes = '" . $list_Values["envoiPiecesManquantes"] . "'";
+    }
+    if (!empty($list_Values["retourDateEnvoi"])) {
+        $listeSet [] = "retourDateEnvoi = '" . $list_Values["retourDateEnvoi"] . "'";
+    }
+    if (!empty($list_Values["retourDateReception"])) {
+        $listeSet [] = "retourDateReception = '" . $list_Values["retourDateReception"] . "'";
+    }
+    if (!empty($list_Values["retourEtatJeu"])) {
+        $listeSet [] = "retourEtatJeu = '" . $list_Values["retourEtatJeu"] . "'";
+    }
+    if (!empty($list_Values["retourPiecesManquantes"])) {
+        $listeSet [] = "retourPiecesManquantes = '" . $list_Values["retourPiecesManquantes"] . "'";
+    }
+    $set = "";
+    for ($i = 0; $i < count($listeSet) - 1; $i++) {
+        $set .= $listeSet[$i] . ", ";
+    }
+    $set .= $listeSet[count($listeSet) - 1];
+    $requete = "UPDATE pret_p SET " . $set . " WHERE idPret = " . $idPret . ";";
+
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $db = closeConnexion();
+}
+
+function deletePret($id) {
     
 }

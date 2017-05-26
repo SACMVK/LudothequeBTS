@@ -157,7 +157,7 @@ function update($list_Values) {
 
 
 
-    //AhMaD: on vas préparer la requête et l'exécuter et tu vas bien.
+    //AhMaD: on va préparer la requête et l'exécuter et tu vas bien.
     $stmt = $db->prepare($requete);
 
 

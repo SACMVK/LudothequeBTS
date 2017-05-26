@@ -8,11 +8,11 @@ switch ($_REQUEST['user']) {
         break;
     case "mesPrets";
         include 'job/dao/Pret_Dao.php';
-        $_SESSION["mesPrets"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesPrets"] = selectPrets("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
         break;
     case "mesEmprunts";
         include 'job/dao/Pret_Dao.php';
-        $_SESSION["mesEmprunts"] = select("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesEmprunts"] = selectPrets("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
         break;
     case "mesMessagesEnvoyes";
         include 'job/dao/Message_Dao.php';

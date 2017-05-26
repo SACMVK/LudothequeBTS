@@ -7,6 +7,11 @@ const TABLE_JEUT = 'jeu_t';
 const TABLE_PCT = 'produit_culturel_t';
 const TABLE_COMPTE = "compte";
 const TABLE_INDIVIDU = "individu";
+const TABLE_EDITEUR_D = 'editeur_d';
+const TABLE_JEU_A_POUR_GENRE = 'jeu_a_pour_genre';
+const TABLE_A_POUR_IMAGE = 'a_pour_image';
+const TABLE_NOTE_JEU_T = 'note_jeu_t';
+const TABLE_COMMENTAIRE_P_C_T = 'commentaire_p_c_t';
 
 //AhMaD: functioin qui sert a integrer un valeur dans le table
 
@@ -99,15 +104,32 @@ function select($requete) {
             $idPC = $champ['idPC'];
             $typePC = $champ['typePC'];
             
-            // TODO utiliser $idJeuT pour récupérer note moyenne (AVG) et liste images et liste commentaires et liste genre
-            // faire jointure commentaire avec user pour afficher le pseudo du commentateur $listeCommentaires [] = [$pseudo, $commentaire]
-            $listeGenres = array();
-            $listeImages = array();
-            $listeCommentaires = array();
-            $noteMoyenne = 5;
+        /*
+         * M : Création de listes en récupèrant les données dans la BDD avec la méthode selectListe($table,$var,$champsSelect)
+         */
+        $listeGenres = selectListe(TABLE_JEU_A_POUR_GENRE, $idPC, 'genre');
+
+        $listeImages = selectListe(TABLE_A_POUR_IMAGE, $idPC, 'source');
+
+        $listeNotes = selectListe(TABLE_NOTE_JEU_T, $idPC, 'note');
+
+        //=========================== LISTE COMMENTAIRES ====================================================
+        /*
+         * M : Récupèration dans les tables commentaire_p_c_t et compte des commentaires sur les jeux associés à leur commentateur. Ajout dans une liste
+         */
+        $requeteComment = "SELECT pseudo, commentaireT  FROM " . TABLE_COMMENTAIRE_P_C_T . " JOIN " . TABLE_COMPTE . " ON " . TABLE_COMMENTAIRE_P_C_T . ".idUser=" . TABLE_COMPTE . ".idUser WHERE idPC=$idPC;";
+        $stmtComment = $db->prepare($requeteComment);
+        $stmtComment->execute();
+        $listeCommentaires = array();
+        while ($comment = $stmtComment->fetch(PDO::FETCH_ASSOC)) { // Chaque entrée sera récupérée et placée dans un array.
+            $pseudo = $comment['pseudo'];
+            $commentaire = $comment['commentaireT'];
+            $listeCommentaires [] = [$pseudo => $commentaire];
+        }
+        //==================================================================================================
 
         /* création du nouvel objet Jeu_T */
-        $jeuT = new Jeu_T($nbJoueursMin,$nbJoueursMax,$nom,$editeur,$regles,$difficulte,$public,$listePieces,$dureePartie,$anneeSortie,$description,$typePC,$listeGenres,$noteMoyenne,$listeImages,$listeCommentaires,$idPC);
+        $jeuT = new Jeu_T($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $idPC);
 
         $idJeuP = $champ['idJeuP'];
 
