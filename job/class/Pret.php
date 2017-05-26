@@ -32,7 +32,7 @@ class Pret {
     }
 
     public function setIdPret($idPret) {
-        return $this->idPret = $idPret;
+        $this->idPret = $idPret;
     }
 
     public function getJeuP() {
@@ -40,7 +40,7 @@ class Pret {
     }
 
     public function setJeuP($jeuP) {
-        return $this->jeuP = $jeuP;
+        $this->jeuP = $jeuP;
     }
 
     public function getEmprunteur() {
@@ -48,7 +48,7 @@ class Pret {
     }
 
     public function setEmprunteur($emprunteur) {
-        return $this->emprunteur = $emprunteur;
+        $this->emprunteur = $emprunteur;
     }
 
     public function getPropositionEmprunteurDateDebut() {
@@ -56,7 +56,7 @@ class Pret {
     }
 
     public function setPropositionEmprunteurDateDebut($propositionEmprunteurDateDebut) {
-        return $this->propositionEmprunteurDateDebut = $propositionEmprunteurDateDebut;
+        $this->propositionEmprunteurDateDebut = $propositionEmprunteurDateDebut;
     }
 
     public function getPropositionEmprunteurDateFin() {
@@ -64,7 +64,7 @@ class Pret {
     }
 
     public function setPropositionEmprunteurDateFin($propositionEmprunteurDateFin) {
-        return $this->propositionEmprunteurDateFin = $propositionEmprunteurDateFin;
+        $this->propositionEmprunteurDateFin = $propositionEmprunteurDateFin;
     }
 
     public function getPropositionPreteurDateDebut() {
@@ -72,7 +72,7 @@ class Pret {
     }
 
     public function setPropositionPreteurDateDebut($propositionPreteurDateDebut) {
-        return $this->propositionPreteurDateDebut = $propositionPreteurDateDebut;
+        $this->propositionPreteurDateDebut = $propositionPreteurDateDebut;
     }
 
     public function getPropositionPreteurDateFin() {
@@ -80,7 +80,7 @@ class Pret {
     }
 
     public function setPropositionPreteurDateFin($propositionPreteurDateFin) {
-        return $this->propositionPreteurDateFin = $propositionPreteurDateFin;
+        $this->propositionPreteurDateFin = $propositionPreteurDateFin;
     }
 
     public function getIdNotification() {
@@ -88,7 +88,7 @@ class Pret {
     }
 
     public function setIdNotification($idNotification) {
-        return $this->idNotification = $idNotification;
+        $this->idNotification = $idNotification;
     }
 
     public function getNotification() {
@@ -96,7 +96,7 @@ class Pret {
     }
 
     public function setNotification($notification) {
-        return $this->notification = $notification;
+        $this->notification = $notification;
     }
 
     public function getStatutDemande() {
@@ -104,7 +104,7 @@ class Pret {
     }
 
     public function setStatutDemande($statutDemande) {
-        return $this->statutDemande = $statutDemande;
+        $this->statutDemande = $statutDemande;
     }
 
     public function getExpedition() {
@@ -112,7 +112,7 @@ class Pret {
     }
 
     public function setExpedition($expedition) {
-        return $this->expedition = $expedition;
+        $this->expedition = $expedition;
     }
 
 }
