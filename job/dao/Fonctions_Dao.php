@@ -107,4 +107,10 @@ Function selectListe($table, $var, $champsSelect) {
     }
     return $liste;
 }
+
+function screenDate(string $date) {
+        $dateExploded = explode("-", $date);
+        $mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+        return intval($dateExploded[2]) . " " . $mois[intval($dateExploded[1]) - 1] . " " . $dateExploded[0];
+}
 ?>
