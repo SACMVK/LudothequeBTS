@@ -13,8 +13,7 @@
         <textarea name="message"></textarea>
         <br />
         <br />
-        <input type=hidden name="pret" value="pret" />
-        <input type=hidden name="formulairePret" value="4" />
+        <input type=hidden name="pret" value=4 />
         <input type=hidden name="idPret" value="<?=$pret->getIdPret() ?>" />
         <input class="boutonGris" name="accepter" type="submit" value="Accepter" />
         <input class="boutonGris" name="refuser" type="submit" value="Refuser">

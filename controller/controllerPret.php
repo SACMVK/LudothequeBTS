@@ -35,21 +35,21 @@ function getValuesFromREQUEST() {
     return $listOfValues;
 }
 
-if (!empty($_REQUEST['etape'])) {
-    switch ($_REQUEST['etape']) {
-        case "0":
+//if (!empty($_REQUEST['formulairePret'])) {
+    switch ($_REQUEST['pret']) {
+        case -1:
             include "job/dao/Jeu_P_Dao.php";
             $jeuP = select("where idJeuP = '" . $_REQUEST["idJeuP"] . "'")[0];
             $pageAAfficher = "ihm/pret/1_demande_emprunt.php";
             break;
-        case "1":
+        case 1:
             include "job/dao/Pret_Dao.php";
             $listeData = getValuesFromREQUEST();
             $listeData["idNotification"] = "0";
             $listeData["statutDemande"] = "0";
             $lastEmpruntInserted = insertPret($listeData);
-            $_SESSION["mesEmprunts"] = select("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
-            $empruntCourant = getEmpruntFromId($lastEmpruntInserted);
+            $_SESSION["mesEmprunts"] = selectPrets("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
+            $empruntCourant = Pret::getEmpruntFromId($lastEmpruntInserted);
 //            if (!empty($_REQUEST["message"])) {
 //                include "job/dao/Message.php";
 //                $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
@@ -64,9 +64,9 @@ if (!empty($_REQUEST['etape'])) {
 //            }
             $pageAAfficher = "ihm/utilisateur/mesEmprunts.php";
             break;
-        case "2":
+        case 2:
             include "job/dao/Pret_Dao.php";
-            $pretCourant = getPretFromId($_REQUEST["idPret"]);
+            $pretCourant = Pret::getPretFromId($_REQUEST["idPret"]);
             if (!empty($_REQUEST["accepter"])) {
                 $listeData = getValuesFromREQUEST();
                 $listeData["idNotification"] = "0";
@@ -88,9 +88,9 @@ if (!empty($_REQUEST['etape'])) {
             }
 //            $_REQUEST["message"];
             break;
-        case "3":
+        case 3:
             include "job/dao/Pret_Dao.php";
-            $pretCourant = getPretFromId($_REQUEST["idPret"]);
+            $pretCourant = Pret::getPretFromId($_REQUEST["idPret"]);
             $listeData = getValuesFromREQUEST();
             $listeData["idNotification"] = "0";
             $listeData["statutDemande"] = "0";
@@ -99,9 +99,9 @@ if (!empty($_REQUEST['etape'])) {
 //            $_REQUEST["message"];
             $pageAAfficher = "ihm/utilisateur/mesPrets.php";
             break;
-        case "4":
+        case 4:
             include "job/dao/Pret_Dao.php";
-            $empruntCourant = getEmpruntFromId($_REQUEST["idPret"]);
+            $empruntCourant = Pret::getEmpruntFromId($_REQUEST["idPret"]);
             if (!empty($_REQUEST["accepter"])) {
                 $listeData = getValuesFromREQUEST();
                 $listeData["idNotification"] = "0";
@@ -119,9 +119,9 @@ if (!empty($_REQUEST['etape'])) {
 //            $_REQUEST["message"];
             $pageAAfficher = "ihm/utilisateur/mesEmprunts.php";
             break;
-        case "5":
+        case 5:
             include "job/dao/Pret_Dao.php";
-            $pretCourant = getPretFromId($_REQUEST["idPret"]);
+            $pretCourant = Pret::getPretFromId($_REQUEST["idPret"]);
             $listeData = getValuesFromREQUEST();
             $listeData["idNotification"] = "0";
             $listeData["statutDemande"] = "0";
@@ -131,9 +131,9 @@ if (!empty($_REQUEST['etape'])) {
 //            $_REQUEST["message"];
             $pageAAfficher = "ihm/utilisateur/mesPrets.php";
             break;
-        case "6":
+        case 6:
             include "job/dao/Pret_Dao.php";
-            $empruntCourant = getEmpruntFromId($_REQUEST["idPret"]);
+            $empruntCourant = Pret::getEmpruntFromId($_REQUEST["idPret"]);
             $listeData = getValuesFromREQUEST();
             $listeData["idNotification"] = "0";
             $listeData["statutDemande"] = "0";
@@ -143,9 +143,9 @@ if (!empty($_REQUEST['etape'])) {
 //            $_REQUEST["message"];
             $pageAAfficher = "ihm/utilisateur/mesEmprunts.php";
             break;
-        case "7":
+        case 7:
             include "job/dao/Pret_Dao.php";
-            $empruntCourant = getEmpruntFromId($_REQUEST["idPret"]);
+            $empruntCourant = Pret::getEmpruntFromId($_REQUEST["idPret"]);
             $listeData = getValuesFromREQUEST();
             $listeData["idNotification"] = "0";
             $listeData["statutDemande"] = "0";
@@ -157,21 +157,18 @@ if (!empty($_REQUEST['etape'])) {
 //            $_REQUEST["message"];
             $pageAAfficher = "ihm/utilisateur/mesEmprunts.php";
             break;
-        case "8":
+        case 8:
             include "job/dao/Pret_Dao.php";
-            $pretCourant = getPretFromId($_REQUEST["idPret"]);
+            $pretCourant = Pret::getPretFromId($_REQUEST["idPret"]);
             $listeData = getValuesFromREQUEST();
             $listeData["idNotification"] = "0";
             $listeData["statutDemande"] = "0";
             updatePret($listeData);
             updateExpedition($listeData);
-            $_REQUEST["retourDateReception"];
-            $_REQUEST["retourEtatJeu"];
-            $_REQUEST["retourPiecesManquantes"];
             $_SESSION["mesPrets"] = selectPrets("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
 //            $_REQUEST["message"];
             $pageAAfficher = "ihm/utilisateur/mesPrets.php";
             break;
     }
-}
+//}
 

@@ -5,7 +5,7 @@
         foreach ($listOfElements as $jeu_p) :
             ?>        
              <div class="blocList">
-                 Nom du jeu :<?= $jeu_p->getJeuT()->getNom() ?><br/>
+                 Nom du jeu : <?= $jeu_p->getJeuT()->getNom() ?><br/>
                  Propriétaire : <?= $jeu_p->getProprietaire()->getPseudo() ?><br/>
                  Code postal : <?= $jeu_p->getProprietaire()->getCodePostal() ?><br/>
                     <form action=" " method="post" accept-charset="utf-8" class="form" role="form">

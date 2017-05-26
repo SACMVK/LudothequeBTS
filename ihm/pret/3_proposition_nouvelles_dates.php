@@ -18,9 +18,8 @@
         <textarea name="message"></textarea>
         <br />
         <br />
-        <input type=hidden name="pret" value="pret" />
-        <input type=hidden name="formulairePret" value="3" />
+        <input type=hidden name="pret" value=3 />
         <input type=hidden name="idPret" value="<?=$pret->getIdPret() ?>" />
-        <input class="boutonGris" name="envoyer" type="submit" value="Envoyer les nouvelles dates">
+        <input class="boutonGris" name="envoyer" type="submit" value="Envoyer les nouvelles dates" />
     </form>
 </div>

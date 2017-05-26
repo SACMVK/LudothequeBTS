@@ -115,17 +115,17 @@ class Pret {
         $this->expedition = $expedition;
     }
 
-    public function getPretFromId($id) {
+    public static function getPretFromId($id) {
         foreach ($_SESSION["mesPrets"] as $pret) {
-            if ($pret->getIdPret == $id) {
+            if ($pret->getIdPret() == $id) {
                 return $pret;
             }
         }
     }
 
-    public function getEmpruntFromId($id) {
+    public static function getEmpruntFromId($id) {
         foreach ($_SESSION["mesEmprunts"] as $emprunt) {
-            if ($emprunt->getIdPret == $id) {
+            if ($emprunt->getIdPret() == $id) {
                 return $emprunt;
             }
         }

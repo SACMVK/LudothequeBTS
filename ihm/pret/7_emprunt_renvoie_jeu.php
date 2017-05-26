@@ -28,8 +28,7 @@
         <textarea name="message"></textarea>
         <br />
         <br />
-        <input type=hidden name="pret" value="pret" />
-        <input type=hidden name="formulairePret" value="7" />
+        <input type=hidden name="pret" value=7 />
         <input type=hidden name="idPret" value="<?=$pret->getIdPret() ?>" />
         <input class="boutonGris" name="confirmer" type="submit" value="Confirmer le renvoi"/>
 

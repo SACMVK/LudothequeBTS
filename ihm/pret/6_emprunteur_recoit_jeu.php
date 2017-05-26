@@ -21,8 +21,7 @@
         <textarea name="message"></textarea>
         <br />
         <br />
-        <input type=hidden name="pret" value="pret" />
-        <input type=hidden name="formulairePret" value="6" />
+        <input type=hidden name="pret" value=6 />
         <input type=hidden name="idPret" value="<?=$pret->getIdPret() ?>" />
         <input class="boutonGris" name="confirmer" type="submit" value="Confirmer la réception"/>
     </form>
