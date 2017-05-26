@@ -42,7 +42,7 @@ if (!empty($_SESSION["mesEmprunts"])):
             <?php
             $nomBouton = "";
             $renvoiFormulaire = "";
-            switch ($pret->getIdNotification()) {
+            switch ($emprunt->getIdNotification()) {
                 case "1":
                     $nomBouton = "Répondre à la demande d'emprunt";
                     $renvoiFormulaire = "pret/2_reponse_emprunt.php";
@@ -71,10 +71,10 @@ if (!empty($_SESSION["mesEmprunts"])):
             }
             ?>
             <?php
-            if ($pret->getIdNotification() != "3" && $pret->getIdNotification() != "5" && $pret->getIdNotification() != "9" && $pret->getIdNotification() != "10"):
+            if ($emprunt->getIdNotification() != "3" && $emprunt->getIdNotification() != "5" && $emprunt->getIdNotification() != "9" && $emprunt->getIdNotification() != "10"):
                 ?>
                 <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
-                    <input type=hidden name="idPret" value="<?= $pret->getIdPret() ?>" />
+                    <input type=hidden name="idPret" value="<?= $emprunt->getIdPret() ?>" />
                     <input type=hidden name="page" value="<?= $renvoiFormulaire ?>" />
                     <input type="submit" name="submit" class="boutonGris" value="<?= $nomBouton ?>">
                 </form>
