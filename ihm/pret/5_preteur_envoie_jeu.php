@@ -1,23 +1,19 @@
-<div class="container">
-    <form class="well" role="form">
-        <div class="row">
-            <div class="col-md-8 ">
-                <div class="form-group">
-                    <br><br><br>
-                        <label>Jeu du :</label> <!-- aller piocher dans la bdd--><?php echo "jeujeu" ?>
-                        <br>
-                        <label>Emprunté à</label> <!-- aller piocher dans la bdd--><?php echo "prêteur" ?>
-                </div> <br>
-                <div class="form-group">
-                    <div id="multiple" class="article">
-                        <label>Date d'envoi : </label> <input type="text" id="datepicker1"  name="date">
-                    </div>
-                </div>
-                <br><br /><br />
-                <label>Commentaire à destination de l'emprunteur</label>
-                <textarea class="form-control" rows="7" name="text"></textarea> <br />
-                <button class="boutonBleu" type="submit">Envoyer</button>
-            </div>
-        </div>
+<div class="blocList">
+    <form action=" " method="post" accept-charset="utf-8">
+        Vous confirmez à <b><?= $pret->getEmprunteur()->getPseudo() ?></b> 
+        que vous lui avez bien envoyé votre jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> 
+        le : <input type="date"  name="envoiDateEnvoi">
+        <br />
+        <br />
+        Message à destination de l'emprunteur :
+        <br />
+        <br />
+        <textarea name="message"></textarea>
+        <br />
+        <br />
+        <input type=hidden name="pret" value=5 />
+        <input type=hidden name="idPret" value="<?=$pret->getIdPret() ?>" />
+        <input class="boutonGris" name="confirmer" type="submit" value="Confirmer l'envoi" />
+
     </form>
 </div>

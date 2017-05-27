@@ -1,26 +1,21 @@
-<div class="container">
-    <form class="well" role="form">
-        <div class="row">
-            <div class="col-md-8 ">
-                <div class="form-group">
-                    <label>Nom du prêteur</label> <!-- aller piocher dans la bdd--><?php echo "prêteur" ?>
-                    <br>
-                    <label>Nom du jeu</label> <!-- aller piocher dans la bdd--><?php echo "jeujeu" ?>
-                </div>
-                    <br>
-                <div class="form-group">
-                    <div id="multiple" class="article">
-                                <label>Date début : XXXXXX</label> <br>
-                                <label>Date fin : XXXXXX</label><br>
-                    </div>
-                </div>
-                <br>
-                <label>Commentaire a destination du prêteur:</label>
-                <textarea class="form-control" rows="7" name="text"></textarea>
-
-                <button class="boutonBleu" type="submit">Accepter</button>
-                <button class="boutonBleu" type="submit">Refuser</button>
-            </div>
-        </div>
+<div class="blocList">
+    <form action=" " method="post" accept-charset="utf-8">
+        <b><?= $pret->getJeuP()->getProprietaire()->getPseudo() ?></b> vous propose d'autres dates 
+        pour le prêt de son jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> : 
+        du <?= screenDate($pret->getPropositionPreteurDateDebut()) ?> au <?= screenDate($pret->getPropositionPreteurDateFin()) ?>. 
+        Les dates initiales étaient du <?= screenDate($pret->getPropositionEmprunteurDateDebut()) ?> 
+        au <?= screenDate($pret->getPropositionEmprunteurDateFin()) ?>.
+        <br />
+        <br />
+        Messsage à destination du prêteur :
+        <br />
+        <br />
+        <textarea name="message"></textarea>
+        <br />
+        <br />
+        <input type=hidden name="pret" value=4 />
+        <input type=hidden name="idPret" value="<?=$pret->getIdPret() ?>" />
+        <input class="boutonGris" name="accepter" type="submit" value="Accepter" />
+        <input class="boutonGris" name="refuser" type="submit" value="Refuser">
     </form>
 </div>

@@ -1,6 +1,6 @@
 <?php
 
-function select($requete) {
+function selectPrets($requete) {
 
 
     //AhMaD:ouvrire la connexion avec BD
@@ -125,7 +125,7 @@ function select($requete) {
             $envoiEtatJeu = $champExpedition["envoiEtatJeu"];
             $envoiPiecesManquantes = $champExpedition["envoiPiecesManquantes"];
             $retourDateEnvoi = $champExpedition["retourDateEnvoi"];
-            $retourDateReception =  $champExpedition["retourDateReception"];
+            $retourDateReception = $champExpedition["retourDateReception"];
             $retourEtatJeu = $champExpedition["retourEtatJeu"];
             $retourPiecesManquantes = $champExpedition["retourPiecesManquantes"];
             $expedition = new Expedition($envoiDateEnvoi, $envoiDateReception, $envoiEtatJeu, $envoiPiecesManquantes, $retourDateEnvoi, $retourDateReception, $retourEtatJeu, $retourPiecesManquantes);
@@ -143,14 +143,162 @@ function select($requete) {
     return $pret_list;
 }
 
-function insert($requete) {
-    
+function insertPret($list_Values) {
+    $idJeuP = $list_Values["idJeuP"];
+    $idEmprunteur = $list_Values["idEmprunteur"];
+    $propositionEmprunteurDateDebut = $list_Values["propositionEmprunteurDateDebut"];
+    $propositionEmprunteurDateFin = $list_Values["propositionEmprunteurDateFin"];
+    $notification = $list_Values["notification"];
+    $statutDemande = $list_Values["statutDemande"];
+    $requete = "INSERT INTO pret_p (idJeuP, idEmprunteur, propositionEmprunteurDateDebut, propositionEmprunteurDateFin, notification, statutDemande) "
+            . "VALUES ('" . $idJeuP . "','" . $idEmprunteur . "','" . $propositionEmprunteurDateDebut . "','" . $propositionEmprunteurDateFin . "','" . $notification . "','" . $statutDemande . "');";
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $lastInsertId = $db->lastInsertId();
+    $db = closeConnexion();
+    return $lastInsertId;
 }
 
-function update($requete) {
-    
+function insertExpedition($list_Values) {
+    $idPret = $list_Values["idPret"];
+    $envoiDateEnvoi = $list_Values["envoiDateEnvoi"];
+    $requete = "INSERT INTO expedition (idPret, envoiDateEnvoi) VALUES ('" . $idPret . "','" . $envoiDateEnvoi . "');";
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $lastInsertId = $db->lastInsertId();
+    $db = closeConnexion();
+    return $lastInsertId;
 }
 
-function delete($id) {
+function insertMessagePret($list_Values) {
+    $idPret = $list_Values["idPret"];
+    $idMessage = $list_Values["idMessage"];
+    $idNotification = $list_Values["idNotification"];
+    $requete = "INSERT INTO pret_a_pour_message (idPret, idMessage, idNotification) VALUES ('" . $idPret . "','" . $idMessage . "','" . $idNotification . "');";
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $lastInsertId = $db->lastInsertId();
+    $db = closeConnexion();
+    return $lastInsertId;
+}
+
+function insertNote($list_Values) {
+    $idPC = $list_Values["idPC"];
+    $idUser = $list_Values["idUser"];
+    $note = $list_Values["note"];
+    $requete = "INSERT INTO note_jeu_t (idPC, idUser, note) VALUES ('" . $idPC . "','" . $idUser . "','" . $note . "');";
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $lastInsertId = $db->lastInsertId();
+    $db = closeConnexion();
+    return $lastInsertId;
+}
+
+function insertCommentaire($list_Values) {
+    $idPC = $list_Values["idPC"];
+    $commentaireT = $list_Values["commentaireT"];
+    $idUser = $list_Values["idUser"];
+    $requete = "INSERT INTO commentaire_p_c_t (idPC, commentaireT, idUser) VALUES ('" . $idPC . "','" . $commentaireT . "','" . $idUser . "');";
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $lastInsertId = $db->lastInsertId();
+    $db = closeConnexion();
+    return $lastInsertId;
+}
+
+function updatePret($list_Values) {
+    $idPret = $list_Values["idPret"];
+    $listeSet = [];
+    if (!empty($list_Values["idJeuP"])) {
+        $listeSet [] = "idJeuP = '" . $list_Values["idJeuP"] . "'";
+    }
+    if (!empty($list_Values["idEmprunteur"])) {
+        $listeSet [] = "idEmprunteur = '" . $list_Values["idEmprunteur"] . "'";
+    }
+    if (!empty($list_Values["propositionEmprunteurDateDebut"])) {
+        $listeSet [] = "propositionEmprunteurDateDebut = '" . convertDateToSQLdate($list_Values["propositionEmprunteurDateDebut"]) . "'";
+    }
+    if (!empty($list_Values["propositionEmprunteurDateFin"])) {
+        $listeSet [] = "propositionEmprunteurDateFin = '" . convertDateToSQLdate($list_Values["propositionEmprunteurDateFin"]) . "'";
+    }
+    if (!empty($list_Values["propositionPreteurDateDebut"])) {
+        $listeSet [] = "propositionPreteurDateDebut = '" . convertDateToSQLdate($list_Values["propositionPreteurDateDebut"]) . "'";
+    }
+    if (!empty($list_Values["propositionPreteurDateFin"])) {
+        $listeSet [] = "propositionPreteurDateFin = '" . convertDateToSQLdate($list_Values["propositionPreteurDateFin"]) . "'";
+    }
+    if (!empty($list_Values["notification"])) {
+        $listeSet [] = "notification = '" . $list_Values["notification"] . "'";
+    }
+    if (!empty($list_Values["statutDemande"])) {
+        $listeSet [] = "statutDemande = '" . $list_Values["statutDemande"] . "'";
+    }
+    $set = "";
+    for ($i = 0; $i < count($listeSet) - 1; $i++) {
+        $set .= $listeSet[$i] . ", ";
+    }
+    $set .= $listeSet[count($listeSet) - 1];
+
+    $requete = "UPDATE pret_p SET " . $set . " WHERE idPret = " . $idPret . ";";
+
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $db = closeConnexion();
+}
+
+function updateExpedition($list_Values) {
+    $idPret = $list_Values["idPret"];
+    if (!empty($list_Values["envoiDateEnvoi"])) {
+        $listeSet [] = "envoiDateEnvoi = '" . convertDateToSQLdate($list_Values["envoiDateEnvoi"]) . "'";
+    }
+    if (!empty($list_Values["envoiDateReception"])) {
+        $listeSet [] = "envoiDateReception = '" . convertDateToSQLdate($list_Values["envoiDateReception"]) . "'";
+    }
+    if (!empty($list_Values["envoiEtatJeu"])) {
+        $listeSet [] = "envoiEtatJeu = '" . $list_Values["envoiEtatJeu"] . "'";
+    }
+    if (!empty($list_Values["envoiPiecesManquantes"])) {
+        if ($list_Values["envoiPiecesManquantes"] == "oui") {
+            $listeSet [] = "envoiPiecesManquantes = 1";
+        } else {
+            $listeSet [] = "envoiPiecesManquantes = 0";
+        }
+    }
+    if (!empty($list_Values["retourDateEnvoi"])) {
+        $listeSet [] = "retourDateEnvoi = '" . convertDateToSQLdate($list_Values["retourDateEnvoi"]) . "'";
+    }
+    if (!empty($list_Values["retourDateReception"])) {
+        $listeSet [] = "retourDateReception = '" . convertDateToSQLdate($list_Values["retourDateReception"]) . "'";
+    }
+    if (!empty($list_Values["retourEtatJeu"])) {
+        $listeSet [] = "retourEtatJeu = '" . $list_Values["retourEtatJeu"] . "'";
+    }
+    if (!empty($list_Values["retourPiecesManquantes"])) {
+        if ($list_Values["retourPiecesManquantes"] == "oui") {
+            $listeSet [] = "retourPiecesManquantes = 1";
+        } else {
+            $listeSet [] = "retourPiecesManquantes = 0";
+        }
+    }
+    $set = "";
+    for ($i = 0; $i < count($listeSet) - 1; $i++) {
+        $set .= $listeSet[$i] . ", ";
+    }
+    $set .= $listeSet[count($listeSet) - 1];
+    $requete = "UPDATE expedition SET " . $set . " WHERE idPret = " . $idPret . ";";
+
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $db = closeConnexion();
+}
+
+function deletePret($id) {
     
 }

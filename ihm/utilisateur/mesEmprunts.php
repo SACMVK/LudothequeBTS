@@ -10,6 +10,7 @@ if (!empty($_SESSION["mesEmprunts"])):
             Propriétaire : <?= $emprunt->getJeuP()->getProprietaire()->getPseudo() ?><br/>
             Statut : <?= $emprunt->getStatutDemande() ?><br/>
             Sujet notification : <?= $emprunt->getNotification()["sujetEmprunteur"] ?><br/>
+            id notification : <?= $emprunt->getidNotification() ?><br/>
             <?php
             $corpsEmprunteur = $emprunt->getNotification()["corpsEmprunteur"];
             $corpsEmprunteur = str_replace("#nomPreteur#", $emprunt->getJeuP()->getProprietaire()->getPseudo(), $corpsEmprunteur);
@@ -38,6 +39,37 @@ if (!empty($_SESSION["mesEmprunts"])):
             }
             ?>
             Corps notification : <?= $corpsEmprunteur ?><br/>
+            <?php
+            $nomBouton = "";
+            $renvoiFormulaire = "";
+            $ajouterBouton = true;
+            switch ($emprunt->getIdNotification()) {
+                case "4":
+                    $nomBouton = "Répondre à une proposition de nouvelles dates";
+                    $renvoiFormulaire = "pret/4_reponse_nouvelles_dates.php";
+                    break;
+                case "7":
+                    $nomBouton = "Confirmer la réception du jeu";
+                    $renvoiFormulaire = "pret/6_emprunteur_recoit_jeu.php";
+                    break;
+                case "8":
+                    $nomBouton = "Confirmer le renvoi du jeu";
+                    $renvoiFormulaire = "pret/7_emprunt_renvoie_jeu.php";
+                    break;
+                default:
+                    $ajouterBouton = false;
+                    break;
+            }
+            ?>
+            <?php
+            if ($ajouterBouton):
+                ?>
+                <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+                    <input type=hidden name="idPret" value="<?= $emprunt->getIdPret() ?>" />
+                    <input type=hidden name="formulaire" value="<?= $renvoiFormulaire ?>" />
+                    <input type="submit" name="submit" class="boutonGris" value="<?= $nomBouton ?>">
+                </form>
+            <?php endif; ?>
         </div> 
         <?php
     endforeach;

@@ -15,7 +15,7 @@
         include 'job/class/Message.php';
         include 'job/class/Expedition.php';
         include 'job/class/Pret.php';
-        
+
         include 'job/dao/fonctions_dao.php';
         include 'ihm/css/css.php';
         include 'job/dao/Connexion_DataBase.php';
@@ -45,8 +45,10 @@
             include 'controller/controllerConnexion.php';
         } else if (!empty($_REQUEST['objectToWorkWith'])) {
             include 'controller/controllerRequete.php';
-        } else if (!empty($_REQUEST['user'])) {
+        } else if (!empty($_REQUEST['user']) && empty($_REQUEST['idPret'])) {
             include 'controller/controllerUser.php';
+        } else if (!empty($_REQUEST['formulaire'])) {
+            include 'controller/controllerFormulaire.php';
         } else if (!empty($_REQUEST['pret'])) {
             include 'controller/controllerPret.php';
         } else if (!empty($_REQUEST['page'])) {
@@ -141,7 +143,7 @@
 
 
         <?php
-        include 'ihm/js/js_effets.php';
+        include 'ihm/js/js.php';
         ?>
 
     </body>

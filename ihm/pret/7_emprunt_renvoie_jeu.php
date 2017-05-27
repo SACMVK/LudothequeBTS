@@ -1,44 +1,40 @@
-<div class="container">
-    <form class="well" role="form">
-        <div class="row">
-            <div class="col-md-8 ">
+<div class="blocList">
+    <form action=" " method="post" accept-charset="utf-8">
+        Vous confirmez à <b><?= $pret->getJeuP()->getProprietaire()->getPseudo() ?></b> 
+        que vous lui avez bien renvoyé son jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> 
+        le : <input type="date"  name="retourDateEnvoi">
+        <br />
+        <br />
+        Intérêt du jeu : 
+        <select name="note">
+            <option value="">-----</option>
+            <option value="1">1/5</option>
+            <option value="2">2/5</option>
+            <option value="3">3/5</option>
+            <option value="4">4/5</option>
+            <option value="5">5/5</option>
+        </select>
+        <br />
+        <br />
+        Précisions sur l'intérêt du jeu :
+        <br />
+        <br />
+        <textarea name="commentaireT"></textarea>
+        <br />
+        <br />
+        Message à destination du prêteur :
+        <br />
+        <br />
+        <textarea name="message"></textarea>
+        <br />
+        <br />
+        <input type=hidden name="pret" value=7 />
+        <input type=hidden name="idPret" value="<?=$pret->getIdPret() ?>" />
+        <input class="boutonGris" name="confirmer" type="submit" value="Confirmer le renvoi"/>
 
-                <div class="form-group">
-                    <label>Jeu du:</label> <!-- aller piocher dans la bdd--><?php echo "jeujeu" ?>
-                </div>
-
-                <div class="form-group">
-                    <label>Emprunté à:</label> <!-- aller piocher dans la bdd--><?php echo "prêteur" ?>
-                </div>	
-                
-                
-		<!-- AVIS -->
-                
-                <div class="form-group">
-                    <label>Intérêt du jeu :</label><br>
-                    <select class="form-group" name="interetjeu">
-                        <option value="1">Déconseille</option>
-                        <option value="2">Moyen</option>
-                        <option value="3">Recommande</option>
-                        <option value="4" selected="selected">Très Bien</option>
-                        <option value="5">Excellent</option>
-                    </select><br>
-                </div>
-            </div>
-            <br />
-                <!-- Dates a recuperer et stocker dans la bd-->
-                <label>Date d'envoi : </label> <input type="text" id="datepicker1"  name="date">
-            <br /><br /><br />
-            <label>Commentaire sur le jeu</label>
-            <textarea class="form-control" rows="7"></textarea>
-            <br /><br />
-            <label>Commentaire a destination du prêteur</label>
-            <textarea class="form-control" rows="7"></textarea><br />
-            <button class="boutonBleu" type="submit">Envoyer</button>
-        </div>
 
     </form>
 </div>
-	
-</div>
+
+
 

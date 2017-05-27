@@ -55,7 +55,7 @@ $carrousel = [
         <div class="collection-accueil">
             <a href="#" class="collection-accueil-item">
                 <h2 class="collection-accueil-title">Jeux Cartes</h2>
-                <div class="collection-accueil-item-image" style="background-image: url(ihm/img/poker.jpg ) ">
+                <div class="collection-accueil-item-image" style="background-image: url(data/images/poker.jpg ) ">
                 </div>
                 <div class="collection-accueil-item-content">
                     <div class="collection-accueil-item-content-limiter">
@@ -73,7 +73,7 @@ $carrousel = [
         <div class="collection-accueil">
             <a href="#" class="collection-accueil-item">
                 <h2 class="collection-accueil-title">Jeux de plateau</h2>
-                <div class="collection-accueil-item-image" style="background-image: url(ihm/img/video.jpg ) ">
+                <div class="collection-accueil-item-image" style="background-image: url(data/images/video.jpg ) ">
                 </div>
                 <div class="collection-accueil-item-content">
                     <div class="collection-accueil-item-content-limiter">
@@ -89,7 +89,7 @@ $carrousel = [
         <div class="collection-accueil">
             <a href="#" class="collection-accueil-item">
                 <h2 class="collection-accueil-title">jeux sportif</h2>
-                <div class="collection-accueil-item-image" style="background-image: url(ihm/img/Boules.jpg ) ">
+                <div class="collection-accueil-item-image" style="background-image: url(data/images/Boules.jpg ) ">
                 </div>
                 <div class="collection-accueil-item-content">
                     <div class="collection-accueil-item-content-limiter">

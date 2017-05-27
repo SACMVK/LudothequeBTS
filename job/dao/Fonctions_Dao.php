@@ -13,7 +13,7 @@ function convertDateToSQLdate(string $stringDate) {
     }
     $decoupage = explode($delimiter, $stringDate);
     // cas YYYYMMDD
-    if (count($decoupage[0]) == 4) {
+    if (strlen($decoupage[0]) == 4) {
         $convertedDate = $decoupage[0] . "-" . $decoupage[1] . "-" . $decoupage[2];
         // cas DDMMYYYY
     } else {

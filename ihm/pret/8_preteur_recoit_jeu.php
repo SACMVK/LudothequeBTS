@@ -1,35 +1,32 @@
-<div class="container">
-    <form class="well" role="form">
-        <div class="row">
-            <div class="col-md-8 ">
-                <div class="form-group">
-                    <label>Jeu du:</label> <!-- aller piocher dans la bdd--><?php echo "jeujeu" ?>
-                </div>
+<div class="blocList">
+    <form action=" " method="post" accept-charset="utf-8">
+        Vous confirmez à <b><?= $pret->getEmprunteur()->getPseudo() ?></b> 
+        que vous avez bien reçu votre jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> 
+        le : <input type="date"  name="retourDateReception">
+        <br />
+        <br />               
+        État du jeu reçu : 
+        <select name="retourEtatJeu">
+            <?php selectDico("etat_d", "etat") ?>
+        </select>
+        <br />
+        <br />   
+        Pièce(s) manquante(s) :
+        <select name="retourPiecesManquantes" >
+            <option value="non">Non</option>
+            <option value="oui">Oui</option>
+        </select>
+        <br />
+        <br />
+        Message à destination de l'emprunteur :
+        <br />
+        <br />
+        <textarea name="message"></textarea>
+        <br />
+        <br />
+        <input type=hidden name="pret" value=8 />
+        <input type=hidden name="idPret" value="<?= $pret->getIdPret() ?>" />
+        <input class="boutonGris" name="confirmer" type="submit" value="Confirmer la réception"/>
 
-                <div class="form-group">
-                        <label>Prêté à:</label> <!-- aller piocher dans la bdd--><?php echo "emprunteur" ?>
-                </div>
-                
-                
-                 <!-- AVIS -->                   
-                <div class="form-group">
-                    <label>État du jeu rendu :</label><br>
-                    <select class="form-group" name="avisjeu">
-                        <option value="1">Déconseille</option>
-                        <option value="2">Moyen</option>
-                        <option value="3">Recommande</option>
-                        <option value="4" selected="selected">Très Bien</option>
-                        <option value="5">Excellent</option>
-                    </select><br>
-                </div>
-                <br />
-                <!-- Dates a recuperer et stocker dans la bd-->
-                <label>Date de réception:</label><input type="text" id="datepicker1"  name="date">
-                <br /><br /><br /><br />
-                <label>Commentaire a destination de l'emprunteur</label>
-                <textarea class="form-control" rows="7"></textarea><br />
-                <button class="boutonBleu" type="submit">Envoyer</button>
-            </div>
-        </div>
     </form>
 </div>
