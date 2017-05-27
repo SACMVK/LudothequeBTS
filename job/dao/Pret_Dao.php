@@ -146,8 +146,8 @@ function selectPrets($requete) {
 function insertPret($list_Values) {
     $idJeuP = $list_Values["idJeuP"];
     $idEmprunteur = $list_Values["idEmprunteur"];
-    $propositionEmprunteurDateDebut = $list_Values["propositionEmprunteurDateDebut"];
-    $propositionEmprunteurDateFin = $list_Values["propositionEmprunteurDateFin"];
+    $propositionEmprunteurDateDebut = convertDateToSQLdate($list_Values["propositionEmprunteurDateDebut"]);
+    $propositionEmprunteurDateFin = convertDateToSQLdate($list_Values["propositionEmprunteurDateFin"]);
     $notification = $list_Values["notification"];
     $statutDemande = $list_Values["statutDemande"];
     $requete = "INSERT INTO pret_p (idJeuP, idEmprunteur, propositionEmprunteurDateDebut, propositionEmprunteurDateFin, notification, statutDemande) "
@@ -162,7 +162,7 @@ function insertPret($list_Values) {
 
 function insertExpedition($list_Values) {
     $idPret = $list_Values["idPret"];
-    $envoiDateEnvoi = $list_Values["envoiDateEnvoi"];
+    $envoiDateEnvoi = convertDateToSQLdate($list_Values["envoiDateEnvoi"]);
     $requete = "INSERT INTO expedition (idPret, envoiDateEnvoi) VALUES ('" . $idPret . "','" . $envoiDateEnvoi . "');";
     $db = openConnexion();
     $stmt = $db->prepare($requete);
