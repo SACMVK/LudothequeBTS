@@ -143,7 +143,7 @@
 
 
         <?php
-        include 'ihm/js/js_effets.php';
+        include 'ihm/js/js.php';
         ?>
 
     </body>
