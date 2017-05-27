@@ -61,13 +61,13 @@ switch ($_REQUEST['pret']) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
-                "idDest" => $emprunt->getEmprunteur()->getIdUser(),
-                "idExped" => $emprunt->getJeuP()->getProprietaire()->getIdUser(),
+                "idDest" => $pret->getEmprunteur()->getIdUser(),
+                "idExped" => $pret->getJeuP()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$pret->getIdPret(),
                 "texte" => $_REQUEST["message"]];
             $lastMessageInserted = insert($dataMessage);
-            insertMessagePret(["idPret"=>$lastEmpruntInserted, "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
+            insertMessagePret(["idPret"=>$pret->getIdPret(), "idMessage"=>$lastMessageInserted, "idNotification"=>$pret->getIdNotification()]);
         }
         break;
     case 3:
@@ -82,13 +82,13 @@ switch ($_REQUEST['pret']) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
-                "idDest" => $emprunt->getEmprunteur()->getIdUser(),
-                "idExped" => $emprunt->getJeuP()->getProprietaire()->getIdUser(),
+                "idDest" => $pret->getEmprunteur()->getIdUser(),
+                "idExped" => $pret->getJeuP()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$pret->getIdPret(),
                 "texte" => $_REQUEST["message"]];
             $lastMessageInserted = insert($dataMessage);
-            insertMessagePret(["idPret"=>$lastEmpruntInserted, "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
+            insertMessagePret(["idPret"=>$pret->getIdPret(), "idMessage"=>$lastMessageInserted, "idNotification"=>$pret->getIdNotification()]);
         }
         $pageAAfficher = "ihm/utilisateur/mesPrets.php";
         break;
@@ -118,7 +118,7 @@ switch ($_REQUEST['pret']) {
                 "sujet" => "Message en rapport avec le prêt n° ".$emprunt->getIdPret(),
                 "texte" => $_REQUEST["message"]];
             $lastMessageInserted = insert($dataMessage);
-            insertMessagePret(["idPret"=>$lastEmpruntInserted, "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
+            insertMessagePret(["idPret"=>$emprunt->getIdPret(), "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
         }
         $pageAAfficher = "ihm/utilisateur/mesEmprunts.php";
         break;
@@ -134,13 +134,13 @@ switch ($_REQUEST['pret']) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
-                "idDest" => $emprunt->getEmprunteur()->getIdUser(),
-                "idExped" => $emprunt->getJeuP()->getProprietaire()->getIdUser(),
+                "idDest" => $pret->getEmprunteur()->getIdUser(),
+                "idExped" => $pret->getJeuP()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$pret->getIdPret(),
                 "texte" => $_REQUEST["message"]];
             $lastMessageInserted = insert($dataMessage);
-            insertMessagePret(["idPret"=>$lastEmpruntInserted, "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
+            insertMessagePret(["idPret"=>$pret->getIdPret(), "idMessage"=>$lastMessageInserted, "idNotification"=>$pret->getIdNotification()]);
         }
         $pageAAfficher = "ihm/utilisateur/mesPrets.php";
         break;
@@ -162,7 +162,7 @@ switch ($_REQUEST['pret']) {
                 "sujet" => "Message en rapport avec le prêt n° ".$emprunt->getIdPret(),
                 "texte" => $_REQUEST["message"]];
             $lastMessageInserted = insert($dataMessage);
-            insertMessagePret(["idPret"=>$lastEmpruntInserted, "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
+            insertMessagePret(["idPret"=>$emprunt->getIdPret(), "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
         }
         $pageAAfficher = "ihm/utilisateur/mesEmprunts.php";
         break;
@@ -188,7 +188,7 @@ switch ($_REQUEST['pret']) {
                 "sujet" => "Message en rapport avec le prêt n° ".$emprunt->getIdPret(),
                 "texte" => $_REQUEST["message"]];
             $lastMessageInserted = insert($dataMessage);
-            insertMessagePret(["idPret"=>$lastEmpruntInserted, "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
+            insertMessagePret(["idPret"=>$emprunt->getIdPret(), "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
         }
         $pageAAfficher = "ihm/utilisateur/mesEmprunts.php";
         break;
@@ -204,13 +204,13 @@ switch ($_REQUEST['pret']) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
-                "idDest" => $emprunt->getEmprunteur()->getIdUser(),
-                "idExped" => $emprunt->getJeuP()->getProprietaire()->getIdUser(),
+                "idDest" => $pret->getEmprunteur()->getIdUser(),
+                "idExped" => $pret->getJeuP()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$pret->getIdPret(),
                 "texte" => $_REQUEST["message"]];
             $lastMessageInserted = insert($dataMessage);
-            insertMessagePret(["idPret"=>$lastEmpruntInserted, "idMessage"=>$lastMessageInserted, "idNotification"=>$emprunt->getIdNotification()]);
+            insertMessagePret(["idPret"=>$pret->getIdPret(), "idMessage"=>$lastMessageInserted, "idNotification"=>$pret->getIdNotification()]);
         }
         $pageAAfficher = "ihm/utilisateur/mesPrets.php";
         break;
