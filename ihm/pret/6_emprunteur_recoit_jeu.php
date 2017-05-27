@@ -12,7 +12,10 @@
         <br />
         <br />
         Pièce(s) manquante(s) :
-        <input type="checkbox" name="envoiPiecesManquantes" />
+        <select name="envoiPiecesManquantes" >
+            <option value="non">Non</option>
+            <option value="oui">Oui</option>
+        </select>
         <br />
         <br />
         Message à destination du prêteur :
@@ -22,7 +25,7 @@
         <br />
         <br />
         <input type=hidden name="pret" value=6 />
-        <input type=hidden name="idPret" value="<?=$pret->getIdPret() ?>" />
+        <input type=hidden name="idPret" value="<?= $pret->getIdPret() ?>" />
         <input class="boutonGris" name="confirmer" type="submit" value="Confirmer la réception"/>
     </form>
 </div>

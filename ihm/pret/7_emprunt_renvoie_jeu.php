@@ -19,7 +19,7 @@
         Précisions sur l'intérêt du jeu :
         <br />
         <br />
-        <textarea name="commentaire"></textarea>
+        <textarea name="commentaireT"></textarea>
         <br />
         <br />
         Message à destination du prêteur :

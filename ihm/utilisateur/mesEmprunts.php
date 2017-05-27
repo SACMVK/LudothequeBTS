@@ -42,40 +42,31 @@ if (!empty($_SESSION["mesEmprunts"])):
             <?php
             $nomBouton = "";
             $renvoiFormulaire = "";
+            $ajouterBouton = true;
             switch ($emprunt->getIdNotification()) {
-                case "1":
-                    $nomBouton = "Répondre à la demande d'emprunt";
-                    $renvoiFormulaire = "pret/2_reponse_emprunt.php";
-                    break;
                 case "4":
                     $nomBouton = "Répondre à une proposition de nouvelles dates";
                     $renvoiFormulaire = "pret/4_reponse_nouvelles_dates.php";
                     break;
-                case "2":
-                case "6":
-                    $nomBouton = "Confirmer envoi";
-                    $renvoiFormulaire = "pret/5_preteur_envoit_jeu.php";
-                    break;
-                case "6":
-                    $nomBouton = "Confirmer réception";
+                case "7":
+                    $nomBouton = "Confirmer la réception du jeu";
                     $renvoiFormulaire = "pret/6_emprunteur_recoit_jeu.php";
                     break;
-                case "7":
-                    $nomBouton = "Confirmer envoi";
-                    $renvoiFormulaire = "pret/7_emprunt_renvoit_jeu.php";
-                    break;
                 case "8":
-                    $nomBouton = "Confirmer réception";
-                    $renvoiFormulaire = "pret/8_preteur_recoit_jeu.php";
+                    $nomBouton = "Confirmer le renvoi du jeu";
+                    $renvoiFormulaire = "pret/7_emprunt_renvoie_jeu.php";
+                    break;
+                default:
+                    $ajouterBouton = false;
                     break;
             }
             ?>
             <?php
-            if ($emprunt->getIdNotification() != "3" && $emprunt->getIdNotification() != "5" && $emprunt->getIdNotification() != "9" && $emprunt->getIdNotification() != "10"):
+            if ($ajouterBouton):
                 ?>
                 <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
                     <input type=hidden name="idPret" value="<?= $emprunt->getIdPret() ?>" />
-                    <input type=hidden name="page" value="<?= $renvoiFormulaire ?>" />
+                    <input type=hidden name="formulaire" value="<?= $renvoiFormulaire ?>" />
                     <input type="submit" name="submit" class="boutonGris" value="<?= $nomBouton ?>">
                 </form>
             <?php endif; ?>
