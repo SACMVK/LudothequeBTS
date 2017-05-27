@@ -109,8 +109,161 @@ Function selectListe($table, $var, $champsSelect) {
 }
 
 function screenDate(string $date) {
-        $dateExploded = explode("-", $date);
-        $mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-        return intval($dateExploded[2]) . " " . $mois[intval($dateExploded[1]) - 1] . " " . $dateExploded[0];
+    $dateExploded = explode("-", $date);
+    $mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+    return intval($dateExploded[2]) . " " . $mois[intval($dateExploded[1]) - 1] . " " . $dateExploded[0];
+}
+
+function renommerFichier($nomFichier, $repertoire) {
+    // Suppression des points dans les noms de fichiers
+    $extension = explode(".", $nomFichier)[count(explode(".", $nomFichier)) - 1];
+    $longueurExtension = strlen($extension);
+    $nomSansPoint = substr($nomFichier, 0, strlen($nomFichier) - $longueurExtension);
+    $nomFichier = str_replace(".", "", $nomSansPoint) . "." . strtolower($extension);
+
+    // Récupération de la liste des fichiers présents
+    $listeFichiersExistant[] = "";
+    if ($dossier = opendir($repertoire)) {
+        while (false !== ($file = readdir($dossier))) {
+            $fileExtension = explode(".", $file)[count(explode(".", $file)) - 1];
+            // Permet de supprimer les répertoires et "." et ".."
+            if ($fileExtension != "" && (strpos($file, "."))) {
+                $listeFichiersExistant[] = $file;
+            }
+        }
+        closedir($dossier);
+    }
+
+    // Déclaration de liste alphanumérique
+    $alphaNum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    // Déclaration du nombre d'essais pour test
+    //$nombreEssais = 0;
+    do {
+        $code = "";
+        for ($i = 0; $i < 4; $i++) {
+            $code .= $alphaNum[rand(0, count($alphaNum) - 1)];
+        }
+        $nouveauNomFichier = explode(".", $nomFichier)[0] . "_[" . $code . "]." . explode(".", $nomFichier)[1];
+        //$nombreEssais ++;
+    } while (in_array($nouveauNomFichier, $listeFichiersExistant));
+    return $nouveauNomFichier;
+}
+
+/*
+ * M : Fonction d'upload d'une image.
+ * Utilisée notamment dans la proposition d'un nouveau jeu_t
+ */
+
+//TODDO vérifier si boucler sur l'upload ou dans la fonction insert du dao
+function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
+    $message = '';
+
+    $target_dir = "C:/xampp/htdocs/LudothequeBTS/data/images/vignettes/"; //J'ai dû mettre l'url en absolu car ne me trouve pas le fichier en relative
+    // Ne pas oublier la gestion de l'utf8
+    $target_file = $target_dir . utf8_decode(basename($sourceName));
+    $uploadOk = 1;
+    $fileType = pathinfo($target_file, PATHINFO_EXTENSION);
+    // Check if image file is a actual image or fake image
+    if (isset($_POST["submit"])) {
+        $check = getimagesize($sourceTmpName);
+        if ($check !== false) {
+            $message .= "Le fichier est bien une image - " . $check["mime"] . ". ";
+            $uploadOk = 1;
+        } else {
+            $message .= "Le fichier n'est pas une image. ";
+            $uploadOk = 0;
+        }
+    }
+    // Check if file already exists
+//    if (file_exists($target_file)) {
+//        $message .= "Une image portant le même nom est déjà présente. Consultez l'article de gestion des images. ";
+//        $uploadOk = 0;
+//    }
+    // Check file size
+    if ($sourceSize > 5242880) {
+        $message .= "L'image est trop lourde. ";
+        $uploadOk = 0;
+    }
+    // Allow certain file formats
+    if (strtolower($fileType) != "jpg" && strtolower($fileType) != "png" && strtolower($fileType) != "jpeg" && strtolower($fileType) != "gif") {
+        $message .= "Seules les images de types JPG, JPEG, PNG & GIF sont autorisées. ";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        $message .= "Le chargement n'est pas possible. ";
+        // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($sourceTmpName, $target_file)) {
+            $message .= "Votre fichier " . basename($sourceName) . " a bien été chargé. ";
+            // Renommage du fichier avec un ID
+            //include 'C:/xampp/htdocs/LudothequeBTS/data/database/renommage_recadrage_images.php';
+
+            $nouveauNom = renommerFichier(utf8_decode($sourceName), $target_dir);
+            rename($target_file, $target_dir . $nouveauNom);
+
+            $dimensionsImageReduite = [640, 640];
+
+            // Création d'un objet de type image où sont les pixels originaux
+            switch (strtolower($fileType)) {
+                case "jpg":
+                case "jpeg":
+                    $imageOrigine = imagecreatefromjpeg($target_dir . $nouveauNom);
+                    break;
+                case "png":
+                    $imageOrigine = imagecreatefrompng($target_dir . $nouveauNom);
+                    break;
+                case "gif":
+                    $imageOrigine = imagecreatefromgif($target_dir . $nouveauNom);
+                    break;
+            }
+
+
+            // Récupération des dimensions de l'image
+            $dimensionsActuellesImage = getimagesize($target_dir . $nouveauNom);
+
+            // Calcul de la réduction
+            if ($dimensionsActuellesImage[0] / $dimensionsImageReduite[0] < $dimensionsActuellesImage[1] / $dimensionsImageReduite[1]) {
+                $nouvelleLargeur = $dimensionsActuellesImage[0] / $dimensionsActuellesImage[1] * $dimensionsImageReduite[1];
+                $nouvelleHauteur = $dimensionsImageReduite[1];
+            } else {
+                $nouvelleLargeur = $dimensionsImageReduite[0];
+                $nouvelleHauteur = $dimensionsActuellesImage[1] / $dimensionsActuellesImage[0] * $dimensionsImageReduite[0];
+            }
+
+            // Création d'un deuxième objet de type image qui va recevoir les pixels "réduits"
+            $vignette = imagecreatetruecolor($nouvelleLargeur, $nouvelleHauteur) or die("Erreur");
+
+            // Réduction de l'image
+            imagecopyresampled($vignette, $imageOrigine, 0, 0, 0, 0, $nouvelleLargeur, $nouvelleHauteur, $dimensionsActuellesImage[0], $dimensionsActuellesImage[1]);
+
+            // Sauvegarde de la vignette à un taux de compression élévé (=nombre faible)
+            switch (strtolower($fileType)) {
+                case "jpg":
+                case "jpeg":
+                    imagejpeg($vignette, $target_dir . $nouveauNom, 40);
+                    break;
+                case "png":
+                    imagepng($vignette, $target_dir . $nouveauNom, 4);
+                    break;
+                case "gif":
+                    imagegif($vignette, $target_dir . $nouveauNom);
+                    break;
+            }
+            ?>
+            <form method='POST' action='Jeu_T_Dao.php'> 
+                <input type='hidden' name='sourceName' value='<?= $nouveauNom ?>'> 
+            </form> 
+            <?php
+            // Suppression des deux objets
+            imagedestroy($imageOrigine);
+            imagedestroy($vignette);
+        } else {
+            $message .= "Il y a eu une erreur lors du chargement. ";
+        }
+    }
+
+
+    return $message;
 }
 ?>

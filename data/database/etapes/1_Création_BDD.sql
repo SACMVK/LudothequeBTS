@@ -135,19 +135,19 @@ DROP TABLE IF EXISTS departement;
 
 CREATE TABLE departement (
   numDept smallint(2) unsigned NOT NULL,
-	nom varchar(50) NOT NULL,
+  nom varchar(50) NOT NULL,
 
-	PRIMARY KEY (numDept)
+  PRIMARY KEY (numDept)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # Création de la table user_prefere_genre (M)
 DROP TABLE IF EXISTS user_prefere_genre;
 
 CREATE TABLE user_prefere_genre (
-	idUser smallint(8) unsigned NOT NULL, #FK
+  idUser smallint(8) unsigned NOT NULL, #FK
   genre VARCHAR(200) NOT NULL, #FK
 
-	PRIMARY KEY (idUser, genre) # la combinaison des 2 FK contsituent la PK
+  PRIMARY KEY (idUser, genre) # la combinaison des 2 FK contsituent la PK
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # Création de la table produit_culturel_t (C)
@@ -177,11 +177,12 @@ create table produit_culturel_t(
 # Création de la table a_pour_image
 DROP TABLE IF EXISTS a_pour_image;
 
-create table a_pour_image(
-  idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
+CREATE TABLE a_pour_image(
   source VARCHAR(50) NOT NULL,
+  idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
+  
 
-  PRIMARY KEY (idPC)
+  PRIMARY KEY (source)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # Création de la table commentaire_jeu_p (M)
@@ -436,7 +437,7 @@ ALTER TABLE produit_culturel_t
 ADD CONSTRAINT fk_typePC_produit_culturel_t FOREIGN KEY (typePC) REFERENCES type_p_c_d(typePC);
 
 # Clés étrangères de la table a_pour_image
-  # Clé étrangère typePC
+  # Clé étrangère idPC
 ALTER TABLE a_pour_image 
 ADD CONSTRAINT fk_idPC_a_pour_image FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC) ON DELETE CASCADE;
 

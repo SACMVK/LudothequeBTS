@@ -114,11 +114,11 @@ Function insert($valueToInsert) {
     $requetePCT = "INSERT INTO " . TABLEPCT . " (typePC,anneeSortie,description) VALUES (:typePC,:anneeSortie,:description);";
     $requeteJeuT = "INSERT INTO " . TABLEJEUT . " (idPC,nbJoueursMin,nbJoueursMax,nom,editeur,regles,difficulte,public,listePieces,dureePartie) VALUES (:idPC,:nbJoueursMin,:nbJoueursMax,:nom,:editeur,:regles,:difficulte,:public,:listePieces,:dureePartie);";
     $requeteJAPG = "INSERT INTO " . TABLE_JEU_A_POUR_GENRE . " (idPC, genre) VALUES (:idPC, :genre);";
+    $requeteAPI = "INSERT INTO " . TABLE_A_POUR_IMAGE . " (idPC, source) VALUES (:idPC, :source);";
 
     // M : préparation des requêtes
     $stmtPCT = $pdo->prepare($requetePCT);
     $stmtJeuT = $pdo->prepare($requeteJeuT);
-    
 
     // M : Vérification si l'editeur existe dans le dictionnaire, sinon, je l'ajoute à celui-ci
     if ($count == 0) {
@@ -151,22 +151,37 @@ Function insert($valueToInsert) {
         "dureePartie" => $valueToInsert['dureePartie']
     ));
 
-    //TODO problème dans l'insertion des données dans la table JAPG
-    // M : Remplissage de la table jeu_a_pour_genre (JAPG)
+    //================== insersion de la liste des genres dans la table jeu_a_pour_genre =================================//
+    // M : Lecture de l'array reçu et insertion dans la base pour chaque ligne de l'idPC et du genre
     $listGenreFromCreation_jeu_t = $valueToInsert['genre'];
-    
+
     for ($j = 0; $j < count($listGenreFromCreation_jeu_t); $j++) {
-        //$IdPC_Genre = (int)$lastIdPC;
         $genreGenre = $listGenreFromCreation_jeu_t[$j];
         $stmtJAPG = $pdo->prepare($requeteJAPG);
         $stmtJAPG->execute(array(
             "idPC" => $lastIdPC,
             "genre" => $genreGenre
         ));
-        //$listeGenres[]=$listGenreFromCreation_jeu_t[$j];
     }
 
+    // TODO
+    //=============== Upload des images + insertion des sources dans la table a_pour_image ===============================//
+    // M : Lecture de l'array reçu, upload de chaque image et enfin insertion dans la base pour chaque ligne de l'idPC et de la source
+    $listSourceNameFromCreation_jeu_t = $_FILES['source']['name'];
+    $listSourceTmpNameFromCreation_jeu_t = $_FILES['source']['tmp_name'];
+    $listSourceSizeFromCreation_jeu_t = $_FILES['source']['size'];
 
+    for ($k = 0; $k < count($listSourceNameFromCreation_jeu_t); $k++) {
+        $sourceName = $listSourceNameFromCreation_jeu_t[$k];
+        $sourceTmpName = $listSourceTmpNameFromCreation_jeu_t[$k];
+        $sourceSize = $listSourceSizeFromCreation_jeu_t[$k];
+        uploadImage($sourceName,$sourceTmpName,$sourceSize);
+        $stmtAPI = $pdo->prepare($requeteAPI);
+        $stmtAPI->execute(array(
+            "idPC" => $lastIdPC,
+            "source" => $_POST['sourceName']
+        ));
+    }
     /* M : Fermeture de la connexion
      */
     $pdo = closeConnexion();
