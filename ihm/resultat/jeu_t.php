@@ -74,7 +74,7 @@ if (!empty($element)):
             foreach ($listeCommentaires as $commentaireT) :
                 foreach ($commentaireT as $pseudo => $valueComment):
                     ?>
-                    <em>"<?= $valueComment ?>"</em><strong><?= $pseudo ?></strong><br/><br/>       
+        <p><em>"<?= $valueComment ?>"</em>  <strong><?= $pseudo ?></strong><br/><br/></p>       
                     <?php
                 endforeach;
             endforeach;
