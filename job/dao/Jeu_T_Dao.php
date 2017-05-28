@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -121,13 +120,13 @@ Function insert($valueToInsert) {
     $stmtJeuT = $pdo->prepare($requeteJeuT);
 
     // M : Vérification si l'editeur existe dans le dictionnaire, sinon, je l'ajoute à celui-ci
-    if ($count == 0) {
+    if ($count == 0) :
         $requeteEditeur_d = "INSERT INTO " . TABLE_EDITEUR_D . "(editeur) VALUES (:editeur);";
         $stmtEditeur_d = $pdo->prepare($requeteEditeur_d);
         $stmtEditeur_d->execute(array(
             "editeur" => $valueToInsert['editeur']
         ));
-    }
+    endif;
 
     // M : On execute        
     $stmtPCT->execute(array(
@@ -155,33 +154,46 @@ Function insert($valueToInsert) {
     // M : Lecture de l'array reçu et insertion dans la base pour chaque ligne de l'idPC et du genre
     $listGenreFromCreation_jeu_t = $valueToInsert['genre'];
 
-    for ($j = 0; $j < count($listGenreFromCreation_jeu_t); $j++) {
+    for ($j = 0; $j < count($listGenreFromCreation_jeu_t); $j++) :
         $genreGenre = $listGenreFromCreation_jeu_t[$j];
         $stmtJAPG = $pdo->prepare($requeteJAPG);
         $stmtJAPG->execute(array(
             "idPC" => $lastIdPC,
             "genre" => $genreGenre
         ));
-    }
+    endfor;
 
-    // TODO
     //=============== Upload des images + insertion des sources dans la table a_pour_image ===============================//
     // M : Lecture de l'array reçu, upload de chaque image et enfin insertion dans la base pour chaque ligne de l'idPC et de la source
+    
+    // M : Listes avec autant de valeurs que d'image à uploader
     $listSourceNameFromCreation_jeu_t = $_FILES['source']['name'];
     $listSourceTmpNameFromCreation_jeu_t = $_FILES['source']['tmp_name'];
     $listSourceSizeFromCreation_jeu_t = $_FILES['source']['size'];
 
-    for ($k = 0; $k < count($listSourceNameFromCreation_jeu_t); $k++) {
+    //Pour chaque image uploadée
+    for ($k = 0; $k < count($listSourceNameFromCreation_jeu_t); $k++) :
         $sourceName = $listSourceNameFromCreation_jeu_t[$k];
         $sourceTmpName = $listSourceTmpNameFromCreation_jeu_t[$k];
         $sourceSize = $listSourceSizeFromCreation_jeu_t[$k];
-        uploadImage($sourceName,$sourceTmpName,$sourceSize);
-        $stmtAPI = $pdo->prepare($requeteAPI);
-        $stmtAPI->execute(array(
-            "idPC" => $lastIdPC,
-            "source" => $_POST['sourceName']
-        ));
-    }
+        $upload = uploadImage($sourceName, $sourceTmpName, $sourceSize); //upload de l'image retourne un array contenant le $message et le $nouveauNom de l'image
+        
+        if (empty($upload[1])):                         //Si l'image n'a pas été renommée, alors upload=KO donc affichage du message d'erreur
+            ?>
+            <em><?= $upload[0]; ?></em>
+            <?php
+        else :                                         //Sinon écriture en BD du nouveau nom et affichage du message de réussite
+            $stmtAPI = $pdo->prepare($requeteAPI);
+            $stmtAPI->execute(array(
+                "idPC" => $lastIdPC,
+                "source" => $upload[1]
+            ));
+            ?>
+            <em><?= $upload[0]; ?></em>
+            <?php
+        endif;
+    endfor;
+
     /* M : Fermeture de la connexion
      */
     $pdo = closeConnexion();

@@ -151,10 +151,15 @@ function renommerFichier($nomFichier, $repertoire) {
 
 /*
  * M : Fonction d'upload d'une image.
+ * @author : Manu
+ * @Creation Date : 28/05/2017
  * Utilisée notamment dans la proposition d'un nouveau jeu_t
+ * @param $sourceName : nom du fichier source ($_FILES['source']['name'])
+ * @param $sourceTmpName : nom temporaire du fichier source ($_FILES['source']['tmp_name'])
+ * @param $sourceSize : taille du fichier source ($_FILES['source']['size'])
+ * retourne un array composé d'un message et du nouveau nom de l'image
  */
 
-//TODDO vérifier si boucler sur l'upload ou dans la fonction insert du dao
 function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
     $message = '';
 
@@ -250,11 +255,7 @@ function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
                     imagegif($vignette, $target_dir . $nouveauNom);
                     break;
             }
-            ?>
-            <form method='POST' action='Jeu_T_Dao.php'> 
-                <input type='hidden' name='sourceName' value='<?= $nouveauNom ?>'> 
-            </form> 
-            <?php
+
             // Suppression des deux objets
             imagedestroy($imageOrigine);
             imagedestroy($vignette);
@@ -262,8 +263,8 @@ function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
             $message .= "Il y a eu une erreur lors du chargement. ";
         }
     }
+    
 
-
-    return $message;
+    return [$message, $nouveauNom];
 }
 ?>
