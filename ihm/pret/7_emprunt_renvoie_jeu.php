@@ -2,7 +2,7 @@
     <form action=" " method="post" accept-charset="utf-8">
         Vous confirmez à <b><?= $pret->getJeuP()->getProprietaire()->getPseudo() ?></b> 
         que vous lui avez bien renvoyé son jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> 
-        le : <input type="date"  name="retourDateEnvoi">
+        le : <input type="text"  name="retourDateEnvoi" onclick="new calendar(this);">
         <br />
         <br />
         Intérêt du jeu : 

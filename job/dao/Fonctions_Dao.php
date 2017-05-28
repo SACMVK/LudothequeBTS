@@ -17,7 +17,7 @@ function convertDateToSQLdate(string $stringDate) {
         $convertedDate = $decoupage[0] . "-" . $decoupage[1] . "-" . $decoupage[2];
         // cas DDMMYYYY
     } else {
-        $convertedDate = $decoupage[2] . "-" . $decoupage[1] . "-" . $decoupage[1];
+        $convertedDate = $decoupage[2] . "-" . $decoupage[1] . "-" . $decoupage[0];
     }
     return $convertedDate;
 }

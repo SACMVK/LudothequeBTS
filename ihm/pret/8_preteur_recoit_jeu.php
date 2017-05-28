@@ -2,7 +2,7 @@
     <form action=" " method="post" accept-charset="utf-8">
         Vous confirmez à <b><?= $pret->getEmprunteur()->getPseudo() ?></b> 
         que vous avez bien reçu votre jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> 
-        le : <input type="date"  name="retourDateReception">
+        le : <input type="text"  name="retourDateReception" onclick="new calendar(this);">
         <br />
         <br />               
         État du jeu reçu : 

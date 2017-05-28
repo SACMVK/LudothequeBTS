@@ -13,6 +13,7 @@
 
 .boutonBleu:active {
     box-shadow: 3px 3px 1px rgba(38,42,53,0.8) inset, 0px 0px 2px rgba(10,10,10,0.5) inset;
+    text-decoration: none;
 }
 .boutonBleu:hover{
     color : white;
@@ -36,6 +37,7 @@
 
 .boutonBlanc:active {
     box-shadow: 3px 3px 1px rgba(38,42,53,0.8) inset, 0px 0px 2px rgba(10,10,10,0.5) inset;
+    text-decoration: none;
 }
 .boutonBlanc:hover{
     color : #1f2021;
@@ -59,6 +61,7 @@
 
 .boutonGris:active {
     box-shadow: 3px 3px 1px rgba(38,42,53,0.8) inset, 0px 0px 2px rgba(10,10,10,0.5) inset;
+    text-decoration: none;
 }
 .boutonGris:hover{
     color : white;
@@ -80,6 +83,7 @@
 
 .boutonTransparent:active {
     box-shadow: 3px 3px 1px rgba(38,42,53,0.8) inset, 0px 0px 2px rgba(10,10,10,0.5) inset;
+    text-decoration: none;
 }
 .boutonTransparent:hover{
     color : white;
