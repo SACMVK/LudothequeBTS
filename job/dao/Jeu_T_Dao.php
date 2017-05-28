@@ -190,6 +190,7 @@ Function insert($valueToInsert) {
             ));
             ?>
             <em><?= $upload[0]; ?></em>
+            <p>Merci pour votre proposition du jeu <?= $valueToInsert['nom'] ?> ! Votre proposition va être soumise à validation, si elle est validée elle sera publiée.</p>
             <?php
         endif;
     endfor;
