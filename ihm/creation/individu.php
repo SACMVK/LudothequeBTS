@@ -1,6 +1,6 @@
 
 <p style="color:red;">@team : Attention, le mail et le pseudo doivent être uniques dans la BD, il faut modifier les valeurs par défaut</p>
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form"  name="CreationForm" onsubmit="return ValidateForm();">   
+<form action="" method="post" accept-charset="utf-8" class="form" role="form"  name="CreationForm" onclick="return ValidateForm();">   
     <legend>Créer mon compte</legend>
     Nom :
     <input type="text" name="nom" size="10" maxlength="10" required value="nom" class="form-control input-lg"  placeholder="Nom"/>
@@ -15,7 +15,7 @@
     Confirmation du mot de passe :
     <input type="password" name="mdp2" size="20" maxlength="20" required value="mdp"  class="form-control input-lg" placeholder=" Confirmation du mot de passe"/>
     Adresse e-mail :
-    <input type="email" name="email" size="100" maxlength="100" required value="a@a.fr"  class="form-control input-lg"  placeholder="   Adresse e-mail"/>
+    <input type="email" name="email" size="100" maxlength="100" required value="a@a.fr"  onblur="verifMail(this)" class="form-control input-lg"  placeholder="   Adresse e-mail"/>
     Téléphone :
     <input type="text" name="telephone" size="10" maxlength="10" required  value="0612345678"  class="form-control input-lg" placeholder="Téléphone"/>
     Adresse :

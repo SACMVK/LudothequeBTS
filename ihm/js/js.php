@@ -4,3 +4,4 @@
 <script src="ihm/js/slideShowJeuT.js" ></script>
 <script src="ihm/js/calendrier.js" ></script>
 <script src="ihm/js/onglets.js" ></script>
+<script src="ihm/js/validation.js" ></script>
