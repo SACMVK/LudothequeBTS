@@ -144,3 +144,15 @@ caption {
     margin-bottom: 0.5em;
 }
 
+/*fiche utilisature*/
+.panel {
+    background: #ddd;
+    position: relative !important;
+    right: 260px !important;
+    top: -97px !important;
+       margin-bottom: -150px;
+}
+.page_fichier_utilisateur{
+    float: left;
+    margin-left: 50px;
+}

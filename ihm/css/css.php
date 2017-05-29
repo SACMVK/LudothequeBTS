@@ -22,7 +22,10 @@ if ($dossier = opendir($cssDirectory)) {
     }
     closedir($dossier);
 }
+
 ?>
+      <!--AhMaD: fichier css principale on va utiliser pour écraser le bootstrap -->
+      <link rel="stylesheet" type="text/css" href="ihm/css/styles.css" >
 
 
 

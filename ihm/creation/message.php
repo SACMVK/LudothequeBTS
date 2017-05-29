@@ -2,7 +2,7 @@
 <form action=" " method="post" accept-charset="utf-8" class="form" role="form"> 
     <legend>Envoyer un message</legend>
     Pseudo du destinataire :
-    <input type="text" name="idUser" class="form-control input-lg" required />
+    <input type="text" name="<?php echo $_POST['idUser'] ?>" class="form-control input-lg"  value="<?php echo $_POST['pseudo'] ?>" />
 
 
     Sujet du message :

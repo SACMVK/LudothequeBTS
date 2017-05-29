@@ -18,11 +18,11 @@
 
         include 'job/dao/fonctions_dao.php';
         include 'ihm/css/css.php';
+  
         include 'job/dao/Connexion_DataBase.php';
 
         session_start();
         ?>  
-
 
 
 
@@ -65,6 +65,8 @@
         <!-- *************************************** CONTROLEUR (FIN) *************************************** -->
         <!-- ************************************************************************************************ -->      
 
+     
+            
     </head>
 
 

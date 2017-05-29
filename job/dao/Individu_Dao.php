@@ -125,7 +125,6 @@ function update($list_Values) {
     //AhMaD: déclaration les values
     $idUser = $list_Values['idUser'];
     $ville = $list_Values['ville'];
-    $adresse = $list_Values['adresse'];
     $numDept = $list_Values['numDept'];
     $codePostal = $list_Values['codePostal'];
     $email = $list_Values['email'];
@@ -152,7 +151,7 @@ function update($list_Values) {
 //    $stmt->execute();
 //    $le_droit = $stmt->execute();
     //AhMaD:prepration de requete qui vas modifier l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "UPDATE " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser SET ville = '" . $ville . "', adresse = '" . $adresse . "', codePostal = '" . $codePostal . "', numDept = '" . $numDept . "', email = '" . $email . "', telephone = '" . $telephone . "', pseudo = '" . $pseudo . "', dateInscription = '" . $dateInscription . "', mdp = '" . $mdp . "', droit = '" . $droit . "', nom = '" . $nom . "',  prenom = '" . $prenom . "', dateNaiss= '" . $dateNaiss . "' WHERE " . TABLE_INDIVIDU . ".idUser = " . $idUser . ";";
+    $requete = "UPDATE " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser SET ville = '" . $ville . "', codePostal = '" . $codePostal . "', numDept = '" . $numDept . "', email = '" . $email . "', telephone = '" . $telephone . "', pseudo = '" . $pseudo . "', dateInscription = '" . $dateInscription . "', mdp = '" . $mdp . "', droit = '" . $droit . "', nom = '" . $nom . "',  prenom = '" . $prenom . "', dateNaiss= '" . $dateNaiss . "' WHERE " . TABLE_INDIVIDU . ".idUser = " . $idUser . ";";
 
 
 
@@ -178,7 +177,7 @@ function delete($idOfLineToDelete) {
     $db = openConnexion();
 
     //AhMaD:prepration de requete qui vas supprimer l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "DELETE FROM " . TABLE_INDIVIDU . "JOIN" . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser  WHERE  idUser= '" . $idOfLineToDelete . "' ;";
+    $requete = "DELETE " . TABLE_INDIVIDU . " FROM  " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser  =  " . TABLE_COMPTE . ".idUser  WHERE  ". TABLE_INDIVIDU . ". idUser =  '" . $idOfLineToDelete['idUser'] . "' ;";
 
     //AhMaD: on vas préparer la requête et l'exécuter et tu vas bien.
     $stmt = $db->prepare($requete);
@@ -187,12 +186,6 @@ function delete($idOfLineToDelete) {
     //AhMaD: on vas exécuter
     $stmt->execute();
 
-    //AhMaD:un petit test pour savoir si tout vas bien
-    if ($stmt == true) {
-        echo"l'utilisateur était supprimé avec succès";
-    } else {
-        die("Il y a des erreurs, veuillez modifier votre choix");
-    }
 
 
     //AhMaD: on ferme la conexion

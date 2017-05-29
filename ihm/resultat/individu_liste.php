@@ -1,48 +1,37 @@
-<p id='titre'>Les résultats de votre recherche : </p>
-<div class="container">
-    <div class="table-responsive">
-        <table class="table" id="table-recherche" > 
-            <thead> 
-                <tr class="tr">  
-                    <th id="table-recherche">Pseudo</th> 
-                    <th id="table-recherche">Nom</th> 
-                    <th id="table-recherche">Prénom</th> 
-                    <th id="table-recherche">Ville</th> 
-                    <th id="table-recherche">Département</th> 
-                </tr> 
-            <thead> 
-            <tbody> 
 
-                <?php
-                if (!empty($listOfElements)):
-                    foreach ($listOfElements as $compte) :
-                        ?>
-                        <tr> 
-                            <td id="table-recherche"><?= $compte->getPseudo() ?></td>
-                            <td id="table-recherche"><?= $compte->getNom() ?></td>
-                            <td id="table-recherche"><?= $compte->getPrenom() ?></td>
-                            <td id="table-recherche"><?= $compte->getVille() ?></td>
-                            <td id="table-recherche"><?= $compte->getDept() ?></td>
-                        </tr> 
-                        <?php
-                    endforeach;
-                else:
-                    ?>
-                    <tr>
-                        <td>Aucun résultat</td>
-                    </tr>
-                <?php
-                endif;
-                ?>
-            </tbody>
-        </table>
-        <div id="button-table" ><br />
-            <a href="index.php?page=recherche/individu.php" class="boutonBlanc">Modifier ma recherche</a>
-            <br />
-            <br />
+    <?php
+    if (!empty($listOfElements)):
+        foreach ($listOfElements as $individu) :
+            ?> 
+<div class="blocList">
+
+                <h1><?= $individu->getPseudo() ?></h1>
+                <p><strong>Nom :</strong> De <?= $individu->getNom() ?></p>
+                <p><strong>Prénom :</strong> <?= $individu->getPrenom()?></p>
+                 <p><strong>Date d'inscription  :</strong> <?= $individu->getDateInscription() ?></p>
+                 <p><strong>Droit  :</strong> <?= $individu->getDroit()?></p>
+                <p><strong>Ville :</strong> <?= $individu->getVille() ?></p>
+                <p><strong>Département :</strong> <?= $individu->getDept() ?></p>
+   
+        
+                <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+                    <input type=hidden name="email" value="<?= $individu->getEmail() ?>" />
+                    <input type=hidden name="objectToWorkWith" value="individu" />
+                    <input type=hidden name="actionToDoWithObject" value="selectOne" />
+                   <input type="image" name="submit" title="Fiche complète" class="boutonTransparent" value="Voir la" src="ihm/img/loupe.png">
+                </form>
+      </div>
+
+            <?php
+        endforeach;
+    
+    else:
+        ?>
+        <div>
+            <h1>Aucun résultat</h1>
         </div>
-    </div>
-</div> 
+    <?php
+    endif;
+    ?>
 
-
-
+          <a href="index.php?page=recherche/individu.php" class="boutonBlanc">Modifier ma recherche</a>
