@@ -20,11 +20,9 @@
     <textarea type="textarea" name="texte" class="form-control input-lg" placeholder="texte" maxlength="140" rows="7" /></textarea>
 
     <input type=hidden name="idExped" value="<?= $_SESSION["monProfil"]->getIdUser(); ?>" />
-
     <input type=hidden name="objectToWorkWith" value="Message" />
     <input type=hidden name="actionToDoWithObject" value="insert" />
-    <input type=hidden name="idDest" value="" />
-
+  
     <button type="submit" id="submit" name="submit" class="boutonBleu">Envoyer</button>
 </form>
 

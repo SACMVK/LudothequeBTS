@@ -8,8 +8,8 @@
             ?>
     <div class="row">
             <tr>                 
-                <td><?= $message->getExp()->getNom()  ?></td>
-                <td><?= $message->getExp()->getPrenom()  ?></td>          
+                <td><?= $message->getDest()->getNom()  ?></td>
+                <td><?= $message->getDest()->getPrenom()  ?></td>          
                 <td><?= $message->getSujet()?> </td>
                              
                 <td id="table-recherche">

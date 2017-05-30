@@ -150,7 +150,7 @@ switch ($actionToDoWithObject) {
                 break;
             case "mesMessageRecus":
                  $_SESSION["mesMessagesRecus"] = select("WHERE idDest = " . $_SESSION["monProfil"]->getIdUser());
-                $pageAAfficher = $_REQUEST["page"];
+                $pageAAfficher =$_REQUEST["page"];
                 break;
             
             case "mesMessageEnvoyes":

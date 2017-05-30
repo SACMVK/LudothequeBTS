@@ -1,11 +1,16 @@
 
     <div class="blocList">
         <div>
-       
+       <?php if($_SESSION['monProfil']->getIdUser() == $element->getExp()->getIdUser()): ?>
+            <p> A : 
+         <?=  $element->getDest()->getNom()  ?> 
+         <?=  $element->getDest()->getPrenom()  ?> 
+         
             <p> De : 
         <?=  $element->getExp()->getNom()  ?> 
          <?=  $element->getExp()->getPrenom()  ?> 
             </p>
+            <?php endif; ?>
         </div>
         <div>
             <p>Sujet :
