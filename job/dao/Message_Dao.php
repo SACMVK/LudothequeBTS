@@ -30,46 +30,49 @@ Function select($requete) {
     $listeMessages = array();
 
 // On affiche chaque entrée une à une( grace a fetch)
-    while ($donnees = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    while ($donnees = $stmt->fetch(PDO::FETCH_NAMED)) {
 
 // creation des variable correspondant aux attributs de la class Message
         $idMessage = $donnees['idMessage'];
-        $idExped = $donnees['idExped'];
-        $idDest = $donnees['idDest'];
         $texte = $donnees['texte'];
         $sujet = $donnees['sujet'];
         $dateEnvoi = $donnees['dateEnvoi'];
         
-        $destVille = $donnees['ville'];
-        $destAdresse = $donnees['adresse'];
-        $destCodePostal = $donnees['codePostal'];
-        $destDpt = $donnees['numDept'];
-        $destEmail = $donnees['email'];
-        $destTelephone = $donnees['telephone'];
-        $destPseudo = $donnees['pseudo'];
-        $destDateInscription = $donnees['dateInscription'];
-        $destMdp = $donnees['mdp'];
-        $destDroit = $donnees['droit'];
-        $destNom = $donnees['nom'];
-        $destPrenom = $donnees['prenom'];
-        $destDN = $donnees['dateNaiss'];
         
-        $expVille = $donnees['ville'];
-        $expAdresse = $donnees['adresse'];
-        $expCodePostal = $donnees['codePostal'];
-        $expDpt = $donnees['numDept'];
-        $expEmail = $donnees['email'];
-        $expTelephone = $donnees['telephone'];
-        $expPseudo = $donnees['pseudo'];
-        $expDateInscription = $donnees['dateInscription'];
-        $expMdp = $donnees['mdp'];
-        $expDroit = $donnees['droit'];
-        $expNom = $donnees['nom'];
-        $expPrenom = $donnees['prenom'];
-        $expDN = $donnees['dateNaiss'];
+        $destId = $donnees['idUser'][0];
+        $destVille = $donnees['ville'][0];
+        $destAdresse = $donnees['adresse'][0];
+        $destCodePostal = $donnees['codePostal'][0];
+        $destDpt = $donnees['numDept'][0];
+        $destEmail = $donnees['email'][0];
+        $destTelephone = $donnees['telephone'][0];
+        $destPseudo = $donnees['pseudo'][0];
+        $destDateInscription = $donnees['dateInscription'][0];
+        $destMdp = $donnees['mdp'][0];
+        $destDroit = $donnees['droit'][0];
+        $destNom = $donnees['nom'][0];
+        $destPrenom = $donnees['prenom'][0];
+        $destDN = $donnees['dateNaiss'][0];
+        
+        
+        // à cause de la requete du select on créer 4 idUser donc le [0]et[1] sont égales à l'idExp et le [2] et [3) à l'idDest
+        $expId = $donnees['idUser'][2];
+        $expVille = $donnees['ville'][1];
+        $expAdresse = $donnees['adresse'][1];
+        $expCodePostal = $donnees['codePostal'][1];
+        $expDpt = $donnees['numDept'][1];
+        $expEmail = $donnees['email'][1];
+        $expTelephone = $donnees['telephone'][1];
+        $expPseudo = $donnees['pseudo'][1];
+        $expDateInscription = $donnees['dateInscription'][1];
+        $expMdp = $donnees['mdp'][1];
+        $expDroit = $donnees['droit'][1];
+        $expNom = $donnees['nom'][1];
+        $expPrenom = $donnees['prenom'][1];
+        $expDN = $donnees['dateNaiss'][1];
 
-        $dest = new Individu($destVille, $destAdresse, $destCodePostal, $destDpt, $destEmail, $destTelephone, $destPseudo, $destDateInscription, $destMdp, $destDroit, $destNom, $destPrenom, $destDN);
-        $exp = new Individu($expVille, $expAdresse, $expCodePostal, $expDpt, $expEmail, $expTelephone, $expPseudo, $expDateInscription, $expMdp, $expDroit, $expNom, $expPrenom, $expDN);
+        $dest = new Individu($destVille, $destAdresse, $destCodePostal, $destDpt, $destEmail, $destTelephone, $destPseudo, $destDateInscription, $destMdp, $destDroit, $destNom, $destPrenom, $destDN,$destId);
+        $exp = new Individu($expVille, $expAdresse, $expCodePostal, $expDpt, $expEmail, $expTelephone, $expPseudo, $expDateInscription, $expMdp, $expDroit, $expNom, $expPrenom, $expDN,  $expId);
     
         $listeMessages[] = new Message($exp, $dest, $dateEnvoi, $sujet, $texte, $idMessage);
     }
@@ -89,18 +92,21 @@ Function insert($requete) {
 
 // ouverture de la connexion
     $pdo = openConnexion();
-    $table = 'message';
+
 
 
 // on recupere le contenu de la table message
 //prepare =avant query pour éviter faille de sécurité
-    $stmt = $pdo->prepare("INSERT INTO " . $table . "(idExped, idDest, dateEnvoi, sujet, texte) VALUES( :idExped, :idDest, :dateEnvoi, :sujet, :texte )");
+  $stmt = $pdo->prepare("INSERT INTO " . TABLE_MESSAGE . "(idExped, idDest, dateEnvoi, sujet, texte) VALUES( :idExped, :idDest, :dateEnvoi, :sujet, :texte )");
 
+//  $dest=$_REQUEST['destinataire'];
+//  $destinataire = $pdo->prepare("SELECT idUser from".TABLE_COMPTE."WHERE pseudo=".$dest.";");
+//  $destinataire->execute();
 // execution de la requete
     $stmt->execute(array(
         "idExped" => $requete['idExped'],
         "idDest" => $requete['idDest'],
-        "dateEnvoi" => $requete['dateEnvoi'],
+        "dateEnvoi" => getAujourdhui(),
         "sujet" => $requete['sujet'],
         "texte" => $requete['texte']
     ));

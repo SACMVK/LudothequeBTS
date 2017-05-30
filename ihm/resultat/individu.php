@@ -82,12 +82,11 @@
     </div>
 </div> 
 
-<form class="page_fichier_utilisateur" action=" " method="post" accept-charset="utf-8" class="form" role="form">
-    <input type=hidden name="pseudo" value="<?= $element->getPseudo() ?>" />
-    <input type=hidden name="idUser" value="<?= $element->getIdUser() ?> " />
-    <input type=hidden name="idExped" value="<?= $_SESSION["monProfil"]->getIdUser(); ?>" />
+<form class="page_fichier_utilisateur" action=" " method="post" accept-charset="utf-8" >
+    <input type=hidden name="idDest" value="<?= $element->getIdUser() ?> " />
+    <input type=hidden name="pseudo" value="<?= $element->getPseudo() ?> " />
     <input type='hidden' name='page' value='creation/message.php' />
-    <input type="submit" name="submit" class="boutonBleu" value="Contact">
+    <input type="submit" name="submit" class="boutonBleu" value="Envoyer un message">
 </form>
 
 <form class="page_fichier_utilisateur" action=" " method="post" accept-charset="utf-8" class="form" role="form">

@@ -1,9 +1,18 @@
-<p style="color:red;">@team : TOFINISH - ajouter un test de vérification de l'existence du destinataire</p>
+
 <form action=" " method="post" accept-charset="utf-8" class="form" role="form"> 
     <legend>Envoyer un message</legend>
     Pseudo du destinataire :
-    <input type="text" name="<?php echo $_POST['idUser'] ?>" class="form-control input-lg"  value="<?php echo $_POST['pseudo'] ?>" />
-
+    <?php
+    $pseudo ="";
+    if(!empty($_REQUEST['idDest'])){
+        $pseudo = $_REQUEST['pseudo'];
+    }
+   
+    ?>
+    <input type ="text" name="pseudo" class="form-control input-lg" value="<?= $pseudo; ?>">
+    <?php if(!empty($_REQUEST['idDest'])): ?>
+    <input type="hidden" name="idDest" class="form-control input-lg" value="<?= $_REQUEST['idDest'] ?>" />
+    <?php endif; ?>
 
     Sujet du message :
     <input type="text" name="sujet" class="form-control input-lg" placeholder="sujet" required />
@@ -14,6 +23,7 @@
 
     <input type=hidden name="objectToWorkWith" value="Message" />
     <input type=hidden name="actionToDoWithObject" value="insert" />
+    <input type=hidden name="idDest" value="" />
 
     <button type="submit" id="submit" name="submit" class="boutonBleu">Envoyer</button>
 </form>

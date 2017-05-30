@@ -1,5 +1,5 @@
 
-<legend>Mes messages</legend>
+<legend>Mes messages recus</legend>
 <div class="container">
   <?php
     if (!empty($_SESSION["mesMessagesRecus"])):

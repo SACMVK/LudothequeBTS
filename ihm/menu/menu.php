@@ -20,14 +20,14 @@
                         <a href='index.php?user=maLudotheque'><li>Ma ludothèque</li></a>
                         <a href='index.php?user=mesPrets'><li>Mes prêts</li></a>
                         <a href='index.php?user=mesEmprunts'><li>Mes emprunts</li></a>
+                  
                         <a href='index.php?user=mesMessagesEnvoyes'><li>Mes messages envoyés</li></a>
                         <a href='index.php?user=mesMessagesRecus'><li>Mes messages reçus</li></a>
                         <a href='index.php?page=creation/jeu_t.php'><li>Proposer un nouveau jeu</li></a>
-<!--                        <a href='index.php?page=creation/message.php'><li>Envoyer un message</li></a>-->
+               
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
