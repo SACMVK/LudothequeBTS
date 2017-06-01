@@ -163,7 +163,7 @@ function renommerFichier($nomFichier, $repertoire) {
 function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
     $message = '';
 
-    $target_dir = "C:/xampp/htdocs/LudothequeBTS/data/images/vignettes/"; //J'ai dû mettre l'url en absolu car ne me trouve pas le fichier en relative
+    $target_dir = "data/images/vignettes/"; //J'ai dû mettre l'url en absolu car ne me trouve pas le fichier en relative
     // Ne pas oublier la gestion de l'utf8
     $target_file = $target_dir . utf8_decode(basename($sourceName));
     $uploadOk = 1;
@@ -263,8 +263,29 @@ function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
             $message .= "Il y a eu une erreur lors du chargement. ";
         }
     }
-    
+
 
     return [$message, $nouveauNom];
+}
+
+function selectTopJeuT($nombreJeuxT) {
+    $requete = "SELECT jeu_t.nom, produit_culturel_t.idPC, AVG(note_jeu_t.note) as 'noteMoyenne' "
+            . "FROM note_jeu_t JOIN produit_culturel_t ON note_jeu_t.idPC = produit_culturel_t.idPC "
+            . "JOIN jeu_t ON produit_culturel_t.idPC = jeu_t.idPC "
+            . "GROUP BY produit_culturel_t.idPC "
+            . "ORDER BY AVG(note_jeu_t.note) DESC LIMIT " . $nombreJeuxT . ";";
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $topJeuxT = [];
+    while ($champ = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $JeuT = [];
+        $JeuT ["nom"] = $champ["nom"];
+        $JeuT ["idPC"] = $champ["idPC"];
+        $JeuT ["noteMoyenne"] = $champ["noteMoyenne"];
+        $topJeuxT[] = $JeuT;
+    }
+    $db = closeConnexion();
+    return $topJeuxT;
 }
 ?>

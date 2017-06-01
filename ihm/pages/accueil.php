@@ -47,8 +47,22 @@ $carrousel = [
 
 
 
-    <br/><br/><br/>
-
+    <br /><br /><br />
+    <?php
+    $nombreJeuTAAfficher = 5;
+    $listeJeuxT = selectTopJeuT($nombreJeuTAAfficher);
+    ?>
+    Les <?= $nombreJeuTAAfficher ?> jeux ayant les meilleures notes :<br />
+    <?php for ($index = 0; $index < count($listeJeuxT); $index++) : ?>
+        <b><?= $listeJeuxT[$index]["nom"] ?> :</b> note moyenne <?= $listeJeuxT[$index]["noteMoyenne"] ?>/5
+        <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+            <input type=hidden name="produit_culturel_t#idPc" value="<?= $listeJeuxT[$index]["idPC"] ?>" />
+            <input type=hidden name="objectToWorkWith" value="Jeu_T" />
+            <input type=hidden name="actionToDoWithObject" value="selectOne" />
+            <input type="image" name="submit" title="Fiche complète" class="boutonTransparent" value="Voir la" src="ihm/img/loupe.png">
+        </form>
+        <br />
+    <?php endfor; ?>
     <!-- 3 widgets -->
     <div class="widget">
         <!--AhMaD: premier widget-->

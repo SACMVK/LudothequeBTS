@@ -210,7 +210,7 @@ function generer_prets(int $nombreEmprunteurs, int $nombreJeuxP, string $aujourd
                 echo '<br>';
                 // Si le jeu a été rendu, l'emprunteur lui donne une note
                 echo 'INSERT INTO note_jeu_t (idPC, idUser, note)';
-                echo 'VALUES ("' . $emprunt2->idJeuT . '", "' . $emprunt2->idEmprunteur . '", "' . rand(0, 5) . '");';
+                echo 'VALUES ("' . $emprunt2->idJeuT . '", "' . $emprunt2->idEmprunteur . '", "' . rand(0, 6) . '");';
                 echo '<br>';
                 // et fait un commentaire
                 echo 'INSERT INTO commentaire_p_c_t (idPC, commentaireT, idUser)';
@@ -316,7 +316,7 @@ function generer_prets(int $nombreEmprunteurs, int $nombreJeuxP, string $aujourd
                 }
                 $idMessage += 1;
                 echo 'INSERT INTO message ( idExped, idDest, sujet, texte, dateEnvoi)';
-                echo 'VALUES ( "' . $exp . '","' . $dest . '", "' . getTexte(true) . '"," ' . getTexte() . '"," ' . $date . '");';
+                echo 'VALUES ( "' . $exp . '","' . $dest . '", "Message en rapport avec le prêt n° ' . $idEmprunt . '"," ' . getTexte() . '"," ' . $date . '");';
                 echo '<br>';
                 echo 'INSERT INTO pret_a_pour_message ( idPret, idMessage, idNotification)';
                 echo 'VALUES ( "' . $idEmprunt . '","' . $idMessage . '", "' . $idNotification . '");';

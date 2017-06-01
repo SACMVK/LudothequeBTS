@@ -7,13 +7,13 @@
                     <ul class="list">
                         <?php if ($droitsUser == "Administrateur" ): ?>
                         <p class="titre_menu">Menu administrateur</p><hr/>
-                            <a href='index.php?page=administrateur/config.php'><li>Configuration</li></a>
-<!--                            <a href='index.php?page=pages/_old/_enCours.php'><li>Administrer les utilisateurs</li></a>-->
+<!--                            <a href='index.php?page=administrateur/config.php'><li>Configuration</li></a>-->
+                            <a href='index.php?administrateur=voir_liste_comptes'><li>Administrer les utilisateurs</li></a>
                         <?php endif; ?>
                         <?php if ($droitsUser == "Modérateur" || $droitsUser == "Administrateur"): ?>
                             <p class="titre_menu">Menu modérateur</p><hr/>
-                            <a href='index.php?page=pages/_old/_enCours.php'><li>Valider un jeu</li></a>
-                            <a href='index.php?page=pages/_old/_enCours.php'><li>Modifier un jeu</li></a>
+                            <a href='index.php?moderateur=voir_liste_jeux_non_valides'><li>Voir la liste des jeux à valider</li></a>
+<!--                            <a href='index.php?page=pages/_old/_enCours.php'><li>Modifier un jeu</li></a>-->
                         <?php endif; ?>
                         <p class="titre_menu">Menu utilisateur</p><hr/>
                         <a href='index.php?user=monProfil'><li>Mon profil</li></a>

@@ -35,7 +35,7 @@
         <?php selectDico("jeu_t", "dureePartie") ?>
     </select>
 
-
+    <input type=hidden name="valider" value="1" />
 
     <input type=hidden name="objectToWorkWith" value="Jeu_T" />
     <input type=hidden name="actionToDoWithObject" value="selectList" />

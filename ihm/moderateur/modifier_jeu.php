@@ -1,0 +1,2 @@
+<?= $jeuAModifier->getNom(); ?>
+
