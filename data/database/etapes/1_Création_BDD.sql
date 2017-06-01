@@ -178,7 +178,7 @@ create table produit_culturel_t(
 DROP TABLE IF EXISTS a_pour_image;
 
 CREATE TABLE a_pour_image(
-  source VARCHAR(50) NOT NULL,
+  source VARCHAR(250) NOT NULL,
   idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
   
 

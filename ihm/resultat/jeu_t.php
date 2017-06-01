@@ -3,7 +3,7 @@
 ?>
 <?php
 if (!empty($element)):
-    foreach ($element as $jeu_t) :
+
         ?> 
         <div>
             <h1><?= $element->getNom() ?></h1>  
@@ -84,7 +84,7 @@ if (!empty($element)):
         <?php endif; ?>
 
         <?php
-    endforeach;
+
 endif;
 ?>
 <form action=" " method="post" accept-charset="utf-8" class="form" role="form">

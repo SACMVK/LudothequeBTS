@@ -18,7 +18,7 @@ function createRequestFromREQUEST() {
         $stringRequest = 'WHERE ';
         foreach ($_REQUEST as $key => $value) {
             $addKey = false;
-            if ($key != "pret" &&$key != "user" && $key != "objectToWorkWith" && $key != "actionToDoWithObject" && stristr($key, 'submit') === FALSE && $key != "reset" && $key != "page" && stristr($key, 'liste') === FALSE) {
+            if ($key != "XDEBUG_SESSION_START" && $key != "pret" && $key != "user" && $key != "objectToWorkWith" && $key != "actionToDoWithObject" && stristr($key, 'submit') === FALSE && $key != "reset" && $key != "page" && stristr($key, 'liste') === FALSE) {
                 if ($value != null && $value != "" && $value != "-----") {
                     $stringRequest .= $key . '="' . $value .'"';
                     $addKey = true;
