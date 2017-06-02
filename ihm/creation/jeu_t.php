@@ -79,7 +79,7 @@
     
     <input type="file" multiple class="form-control" name="source[]" accept="image/*,application/pdf">
 
-<input type=hidden name="valider" value="0" />
+    <input type=hidden name="valide" value="0" />
 
     <input type=hidden name="objectToWorkWith" value="Jeu_T" />
     <input type=hidden name="actionToDoWithObject" value="insert" />

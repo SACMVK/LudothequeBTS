@@ -56,6 +56,7 @@ Function select($requete) {
         $description = $donnees['description'];
         $idPC = $donnees['idPC'];
         $typePC = $donnees['typePC'];
+        $valide = $donnees['valide'];
 
         /*
          * M : Création de listes en récupèrant les données dans la BDD avec la méthode selectListe($table,$var,$champsSelect)
@@ -81,7 +82,7 @@ Function select($requete) {
         }
         //==================================================================================================
         /* création du nouvel objet Jeu_T */
-        $jeuT = new Jeu_T($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $idPC);
+        $jeuT = new Jeu_T($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $valide, $idPC);
         // ajout de l'objet à la liste
         $liste_jeuT [] = $jeuT;
     }
@@ -110,8 +111,8 @@ Function insert($valueToInsert) {
     $count = $query->rowCount();
 
     //M : Requetes sur les tables jeu_t et produit_c_t 
-    $requetePCT = "INSERT INTO " . TABLEPCT . " (typePC,anneeSortie,description) VALUES (:typePC,:anneeSortie,:description);";
-    $requeteJeuT = "INSERT INTO " . TABLEJEUT . " (idPC,nbJoueursMin,nbJoueursMax,nom,editeur,regles,difficulte,public,listePieces,dureePartie) VALUES (:idPC,:nbJoueursMin,:nbJoueursMax,:nom,:editeur,:regles,:difficulte,:public,:listePieces,:dureePartie);";
+    $requetePCT = "INSERT INTO " . TABLEPCT . " (nom,public,typePC,anneeSortie,description,valide) VALUES (:nom,:public,:typePC,:anneeSortie,:description,:valide);";
+    $requeteJeuT = "INSERT INTO " . TABLEJEUT . " (idPC,nbJoueursMin,nbJoueursMax,editeur,regles,difficulte,listePieces,dureePartie) VALUES (:idPC,:nbJoueursMin,:nbJoueursMax,:editeur,:regles,:difficulte,:listePieces,:dureePartie);";
     $requeteJAPG = "INSERT INTO " . TABLE_JEU_A_POUR_GENRE . " (idPC, genre) VALUES (:idPC, :genre);";
     $requeteAPI = "INSERT INTO " . TABLE_A_POUR_IMAGE . " (idPC, source) VALUES (:idPC, :source);";
 
@@ -130,9 +131,12 @@ Function insert($valueToInsert) {
 
     // M : On execute        
     $stmtPCT->execute(array(
+        "nom" => $valueToInsert['nom'],
+        "public" => $valueToInsert['public'],
         "typePC" => $valueToInsert['typePC'],
         "anneeSortie" => $valueToInsert['anneeSortie'],
-        "description" => $valueToInsert['description']
+        "description" => $valueToInsert['description'],
+        "valide" => $valueToInsert['valide']
     ));
 
     // M : Récupération du dernier ID avec lastInsertID() sur le pdo
@@ -141,11 +145,11 @@ Function insert($valueToInsert) {
         "idPC" => $lastIdPC,
         "nbJoueursMin" => $valueToInsert['nbJoueursMin'],
         "nbJoueursMax" => $valueToInsert['nbJoueursMax'],
-        "nom" => $valueToInsert['nom'],
+        
         "editeur" => $valueToInsert['editeur'],
         "regles" => $valueToInsert['regles'],
         "difficulte" => $valueToInsert['difficulte'],
-        "public" => $valueToInsert['public'],
+        
         "listePieces" => $valueToInsert['listePieces'],
         "dureePartie" => $valueToInsert['dureePartie']
     ));
@@ -213,8 +217,8 @@ Function update($valuesToUpdate) {
     $count = $query->rowCount();
 
     //M : Requetes sur les tables jeu_t et produit_c_t 
-    $requeteUpdateJeuT = "UPDATE " . TABLEJEUT . " SET nbJoueursMin=:nbJoueursMin,nbJoueursMax=:nbJoueursMax,nom=:nom,editeur=:editeur,regles=:regles,difficulte=:difficulte,public=:public,listePieces=:listePieces,dureePartie=:dureePartie WHERE idPC = :idPC;";
-    $requeteUpdatePCT = "UPDATE " . TABLEPCT . " SET typePC=:typePC,anneeSortie=:anneeSortie,description=:description WHERE idPC = :idPC;";
+    $requeteUpdateJeuT = "UPDATE " . TABLEJEUT . " SET nbJoueursMin=:nbJoueursMin,nbJoueursMax=:nbJoueursMax,editeur=:editeur,regles=:regles,difficulte=:difficulte,listePieces=:listePieces,dureePartie=:dureePartie WHERE idPC = :idPC;";
+    $requeteUpdatePCT = "UPDATE " . TABLEPCT . " SET nom=:nom,public=:public,typePC=:typePC,anneeSortie=:anneeSortie,description=:description,valide=:valide WHERE idPC = :idPC;";
 
     //préparation des requêtes
     $stmtJeuT = $pdo->prepare($requeteUpdateJeuT);
@@ -234,20 +238,23 @@ Function update($valuesToUpdate) {
         "idPC" => $valuesToUpdate['idPC'],
         "nbJoueursMin" => $valuesToUpdate['nbJoueursMin'],
         "nbJoueursMax" => $valuesToUpdate['nbJoueursMax'],
-        "nom" => $valuesToUpdate['nom'],
+        
         "editeur" => $valuesToUpdate['editeur'],
         "regles" => $valuesToUpdate['regles'],
         "difficulte" => $valuesToUpdate['difficulte'],
-        "public" => $valuesToUpdate['public'],
+        
         "listePieces" => $valuesToUpdate['listePieces'],
         "dureePartie" => $valuesToUpdate['dureePartie']
     ));
 
     $stmtPCT->execute(array(
         "idPC" => $valuesToUpdate['idPC'],
+        "nom" => $valuesToUpdate['nom'],
+        "public" => $valuesToUpdate['public'],
         ":typePC" => $valuesToUpdate['typePC'],
         ":anneeSortie" => $valuesToUpdate['anneeSortie'],
-        ":description" => $valuesToUpdate['description']
+        ":description" => $valuesToUpdate['description'],
+        ":valide" => $valuesToUpdate['valide']
     ));
 
     /* M : Fermeture de la connexion

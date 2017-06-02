@@ -5,11 +5,11 @@ class Jeu_T extends ProduitCulturel {
     // M: les attributs pour Jeu_T
     private $nbJoueursMin;
     private $nbJoueursMax;
-    private $nom;
+    // passage de nom dans produitCulturel.php
     private $editeur;
     private $regles;
     private $difficulte;
-    private $public;
+    // passage de public dans produitCulturel.php
     private $listePieces;
     private $dureePartie;
     private $listeGenres;
@@ -21,15 +21,15 @@ class Jeu_T extends ProduitCulturel {
      *  constructeur on définit la clé primaire nécessaire aux recherches par id à -1 par défaut
      */
 
-    function __construct($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $idPC = -1) {
-        parent::__construct($anneeSortie, $description, $typePC, $idPC);
+    function __construct($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $valide, $idPC = -1) {
+        parent::__construct($nom, $public, $anneeSortie, $description, $typePC, $valide, $idPC);
         $this->nbJoueursMin = $nbJoueursMin;
         $this->nbJoueursMax = $nbJoueursMax;
-        $this->nom = $nom;
+        // passage de nom dans produitCultiurel.php
         $this->editeur = $editeur;
         $this->regles = $regles;
         $this->difficulte = $difficulte;
-        $this->public = $public;
+        // passage de public dans produitCulturel.php
         $this->listePieces = $listePieces;
         $this->dureePartie = $dureePartie;
         $this->listeGenres = $listeGenres;
@@ -82,24 +82,6 @@ class Jeu_T extends ProduitCulturel {
 
     public function setRegles($regles) {
         $this->regles = $regles;
-    }
-
-    //M : nom
-    public function getNom() {
-        return $this->nom;
-    }
-
-    public function setNom($nom) {
-        $this->nom = $nom;
-    }
-
-    //M : public
-    public function getpublic() {
-        return $this->public;
-    }
-
-    public function setPublic($public) {
-        $this->public = $public;
     }
 
     //M : listePieces
