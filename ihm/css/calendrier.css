@@ -178,6 +178,7 @@
 		color:#000000;
 		font-weight:normal;
 		background:url('../img/calendrier.png') -34px -292px;
+		cursor: pointer;
 	}
 	.liOut{
 		width:34px;
@@ -214,6 +215,16 @@
 		font-weight:bold;
 		background:url('../img/calendrier.png') -68px -292px;
 	}
+	.liReserved{
+		/* stefan : les jours réservés ont juste une couleur différente de police */
+		width:34px;
+		height:21px;
+		line-height:21px;
+		display:block;
+		float:left;
+		text-align:center;
+		color:#ff0000;
+	}	
 	.contentNameDay{
 		width:242px;
 		height:27px;

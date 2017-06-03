@@ -1,4 +1,5 @@
 <div class="blocList">
+    <span id="reservedDates" data-reservedDates="<?= getDatesReservation($jeuP) ?>"></span>
     <form action=" " method="post" accept-charset="utf-8">
         Vous souhaitez proposer de nouvelles dates d'emprunt de votre jeu 
         <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b>

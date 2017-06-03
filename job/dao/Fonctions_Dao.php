@@ -288,4 +288,100 @@ function selectTopJeuT($nombreJeuxT) {
     $db = closeConnexion();
     return $topJeuxT;
 }
+
+function getDatesReservation($jeu_p) {
+    $requete = "SELECT * FROM pret_p WHERE idJeuP='" . $jeu_p->getIdJeuP() . "';";
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $datesReservation = [];
+    while ($champ = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $debut = $champ["propositionEmprunteurDateDebut"];
+        $fin = $champ["propositionEmprunteurDateFin"];
+        if (!empty($champ["propositionPreteurDateDebut"])) {
+            $debut = $champ["propositionPreteurDateDebut"];
+            $fin = $champ["propositionPreteurDateFin"];
+        }
+        $debutAsArray = explode("-", $debut);
+        $finAsArray = explode("-", $fin);
+        $debutAsIntegers = ["annee" => (int) $debutAsArray[0], "mois" => (int) $debutAsArray[1], "jour" => (int) $debutAsArray[2]];
+        $finAsIntegers = ["annee" => (int) $finAsArray[0], "mois" => (int) $finAsArray[1], "jour" => (int) $finAsArray[2]];
+        $datesReservation[] = ["debut" => $debutAsIntegers, "fin" => $finAsIntegers];
+    }
+    $db = closeConnexion();
+    // stefan : passage de dates début et fin en liste complète de dates
+    $listeDates = [];
+    foreach ($datesReservation as $datesDebutFin) {
+
+
+
+        $anneeDebut = $datesDebutFin["debut"]["annee"];
+        $anneeFin = $datesDebutFin["fin"]["annee"];
+        $moisDebut = $datesDebutFin["debut"]["mois"];
+        $moisFin = $datesDebutFin["fin"]["mois"];
+        $jourDebut = $datesDebutFin["debut"]["jour"];
+        $jourFin = $datesDebutFin["fin"]["jour"];
+
+
+
+
+
+        for ($indiceAnnee = $anneeDebut; $indiceAnnee <= $anneeFin; $indiceAnnee++) {
+            if ($anneeDebut == $anneeFin) {
+                for ($indiceMois = $moisDebut; $indiceMois <= $moisFin; $indiceMois++) {
+                    mois($listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin);
+                }
+            } else if ($indiceAnnee == $anneeDebut) {
+                for ($indiceMois = $moisDebut; $indiceMois <= 31; $indiceMois++) {
+                    mois($listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin);
+                }
+            } else if ($indiceAnnee == $anneeFin) {
+                for ($indiceMois = 1; $indiceMois <= $moisFin; $indiceMois++) {
+                    mois($listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin);
+                }
+            } else {
+                for ($indiceMois = 1; $indiceMois <= 12; $indiceMois++) {
+                    mois($listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin);
+                }
+            }
+        }
+    }
+
+
+    // stefan : passage en string pour transmission à javascript
+    $stringReservation = "";
+    foreach ($listeDates as $date) {
+        $stringReservation .= $date["annee"] . "-" . $date["mois"] . "-" . $date["jour"] . "#";
+    }
+    $stringReservation = substr($stringReservation, 0, strlen($stringReservation) - 1);
+
+    return $stringReservation;
+}
+
+// stefan : fonction utilisée dans getDatesReservation
+function jour(&$listeDates, $indiceAnnee, $indiceMois, $indiceJour) {
+    $listeDates [] = ["annee" => $indiceAnnee, "mois" => $indiceMois, "jour" => $indiceJour];
+}
+
+// stefan : fonction utilisée dans getDatesReservation
+function mois(&$listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin) {
+    if ($moisDebut == $moisFin) {
+        for ($indiceJour = $jourDebut; $indiceJour <= $jourFin; $indiceJour++) {
+            jour($listeDates, $indiceAnnee, $indiceMois, $indiceJour);
+        }
+    } else
+    if ($indiceMois == $moisDebut) {
+        for ($indiceJour = $jourDebut; $indiceJour <= 31; $indiceJour++) {
+            jour($listeDates, $indiceAnnee, $indiceMois, $indiceJour);
+        }
+    } else if ($indiceMois == $moisFin) {
+        for ($indiceJour = 1; $indiceJour <= $jourFin; $indiceJour++) {
+            jour($listeDates, $indiceAnnee, $indiceMois, $indiceJour);
+        }
+    } else {
+        for ($indiceJour = 1; $indiceJour <= 31; $indiceJour++) {
+            jour($listeDates, $indiceAnnee, $indiceMois, $indiceJour);
+        }
+    }
+}
 ?>

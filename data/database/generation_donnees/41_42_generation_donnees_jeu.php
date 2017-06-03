@@ -29,7 +29,7 @@ function generer_donnees_jeu(int $nombreJeux) {
 //        echo "Une boite comprend les éléments suivants : " . $list['listePieces'] . "<br>";
 //        echo "Enoncé sommaire des règles : " . $list['regles'] . "<br><br>";
 echo 'INSERT INTO produit_culturel_t (typePC, anneeSortie, description, nom, public, valide)';
-echo 'VALUES ("'.$list["typePC"].'", "'.$list["anneeSortie"].'", "'.$list["description"].'", "'.$list["nom"].'", "'.$list["public"].'","0");';
+echo 'VALUES ("'.$list["typePC"].'", "'.$list["anneeSortie"].'", "'.$list["description"].'", "'.$list["nom"].'", "'.$list["public"].'","1");';
 echo '<br>';
 echo 'INSERT INTO jeu_t (idPC, nbJoueursMin, nbJoueursMax, editeur, regles, difficulte, listePieces, dureePartie)';
 echo 'VALUES ("'.$indice.'", "'.$list["nbJoueursMin"].'", "'.$list["nbJoueursMax"].'", "'.$list["editeur"].'", "'.$list["regles"].'", "'.$list["difficulte"].'", "'.$list["listePieces"].'", "'.$list["dureePartie"].'");';

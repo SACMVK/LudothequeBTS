@@ -11,6 +11,7 @@
 		}
 		else if(!preventDouble){preventDouble = true}
 	}
+
 	function calendar(element){
 		var regTest = /Debut|Fin$/;
 		if(regTest.test(element.id)){
@@ -185,7 +186,7 @@
 		
 		//Récupération de la date du champs sinon date par défaut
 		
-		//Si l'élément sur lequel on a cliquez n'est pas vide on extrait la date
+		//Si l'élément sur lequel on a cliqué n'est pas vide on extrait la date
 		if(this.element != null && this.element.value != ""){
 			var reg=new RegExp("/", "g");
 			var dateOfField = this.element.value;
@@ -204,7 +205,7 @@
 		//Création du mois courant
 		this.from = this.createContentDay(0,"left");
 		this.createMonth({"CurrentDay":this.dayCurrent,"CurrentMonth":this.monthCurrent,"CurrentYear":this.yearCurrent,"conteneur":this.from});
-		//Création de la div qui défilera  On le remplira au moment ou on en aura besoins
+		//Création de la div qui défilera  On la remplira au moment où on en aura besoin
 		this.to = this.createContentDay(parseInt(this.calendar.offsetWidth),"left");
 		this.createMonth({"CurrentDay":this.dayCurrent,"CurrentMonth":this.monthCurrent,"CurrentYear":this.yearCurrent,"conteneur":this.to});
 		
@@ -283,51 +284,61 @@
 		// On récupère le premier jour de la semaine du mois
 		var dateTemp = new Date(yearCurrent, monthCurrent,1);
 		
-		//test pour vérifier quel jour était le premier du mois par rapport a la semaine
+		//test pour vérifier quel jour était le premier du mois par rapport à la semaine
 		this.current_day_since_start_week = (( dateTemp.getDay()== 0 ) ? 6 : dateTemp.getDay() - 1);
 		
-		//On initialise le nombre de jour par mois et on vérifis si l'on est au mois de février
+		//On initialise le nombre de jour par mois et on vérifie si l'on est au mois de février
 		var nbJoursfevrier = (yearCurrent % 4) == 0 ? 29 : 28;
 		//Initialisation du tableau indiquant le nombre de jours par mois
 		this.day_number = new Array(31,nbJoursfevrier,31,30,31,30,31,31,30,31,30,31);
 		
 		//On commence par ajouter le nombre de jours du mois précédent
 		
-		//Calcul des dates en fonction du moi précédent
+		//Calcul des dates en fonction du mois précédent
 		
 		var dayBeforeMonth = ((this.day_number[((monthCurrent == 0) ? 11:monthCurrent-1)]) - this.current_day_since_start_week)+1;
 	
 		for(i  = dayBeforeMonth ; i <= (this.day_number[((monthCurrent == 0) ? 11:monthCurrent-1)]) ; i ++){
-			
-			this.createDayInContent(i,false,false,conteneur);
+			// stefan : info : pour les jours du mois précédent
+			this.createDayInContent(i,false,false,conteneur,false);
 		}
 		
-		//On remplit le calendrier avec le nombre de jour, en remplissant les premiers jours par des champs vides
+		// stefan : récupération de l'array de réservation
+		var reservedDates = document.getElementById("reservedDates").getAttribute('data-reservedDates').split("#");
+
+		//On remplit le calendrier avec le nombre de jours, en remplissant les premiers jours par des champs vides
 		for(var nbjours = 0 ; nbjours < (this.day_number[monthCurrent] + this.current_day_since_start_week) ; nbjours++){
 		//et enfin on ajoute les dates au calendrier
-		//Pour gèrer les jours "vide" et éviter de faire une boucle on vérifie que le nombre de jours corespond bien au
+		//Pour gèrer les jours "vides" et éviter de faire une boucle on vérifie que le nombre de jours corespond bien au
 		//nombre de jour du mois
 			if(nbjours < this.day_number[monthCurrent]){
-				if(dayCurrent == (nbjours+1)){
-					this.createDayInContent(nbjours+1,true,true,conteneur);
+				// stefan : s'il s'agit d'une date déjà réservée ...
+				if (reservedDates.indexOf(yearCurrent+"-"+(monthCurrent+1)+"-"+(nbjours+1)) != -1){
+					this.createDayInContent(nbjours+1,false,false,conteneur,true);
+				}
+				else if(dayCurrent == (nbjours+1)){
+					// stefan : info : class pour le jour courant
+					this.createDayInContent(nbjours+1,true,true,conteneur,false);
 				}
 				else{
-					this.createDayInContent(nbjours+1,false,true,conteneur);
+					// stefan : info : sinon class jour normal actif
+					this.createDayInContent(nbjours+1,false,true,conteneur,false);
 				}
+
 			}
 		}
 		
-		//Calcul des date en fonction du mois suivant
+		//Calcul des dates en fonction du mois suivant
 		var nbCelRest = 42 - (this.day_number[monthCurrent]+this.current_day_since_start_week);
 		
 		for(i  = 0 ; i <  nbCelRest ; i ++){
-			
-			this.createDayInContent(i+1,false,false,conteneur);
+			// stefan : info : pour les jours du mois suivant
+			this.createDayInContent(i+1,false,false,conteneur,false);
 		}
 
 	}
 	
-	calendar.prototype.createDayInContent = function (dateDay,CurrentDay,active,conteneur){
+	calendar.prototype.createDayInContent = function (dateDay,CurrentDay,active,conteneur,reserved){
 		var me = this;
 		//Création d'un li comprenant un noeud texte avec la date du jour
 		var liDay = document.createElement("li");
@@ -336,6 +347,8 @@
 		//Pour éviter les if else ....
 		liDay.className = (CurrentDay) ? "dayCurrent":"liOut";
 		liDay.className = (!active) ? "liInactive":liDay.className;
+		// stefan : ajout class "reserved" pour les jours déjà réservés
+		liDay.className = (reserved) ? "liReserved":liDay.className;
 		liDay.appendChild(TextContent);
 		//Ajout du survol :)
 		if(active){
@@ -802,5 +815,3 @@
 			calendarDestruct = true;
 		}
 	}
-
-

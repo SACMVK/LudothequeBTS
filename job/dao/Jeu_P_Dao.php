@@ -90,21 +90,21 @@ function select($requete) {
         //AhMaD : on vas creer un nouveau objet avec les informations
         $proprietaire = new Individu($ville, $adresse, $codePostal, $dpt, $email, $telephone, $pseudo, $dateInscription, $mdp, $droit, $nom, $prenom, $dateNaissance, $idUser);
 
-            $nbJoueursMin = $champ['nbJoueursMin'];
-            $nbJoueursMax = $champ['nbJoueursMax'];
-            $nom = $champ['nom'];
-            $editeur = $champ['editeur'];
-            $regles = $champ['regles'];
-            $difficulte = $champ['difficulte'];
-            $public = $champ['public'];
-            $listePieces = $champ['listePieces'];
-            $dureePartie = $champ['dureePartie'];
-            $anneeSortie = $champ['anneeSortie'];
-            $description = $champ['description'];
-            $idPC = $champ['idPC'];
-            $typePC = $champ['typePC'];
-            $valide = $donnees['valide'];
-            
+        $nbJoueursMin = $champ['nbJoueursMin'];
+        $nbJoueursMax = $champ['nbJoueursMax'];
+        $nom = $champ['nom'];
+        $editeur = $champ['editeur'];
+        $regles = $champ['regles'];
+        $difficulte = $champ['difficulte'];
+        $public = $champ['public'];
+        $listePieces = $champ['listePieces'];
+        $dureePartie = $champ['dureePartie'];
+        $anneeSortie = $champ['anneeSortie'];
+        $description = $champ['description'];
+        $idPC = $champ['idPC'];
+        $typePC = $champ['typePC'];
+        $valide = $champ['valide'];
+
         /*
          * M : Création de listes en récupèrant les données dans la BDD avec la méthode selectListe($table,$var,$champsSelect)
          */

@@ -1,4 +1,5 @@
 <div class="blocList">
+    <span id="reservedDates" data-reservedDates="<?= getDatesReservation($jeuP) ?>"></span>
     <form action=" " method="post" accept-charset="utf-8">
         Envoyer une demande de prêt à <b><?= $jeuP->getProprietaire()->getPseudo() ?></b>
         de son jeu <b><?= $jeuP->getJeuT()->getNom() ?></b>
