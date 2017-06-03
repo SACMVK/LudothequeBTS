@@ -103,6 +103,7 @@ function select($requete) {
             $description = $champ['description'];
             $idPC = $champ['idPC'];
             $typePC = $champ['typePC'];
+            $valide = $donnees['valide'];
             
         /*
          * M : Création de listes en récupèrant les données dans la BDD avec la méthode selectListe($table,$var,$champsSelect)
@@ -129,7 +130,7 @@ function select($requete) {
         //==================================================================================================
 
         /* création du nouvel objet Jeu_T */
-        $jeuT = new Jeu_T($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $idPC);
+        $jeuT = new Jeu_T($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $valide, $idPC);
 
         $idJeuP = $champ['idJeuP'];
 

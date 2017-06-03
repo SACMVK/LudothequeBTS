@@ -65,14 +65,16 @@ function selectPrets($requete) {
         $descriptionJeuT = $champ['description'];
         $idPCJeuT = $champ['idPC']["0"];
         $typePCJeuT = $champ['typePC'];
+        $valide = $champ['valide'];
 
+        // Ces caractéristiques ne sont pas utilisées pour les prêts, elles ne sont donc pas initialisées.
         $listeGenresJeuT = array();
         $listeImagesJeuT = array();
         $listeCommentairesJeuT = array();
         $noteMoyenneJeuT = 5;
 
 
-        $jeuT = new Jeu_T($nbJoueursMinJeuT, $nbJoueursMaxJeuT, $nomJeuT, $editeurJeuT, $reglesJeuT, $difficulteJeuT, $publicJeuT, $listePiecesJeuT, $dureePartieJeuT, $anneeSortieJeuT, $descriptionJeuT, $typePCJeuT, $listeGenresJeuT, $noteMoyenneJeuT, $listeImagesJeuT, $listeCommentairesJeuT, $idPCJeuT);
+        $jeuT = new Jeu_T($nbJoueursMinJeuT, $nbJoueursMaxJeuT, $nomJeuT, $editeurJeuT, $reglesJeuT, $difficulteJeuT, $publicJeuT, $listePiecesJeuT, $dureePartieJeuT, $anneeSortieJeuT, $descriptionJeuT, $typePCJeuT, $listeGenresJeuT, $noteMoyenneJeuT, $listeImagesJeuT, $listeCommentairesJeuT, $valide, $idPCJeuT);
 
         $idJeuP = $champ['idJeuP']["0"];
 

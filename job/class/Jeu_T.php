@@ -22,7 +22,7 @@ class Jeu_T extends ProduitCulturel {
      */
 
     function __construct($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $valide, $idPC = -1) {
-        parent::__construct($nom, $public, $anneeSortie, $description, $typePC, $valide, $idPC);
+        parent::__construct($anneeSortie, $nom, $public, $description, $typePC, $valide, $idPC);
         $this->nbJoueursMin = $nbJoueursMin;
         $this->nbJoueursMax = $nbJoueursMax;
         // passage de nom dans produitCultiurel.php
