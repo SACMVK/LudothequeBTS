@@ -365,7 +365,7 @@ function jourToDate(int $nombreJours) {
 
 function getAllNomJeux() {
     $pdo = openConnexion();
-    $requete = "SELECT * FROM jeu_p JOIN  jeu_t ON jeu_p.idPC = jeu_t.idPC;";
+    $requete = "SELECT * FROM jeu_p JOIN jeu_t ON jeu_p.idPC = jeu_t.idPC JOIN produit_culturel_t ON produit_culturel_t.idPC = jeu_t.idPC;";
     $stmt = $pdo->prepare($requete);
     $stmt->execute();
     $list = null;

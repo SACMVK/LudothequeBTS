@@ -17,11 +17,11 @@
         include '43_genre_jeu.php';
         include '44_jeu_a_pour_image.php';
 
-        include '51_commentaires_jeu_t.php';
+        include '51_commentaires_jeu.php';
 
 // jeu_p
 
-        include '61_jeu_p.php';
+        include '61_exemplaires.php';
 
 
         // message
@@ -37,7 +37,7 @@
 
         //renommerReduireDeplacerFichier($repertoireTemp, $repertoireVignettes, $dimensionsImageReduite)
         // stefan : on créé les données en partant des tables dont les autres tables dépendantes
-        $aujourdhui = "2017-04-20";
+        $aujourdhui = "2017-06-14";
 
 
 
@@ -56,7 +56,7 @@
         $nombreCommentaires_pc = 800;
 
         //
-        generer_donnees_individu($nombreIndividus);
+        //generer_donnees_individu($nombreIndividus);
         //generer_donnees_genre_individu($nombreGenreIndividu,$nombreIndividus);
         //generer_donnees_jeu_t($nombreJeuxT);
         //generer_donnees_genre_jeu($nombreJeuxT);
@@ -64,12 +64,7 @@
         //generer_commentaires_pc($nombreCommentaires_pc, $nombreJeuxT, $nombreIndividus);
         //generer_donnees_jeu_p($nombreJeuxP, $nombreJeuxT, $nombreIndividus);
         //generer_donnees_message($nombreMessages, $nombreIndividus, $aujourdhui);
-
-
-
-        //generer_prets($nombreIndividus, $nombreJeuxP, $aujourdhui, $nombreMessages);
-
-
+        generer_prets($nombreIndividus, $nombreJeuxP, $aujourdhui, $nombreMessages);
         ?>
     </body>
 </html>

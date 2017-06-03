@@ -15,13 +15,13 @@ function generer_donnees_individu(int $nombreIndividus) {
         $departement = $listeDepartement[rand(0, count($listeDepartement) - 1)];
         $list['numDept'] = $departement;
         $list['codePostal'] = getCodePostal($departement);
-        $list['droit'] = getDroits();
+        $list['droit'] = getDroit();
         $list['dateNaiss'] = getDate_(1950, 2010);
         $list['dateInscription'] = getDate_(2016);
         $list['adresse'] = getAdresse();
         $list['ville'] = getVille();
         $list['telephone'] = getTelephone();
-        $list['typeCompte'] = getTypeCompte();
+        $list['typeCompte'] = "Individu";
         // stefan : petite méthode permettant de relancer un pseudo s'il existe déjà
         $listePseudo [] = "";
         do {
@@ -147,10 +147,12 @@ function getTelephone() {
 
 function getCodePostal($departement) {
     $codePostal = null;
-    if (strlen($departement) == 2) {
-        $codePostal =  $departement . rand(0, 9) . "00";
-    } else if (strlen ($departement) == 3) {
-        $codePostal =  $departement . "00";
+    if (strlen($departement) == 1) {
+        $codePostal = $departement . rand(0, 9) . "00";
+    } else if (strlen($departement) == 2) {
+        $codePostal = $departement . rand(0, 9) . "00";
+    } else if (strlen($departement) == 3) {
+        $codePostal = $departement . "00";
     }
     return $codePostal;
 }
@@ -165,7 +167,18 @@ function getDroits() {
         $liste_droits [] = $ligne['droit'];
     }
     $pdo = closeConnexion();
-    return $liste_droits[rand(0, count($liste_droits) - 1)];
+    return $liste_droits;
+}
+
+function getDroit() {
+    $randomDroit = rand(0, 100);
+    $droit = "Utilisateur";
+    if ($randomDroit < 5) {
+        $droit = "Administrateur";
+    } elseif ($randomDroit < 15) {
+        $droit = "Modérateur";
+    }
+    return $droit;
 }
 
 function getTypeCompte() {

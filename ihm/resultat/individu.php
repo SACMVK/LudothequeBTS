@@ -106,7 +106,7 @@
     <input type=hidden name="objectToWorkWith" value="individu" />
     <input type=hidden name="actionToDoWithObject" value="update" />
 
-    <input type="submit" name="submit" class="boutonBleu" value="Valider la modification">
+    <input type="submit" name="submit" class="boutonBleu" value="valider la modification">
 </form>
 
 <form class="page_fichier_utilisateur" action=" " method="post" accept-charset="utf-8" class="form" role="form">

@@ -11,8 +11,8 @@ function str_truncate($text, $length) {
 ?>
 
 <?php
-if (!empty($listeJeuxAValider)):
-    foreach ($listeJeuxAValider as $jeu_t) :
+if (!empty($listeJeuxAvalider)):
+    foreach ($listeJeuxAvalider as $jeu_t) :
         ?> 
         <div class="blocList">
 

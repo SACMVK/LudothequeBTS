@@ -160,7 +160,7 @@ create table produit_culturel_t(
   typePC VARCHAR(50) NOT NULL,	#FK
   anneeSortie	year NOT NULL,
   description TEXT NOT NULL,
-  valide TINYINT(1) NOT NULL DEFAULT '1',
+  valide TINYINT(1) NOT NULL DEFAULT '0',
 
   PRIMARY KEY (idPC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

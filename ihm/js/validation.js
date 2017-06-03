@@ -33,21 +33,21 @@ pseudo.style.backgroundColor = "#fba"
 }
 if (email.value == "")
 {
-window.alert("veuillez valider votre email adresse.");
+window.alert("veuillez valide votre email adresse.");
         email.style.backgroundColor = "#fba"
         email.focus();
         return false;
 }
 if (email.value.indexOf("@", 0) < 0)
 {
-window.alert("veuillez valider votre email adresse.");
+window.alert("veuillez valide votre email adresse.");
         emial.style.backgroundColor = "#fba"
         email.focus();
         return false;
 }
 if (email.value.indexOf(".", 0) < 0)
 {
-window.alert("veuillez valider votre email adresse.");
+window.alert("veuillez valide votre email adresse.");
         email.style.backgroundColor = "#fba"
         email.focus();
         return false;
@@ -72,7 +72,7 @@ re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
         if (dateNaiss.value.match(re))
 
 {
-window.alert("veuillez valider votre date de naissance.");
+window.alert("veuillez valide votre date de naissance.");
         dateNaiss.style.backgroundColor = "#fba"
         dateNaiss.focus();
         return false;
@@ -108,7 +108,7 @@ document.CreationForm.mdp2.disabled = false;
 
 /*
  * 
- *AhMaD:pour valider l'email
+ *AhMaD:pour valide l'email
  */
         
 
