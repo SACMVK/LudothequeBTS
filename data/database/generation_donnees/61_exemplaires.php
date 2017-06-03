@@ -2,11 +2,11 @@
 
 
 
-function generer_donnees_jeu_p(int $nombreJeuxP, int $nombreJeuxT , int $nombreIndividus){
-    for ($indice = 1; $indice<=$nombreJeuxP; $indice++)
+function generer_donnees_exemplaires(int $nombreExemplaires, int $nombreJeux , int $nombreIndividus){
+    for ($indice = 1; $indice<=$nombreExemplaires; $indice++)
     {
         
-        $list["idPC"] = rand(1, $nombreJeuxT);
+        $list["idPC"] = rand(1, $nombreJeux);
         $list["idProprietaire"] = rand(1, $nombreIndividus);
 
         

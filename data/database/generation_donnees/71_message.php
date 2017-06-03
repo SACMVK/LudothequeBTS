@@ -11,11 +11,11 @@ function generer_donnees_message(int $nombreMessages, int $nombreIndividus, stri
 
         // fonctions dateToJour et jourToDate définies dans 81_prets
 
-        $idExped = rand(1, $nombreIndividus);
+        $idExped = random_int(1, $nombreIndividus);
         $dateInscriptionExped = $listeUsers[$idExped]["dateInscription"];
         $inscriptionExped = dateToJour($dateInscriptionExped);
 
-        $idDest = rand(1, $nombreIndividus);
+        $idDest = random_int(1, $nombreIndividus);
         $dateInscriptionDest = $listeUsers[$idDest]["dateInscription"];
         $inscriptionDest = dateToJour($dateInscriptionDest);
 
@@ -23,8 +23,8 @@ function generer_donnees_message(int $nombreMessages, int $nombreIndividus, stri
 
 
 
-        $list['idExped'] = rand(1, $nombreIndividus);
-        $list['idDest'] = rand(1, $nombreIndividus);
+        $list['idExped'] = $idExped;
+        $list['idDest'] = $idDest;
         $list['sujet'] = getTexte(true);
         $list['texte'] = getTexte();
 

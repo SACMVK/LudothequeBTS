@@ -2,8 +2,8 @@
 
 
 
-function generer_donnees_jeu_t(int $nombreJeuxT) {
-    for ($indice = 1; $indice <= $nombreJeuxT; $indice++) {
+function generer_donnees_jeu(int $nombreJeux) {
+    for ($indice = 1; $indice <= $nombreJeux; $indice++) {
 
         $list['typePC'] = "Jeux de société";
         $list['anneeSortie'] = getSortie();
@@ -28,12 +28,12 @@ function generer_donnees_jeu_t(int $nombreJeuxT) {
 //        echo "Duré moyenne de la partie : " . $list['dureePartie'] . "<br>";
 //        echo "Une boite comprend les éléments suivants : " . $list['listePieces'] . "<br>";
 //        echo "Enoncé sommaire des règles : " . $list['regles'] . "<br><br>";
-echo "INSERT INTO produit_culturel_t (typePC, anneeSortie, description, nom, public, valide)";
-echo "VALUES ('".$list['typePC']."', '".$list['anneeSortie']."', '".$list['description']."', '".$list['nom']."', '".$list['public']."','0');";
-echo "<br>";
-echo "INSERT INTO jeu_t (idPC, nbJoueursMin, nbJoueursMax, editeur, regles, difficulte, listePieces, dureePartie)";
-echo "VALUES (".$indice.", '".$list['nbJoueursMin']."', '".$list['nbJoueursMax']."', '".$list['editeur']."', '".$list['regles']."', '".$list['difficulte']."', '".$list['listePieces']."', '".$list['dureePartie']."');";
-echo "<br>";   
+echo 'INSERT INTO produit_culturel_t (typePC, anneeSortie, description, nom, public, valide)';
+echo 'VALUES ("'.$list["typePC"].'", "'.$list["anneeSortie"].'", "'.$list["description"].'", "'.$list["nom"].'", "'.$list["public"].'","0");';
+echo '<br>';
+echo 'INSERT INTO jeu_t (idPC, nbJoueursMin, nbJoueursMax, editeur, regles, difficulte, listePieces, dureePartie)';
+echo 'VALUES ("'.$indice.'", "'.$list["nbJoueursMin"].'", "'.$list["nbJoueursMax"].'", "'.$list["editeur"].'", "'.$list["regles"].'", "'.$list["difficulte"].'", "'.$list["listePieces"].'", "'.$list["dureePartie"].'");';
+echo '<br>';   
 //insert($list);
     }
 }
@@ -74,7 +74,7 @@ function getListePiece() {
     }
     // stefan : test s'il n'y a besoin d'aucun matériel
     if (strlen($listePieces) == 0) {
-        $listePieces = "Aucun matériel n\'est nécessaire !";
+        $listePieces = "Aucun matériel n'est nécessaire !";
     } else {
         // stefan : on supprime la dernière virgule et l'espace qui suit
         $listePieces = substr($listePieces, 0, strlen($listePieces) - 2);
@@ -142,10 +142,12 @@ function getNomJeu() {
 }
 
 function getNombreJoueurs() {
-    $min = rand(1, 8);
-    $max = rand(1, 8);
-    $nombre = [$min, $max];
+    $valeur1 = rand(1, 8);
+    $valeur2 = rand(1, 8);
+    $nombre = [$valeur1, $valeur2];
+    if ($valeur1 != $valeur2){
     sort($nombre);
+    }
     return $nombre;
 }
 
