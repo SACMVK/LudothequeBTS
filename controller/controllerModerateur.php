@@ -11,7 +11,6 @@ switch ($_REQUEST['moderateur']) {
         } elseif (!empty($_REQUEST["supprimer"])) {
             delete($listeData["idPC"]);
         }
-        $jeuAModifier = select("WHERE produit_culturel_t.idPC = " . $_REQUEST["idPC"])[0];
         $listeJeuxAvalider = select("WHERE valide = 0");
         break;
     case "modifier_jeu":
