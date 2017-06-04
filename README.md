@@ -13,7 +13,7 @@ Equipe de développement :
     louis.aneiros@gmail.com
 
 Langages utilisés :
-    PHP (coté serveur serveur),
+    PHP (coté serveur),
     HML, Javascript, CSS (coté client),
     SQL (SGBD MySql).
 
