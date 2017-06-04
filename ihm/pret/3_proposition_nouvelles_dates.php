@@ -9,8 +9,8 @@
         au <?= screenDate($pret->getPropositionEmprunteurDateFin()) ?>.
         <br />
         <br />
-        Du <input type="text"  name="propositionPreteurDateDebut" onclick="new calendar(this);">
-        au <input type="text"  name="propositionPreteurDateFin" onclick="new calendar(this);">
+        Du <input type="text" id="propositionPreteurDateDebut" name="propositionPreteurDateDebut" onclick="new calendar(this);">
+        au <input type="text" id="propositionPreteurDateFin" name="propositionPreteurDateFin" onclick="new calendar(this);">
         <br />
         <br />
         Message à destination de l'emprunteur :

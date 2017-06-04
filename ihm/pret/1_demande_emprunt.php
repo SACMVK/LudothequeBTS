@@ -5,8 +5,8 @@
         de son jeu <b><?= $jeuP->getJeuT()->getNom() ?></b>
         <br />
         <br />
-        du <input type="text"  name="propositionEmprunteurDateDebut" onclick="new calendar(this);">
-        au <input type="text"  name="propositionEmprunteurDateFin" onclick="new calendar(this);">
+        du <input type="text" id="propositionEmprunteurDateDebut" name="propositionEmprunteurDateDebut" onclick="new calendar(this);">
+        au <input type="text" id="propositionEmprunteurDateFin" name="propositionEmprunteurDateFin" onclick="new calendar(this);">
         <br />
         <br />
         Message à destination du prêteur :
