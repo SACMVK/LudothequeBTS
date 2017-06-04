@@ -269,7 +269,7 @@ function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
 }
 
 function selectTopJeuT($nombreJeuxT) {
-    $requete = "SELECT jeu_t.nom, produit_culturel_t.idPC, AVG(note_jeu_t.note) as 'noteMoyenne' "
+    $requete = "SELECT produit_culturel_t.nom, produit_culturel_t.idPC, AVG(note_jeu_t.note) as 'noteMoyenne' "
             . "FROM note_jeu_t JOIN produit_culturel_t ON note_jeu_t.idPC = produit_culturel_t.idPC "
             . "JOIN jeu_t ON produit_culturel_t.idPC = jeu_t.idPC "
             . "GROUP BY produit_culturel_t.idPC "
