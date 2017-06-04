@@ -1,4 +1,4 @@
-<?php 
+<?php
 //var_dump($jeuAModifier);
 ?>
 <form action="" method="post" accept-charset="utf-8" class="form"  enctype="multipart/form-data">   
@@ -122,6 +122,22 @@
         endfor;
         ?>
     </select>
+
+    Image(s) proposée(s) :
+    <div class = "slideshowJeuT">
+        <ul>
+            <?php
+            $carrouselDirectory = "data/images/vignettes/";
+            $listeDesImages = $jeuAModifier->getListeImages();
+            foreach ($listeDesImages as $image) :
+                ?>
+                <li><img src="<?= $carrouselDirectory . $image ?>"></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    Modifier les images :
+    <input type="file" multiple class="form-control" name="source[]" accept="image/*,application/pdf">
+
 
     <input name="moderateur" type="hidden" value="voir_liste_jeux_non_valides"/>
     <input class="boutonGris" name="valider" type="submit" value="Accepter"/>
