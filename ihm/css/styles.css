@@ -48,10 +48,7 @@ caption {
 }
 
 
-.blocList textArea {
-    width: 100%;
-    height: 7em;
-}
+
 
 /*---AhMaD:SLID--*/
 
@@ -144,19 +141,24 @@ caption {
     margin-bottom: 0.5em;
 }
 
-/*fiche utilisature*/
-.panel {
-    background: #ddd;
-    position: relative !important;
-    right: 260px !important;
-    top: -97px !important;
-    margin-bottom: -150px;
-}
-.page_fichier_utilisateur{
-    float: left;
-    margin-left: 50px;
-}
+
+
 /*Validation*/
 .has-error{
     background: #FF6347
 }
+
+
+form > textArea {
+    width: 100%;
+    height: 7em;
+}
+/*
+form > input[type="text"], form > select, form > textArea {
+    border: none;
+    border: solid 1px #208f8f;
+    border-radius: 5px;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+*/
