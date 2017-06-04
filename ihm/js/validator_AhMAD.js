@@ -1,4 +1,5 @@
 $(function () {
+    //AhMaD: ici pour afficher le rouge si il ya des err
     $.validator.setDefaults({
       errorClass: 'help-block',
         highlight: function (element) {
@@ -19,6 +20,7 @@ $(function () {
             }
         }
     });
+    //AhMaD: function pour la sécurité de la  mot de passe
     $.validator.addMethod('strongPassword', function (value, element) {
         return this.optional(element)
                 || value.length <= 20
@@ -26,6 +28,7 @@ $(function () {
                 && /[a-z]/i.test(value);
     },'Votre mot de passe faudra consiste des nombres et des caractères\.');
     
+    //AhMaD: pour vérifier que l'email existe pas dans la BD
      $.validator.addMethod('accountExists', function (value, element) {
 	var listeMail = document.inscription.listeMail.value;
 	var emails = listeMail.split("#");
@@ -34,6 +37,7 @@ $(function () {
 				
     },' cette adresse électronique  est déjà existé, merci de choisir un autre.\'.');
     
+    //AhMaD: pour vérifier que le pseudo existe pas dans la BD
     $.validator.addMethod('pseudoExists', function (value, element) {
 	var listePseudo = document.inscription.listePseudo.value;
 	var pseudos = listePseudo.split("#");
@@ -42,11 +46,12 @@ $(function () {
 				
     },' ce pseudo  est déjà existé, merci de choisir un autre.\'.');
 
+ //AhMaD: pour forcer l'usr de choisir seulement les lettres
     $.validator.addMethod("lettersonly", function (value, element) {
         return this.optional(element) || /^[a-z]+$/i.test(value);
     }, "Caractères seulement sont acceptable ");
     
-
+ //AhMaD: pour valider chaque champe on regarde si il est required, et si il y a autre contrainte
     $("#CreationForm").validate({
         rules: {
             email: {
