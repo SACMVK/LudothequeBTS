@@ -53,23 +53,11 @@
                                     </tr>
                                     <tr>
                                         <td>Tel :</td>
-                                        <td><?= $element->getTelephone() ?><br>
-                                        </td>
+                                        <td><?= $element->getTelephone() ?></td>
                                     </tr>
                                     <tr>
                                         <td>Droit :</td>
-                                        <td><?= $element->getDroit() ?><br>
-                                            <?php if ($_SESSION["monProfil"]->getDroit() == "Administrateur") { ?>
-                                                <h5><strong>Modifier le droit</strong></h5>
-                                                <select class="" name="droit">
-                                                    <?php selectDico("droit_d", "droit") ?>
-
-                                                </select>
-
-                                                <?php
-                                            }
-                                            ?>
-                                        </td>
+                                        <td><?= $element->getDroit() ?></td>
                                     </tr>
                                 </tbody>
                             </table>
