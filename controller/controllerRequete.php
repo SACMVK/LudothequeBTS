@@ -1,7 +1,5 @@
 <?php
 
-
-
 /* stefan : Cette fonction a pour objectif
  * de créer une string de requête SQL (partie "WHERE")
  * à partir des éléments des formulaires de sélection,
@@ -18,9 +16,9 @@ function createRequestFromREQUEST() {
         $stringRequest = 'WHERE ';
         foreach ($_REQUEST as $key => $value) {
             $addKey = false;
-            if ($key != "XDEBUG_SESSION_START" && $key != "pret" && $key != "user" && $key != "objectToWorkWith" && $key != "actionToDoWithObject" && stristr($key, 'submit') === FALSE && $key != "reset" && $key != "page" && stristr($key, 'liste') === FALSE) {
+            if ($key != "XDEBUG_SESSION_START" && $key != "pret" && $key != "user" && $key != "moderateur" && $key != "administrateur" && $key != "objectToWorkWith" && $key != "actionToDoWithObject" && stristr($key, 'submit') === FALSE && $key != "reset" && $key != "page" && stristr($key, 'liste') === FALSE) {
                 if ($value != null && $value != "" && $value != "-----") {
-                    $stringRequest .= $key . '="' . $value .'"';
+                    $stringRequest .= $key . '="' . $value . '"';
                     $addKey = true;
                 }
             }
@@ -34,17 +32,17 @@ function createRequestFromREQUEST() {
             }
         }
     }
-    if (substr($stringRequest, strlen($stringRequest)-5, 4)==" AND"){
-        $stringRequest = substr($stringRequest, 0, strlen($stringRequest)-5);
+    if (substr($stringRequest, strlen($stringRequest) - 5, 4) == " AND") {
+        $stringRequest = substr($stringRequest, 0, strlen($stringRequest) - 5);
     }
-    if ($stringRequest == 'WHERE '){
+    if ($stringRequest == 'WHERE ') {
         $stringRequest = "";
     }
     /* stefan : Un nom d'input ne peut avoir un point (par exemple jeu_t.nom
      * Il faut donc mettre jeu_t#nom et la fonction str_replace
      * va faire la modification.
      */
-    return str_replace("#",".",$stringRequest);
+    return str_replace("#", ".", $stringRequest);
 }
 
 /* stefan : Cette fonction a pour objectif
@@ -128,6 +126,10 @@ switch ($actionToDoWithObject) {
             // stefan : recréation de l'utilisateur depuis la base de données
             $_SESSION["monProfil"] = select("WHERE individu.idUser = " . $idUserConnecte)[0];
             $pageAAfficher = 'ihm/utilisateur/monProfil.php';
+        } else {
+            $listeComptes = select();
+            $listeDroits = getArrayFromSQL("droit_d", "droit");
+            $pageAAfficher = 'ihm/administrateur/voir_liste_comptes.php';
         }
 
         break;
@@ -139,7 +141,9 @@ switch ($actionToDoWithObject) {
         // stefan : Partie IHM
         switch ($objectToWorkWith) {
             case "Individu":
-
+                $listeComptes = select();
+                $listeDroits = getArrayFromSQL("droit_d", "droit");
+                $pageAAfficher = 'ihm/administrateur/voir_liste_comptes.php';
                 break;
             case "Jeu_P":
                 $_SESSION["maLudotheque"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
@@ -149,10 +153,10 @@ switch ($actionToDoWithObject) {
                 $pageAAfficher = 'ihm/utilisateur/maLudotheque.php'; // ?
                 break;
             case "mesMessageRecus":
-                 $_SESSION["mesMessagesRecus"] = select("WHERE idDest = " . $_SESSION["monProfil"]->getIdUser());
-                $pageAAfficher =$_REQUEST["page"];
+                $_SESSION["mesMessagesRecus"] = select("WHERE idDest = " . $_SESSION["monProfil"]->getIdUser());
+                $pageAAfficher = $_REQUEST["page"];
                 break;
-            
+
             case "mesMessageEnvoyes":
                 $_SESSION["mesMessagesEnvoyes"] = select("WHERE idExped = " . $_SESSION["monProfil"]->getIdUser());
                 $pageAAfficher = $_REQUEST["page"];

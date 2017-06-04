@@ -8,7 +8,7 @@
                         <?php if ($droitsUser == "Administrateur" ): ?>
                         <p class="titre_menu">Menu administrateur</p><hr/>
 <!--                            <a href='index.php?page=administrateur/config.php'><li>Configuration</li></a>-->
-                            <a href='index.php?administrateur=voir_liste_comptes'><li>Administrer les utilisateurs</li></a>
+                            <a href='index.php?administrateur=voir_liste_comptes'><li>Gérer les utilisateurs</li></a>
                         <?php endif; ?>
                         <?php if ($droitsUser == "Modérateur" || $droitsUser == "Administrateur"): ?>
                             <p class="titre_menu">Menu modérateur</p><hr/>
