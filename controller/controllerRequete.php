@@ -77,7 +77,12 @@ switch ($actionToDoWithObject) {
     case "selectOne":
         // stefan : Partie DAO
         $request = createRequestFromREQUEST();
-        $element = select($request)[0];
+        // stefan : légère entorse de nomenclature à cause du contrôleur de prêts
+        if ($objectToWorkWith == "Pret") {
+            $element = selectPrets($request)[0];
+        } else {
+            $element = select($request)[0];
+        }
         // stefan : Partie IHM
         $pageAAfficher = 'ihm/resultat/' . $objectToWorkWith . '.php';
         break;
@@ -141,7 +146,7 @@ switch ($actionToDoWithObject) {
         // stefan : Partie IHM
         switch ($objectToWorkWith) {
             case "Individu":
-                $listeComptes = select();
+                $listeComptes = select("");
                 $listeDroits = getArrayFromSQL("droit_d", "droit");
                 $pageAAfficher = 'ihm/administrateur/voir_liste_comptes.php';
                 break;

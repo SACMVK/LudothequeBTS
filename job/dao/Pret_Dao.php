@@ -63,18 +63,36 @@ function selectPrets($requete) {
         $dureePartieJeuT = $champ['dureePartie'];
         $anneeSortieJeuT = $champ['anneeSortie'];
         $descriptionJeuT = $champ['description'];
-        $idPCJeuT = $champ['idPC']["0"];
+        $idPC = $champ['idPC']["0"];
         $typePCJeuT = $champ['typePC'];
         $valide = $champ['valide'];
 
-        // Ces caractéristiques ne sont pas utilisées pour les prêts, elles ne sont donc pas initialisées.
-        $listeGenresJeuT = array();
-        $listeImagesJeuT = array();
-        $listeCommentairesJeuT = array();
-        $noteMoyenneJeuT = 5;
+        /*
+         * M : Création de listes en récupèrant les données dans la BDD avec la méthode selectListe($table,$var,$champsSelect)
+         */
+        $listeGenres = selectListe("jeu_a_pour_genre", $idPC, 'genre');
+
+        $listeImages = selectListe("a_pour_image", $idPC, 'source');
+
+        $listeNotes = selectListe("note_jeu_t", $idPC, 'note');
+
+        //=========================== LISTE COMMENTAIRES ====================================================
+        /*
+         * M : Récupèration dans les tables commentaire_p_c_t et compte des commentaires sur les jeux associés à leur commentateur. Ajout dans une liste
+         */
+        $requeteComment = "SELECT pseudo, commentaireT  FROM commentaire_p_c_t JOIN  compte  ON commentaire_p_c_t.idUser= compte.idUser WHERE idPC=".$idPC.";";
+        $stmtComment = $db->prepare($requeteComment);
+        $stmtComment->execute();
+        $listeCommentaires = array();
+        while ($comment = $stmtComment->fetch(PDO::FETCH_ASSOC)) { // Chaque entrée sera récupérée et placée dans un array.
+            $pseudo = $comment['pseudo'];
+            $commentaire = $comment['commentaireT'];
+            $listeCommentaires [] = [$pseudo => $commentaire];
+        }
+        //==================================================================================================
 
 
-        $jeuT = new Jeu_T($nbJoueursMinJeuT, $nbJoueursMaxJeuT, $nomJeuT, $editeurJeuT, $reglesJeuT, $difficulteJeuT, $publicJeuT, $listePiecesJeuT, $dureePartieJeuT, $anneeSortieJeuT, $descriptionJeuT, $typePCJeuT, $listeGenresJeuT, $noteMoyenneJeuT, $listeImagesJeuT, $listeCommentairesJeuT, $valide, $idPCJeuT);
+        $jeuT = new Jeu_T($nbJoueursMinJeuT, $nbJoueursMaxJeuT, $nomJeuT, $editeurJeuT, $reglesJeuT, $difficulteJeuT, $publicJeuT, $listePiecesJeuT, $dureePartieJeuT, $anneeSortieJeuT, $descriptionJeuT, $typePCJeuT, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $valide, $idPC);
 
         $idJeuP = $champ['idJeuP']["0"];
 
@@ -116,7 +134,60 @@ function selectPrets($requete) {
             $notification_dic ["corpsEmprunteur"] = $champNotification["corpsEmprunteur"];
         }
 
-        $nouveauPret = new Pret($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification_dic, $statutDemande, $idPret);
+
+        $requeteMessages = "SELECT * FROM pret_a_pour_message
+            JOIN message ON pret_a_pour_message.idMessage = message.idMessage
+            JOIN individu as destIndividu ON message.idDest=destIndividu.idUser
+            JOIN compte as destCompte ON destCompte.idUser=destindividu.idUser
+            JOIN individu as expedIndividu ON message.idExped=expedIndividu.idUser
+            JOIN compte as expedCompte ON expedCompte.idUser=expedIndividu.idUser 
+            WHERE pret_a_pour_message.idPret = " . $idPret . ";";
+        $stmtMessages = $db->prepare($requeteMessages);
+        $stmtMessages->execute();
+        $listeMessages = [];
+        while ($champMessages = $stmtMessages->fetch(PDO::FETCH_NAMED)) {
+            $idMessage = $champMessages['idMessage'];
+            $texte = $champMessages['texte'];
+            $sujet = $champMessages['sujet'];
+            $dateEnvoi = $champMessages['dateEnvoi'];
+            $destId = $champMessages['idUser'][0];
+            $destVille = $champMessages['ville'][0];
+            $destAdresse = $champMessages['adresse'][0];
+            $destCodePostal = $champMessages['codePostal'][0];
+            $destDpt = $champMessages['numDept'][0];
+            $destEmail = $champMessages['email'][0];
+            $destTelephone = $champMessages['telephone'][0];
+            $destPseudo = $champMessages['pseudo'][0];
+            $destDateInscription = $champMessages['dateInscription'][0];
+            $destMdp = $champMessages['mdp'][0];
+            $destDroit = $champMessages['droit'][0];
+            $destNom = $champMessages['nom'][0];
+            $destPrenom = $champMessages['prenom'][0];
+            $destDN = $champMessages['dateNaiss'][0];
+            $expId = $champMessages['idUser'][2];
+            $expVille = $champMessages['ville'][1];
+            $expAdresse = $champMessages['adresse'][1];
+            $expCodePostal = $champMessages['codePostal'][1];
+            $expDpt = $champMessages['numDept'][1];
+            $expEmail = $champMessages['email'][1];
+            $expTelephone = $champMessages['telephone'][1];
+            $expPseudo = $champMessages['pseudo'][1];
+            $expDateInscription = $champMessages['dateInscription'][1];
+            $expMdp = $champMessages['mdp'][1];
+            $expDroit = $champMessages['droit'][1];
+            $expNom = $champMessages['nom'][1];
+            $expPrenom = $champMessages['prenom'][1];
+            $expDN = $champMessages['dateNaiss'][1];
+
+            $dest = new Individu($destVille, $destAdresse, $destCodePostal, $destDpt, $destEmail, $destTelephone, $destPseudo, $destDateInscription, $destMdp, $destDroit, $destNom, $destPrenom, $destDN, $destId);
+            $exp = new Individu($expVille, $expAdresse, $expCodePostal, $expDpt, $expEmail, $expTelephone, $expPseudo, $expDateInscription, $expMdp, $expDroit, $expNom, $expPrenom, $expDN, $expId);
+
+            $listeMessages[] = new Message($exp, $dest, $dateEnvoi, $sujet, $texte, $idMessage);
+        }
+
+
+
+        $nouveauPret = new Pret($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification_dic, $statutDemande, $listeMessages, $idPret);
 
         $requeteExpedition = "SELECT * FROM expedition WHERE idPret = " . $idPret . ";";
         $stmtExpedition = $db->prepare($requeteExpedition);

@@ -5,7 +5,7 @@
     Propriétaire : <?= $emprunt->getJeuP()->getProprietaire()->getPseudo() ?><br/>
     Statut : <?= $emprunt->getStatutDemande() ?><br/>
     Sujet notification : <?= $emprunt->getNotification()["sujetEmprunteur"] ?><br/>
-    id notification : <?= $emprunt->getidNotification() ?><br/>
+    <!--id notification : <?= $emprunt->getidNotification() ?><br/>-->
     <?php
     $corpsEmprunteur = $emprunt->getNotification()["corpsEmprunteur"];
     $corpsEmprunteur = str_replace("#nomPreteur#", $emprunt->getJeuP()->getProprietaire()->getPseudo(), $corpsEmprunteur);
@@ -33,7 +33,7 @@
         }
     }
     ?>
-    Corps notification : <?= $corpsEmprunteur ?><br/>
+    Notification : <?= $corpsEmprunteur ?><br/>
     <?php
     $nomBouton = "";
     $renvoiFormulaire = "";
@@ -65,5 +65,11 @@
             <input type="submit" name="submit" class="boutonGris" value="<?= $nomBouton ?>">
         </form>
     <?php endif; ?>
+    <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+        <input type=hidden name="idPret" value="<?= $emprunt->getIdPret() ?>" />
+        <input type=hidden name="objectToWorkWith" value="Pret" />
+        <input type=hidden name="actionToDoWithObject" value="selectOne" />
+        <input type="image" name="submit" class="boutonTransparent" value="Voir la fiche complète" src="ihm/img/loupe.png">
+    </form>
 </div>
 

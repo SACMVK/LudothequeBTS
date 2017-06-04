@@ -13,8 +13,9 @@ class Pret {
     private $notification; // Dictionnaire avec pour clés : sujetPreteur, corpsPreteur, sujetEmprunteur, corpsEmprunteur
     private $statutDemande;
     private $expedition;
+    private $listeMessages;
 
-    function __construct($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification, $statutDemande, $idPret = -1) {
+    function __construct($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification, $statutDemande, $listeMessages, $idPret = -1) {
         $this->idPret = $idPret;
         $this->jeuP = $jeuP;
         $this->emprunteur = $emprunteur;
@@ -25,6 +26,7 @@ class Pret {
         $this->idNotification = $idNotification;
         $this->notification = $notification;
         $this->statutDemande = $statutDemande;
+        $this->listeMessages = $listeMessages;
     }
 
     public function getIdPret() {
@@ -113,6 +115,14 @@ class Pret {
 
     public function setExpedition($expedition) {
         $this->expedition = $expedition;
+    }
+
+    public function getListeMessages() {
+        return $this->listeMessages;
+    }
+
+    public function setListeMessages($listeMessages) {
+        $this->listeMessages = $listeMessages;
     }
 
     public static function getPretFromId($id) {

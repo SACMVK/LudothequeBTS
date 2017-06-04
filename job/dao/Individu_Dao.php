@@ -75,7 +75,7 @@ function insert($list_Values) {
 
 
 //AMaD:function select en gros il s'agit de FIND!
-function select($requete = "") {
+function select($requete) {
 
 
     //AhMaD:ouvrire la connexion avec BD
@@ -202,7 +202,7 @@ function delete($idOfLineToDelete) {
     $db = openConnexion();
 
     //AhMaD:prepration de requete qui vas supprimer l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "DELETE " . TABLE_INDIVIDU . " FROM  " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser  =  " . TABLE_COMPTE . ".idUser  WHERE  " . TABLE_INDIVIDU . ". idUser =  '" . $idOfLineToDelete['idUser'] . "' ;";
+    $requete = "DELETE FROM " . TABLE_COMPTE . " WHERE  " . TABLE_COMPTE . ".idUser =  '" . $idOfLineToDelete['idUser'] . "' ;";
 
     //AhMaD: on vas préparer la requête et l'exécuter et tu vas bien.
     $stmt = $db->prepare($requete);

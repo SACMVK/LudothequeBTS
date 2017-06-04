@@ -3,7 +3,7 @@
 switch ($_REQUEST['administrateur']) {
     case "voir_liste_comptes":
         include 'job/dao/Individu_Dao.php';
-        $listeComptes = select();
+        $listeComptes = select("");
         $listeDroits = getArrayFromSQL("droit_d","droit");
         break;
 }

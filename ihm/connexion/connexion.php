@@ -5,21 +5,21 @@ $stmtAdministrateurs = $pdo->prepare($requeteAdministrateurs);
 $stmtAdministrateurs->execute();
 $listeAdministrateurs = null;
 while ($ligne = $stmtAdministrateurs->fetch(PDO::FETCH_ASSOC)) {
-    $listeAdministrateurs [] = ['pseudo' => $ligne['pseudo'], 'mdp' => $ligne['mdp']];
+    $listeAdministrateurs [] = ['pseudo' => $ligne['pseudo'], 'mdp' => $ligne['mdp'], 'idUser' => $ligne['idUser']];
 }
 $requeteModerateurs = "SELECT * FROM compte WHERE droit='Moderateur' LIMIT 5;";
 $stmtModerateurs = $pdo->prepare($requeteModerateurs);
 $stmtModerateurs->execute();
 $listeModerateurs = null;
 while ($ligne = $stmtModerateurs->fetch(PDO::FETCH_ASSOC)) {
-    $listeModerateurs [] = ['pseudo' => $ligne['pseudo'], 'mdp' => $ligne['mdp']];
+    $listeModerateurs [] = ['pseudo' => $ligne['pseudo'], 'mdp' => $ligne['mdp'], 'idUser' => $ligne['idUser']];
 }
 $requeteUtilisateurs = "SELECT * FROM compte WHERE droit='Utilisateur' LIMIT 5;";
 $stmtUtilisateurs = $pdo->prepare($requeteUtilisateurs);
 $stmtUtilisateurs->execute();
 $listeUtilisateurs = null;
 while ($ligne = $stmtUtilisateurs->fetch(PDO::FETCH_ASSOC)) {
-    $listeUtilisateurs [] = ['pseudo' => $ligne['pseudo'], 'mdp' => $ligne['mdp']];
+    $listeUtilisateurs [] = ['pseudo' => $ligne['pseudo'], 'mdp' => $ligne['mdp'], 'idUser' => $ligne['idUser']];
 }
 $pdo = closeConnexion();
 ?>
@@ -78,7 +78,14 @@ $pdo = closeConnexion();
             <?php foreach ($listeAdministrateurs as $administrateur) : ?>
                 <td><?= $administrateur["mdp"] ?></td>
             <?php endforeach; ?>
-
+        </tr>
+        <tr>
+            <td class="titre">
+                <b>Identifiant :</b>
+            </td>
+            <?php foreach ($listeAdministrateurs as $administrateur) : ?>
+                <td><?= $administrateur["idUser"] ?></td>
+            <?php endforeach; ?>
         </tr>
         <tr>
             <td colspan=6 class="categorie">
@@ -100,7 +107,14 @@ $pdo = closeConnexion();
             <?php foreach ($listeModerateurs as $moderateur) : ?>
                 <td><?= $moderateur["mdp"] ?></td>
             <?php endforeach; ?>
-
+        </tr>
+        <tr>
+            <td class="titre">
+                <b>Identifiant :</b>
+            </td>
+            <?php foreach ($listeModerateurs as $moderateur) : ?>
+                <td><?= $moderateur["idUser"] ?></td>
+            <?php endforeach; ?>
         </tr>
         <tr>
             <td colspan=6 class="categorie">
@@ -121,6 +135,14 @@ $pdo = closeConnexion();
             </td>
             <?php foreach ($listeUtilisateurs as $utilisateur) : ?>
                 <td><?= $utilisateur["mdp"] ?></td>
+            <?php endforeach; ?>
+        </tr>
+                <tr>
+            <td class="titre">
+                <b>Identifiant :</b>
+            </td>
+            <?php foreach ($listeUtilisateurs as $utilisateur) : ?>
+                <td><?= $utilisateur["idUser"] ?></td>
             <?php endforeach; ?>
         </tr>
     </table>

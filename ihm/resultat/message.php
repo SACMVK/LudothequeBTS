@@ -5,7 +5,7 @@
             <p> A : 
          <?=  $element->getDest()->getNom()  ?> 
          <?=  $element->getDest()->getPrenom()  ?> 
-         
+         <?php else : ?>
             <p> De : 
         <?=  $element->getExp()->getNom()  ?> 
          <?=  $element->getExp()->getPrenom()  ?> 

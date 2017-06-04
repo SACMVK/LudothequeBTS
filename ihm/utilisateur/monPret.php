@@ -5,7 +5,7 @@
     Propriétaire : <?= $pret->getJeuP()->getProprietaire()->getPseudo() ?><br/>
     Statut : <?= $pret->getStatutDemande() ?><br/>
     Sujet notification : <?= $pret->getNotification()["sujetPreteur"] ?><br/>
-    id notification : <?= $pret->getidNotification() ?><br/>
+    <!--id notification : <?= $pret->getidNotification() ?><br/>-->
     <?php
     $corpsPreteur = $pret->getNotification()["corpsPreteur"];
     $corpsPreteur = str_replace("#nomEmprunteur#", $pret->getEmprunteur()->getPseudo(), $corpsPreteur);
@@ -33,7 +33,7 @@
         }
     }
     ?>
-    Corps notification : <?= $corpsPreteur ?><br/>  
+    Notification : <?= $corpsPreteur ?><br/>  
     <?php
     $nomBouton = "";
     $renvoiFormulaire = "";
@@ -66,5 +66,11 @@
             <input type="submit" name="submit" class="boutonGris" value="<?= $nomBouton ?>">
         </form>
     <?php endif; ?>
+    <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+        <input type=hidden name="idPret" value="<?= $pret->getIdPret() ?>" />
+        <input type=hidden name="objectToWorkWith" value="Pret" />
+        <input type=hidden name="actionToDoWithObject" value="selectOne" />
+        <input type="image" name="submit" class="boutonTransparent" value="Voir la fiche complète" src="ihm/img/loupe.png">
+    </form>
 </div> 
 
