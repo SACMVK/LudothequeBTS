@@ -59,13 +59,13 @@
     <?php
     if ($ajouterBouton):
         ?>
-        <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+        <form action="" method="post" accept-charset="utf-8" class="form" >
             <input type=hidden name="idPret" value="<?= $emprunt->getIdPret() ?>" />
             <input type=hidden name="formulaire" value="<?= $renvoiFormulaire ?>" />
             <input type="submit" name="submit" class="boutonGris" value="<?= $nomBouton ?>">
         </form>
     <?php endif; ?>
-    <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+    <form action="" method="post" accept-charset="utf-8" class="form" >
         <input type=hidden name="idPret" value="<?= $emprunt->getIdPret() ?>" />
         <input type=hidden name="objectToWorkWith" value="Pret" />
         <input type=hidden name="actionToDoWithObject" value="selectOne" />

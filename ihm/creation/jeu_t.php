@@ -1,5 +1,5 @@
 <p style="color:red;">@team : TODO</p>
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form" enctype="multipart/form-data">   
+<form action="" method="post" accept-charset="utf-8" class="form"  enctype="multipart/form-data">   
     <?php
     /*
      * Il faut créer ici un formulaire renseigannt tous les champs du constructeur d'un jeu_t et du produit culturel

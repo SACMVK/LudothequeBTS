@@ -9,8 +9,8 @@
 			}
 			document.body.removeChild(document.getElementById('Calendrier'));
 		}
-		else if(!preventDouble){preventDouble = true}
-	}
+		else if(!preventDouble){preventDouble = true;}
+	};
 
 	function calendar(element){
 		var regTest = /Debut|Fin$/;

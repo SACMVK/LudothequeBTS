@@ -21,7 +21,7 @@
     </div>
 <?php if($_SESSION['monProfil']->getIdUser() == $element->getDest()->getIdUser()): ?>
   <div class="blocList">
-    <form action=" " method="post" accept-charset="utf-8" class="form" role="form"> 
+    <form action="" method="post" accept-charset="utf-8" class="form" > 
     <legend>Répondre à ce message</legend>  
     Message :
     <textarea type="textarea" name="texte" class="form-control input-lg" placeholder="texte" maxlength="140" rows="7" /></textarea>

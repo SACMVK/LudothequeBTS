@@ -1,5 +1,5 @@
 <p style="color:red;">@team : Attention, le mail et le pseudo doivent être uniques dans la BD, il faut modifier les valeurs par défaut</p>
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form">   
+<form action="" method="post" accept-charset="utf-8" class="form" >   
     <legend>Mettre à jour mon compte</legend>
     <!-- size : taille cellule | maxlength : nombre maximum de caractères autorisé -->
     <!-- Ajouter expressions régulières mail, code postal, téléphone + check conformitée mot de passe -->

@@ -32,7 +32,7 @@ if (!empty($listeJeuxAvalider)):
             <p><strong>Description :</strong> <?= str_truncate($jeu_t->getDescription(), 100) ?> ...</p>
 
 
-            <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+            <form action="" method="post" accept-charset="utf-8" class="form" >
                 <input type=hidden name="idPC" value="<?= $jeu_t->getIdPC() ?>" />
                 <input type=hidden name="moderateur" value="valider_jeu" />
                 <input type="image" name="submit" title="Modifier" class="boutonTransparent" value="Voir la fiche complète" src="ihm/img/loupe.png">

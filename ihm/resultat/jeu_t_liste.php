@@ -31,7 +31,7 @@ if (!empty($listOfElements)):
             <p><strong>Année de sortie :</strong> <?= $jeu_t->getAnneeSortie() ?></p>
             <p><strong>Description :</strong> <?= str_truncate($jeu_t->getDescription(), 100) ?> ...</p>
 
-            <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+            <form action="" method="post" accept-charset="utf-8" class="form" >
                 <input type=hidden name="nom" value="<?= $jeu_t->getNom() ?>" />  <!--<input type=hidden name="idPC" value="<?= $jeu_t->getIdPC() ?>" />A reprendre car ne transmet pas la bonne ligne selectionnée par le bouton -->
                 <input type=hidden name="objectToWorkWith" value="jeu_t" />
                 <input type=hidden name="actionToDoWithObject" value="selectOne" />

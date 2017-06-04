@@ -1,5 +1,5 @@
 <div class="blocList">
-    <form action=" " method="post" accept-charset="utf-8">
+    <form action="" method="post" accept-charset="utf-8">
         <b><?= $pret->getJeuP()->getProprietaire()->getPseudo() ?></b> vous propose d'autres dates 
         pour le prêt de son jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> : 
         du <?= screenDate($pret->getPropositionPreteurDateDebut()) ?> au <?= screenDate($pret->getPropositionPreteurDateFin()) ?>. 

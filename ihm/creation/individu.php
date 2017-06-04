@@ -1,6 +1,6 @@
 
 
-<form action="" method="post" accept-charset="utf-8" class="form" role="form"  id="CreationForm"  name="inscription" >   
+<form action="" method="post" accept-charset="utf-8" class="form"   id="CreationForm"  name="inscription" >   
     <legend>Créer mon compte</legend>
     Nom :
     <div id="form-champ"  >

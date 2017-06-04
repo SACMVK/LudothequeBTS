@@ -1,4 +1,4 @@
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form">   
+<form action="" method="post" accept-charset="utf-8" class="form" >   
     <legend>Rechercher un exemplaire</legend>
     Nom du jeu : 
     <?php

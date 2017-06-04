@@ -1,5 +1,5 @@
 <div class="blocList">
-    <form action=" " method="post" accept-charset="utf-8">
+    <form action="" method="post" accept-charset="utf-8">
         Vous confirmez à <b><?= $pret->getJeuP()->getProprietaire()->getPseudo() ?></b> 
         que vous avez bien reçu son jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> 
         le : <input type="text"  name="envoiDateReception" onclick="new calendar(this);">

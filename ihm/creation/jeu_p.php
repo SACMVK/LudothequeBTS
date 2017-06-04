@@ -1,4 +1,4 @@
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form">   
+<form action="" method="post" accept-charset="utf-8" class="form" >   
     <legend>Ajouter un jeu à ma ludothèque</legend>
     Nom du jeu :
     <select name="idPC" class="form-control input-lg">

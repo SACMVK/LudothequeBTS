@@ -13,7 +13,7 @@
                 <td><?= $message->getSujet()?> </td>
                              
                 <td id="table-recherche">
-                    <form action=" " method="post" accept-charset="utf-8" style="display: inline;">
+                    <form action="" method="post" accept-charset="utf-8" style="display: inline;">
                         <input type=hidden name="objectToWorkWith" value="Message" />
                         <input type=hidden name="actionToDoWithObject" value="selectOne" />
                         <input type="hidden" name="idMessage" value="<?= $message->getIdmessage() ?>" />
@@ -21,7 +21,7 @@
                                                
                     </form>
              
-                    <form action=" " method="post" accept-charset="utf-8" style="display: inline;">
+                    <form action="" method="post" accept-charset="utf-8" style="display: inline;">
                         <input type=hidden name="objectToWorkWith" value="Message" />
                         <input type=hidden name="actionToDoWithObject" value="delete" />
                         <input type=hidden name="page" value="ihm/utilisateur/mesMessagesEnvoyes.php" />
