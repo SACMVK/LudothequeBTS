@@ -4,4 +4,6 @@
 <script src="ihm/js/slideShowJeuT.js" ></script>
 <script src="ihm/js/calendrier.js" ></script>
 <script src="ihm/js/onglets.js" ></script>
-<script src="ihm/js/validation.js" ></script>
+<script src="ihm/js/jquery.validate.min.js" ></script>
+<script src="ihm/js/validator_AhMAD.js" ></script>
+<script src="ihm/js/messages_fr.js" ></script>
