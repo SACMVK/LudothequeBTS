@@ -1,5 +1,5 @@
 <?php
-//var_dump($jeuAModifier);
+var_dump($jeuAModifier);
 ?>
 <form action="" method="post" accept-charset="utf-8" class="form"  enctype="multipart/form-data">   
 
@@ -100,7 +100,16 @@
     Genre de jeu (choix multiple possible avec Ctrl+select):
     <select type="select" multiple size="4" class="form-control select-lg" name="genre[]" required>
         <?php
+        // Préparation de la liste des genres (ex : "jeux plateau or jeux Pions")
         $listeGenres = $jeuAModifier->getListeGenres();
+//        $tailleListeGenre = count($listeGenres);
+//        $genreOu = $listeGenres[0]. "==$liste[$i]";
+//        $dernierGenre = $listeGenres[$tailleListeGenre];
+//        for ($index = 1; $index < ($tailleListeGenre-1); $index++) {
+//            $genreOu = $genreOu. "||" .$listeGenres[$index]. "== $liste[$i]";
+//        }
+//        $genreComp =  $genreOu. "==$liste[$i] ||" .$dernierGenre. "==$liste[$i]";
+        // Récupération de la liste des genres du dico genre et comparaison avec les genres sélectionnés
         $pdo = openConnexion();
         $reponse = "SELECT * FROM genre;";
         $stmt = $pdo->prepare($reponse);
@@ -111,14 +120,16 @@
         }
         ksort($liste);
         for ($i = 0; $i < count($liste); $i++) :
-            if ($listeGenres[$i] == $liste[$i]) {
-                ?>
-                <option value="<?= $listeGenres[$i]; ?>" selected><?= $listeGenres[$i]; ?></option>
-            <?php } else {
-                ?>
-                <option value="<?= $liste[$i]; ?>" ><?= $liste[$i]; ?></option>            
-                <?php
-            }
+            foreach ($listeGenres as $genre) :
+                if ($genre == $liste[$i]) {
+                    ?>
+                    <option value="<?= $genre; ?>" selected><?= $genre; ?></option>
+                <?php } else {
+                    ?>
+                    <option value="<?= $liste[$i]; ?>" ><?= $liste[$i]; ?></option>            
+                    <?php
+                }
+            endforeach;
         endfor;
         ?>
     </select>
@@ -136,9 +147,9 @@
         </ul>
     </div>
     Modifier les images :
-    <input type="file" multiple class="form-control" name="source[]" accept="image/*,application/pdf">
+    <input type="file" multiple class="form-control" name="newSource[]" accept="image/*,application/pdf">
 
-
+    <input type=hidden name="idPC" value="<?= $jeuAModifier->getIdPC() ?>" />
     <input name="moderateur" type="hidden" value="voir_liste_jeux_non_valides"/>
     <input class="boutonGris" name="valider" type="submit" value="Accepter"/>
     <input class="boutonGris" name="supprimer" type="submit" value="Refuser" />

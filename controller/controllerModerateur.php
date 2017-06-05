@@ -1,11 +1,18 @@
 <?php
 
 include 'job/dao/Jeu_T_Dao.php';
+function getValuesFromREQUEST() {
+    $listOfValues = array();
+    foreach ($_REQUEST as $key => $value) {
+        $listOfValues [$key] = $value;
+    }
+    return $listOfValues;
+}
 
 switch ($_REQUEST['moderateur']) {
     case "voir_liste_jeux_non_valides":
+        $listeData = getValuesFromREQUEST();
         if (!empty($_REQUEST["valider"])) {
-            $listeData = getValuesFromREQUEST();
             $listeData["valide"] = "1";
             update($listeData);
         } elseif (!empty($_REQUEST["supprimer"])) {
