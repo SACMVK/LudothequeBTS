@@ -1,6 +1,3 @@
-<?php
-var_dump($jeuAModifier);
-?>
 <form action="" method="post" accept-charset="utf-8" class="form"  enctype="multipart/form-data">   
 
     <legend>Proposition de jeu à verifier</legend>
