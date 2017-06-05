@@ -1,5 +1,5 @@
 <div class="blocList">
-    <h3 class="panel-title"><?= $element->getPrenom(); ?> <?= $element->getNom() ?> </h3>
+    <h3><?= $element->getPrenom(); ?> <?= $element->getNom() ?> </h3>
     Pseudo : <?= $element->getPseudo() ?><br />
     Nom : <?= $element->getNom() ?><br />
     Prénom : <?= $element->getPrenom() ?><br />
