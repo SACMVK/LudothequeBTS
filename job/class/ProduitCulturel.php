@@ -67,7 +67,7 @@ abstract class ProduitCulturel {
     }
     
         //M : public
-    public function getpublic() {
+    public function getPublic() {
         return $this->public;
     }
 
