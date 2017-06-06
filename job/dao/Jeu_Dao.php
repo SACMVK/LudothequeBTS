@@ -180,19 +180,14 @@ Function insert($valueToInsert) {
         $upload = uploadImage($sourceName, $sourceTmpName, $sourceSize); //upload de l'image retourne un array contenant le $message et le $nouveauNom de l'image
 
         if (empty($upload[1])):                         //Si l'image n'a pas été renommée, alors upload=KO donc affichage du message d'erreur
-            ?>
-            <em><?= $upload[0]; ?></em>
-            <?php
+            ?><script type="text/javascript">alert($upload[0]);</script><?php
         else :                                         //Sinon écriture en BD du nouveau nom et affichage du message de réussite
             $stmtAPI = $pdo->prepare($requeteAPI);
             $stmtAPI->execute(array(
                 "idPC" => $lastIdPC,
                 "source" => $upload[1]
             ));
-            ?>
-            <em><?= $upload[0]; ?></em>
-            <p>Merci pour votre proposition du jeu <?= $valueToInsert['nom'] ?> ! Votre proposition va être soumise à validation, si elle est validée elle sera publiée.</p>
-        <?php
+            ?><script type="text/javascript">alert($upload[0] + '. Merci pour votre proposition du jeu ' + $valueToInsert['nom'] + '! Votre proposition va être soumise à validation, si elle est validée elle sera publiée.');</script><?php
         endif;
     endfor;
 
@@ -303,24 +298,19 @@ Function update($valuesToUpdate) {
             $upload = uploadImage($sourceName, $sourceTmpName, $sourceSize); //upload de l'image retourne un array contenant le $message et le $nouveauNom de l'image
 
             if (empty($upload[1])):                         //Si l'image n'a pas été renommée, alors upload=KO donc affichage du message d'erreur
-                ?>
-                <em><?= $upload[0]; ?></em>
-                <?php
+                ?><script type="text/javascript">alert($upload[0]);</script>';<?php
             else :                                         //Sinon écriture en BD du nouveau nom et affichage du message de réussite
                 $stmtAPI = $pdo->prepare($requeteInsertAPI);
                 $stmtAPI->execute(array(
                     "idPC" => $valuesToUpdate['idPC'],
                     "source" => $upload[1]
                 ));
-                ?>
-                <em><?= $upload[0]; ?></em>
-                <p>Le jeu <?= $valuesToUpdate['nom'] ?> a été correctement validé (les images modifiées correctement uploadées), et est désormais publié.</p>
-            <?php
+                ?><script type="text/javascript">alert($upload[0] + ' Le jeu ' + $valuesToUpdate['nom'] + ' a été correctement validé (les images modifiées correctement uploadées), et est désormais publié.');</script><?php
             endif;
         endfor;
-    else : ?>
-        <p>Le jeu <?= $valuesToUpdate['nom'] ?> a été correctement validé, et est désormais publié.</p>
-    <?php endif;
+    else :
+        ?><script type="text/javascript">alert('Le jeu ' + $valuesToUpdate['nom'] + ' a été correctement validé, et est désormais publié');</script><?php
+    endif;
 
     /* M : Fermeture de la connexion
      */
@@ -348,6 +338,8 @@ Function delete($idOfLineToDelete) {
      */
     $stmtDeleteJeu->execute();
     $stmtDeletePCT->execute();
+    
+    ?><script type="text/javascript">alert('le refus a provoqué la suppression de la proposition');</script><?php
     /* M : Fermeture de la connexion
      */
     $pdo = closeConnexion();
