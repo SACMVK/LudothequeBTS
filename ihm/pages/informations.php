@@ -5,8 +5,7 @@
     
     <div class="container">
         <div class="row">
-            <!-- découpage de la page( col-lg 8 ...etc) par boostrapp afin que ce soir responsive-->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- découpage de la page( col-lg 8 ...etc) par boostrapp afin que ce soir responsive-->           
                 <h1 class="text-center">A propos</h1>
                 <img class="img-responsive" src="data/images/pc.jpg">
                 <div class="text">
@@ -17,14 +16,13 @@
                         ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>           
                 </div>
             </div>
-        </div>
     </div>
 
     <div class="article-clean" id="mentions">
         <div class="container">
             <div class="row">
                 <!-- découpage de la page( col-lg 8 ...etc) par boostrapp afin que ce soir responsive-->
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+               
                     <div class="intro">
                         <h1 class="text-center">Mentions Légales</h1>
                         <div class="text">
@@ -41,14 +39,13 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <div class="article-clean" id="aide">
         <div class="container">
             <div class="row">
                 <!-- découpage de la page( col-lg 8 ...etc) par boostrapp afin que ce soit responsive-->
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
                     <div class="intro">
                         <h1 class="text-center">Aide</h1></div>
                     <div class="text">
@@ -64,14 +61,12 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <div class="article-clean" id="contact">
         <div class="container">
             <div class="row">
                 <!-- découpage de la page( col-lg 8 ...etc) par boostrapp afin que ce soir responsive-->
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="intro">
                         <h1 class="text-center">contact</h1></div>
                     <div class="text">
@@ -88,6 +83,5 @@
                 </div>
             </div>
         </div>
-    </div>
     
 </div>
