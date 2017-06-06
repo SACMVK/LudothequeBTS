@@ -8,7 +8,7 @@
         <?php
         // stefan : fichiers et méthodes de génération de données en masse
         include '../../../job/dao/Connexion_DataBase.php';
-        include '../../../_old/saveTexte.php';
+
         // individu
         include '31_32_individu.php';
         include '33_genre_jeu_individu.php';
@@ -56,9 +56,9 @@
         $nombreCommentaires_pc = 800;
 
         //
-        //generer_donnees_individu($nombreIndividus);
+        generer_donnees_individu($nombreIndividus);
         //generer_donnees_genre_individu($nombreGenreIndividu,$nombreIndividus);
-        generer_donnees_jeu($nombreJeux);
+       // generer_donnees_jeu($nombreJeux);
         //generer_donnees_genre_jeu($nombreJeux);
         //generation_donnees_jeu_aPourImage($nombreJeux, $repertoireVignettes);
         //generer_commentaires_pc($nombreCommentaires_pc, $nombreJeux, $nombreIndividus);
