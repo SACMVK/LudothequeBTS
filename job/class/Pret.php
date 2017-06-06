@@ -3,7 +3,7 @@
 class Pret {
 
     private $idPret;
-    private $jeuP;
+    private $exemplaire;
     private $emprunteur;
     private $propositionEmprunteurDateDebut;
     private $propositionEmprunteurDateFin;
@@ -15,9 +15,9 @@ class Pret {
     private $expedition;
     private $listeMessages;
 
-    function __construct($jeuP, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification, $statutDemande, $listeMessages, $idPret = -1) {
+    function __construct($exemplaire, $emprunteur, $propositionEmprunteurDateDebut, $propositionEmprunteurDateFin, $propositionPreteurDateDebut, $propositionPreteurDateFin, $idNotification, $notification, $statutDemande, $listeMessages, $idPret = -1) {
         $this->idPret = $idPret;
-        $this->jeuP = $jeuP;
+        $this->exemplaire = $exemplaire;
         $this->emprunteur = $emprunteur;
         $this->propositionEmprunteurDateDebut = $propositionEmprunteurDateDebut;
         $this->propositionEmprunteurDateFin = $propositionEmprunteurDateFin;
@@ -37,12 +37,12 @@ class Pret {
         $this->idPret = $idPret;
     }
 
-    public function getJeuP() {
-        return $this->jeuP;
+    public function getExemplaire() {
+        return $this->exemplaire;
     }
 
-    public function setJeuP($jeuP) {
-        $this->jeuP = $jeuP;
+    public function setExemplaire($exemplaire) {
+        $this->exemplaire = $exemplaire;
     }
 
     public function getEmprunteur() {

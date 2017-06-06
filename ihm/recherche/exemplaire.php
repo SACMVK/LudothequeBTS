@@ -3,9 +3,9 @@
     Nom du jeu : 
     <?php
     if (!empty($_REQUEST['nom'])):?>
-    <input class="form-control input-lg" type="text" name="produit_culturel_t#nom" value="<?=$_REQUEST['nom'] ?>"/>
+    <input class="form-control input-lg" type="text" name="produit_culturel#nom" value="<?=$_REQUEST['nom'] ?>"/>
     <?php else : ?>
-    <input class="form-control input-lg" type="text" name="produit_culturel_t#nom"/>
+    <input class="form-control input-lg" type="text" name="produit_culturel#nom"/>
     
     Nom de l'éditeur :
     <select class="form-control select-lg" name="editeur">
@@ -15,11 +15,11 @@
     <input class="form-control input-lg" type="year" name="anneeSortie" placeholder="Année (yyyy)"/>
     Nombre de joueurs minimum :
     <select class="form-control select-lg" name="nbJoueursMin">
-        <?php selectDico("jeu_t", "nbJoueursMin") ?>
+        <?php selectDico("jeu", "nbJoueursMin") ?>
     </select>
     Nombre de joueurs maximum :
     <select class="form-control select-lg" name="nbJoueursMax">
-        <?php selectDico("jeu_t", "nbJoueursMax") ?>
+        <?php selectDico("jeu", "nbJoueursMax") ?>
     </select>
     Public :
     <select class="form-control select-lg" name="public">
@@ -31,7 +31,7 @@
     </select>
     Durée de la partie :
     <select class="form-control select-lg" name="dureePartie">
-        <?php selectDico("jeu_t", "dureePartie") ?>
+        <?php selectDico("jeu", "dureePartie") ?>
     </select>
     <?php endif; ?>
     <!--Etat du jeu :-->
@@ -46,7 +46,7 @@
     </select>
 
 
-    <input type=hidden name="objectToWorkWith" value="Jeu_P" />
+    <input type=hidden name="objectToWorkWith" value="Exemplaire" />
     <input type=hidden name="actionToDoWithObject" value="selectList" />
     
     <input type="submit" name="submit" class="boutonBleu" value="Recherche">

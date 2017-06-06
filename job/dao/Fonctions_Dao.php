@@ -153,7 +153,7 @@ function renommerFichier($nomFichier, $repertoire) {
  * M : Fonction d'upload d'une image.
  * @author : Manu
  * @Creation Date : 28/05/2017
- * Utilisée notamment dans la proposition d'un nouveau jeu_t
+ * Utilisée notamment dans la proposition d'un nouveau jeu
  * @param $sourceName : nom du fichier source ($_FILES['source']['name'])
  * @param $sourceTmpName : nom temporaire du fichier source ($_FILES['source']['tmp_name'])
  * @param $sourceSize : taille du fichier source ($_FILES['source']['size'])
@@ -268,29 +268,29 @@ function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
     return [$message, $nouveauNom];
 }
 
-function selectTopJeuT($nombreJeuxT) {
-    $requete = "SELECT produit_culturel_t.nom, produit_culturel_t.idPC, AVG(note_jeu_t.note) as 'noteMoyenne' "
-            . "FROM note_jeu_t JOIN produit_culturel_t ON note_jeu_t.idPC = produit_culturel_t.idPC "
-            . "JOIN jeu_t ON produit_culturel_t.idPC = jeu_t.idPC "
-            . "GROUP BY produit_culturel_t.idPC "
-            . "ORDER BY AVG(note_jeu_t.note) DESC LIMIT " . $nombreJeuxT . ";";
+function selectTopJeu($nombreJeux) {
+    $requete = "SELECT produit_culturel.nom, produit_culturel.idPC, AVG(note_produit_culturel.note) as 'noteMoyenne' "
+            . "FROM note_produit_culturel JOIN produit_culturel ON note_produit_culturel.idPC = produit_culturel.idPC "
+            . "JOIN jeu ON produit_culturel.idPC = jeu.idPC "
+            . "GROUP BY produit_culturel.idPC "
+            . "ORDER BY AVG(note_produit_culturel.note) DESC LIMIT " . $nombreJeux . ";";
     $db = openConnexion();
     $stmt = $db->prepare($requete);
     $stmt->execute();
-    $topJeuxT = [];
+    $topJeux = [];
     while ($champ = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $JeuT = [];
-        $JeuT ["nom"] = $champ["nom"];
-        $JeuT ["idPC"] = $champ["idPC"];
-        $JeuT ["noteMoyenne"] = $champ["noteMoyenne"];
-        $topJeuxT[] = $JeuT;
+        $Jeu = [];
+        $Jeu ["nom"] = $champ["nom"];
+        $Jeu ["idPC"] = $champ["idPC"];
+        $Jeu ["noteMoyenne"] = $champ["noteMoyenne"];
+        $topJeux[] = $Jeu;
     }
     $db = closeConnexion();
-    return $topJeuxT;
+    return $topJeux;
 }
 
-function getDatesReservation($jeu_p) {
-    $requete = "SELECT * FROM pret_p WHERE idJeuP='" . $jeu_p->getIdJeuP() . "';";
+function getDatesReservation($exemplaire) {
+    $requete = "SELECT * FROM pret WHERE idExemplaire='" . $exemplaire->getidExemplaire() . "';";
     $db = openConnexion();
     $stmt = $db->prepare($requete);
     $stmt->execute();

@@ -1,7 +1,7 @@
 <div class="blocList">
     <form action="" method="post" accept-charset="utf-8">
-        Vous confirmez à <b><?= $pret->getJeuP()->getProprietaire()->getPseudo() ?></b> 
-        que vous avez bien reçu son jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> 
+        Vous confirmez à <b><?= $pret->getExemplaire()->getProprietaire()->getPseudo() ?></b> 
+        que vous avez bien reçu son jeu <b><?= $pret->getExemplaire()->getJeu()->getNom() ?></b> 
         le : <input type="text"  name="envoiDateReception" onclick="new calendar(this);">
         <br />
         <br />

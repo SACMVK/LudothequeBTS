@@ -3,16 +3,16 @@
 // stefan : un cas n'est pas visible : celui de l'affichage du profil qui va directement afficher ce qui est dans la RAM
 switch ($_REQUEST['user']) {
     case "maLudotheque":
-        include 'job/dao/Jeu_P_Dao.php';
-        $_SESSION["maLudotheque"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+        include 'job/dao/Exemplaire_Dao.php';
+        $_SESSION["maLudotheque"] = select("WHERE exemplaire.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
         break;
     case "mesPrets";
         include 'job/dao/Pret_Dao.php';
-        $_SESSION["mesPrets"] = selectPrets("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesPrets"] = selectPrets("WHERE exemplaire.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
         break;
     case "mesEmprunts";
         include 'job/dao/Pret_Dao.php';
-        $_SESSION["mesEmprunts"] = selectPrets("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesEmprunts"] = selectPrets("WHERE pret.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
         break;
     case "mesMessagesEnvoyes";
         include 'job/dao/Message_Dao.php';

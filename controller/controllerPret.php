@@ -11,8 +11,8 @@ function getValuesFromREQUEST() {
 //if (!empty($_REQUEST['formulairePret'])) {
 switch ($_REQUEST['pret']) {
     case -1:
-        include "job/dao/Jeu_P_Dao.php";
-        $jeuP = select("where idJeuP = '" . $_REQUEST["idJeuP"] . "'")[0];
+        include "job/dao/Exemplaire_Dao.php";
+        $exemplaire = select("where idExemplaire = '" . $_REQUEST["idExemplaire"] . "'")[0];
         $pageAAfficher = "ihm/pret/1_demande_emprunt.php";
         break;
     case 1:
@@ -21,14 +21,14 @@ switch ($_REQUEST['pret']) {
         $listeData["notification"] = "1";
         $listeData["statutDemande"] = "En cours";
         $lastEmpruntInserted = insertPret($listeData);
-        $_SESSION["mesEmprunts"] = selectPrets("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesEmprunts"] = selectPrets("WHERE pret.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
         $emprunt = Pret::getEmpruntFromId($lastEmpruntInserted);
         if (!empty($_REQUEST["message"])) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
                 "idExped" => $emprunt->getEmprunteur()->getIdUser(),
-                "idDest" => $emprunt->getJeuP()->getProprietaire()->getIdUser(),
+                "idDest" => $emprunt->getExemplaire()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$emprunt->getIdPret(),
                 "texte" => $_REQUEST["message"]];
@@ -45,7 +45,7 @@ switch ($_REQUEST['pret']) {
             $listeData["notification"] = "2";
             $listeData["statutDemande"] = "Validée";
             updatePret($listeData);
-            $_SESSION["mesPrets"] = selectPrets("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+            $_SESSION["mesPrets"] = selectPrets("WHERE exemplaire.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
             $pageAAfficher = "ihm/utilisateur/mesPrets.php";
         } elseif (!empty($_REQUEST["nouvellesDates"])) {
             $pageAAfficher = "ihm/pret/3_proposition_nouvelles_dates.php";
@@ -54,7 +54,7 @@ switch ($_REQUEST['pret']) {
             $listeData["notification"] = "3";
             $listeData["statutDemande"] = "Annulée";
             updatePret($listeData);
-            $_SESSION["mesPrets"] = selectPrets("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+            $_SESSION["mesPrets"] = selectPrets("WHERE exemplaire.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
             $pageAAfficher = "ihm/utilisateur/mesPrets.php";
         }
         if (!empty($_REQUEST["message"])) {
@@ -62,7 +62,7 @@ switch ($_REQUEST['pret']) {
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
                 "idDest" => $pret->getEmprunteur()->getIdUser(),
-                "idExped" => $pret->getJeuP()->getProprietaire()->getIdUser(),
+                "idExped" => $pret->getExemplaire()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$pret->getIdPret(),
                 "texte" => $_REQUEST["message"]];
@@ -77,13 +77,13 @@ switch ($_REQUEST['pret']) {
         $listeData["notification"] = "4";
         $listeData["statutDemande"] = "En cours";
         updatePret($listeData);
-        $_SESSION["mesPrets"] = selectPrets("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesPrets"] = selectPrets("WHERE exemplaire.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
         if (!empty($_REQUEST["message"])) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
                 "idDest" => $pret->getEmprunteur()->getIdUser(),
-                "idExped" => $pret->getJeuP()->getProprietaire()->getIdUser(),
+                "idExped" => $pret->getExemplaire()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$pret->getIdPret(),
                 "texte" => $_REQUEST["message"]];
@@ -100,20 +100,20 @@ switch ($_REQUEST['pret']) {
             $listeData["notification"] = "6";
             $listeData["statutDemande"] = "Validée";
             updatePret($listeData);
-            $_SESSION["mesEmprunts"] = selectPrets("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
+            $_SESSION["mesEmprunts"] = selectPrets("WHERE pret.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
         } elseif (!empty($_REQUEST["refuser"])) {
             $listeData = getValuesFromREQUEST();
             $listeData["notification"] = "5";
             $listeData["statutDemande"] = "Annulée";
             updatePret($listeData);
-            $_SESSION["mesEmprunts"] = selectPrets("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
+            $_SESSION["mesEmprunts"] = selectPrets("WHERE pret.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
         }
         if (!empty($_REQUEST["message"])) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
                 "idExped" => $emprunt->getEmprunteur()->getIdUser(),
-                "idDest" => $emprunt->getJeuP()->getProprietaire()->getIdUser(),
+                "idDest" => $emprunt->getExemplaire()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$emprunt->getIdPret(),
                 "texte" => $_REQUEST["message"]];
@@ -129,13 +129,13 @@ switch ($_REQUEST['pret']) {
         $listeData["notification"] = "7";
         updatePret($listeData);
         insertExpedition($listeData);
-        $_SESSION["mesPrets"] = selectPrets("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesPrets"] = selectPrets("WHERE exemplaire.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
         if (!empty($_REQUEST["message"])) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
                 "idDest" => $pret->getEmprunteur()->getIdUser(),
-                "idExped" => $pret->getJeuP()->getProprietaire()->getIdUser(),
+                "idExped" => $pret->getExemplaire()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$pret->getIdPret(),
                 "texte" => $_REQUEST["message"]];
@@ -151,13 +151,13 @@ switch ($_REQUEST['pret']) {
         $listeData["notification"] = "8";
         updatePret($listeData);
         updateExpedition($listeData);
-        $_SESSION["mesEmprunts"] = selectPrets("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesEmprunts"] = selectPrets("WHERE pret.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
         if (!empty($_REQUEST["message"])) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
                 "idExped" => $emprunt->getEmprunteur()->getIdUser(),
-                "idDest" => $emprunt->getJeuP()->getProprietaire()->getIdUser(),
+                "idDest" => $emprunt->getExemplaire()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$emprunt->getIdPret(),
                 "texte" => $_REQUEST["message"]];
@@ -171,19 +171,19 @@ switch ($_REQUEST['pret']) {
         $emprunt = Pret::getEmpruntFromId($_REQUEST["idPret"]);
         $listeData = getValuesFromREQUEST();
         $listeData["notification"] = "9";
-        $listeData["idPC"] = $emprunt->getJeuP()->getJeuT()->getIdPC();
+        $listeData["idPC"] = $emprunt->getExemplaire()->getJeuT()->getIdPC();
         $listeData["idUser"] = $emprunt->getEmprunteur()->getIdUser();
         updatePret($listeData);
         updateExpedition($listeData);
         insertNote($listeData);
         insertCommentaire($listeData);
-        $_SESSION["mesEmprunts"] = selectPrets("WHERE pret_p.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesEmprunts"] = selectPrets("WHERE pret.idEmprunteur = " . $_SESSION["monProfil"]->getIdUser());
         if (!empty($_REQUEST["message"])) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
                 "idExped" => $emprunt->getEmprunteur()->getIdUser(),
-                "idDest" => $emprunt->getJeuP()->getProprietaire()->getIdUser(),
+                "idDest" => $emprunt->getExemplaire()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$emprunt->getIdPret(),
                 "texte" => $_REQUEST["message"]];
@@ -199,13 +199,13 @@ switch ($_REQUEST['pret']) {
         $listeData["notification"] = "10";
         updatePret($listeData);
         updateExpedition($listeData);
-        $_SESSION["mesPrets"] = selectPrets("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+        $_SESSION["mesPrets"] = selectPrets("WHERE exemplaire.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
         if (!empty($_REQUEST["message"])) {
             include "job/dao/Message_Dao.php";
             $aujourdhui = getdate()["year"] . "-" . getdate()["mon"] . "-" . getdate()["mday"];
             $dataMessage = [
                 "idDest" => $pret->getEmprunteur()->getIdUser(),
-                "idExped" => $pret->getJeuP()->getProprietaire()->getIdUser(),
+                "idExped" => $pret->getExemplaire()->getProprietaire()->getIdUser(),
                 "dateEnvoi" => $aujourdhui,
                 "sujet" => "Message en rapport avec le prêt n° ".$pret->getIdPret(),
                 "texte" => $_REQUEST["message"]];

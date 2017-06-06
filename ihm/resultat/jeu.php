@@ -1,5 +1,5 @@
 <?php
-// M : Affichage d'un jeu_t
+// M : Affichage d'un jeu
 ?>
 <?php
 if (!empty($element)):
@@ -12,7 +12,7 @@ if (!empty($element)):
              * M : Affichage d'un carroussel d'images
              */
             ?>
-            <div class="slideshowJeuT">
+            <div class="slideshowjeu">
                 <ul>
                     <?php
                     $carrouselDirectory = "data/images/vignettes/";
@@ -89,6 +89,6 @@ endif;
 ?>
 <form action="" method="post" accept-charset="utf-8" class="form" >
     <input type=hidden name="nom" value="<?= $element->getNom() ?>" />
-    <input type='hidden' name='page' value='recherche/jeu_p.php' />
+    <input type='hidden' name='page' value='recherche/exemplaire.php' />
     <input type="submit" name="submit" class="boutonBleu" value="Recherche un exemplaire de ce jeu">
 </form>

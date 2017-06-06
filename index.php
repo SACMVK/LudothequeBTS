@@ -10,8 +10,8 @@
         include 'job/class/Compte.php';
         include 'job/class/Individu.php';
         include 'job/class/ProduitCulturel.php';
-        include 'job/class/Jeu_T.php';
-        include 'job/class/Jeu_P.php';
+        include 'job/class/Jeu.php';
+        include 'job/class/Exemplaire.php';
         include 'job/class/Message.php';
         include 'job/class/Expedition.php';
         include 'job/class/Pret.php';

@@ -1,15 +1,15 @@
 <div class="blocList"> 
     Identifiant du prêt: <?= $emprunt->getIdPret() ?><br/>
-    Jeu emprunté : <?= $emprunt->getJeuP()->getJeuT()->getNom() ?><br/>
+    Jeu emprunté : <?= $emprunt->getExemplaire()->getjeu()->getNom() ?><br/>
     Emprunteur : <?= $emprunt->getEmprunteur()->getPseudo() ?><br/>    
-    Propriétaire : <?= $emprunt->getJeuP()->getProprietaire()->getPseudo() ?><br/>
+    Propriétaire : <?= $emprunt->getExemplaire()->getProprietaire()->getPseudo() ?><br/>
     Statut : <?= $emprunt->getStatutDemande() ?><br/>
     Sujet notification : <?= $emprunt->getNotification()["sujetEmprunteur"] ?><br/>
     <!--id notification : <?= $emprunt->getidNotification() ?><br/>-->
     <?php
     $corpsEmprunteur = $emprunt->getNotification()["corpsEmprunteur"];
-    $corpsEmprunteur = str_replace("#nomPreteur#", $emprunt->getJeuP()->getProprietaire()->getPseudo(), $corpsEmprunteur);
-    $corpsEmprunteur = str_replace("#nomJeu#", $emprunt->getJeuP()->getJeuT()->getNom(), $corpsEmprunteur);
+    $corpsEmprunteur = str_replace("#nomPreteur#", $emprunt->getExemplaire()->getProprietaire()->getPseudo(), $corpsEmprunteur);
+    $corpsEmprunteur = str_replace("#nomJeu#", $emprunt->getExemplaire()->getjeu()->getNom(), $corpsEmprunteur);
     $corpsEmprunteur = str_replace("#propositionEmprunteurDateDebut#", screenDate($emprunt->getPropositionEmprunteurDateDebut()), $corpsEmprunteur);
     $corpsEmprunteur = str_replace("#propositionEmprunteurDateFin#", screenDate($emprunt->getPropositionEmprunteurDateFin()), $corpsEmprunteur);
     if ($emprunt->getPropositionPreteurDateDebut() != null) {

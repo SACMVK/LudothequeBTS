@@ -7,14 +7,14 @@ function selectPrets($requete) {
     $db = openConnexion();
 
 
-    $requete = "SELECT * FROM pret_p "
-            . " JOIN compte as compteEmprunteur ON compteEmprunteur.idUser = pret_p.idEmprunteur "
-            . " JOIN individu as individuEmprunteur ON individuEmprunteur.idUser = pret_p.idEmprunteur "
-            . " JOIN jeu_p ON jeu_p.idJeuP = pret_p.idJeuP "
-            . " JOIN produit_culturel_t ON jeu_p.idPC = produit_culturel_t.idPC "
-            . " JOIN jeu_t ON jeu_t.idPC = produit_culturel_t.idPC "
-            . " JOIN compte as compteProprietaire ON jeu_p.idProprietaire = compteProprietaire.idUser "
-            . " JOIN individu as individuProprietaire ON jeu_p.idProprietaire = individuProprietaire.idUser "
+    $requete = "SELECT * FROM pret "
+            . " JOIN compte as compteEmprunteur ON compteEmprunteur.idUser = pret.idEmprunteur "
+            . " JOIN individu as individuEmprunteur ON individuEmprunteur.idUser = pret.idEmprunteur "
+            . " JOIN exemplaire ON exemplaire.idExemplaire = pret.idExemplaire "
+            . " JOIN produit_culturel ON exemplaire.idPC = produit_culturel.idPC "
+            . " JOIN jeu ON jeu.idPC = produit_culturel.idPC "
+            . " JOIN compte as compteProprietaire ON exemplaire.idProprietaire = compteProprietaire.idUser "
+            . " JOIN individu as individuProprietaire ON exemplaire.idProprietaire = individuProprietaire.idUser "
             . $requete . ";";
 
 
@@ -52,19 +52,19 @@ function selectPrets($requete) {
 
         $proprietaire = new Individu($villeProprietaire, $adresseProprietaire, $codePostalProprietaire, $dptProprietaire, $emailProprietaire, $telephoneProprietaire, $pseudoProprietaire, $dateInscriptionProprietaire, $mdpProprietaire, $droitProprietaire, $nomProprietaire, $prenomProprietaire, $dateNaissanceProprietaire, $idUserProprietaire);
 
-        $nbJoueursMinJeuT = $champ['nbJoueursMin'];
-        $nbJoueursMaxJeuT = $champ['nbJoueursMax'];
-        $nomJeuT = $champ['nom']["1"];
-        $editeurJeuT = $champ['editeur'];
-        $reglesJeuT = $champ['regles'];
-        $difficulteJeuT = $champ['difficulte'];
-        $publicJeuT = $champ['public'];
-        $listePiecesJeuT = $champ['listePieces'];
-        $dureePartieJeuT = $champ['dureePartie'];
-        $anneeSortieJeuT = $champ['anneeSortie'];
-        $descriptionJeuT = $champ['description'];
+        $nbJoueursMinJeu = $champ['nbJoueursMin'];
+        $nbJoueursMaxJeu = $champ['nbJoueursMax'];
+        $nomJeu = $champ['nom']["1"];
+        $editeurJeu = $champ['editeur'];
+        $reglesJeu = $champ['regles'];
+        $difficulteJeu = $champ['difficulte'];
+        $publicJeu = $champ['public'];
+        $listePiecesJeu = $champ['listePieces'];
+        $dureePartieJeu = $champ['dureePartie'];
+        $anneeSortieJeu = $champ['anneeSortie'];
+        $descriptionJeu = $champ['description'];
         $idPC = $champ['idPC']["0"];
-        $typePCJeuT = $champ['typePC'];
+        $typePCJeu = $champ['typePC'];
         $valide = $champ['valide'];
 
         /*
@@ -72,15 +72,15 @@ function selectPrets($requete) {
          */
         $listeGenres = selectListe("jeu_a_pour_genre", $idPC, 'genre');
 
-        $listeImages = selectListe("a_pour_image", $idPC, 'source');
+        $listeImages = selectListe("produit_culturel_a_pour_image", $idPC, 'source');
 
-        $listeNotes = selectListe("note_jeu_t", $idPC, 'note');
+        $listeNotes = selectListe("note_produit_culturel", $idPC, 'note');
 
         //=========================== LISTE COMMENTAIRES ====================================================
         /*
-         * M : Récupèration dans les tables commentaire_p_c_t et compte des commentaires sur les jeux associés à leur commentateur. Ajout dans une liste
+         * M : Récupèration dans les tables commentaire_produit_culturel et compte des commentaires sur les jeux associés à leur commentateur. Ajout dans une liste
          */
-        $requeteComment = "SELECT pseudo, commentaireT  FROM commentaire_p_c_t JOIN  compte  ON commentaire_p_c_t.idUser= compte.idUser WHERE idPC=".$idPC.";";
+        $requeteComment = "SELECT pseudo, commentaireT  FROM commentaire_produit_culturel JOIN  compte  ON commentaire_produit_culturel.idUser= compte.idUser WHERE idPC=".$idPC.";";
         $stmtComment = $db->prepare($requeteComment);
         $stmtComment->execute();
         $listeCommentaires = array();
@@ -92,11 +92,11 @@ function selectPrets($requete) {
         //==================================================================================================
 
 
-        $jeuT = new Jeu_T($nbJoueursMinJeuT, $nbJoueursMaxJeuT, $nomJeuT, $editeurJeuT, $reglesJeuT, $difficulteJeuT, $publicJeuT, $listePiecesJeuT, $dureePartieJeuT, $anneeSortieJeuT, $descriptionJeuT, $typePCJeuT, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $valide, $idPC);
+        $jeuT = new Jeu($nbJoueursMinJeu, $nbJoueursMaxJeu, $nomJeu, $editeurJeu, $reglesJeu, $difficulteJeu, $publicJeu, $listePiecesJeu, $dureePartieJeu, $anneeSortieJeu, $descriptionJeu, $typePCJeu, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $valide, $idPC);
 
-        $idJeuP = $champ['idJeuP']["0"];
+        $idExemplaire = $champ['idExemplaire']["0"];
 
-        $jeuP = new Jeu_P($proprietaire, $jeuT, $idJeuP);
+        $jeuP = new exemplaire($proprietaire, $jeuT, $idExemplaire);
 
         $idUserEmprunteur = $champ['idUser']["0"];
         $villeEmprunteur = $champ['ville']["0"];
@@ -217,14 +217,14 @@ function selectPrets($requete) {
 }
 
 function insertPret($list_Values) {
-    $idJeuP = $list_Values["idJeuP"];
+    $idExemplaire = $list_Values["idExemplaire"];
     $idEmprunteur = $list_Values["idEmprunteur"];
     $propositionEmprunteurDateDebut = convertDateToSQLdate($list_Values["propositionEmprunteurDateDebut"]);
     $propositionEmprunteurDateFin = convertDateToSQLdate($list_Values["propositionEmprunteurDateFin"]);
     $notification = $list_Values["notification"];
     $statutDemande = $list_Values["statutDemande"];
-    $requete = "INSERT INTO pret_p (idJeuP, idEmprunteur, propositionEmprunteurDateDebut, propositionEmprunteurDateFin, notification, statutDemande) "
-            . "VALUES ('" . $idJeuP . "','" . $idEmprunteur . "','" . $propositionEmprunteurDateDebut . "','" . $propositionEmprunteurDateFin . "','" . $notification . "','" . $statutDemande . "');";
+    $requete = "INSERT INTO pret (idExemplaire, idEmprunteur, propositionEmprunteurDateDebut, propositionEmprunteurDateFin, notification, statutDemande) "
+            . "VALUES ('" . $idExemplaire . "','" . $idEmprunteur . "','" . $propositionEmprunteurDateDebut . "','" . $propositionEmprunteurDateFin . "','" . $notification . "','" . $statutDemande . "');";
     $db = openConnexion();
     $stmt = $db->prepare($requete);
     $stmt->execute();
@@ -262,7 +262,7 @@ function insertNote($list_Values) {
     $idPC = $list_Values["idPC"];
     $idUser = $list_Values["idUser"];
     $note = $list_Values["note"];
-    $requete = "INSERT INTO note_jeu_t (idPC, idUser, note) VALUES ('" . $idPC . "','" . $idUser . "','" . $note . "');";
+    $requete = "INSERT INTO note_produit_culturel (idPC, idUser, note) VALUES ('" . $idPC . "','" . $idUser . "','" . $note . "');";
     $db = openConnexion();
     $stmt = $db->prepare($requete);
     $stmt->execute();
@@ -275,7 +275,7 @@ function insertCommentaire($list_Values) {
     $idPC = $list_Values["idPC"];
     $commentaireT = $list_Values["commentaireT"];
     $idUser = $list_Values["idUser"];
-    $requete = "INSERT INTO commentaire_p_c_t (idPC, commentaireT, idUser) VALUES ('" . $idPC . "','" . $commentaireT . "','" . $idUser . "');";
+    $requete = "INSERT INTO commentaire_produit_culturel (idPC, commentaireT, idUser) VALUES ('" . $idPC . "','" . $commentaireT . "','" . $idUser . "');";
     $db = openConnexion();
     $stmt = $db->prepare($requete);
     $stmt->execute();
@@ -287,8 +287,8 @@ function insertCommentaire($list_Values) {
 function updatePret($list_Values) {
     $idPret = $list_Values["idPret"];
     $listeSet = [];
-    if (!empty($list_Values["idJeuP"])) {
-        $listeSet [] = "idJeuP = '" . $list_Values["idJeuP"] . "'";
+    if (!empty($list_Values["idExemplaire"])) {
+        $listeSet [] = "idExemplaire = '" . $list_Values["idExemplaire"] . "'";
     }
     if (!empty($list_Values["idEmprunteur"])) {
         $listeSet [] = "idEmprunteur = '" . $list_Values["idEmprunteur"] . "'";
@@ -317,7 +317,7 @@ function updatePret($list_Values) {
     }
     $set .= $listeSet[count($listeSet) - 1];
 
-    $requete = "UPDATE pret_p SET " . $set . " WHERE idPret = " . $idPret . ";";
+    $requete = "UPDATE pret SET " . $set . " WHERE idPret = " . $idPret . ";";
 
     $db = openConnexion();
     $stmt = $db->prepare($requete);

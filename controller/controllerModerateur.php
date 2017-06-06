@@ -1,6 +1,6 @@
 <?php
 
-include 'job/dao/Jeu_T_Dao.php';
+include 'job/dao/Jeu_Dao.php';
 function getValuesFromREQUEST() {
     $listOfValues = array();
     foreach ($_REQUEST as $key => $value) {
@@ -21,10 +21,10 @@ switch ($_REQUEST['moderateur']) {
         $listeJeuxAvalider = select("WHERE valide = 0");
         break;
     case "modifier_jeu":
-        $jeuAModifier = select("WHERE produit_culturel_t.idPC = " . $_REQUEST["idPC"])[0];
+        $jeuAModifier = select("WHERE produit_culturel.idPC = " . $_REQUEST["idPC"])[0];
         break;
     case "valider_jeu":
-        $jeuAModifier = select("WHERE produit_culturel_t.idPC = " . $_REQUEST["idPC"])[0];
+        $jeuAModifier = select("WHERE produit_culturel.idPC = " . $_REQUEST["idPC"])[0];
         break;
 }
 

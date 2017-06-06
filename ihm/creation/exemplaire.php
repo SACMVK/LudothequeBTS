@@ -2,7 +2,7 @@
     <legend>Ajouter un jeu à ma ludothèque</legend>
     Nom du jeu :
     <select name="idPC" class="form-control input-lg">
-        <?php selectDico("jeu_t", "nom", "idPC"); ?>
+        <?php selectDico("produit_culturel", "nom", "idPC"); ?>
     </select>
 
     Etat du jeu (en cours de développement):
@@ -16,7 +16,7 @@
     <br/>
     <input type=hidden name="idProprietaire" value="<?= $_SESSION["monProfil"]->getIdUser(); ?>" />
 
-    <input type=hidden name="objectToWorkWith" value="Jeu_P" />
+    <input type=hidden name="objectToWorkWith" value="Exemplaire" />
     <input type=hidden name="actionToDoWithObject" value="insert" />
 
     <button type="submit" name="submit" class="boutonBleu">Ajouter ce jeu</button>

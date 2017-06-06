@@ -1,4 +1,4 @@
-.slideshowJeuT {
+.slideshowjeu {
     width: 320px;
     height: 320px;
     overflow: hidden;
@@ -6,7 +6,7 @@
     margin: 0px auto;
 }
 
-.slideshowJeuT img {
+.slideshowjeu img {
     /* récupération d'un décalage hérité d'origine inconnue */
     width: 320px;
     height: 320px;
@@ -18,12 +18,12 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .slideshowJeuT {
+    .slideshowjeu {
         /* Bridage de la taille maximale des images */
         max-height: 240px;
         max-width: 240px;
     }
-    .slideshowJeuT img {
+    .slideshowjeu img {
         /* Bridage de la taille maximale des images */
         max-height: 240px;
         max-width: 240px;
@@ -31,11 +31,11 @@
 }
 
 
-.slideshowJeuT ul {
+.slideshowjeu ul {
     list-style: none;
 }
 
-.slideshowJeuT li {
+.slideshowjeu li {
     float: left;
     display: block;
     margin: auto;

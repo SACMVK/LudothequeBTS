@@ -91,7 +91,7 @@
     Durée de la partie :
     <input type="text" list="dureePartie" name="dureePartie" value="<?= $jeuAModifier->getDureePartie() ?>" placeholder="ex : 15 minutes, 2 heures , 2 jours" required>
     <datalist id="dureePartie">
-        <?php selectDico("jeu_t", "dureePartie"); ?>
+        <?php selectDico("jeu", "dureePartie"); ?>
     </datalist><br/><br/>
 
     Genre de jeu (choix multiple possible avec Ctrl+select):
@@ -132,7 +132,7 @@
     </select>
 
     Image(s) proposée(s) :
-    <div class = "slideshowJeuT">
+    <div class = "slideshowjeu">
         <ul>
             <?php
             $carrouselDirectory = "data/images/vignettes/";

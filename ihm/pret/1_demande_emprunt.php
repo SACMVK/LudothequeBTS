@@ -1,8 +1,8 @@
 <div class="blocList">
-    <span id="reservedDates" data-reservedDates="<?= getDatesReservation($jeuP) ?>"></span>
+    <span id="reservedDates" data-reservedDates="<?= getDatesReservation($exemplaire) ?>"></span>
     <form action="" method="post" accept-charset="utf-8">
-        Envoyer une demande de prêt à <b><?= $jeuP->getProprietaire()->getPseudo() ?></b>
-        de son jeu <b><?= $jeuP->getJeuT()->getNom() ?></b>
+        Envoyer une demande de prêt à <b><?= $exemplaire->getProprietaire()->getPseudo() ?></b>
+        de son jeu <b><?= $exemplaire->getJeu()->getNom() ?></b>
         <br />
         <br />
         du <input type="text" id="propositionEmprunteurDateDebut" name="propositionEmprunteurDateDebut" onclick="new calendar(this);">
@@ -16,7 +16,7 @@
         <br />
         <br />
         <input type=hidden name="pret" value=1 />
-        <input type=hidden name="idJeuP" value="<?=$jeuP->getIdJeuP() ?>" />
+        <input type=hidden name="idExemplaire" value="<?=$exemplaire->getIdexemplaire() ?>" />
         <input type=hidden name="idEmprunteur" value="<?=$_SESSION["monProfil"]->getIdUser() ?>" />
         <input class="boutonGris" type="submit" name="envoyer" value="Envoyer la demande" />	
     </form>

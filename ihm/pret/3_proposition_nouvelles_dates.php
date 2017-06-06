@@ -1,8 +1,8 @@
 <div class="blocList">
-    <span id="reservedDates" data-reservedDates="<?= getDatesReservation($jeuP) ?>"></span>
+    <span id="reservedDates" data-reservedDates="<?= getDatesReservation($exemplaire) ?>"></span>
     <form action="" method="post" accept-charset="utf-8">
         Vous souhaitez proposer de nouvelles dates d'emprunt de votre jeu 
-        <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b>
+        <b><?= $pret->getExemplaire()->getJeu()->getNom() ?></b>
         à <b><?= $pret->getEmprunteur()->getPseudo() ?></b>.
         <br />
         Les dates initiales étaient du <?= screenDate($pret->getPropositionEmprunteurDateDebut()) ?> 

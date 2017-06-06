@@ -11,8 +11,8 @@
         </div>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav" >
-                <li role="presentation"><a href="index.php?page=recherche/jeu_t.php">Rechercher un jeu</a></li>
-                <li role="presentation"><a href="index.php?page=recherche/jeu_p.php">Rechercher un exemplaire de jeu</a></li>
+                <li role="presentation"><a href="index.php?page=recherche/jeu.php">Rechercher un jeu</a></li>
+                <li role="presentation"><a href="index.php?page=recherche/exemplaire.php">Rechercher un exemplaire de jeu</a></li>
                 <?php if (!empty($_SESSION)): ?>
                     <li role="presentation"><a href="index.php?page=recherche/individu.php">Rechercher un utilisateur</a></li>
                 <?php endif; ?>

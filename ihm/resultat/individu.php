@@ -18,7 +18,7 @@
 
 <form action="" method="post" accept-charset="utf-8" >
     <input type=hidden name="idProprietaire" value="<?= $element->getIdUser() ?> " />
-    <input type=hidden name="objectToWorkWith" value="jeu_p" />
+    <input type=hidden name="objectToWorkWith" value="Exemplaire" />
     <input type=hidden name="actionToDoWithObject" value="selectList" />
     <input type="submit" name="submit" class="boutonBleu" value="Voir la ludothèque">
 </form>

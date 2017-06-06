@@ -197,7 +197,7 @@ function generer_prets(int $nombreEmprunteurs, int $nombreJeuxP, string $aujourd
                 echo 'INSERT INTO expedition (idPret,  envoiDateEnvoi,  envoiDateReception,  envoiEtatJeu,  envoiPiecesManquantes)';
                 echo 'VALUES ("' . $idEmprunt . '", "' . $emprunt2->envoiDateEnvoi . '", "' . $emprunt2->envoiDateReception . '", "' . $emprunt2->envoiEtatJeu . '", "' . $emprunt2->envoiPiecesManquantes . '");';
                 echo '<br>';
-                echo 'INSERT INTO commentaire_jeu_p (idPret, commentaire)';
+                echo 'INSERT INTO commentaire_exemplaire (idPret, commentaire)';
                 echo 'VALUES ("' . $idEmprunt . '", "' . getCommentaire() . '");';
                 echo '<br>';
             } else if ($emprunt2->retourDateReception == null) {

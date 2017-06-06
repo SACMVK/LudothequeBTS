@@ -1,6 +1,6 @@
 <?php
 
-class Jeu_T extends ProduitCulturel {
+class Jeu extends ProduitCulturel {
 
     // M: les attributs pour Jeu_T
     private $nbJoueursMin;
@@ -120,7 +120,7 @@ class Jeu_T extends ProduitCulturel {
     }
 
     function setListeImages($listeImages) {
-        $this->listeImages = listeImages;
+        $this->listeImages = $listeImages;
     }
 
     function getListeImages() {

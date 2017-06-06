@@ -2,13 +2,13 @@
 <div class="blocList">
     Identifiant du prêt: <?= $pret->getIdPret() ?><br/>
     Statut : <?= $pret->getStatutDemande() ?><br/>
-    Jeu emprunté : <?= $pret->getJeuP()->getJeuT()->getNom() ?><br/>
+    Jeu emprunté : <?= $pret->getExemplaire()->getJeu()->getNom() ?><br/>
     <!--Ajout du carrousel-->
-    <div class="slideshowJeuT">
+    <div class="slideshowjeu">
         <ul>
             <?php
             $carrouselDirectory = "data/images/vignettes/";
-            $listeDesImages = $pret->getJeuP()->getJeuT()->getListeImages();
+            $listeDesImages = $pret->getExemplaire()->getJeu()->getListeImages();
             foreach ($listeDesImages as $image) :
                 ?>
                 <li><img src="<?= $carrouselDirectory . $image ?>"></li>
@@ -16,11 +16,11 @@
         </ul>
     </div>
     <!--Ajout des identifiants de l'interlocuteur et de la notification en cours-->
-    <?php if ($_SESSION["monProfil"]->getIdUser() == $pret->getJeuP()->getProprietaire()->getIdUser()): ?>
+    <?php if ($_SESSION["monProfil"]->getIdUser() == $pret->getExemplaire()->getProprietaire()->getIdUser()): ?>
         Emprunteur : <?= $pret->getEmprunteur()->getPseudo() ?><br/>
         <?php $profil = "Preteur"; ?>
     <?php else: ?>
-        Propriétaire : <?= $pret->getJeuP()->getProprietaire()->getPseudo() ?><br/>
+        Propriétaire : <?= $pret->getExemplaire()->getProprietaire()->getPseudo() ?><br/>
         <?php $profil = "Emprunteur"; ?>
     <?php endif; ?>
     <!--Ajout de la notification en cours-->
@@ -30,9 +30,9 @@
     if ($profil == "Preteur") {
         $notification = str_replace("#nomEmprunteur#", $pret->getEmprunteur()->getPseudo(), $notification);
     } else {
-        $notification = str_replace("#nomPreteur#", $pret->getJeuP()->getProprietaire()->getPseudo(), $notification);
+        $notification = str_replace("#nomPreteur#", $pret->getExemplaire()->getProprietaire()->getPseudo(), $notification);
     }
-    $notification = str_replace("#nomJeu#", $pret->getJeuP()->getJeuT()->getNom(), $notification);
+    $notification = str_replace("#nomJeu#", $pret->getExemplaire()->getJeu()->getNom(), $notification);
     $notification = str_replace("#propositionEmprunteurDateDebut#", screenDate($pret->getPropositionEmprunteurDateDebut()), $notification);
     $notification = str_replace("#propositionEmprunteurDateFin#", screenDate($pret->getPropositionEmprunteurDateFin()), $notification);
     if ($pret->getPropositionPreteurDateDebut() != null) {

@@ -1,7 +1,7 @@
 <div class="blocList">
     <form action="" method="post" accept-charset="utf-8">
         <b><?= $pret->getEmprunteur()->getPseudo() ?></b> 
-        souhaite vous emprunter votre jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b>
+        souhaite vous emprunter votre jeu <b><?= $pret->getExemplaire()->getJeu()->getNom() ?></b>
         du <?= screenDate($pret->getPropositionEmprunteurDateDebut()) ?> au <?= screenDate($pret->getPropositionEmprunteurDateFin()) ?>
         <br />
         <br />

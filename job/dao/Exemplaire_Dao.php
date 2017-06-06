@@ -1,17 +1,17 @@
 <?php
 
 // AhMaD: les variables static
-const TABLE_JEU_P = "jeu_p";
-const CLE_PRIMAIRE_JEU_P = "idJeuP";
-const TABLE_JEUT = 'jeu_t';
-const TABLE_PCT = 'produit_culturel_t';
+const TABLE_exemplaire = "exemplaire";
+const CLE_PRIMAIRE_exemplaire = "idExemplaire";
+const TABLE_JEUT = 'jeu';
+const TABLE_PCT = 'produit_culturel';
 const TABLE_COMPTE = "compte";
 const TABLE_INDIVIDU = "individu";
 const TABLE_EDITEUR_D = 'editeur_d';
 const TABLE_JEU_A_POUR_GENRE = 'jeu_a_pour_genre';
-const TABLE_A_POUR_IMAGE = 'a_pour_image';
-const TABLE_NOTE_JEU_T = 'note_jeu_t';
-const TABLE_COMMENTAIRE_P_C_T = 'commentaire_p_c_t';
+const TABLE_produit_culturel_a_pour_image = 'produit_culturel_a_pour_image';
+const TABLE_note_produit_culturel = 'note_produit_culturel';
+const TABLE_commentaire_produit_culturel = 'commentaire_produit_culturel';
 
 //AhMaD: functioin qui sert a integrer un valeur dans le table
 
@@ -27,22 +27,22 @@ function insert($list_Values) {
 
 
 
-    //AhMaD:la requete pour inserter dans le tableau jeu_p
-    $requete_jeu_p = "INSERT INTO " . TABLE_JEU_P . " (idPC, idProprietaire) VALUES ( '" . $idPC . "', '" . $idProprietaire . "');";
+    //AhMaD:la requete pour inserter dans le tableau exemplaire
+    $requete_exemplaire = "INSERT INTO " . TABLE_exemplaire . " (idPC, idProprietaire) VALUES ( '" . $idPC . "', '" . $idProprietaire . "');";
 
     //AhMaD: préparer la requête pour ensuite l'exécuter
-    $stmt_jeu_p = $db->prepare($requete_jeu_p);
-    $stmt_jeu_p->execute();
+    $stmt_exemplaire = $db->prepare($requete_exemplaire);
+    $stmt_exemplaire->execute();
 
 
     //AhMaD: on recherche la dernière id générée par la precedente requete en utilisant la fonction lastInsertId();
-    $lastIdJeuP = $db->lastInsertId();
+    $lastidExemplaire = $db->lastInsertId();
 
     //AhMaD:fermateur  la connexion avec BD
     $db = closeConnexion();
 
     //AhMaD:on créer un nouveau objet 
-    return $lastIdJeuP;
+    return $lastidExemplaire;
 }
 
 //AMaD:function select en gros il s'agit de FIND!
@@ -56,8 +56,8 @@ function select($requete) {
     //AhMaD:prepration de requete qiu vas trouver l'utilisateur entre deux table pour cela il y a jointeur
     $requete = "SELECT * FROM " . TABLE_INDIVIDU
             . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser "
-            . " JOIN " . TABLE_JEU_P . " ON " . TABLE_JEU_P . ".idProprietaire = " . TABLE_COMPTE . ".idUser "
-            . " JOIN " . TABLE_PCT . " ON " . TABLE_JEU_P . ".idPC = " . TABLE_PCT . ".idPC "
+            . " JOIN " . TABLE_exemplaire . " ON " . TABLE_exemplaire . ".idProprietaire = " . TABLE_COMPTE . ".idUser "
+            . " JOIN " . TABLE_PCT . " ON " . TABLE_exemplaire . ".idPC = " . TABLE_PCT . ".idPC "
             . " JOIN " . TABLE_JEUT . " ON " . TABLE_JEUT . ".idPC = " . TABLE_PCT . ".idPC "
             . $requete . ";";
 
@@ -66,7 +66,7 @@ function select($requete) {
 
     $stmt->execute();
     //AhMaD: on vas creer un array pour stocker les informations
-    $Jeu_P_list = array();
+    $exemplaire_list = array();
 
     //AhMaD: je parcoure les tables pour afficher les resultats de ma requete.
     // mysql_fetch_assoc($result): permet de afficher les informations de toutes les champs
@@ -110,15 +110,15 @@ function select($requete) {
          */
         $listeGenres = selectListe(TABLE_JEU_A_POUR_GENRE, $idPC, 'genre');
 
-        $listeImages = selectListe(TABLE_A_POUR_IMAGE, $idPC, 'source');
+        $listeImages = selectListe(TABLE_produit_culturel_a_pour_image, $idPC, 'source');
 
-        $listeNotes = selectListe(TABLE_NOTE_JEU_T, $idPC, 'note');
+        $listeNotes = selectListe(TABLE_note_produit_culturel, $idPC, 'note');
 
         //=========================== LISTE COMMENTAIRES ====================================================
         /*
-         * M : Récupèration dans les tables commentaire_p_c_t et compte des commentaires sur les jeux associés à leur commentateur. Ajout dans une liste
+         * M : Récupèration dans les tables commentaire_produit_culturel et compte des commentaires sur les jeux associés à leur commentateur. Ajout dans une liste
          */
-        $requeteComment = "SELECT pseudo, commentaireT  FROM " . TABLE_COMMENTAIRE_P_C_T . " JOIN " . TABLE_COMPTE . " ON " . TABLE_COMMENTAIRE_P_C_T . ".idUser=" . TABLE_COMPTE . ".idUser WHERE idPC=$idPC;";
+        $requeteComment = "SELECT pseudo, commentaireT  FROM " . TABLE_commentaire_produit_culturel . " JOIN " . TABLE_COMPTE . " ON " . TABLE_commentaire_produit_culturel . ".idUser=" . TABLE_COMPTE . ".idUser WHERE idPC=$idPC;";
         $stmtComment = $db->prepare($requeteComment);
         $stmtComment->execute();
         $listeCommentaires = array();
@@ -129,20 +129,20 @@ function select($requete) {
         }
         //==================================================================================================
 
-        /* création du nouvel objet Jeu_T */
-        $jeuT = new Jeu_T($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $valide, $idPC);
+        /* création du nouvel objet Jeu */
+        $jeuT = new Jeu($nbJoueursMin, $nbJoueursMax, $nom, $editeur, $regles, $difficulte, $public, $listePieces, $dureePartie, $anneeSortie, $description, $typePC, $listeGenres, $listeNotes, $listeImages, $listeCommentaires, $valide, $idPC);
 
-        $idJeuP = $champ['idJeuP'];
+        $idExemplaire = $champ['idExemplaire'];
 
         //AhMaD : on vas creer un nouveau objet avec les informations
         //AhMaD : on stocke ce objet dans l'array pour remplir l'array         
-        $Jeu_P_list[] = new Jeu_P($proprietaire, $jeuT, $idJeuP);
+        $exemplaire_list[] = new exemplaire($proprietaire, $jeuT, $idExemplaire);
     }
     //AhMaD: on ferme la conexion
     $db = closeConnexion();
 
     //AhMaD: finalement on va retourner avec un tableau qui remplit des objets :)
-    return $Jeu_P_list;
+    return $exemplaire_list;
 }
 
 //AhMaD: function updat pour modifer la table
@@ -150,7 +150,7 @@ function update($list_Values) {
 
     //AhMaD: déclaration les values
     $idUser = $list_Values['idUser'];
-    $idJeuT = $list_Values['idJeuT'];
+    $idJeu = $list_Values['idJeu'];
     $etat = $list_Values['etat'];
 
     //AhMaD:ouvrire la connexion avec BD  
@@ -159,19 +159,19 @@ function update($list_Values) {
 
 
     //AhMaD:on vas faire une requete pour savoir update le table compte.  
-    $user_requete = "UPDATE " . TABLE_COMPTE . " SET idUser = " . $idUser . "WHERE " . TABLE_COMPTE . ". idUser = " . TABLE_JEU_P . ". idUser ;";
+    $user_requete = "UPDATE " . TABLE_COMPTE . " SET idUser = " . $idUser . "WHERE " . TABLE_COMPTE . ". idUser = " . TABLE_exemplaire . ". idUser ;";
     $stmt = $db->prepare($user_requete);
     $stmt->execute();
     $user = $stmt->execute();
 
-    //AhMaD:on vas faire une requete pour savoir update le table jeu_t.  
-    $jeu_requete = "UPDATE " . TABLE_JEUT . " SET idJeuT = " . $idJeuT . " WHERE " . TABLE_JEUT . ". idJeuT = " . TABLE_JEU_P . ". idJeuT ;";
+    //AhMaD:on vas faire une requete pour savoir update le table jeu.  
+    $jeu_requete = "UPDATE " . TABLE_JEUT . " SET idJeu = " . $idJeu . " WHERE " . TABLE_JEUT . ". idJeu = " . TABLE_exemplaire . ". idJeu ;";
     $stmt = $db->prepare($jeu_requete);
     $stmt->execute();
     $jeu = $stmt->execute();
 
     //AhMaD:prepration de requete qui vas modifier l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "UPDATE " . TABLE_JEU_P . " SET idJeuP=" . $idJeuP . ",idUser =" . $user . ",idJeuT=" . $jeu . ", etat=" . $etat . ";";
+    $requete = "UPDATE " . TABLE_exemplaire . " SET idExemplaire=" . $idExemplaire . ",idUser =" . $user . ",idJeu=" . $jeu . ", etat=" . $etat . ";";
 
 
 
@@ -197,7 +197,7 @@ function delete($id) {
     $db = openConnexion();
 
     //AhMaD:prepration de requete qui vas supprimer l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "DELETE FROM " . TABLE_JEU_P . " WHERE idJeuP = " . $id["idJeuP"] . " ;";
+    $requete = "DELETE FROM " . TABLE_exemplaire . " WHERE idExemplaire = " . $id["idExemplaire"] . " ;";
 
     //AhMaD: on vas préparer la requête et l'exécuter et tu vas bien.
     $stmt = $db->prepare($requete);

@@ -22,7 +22,7 @@
                   
                         <a href='index.php?user=mesMessagesEnvoyes'><li>Mes messages envoyés</li></a>
                         <a href='index.php?user=mesMessagesRecus'><li>Mes messages reçus</li></a>
-                        <a href='index.php?page=creation/jeu_t.php'><li>Proposer un nouveau jeu</li></a>
+                        <a href='index.php?page=creation/jeu.php'><li>Proposer un nouveau jeu</li></a>
                
                     </ul>
                 </div>

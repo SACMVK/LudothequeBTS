@@ -1,4 +1,3 @@
-<p style="color:red;">@team : TODO</p>
 <form action="" method="post" accept-charset="utf-8" class="form"  enctype="multipart/form-data">   
     <?php
     /*
@@ -57,7 +56,7 @@
     Durée de la partie :
     <input type="text" list="dureePartie" name="dureePartie" placeholder="ex : 15 minutes, 2 heures , 2 jours" required>
     <datalist id="dureePartie">
-        <?php selectDico("jeu_t", "dureePartie"); ?>
+        <?php selectDico("jeu", "dureePartie"); ?>
     </datalist><br/><br/>
 
     Genre de jeu (choix multiple possible avec Ctrl+select):
@@ -81,7 +80,7 @@
 
     <input type=hidden name="valide" value="0" />
 
-    <input type=hidden name="objectToWorkWith" value="Jeu_T" />
+    <input type=hidden name="objectToWorkWith" value="Jeu" />
     <input type=hidden name="actionToDoWithObject" value="insert" />
     <input type='hidden' name='page' value='creation/confirmation_proposition.php' />
     <input type="submit" name="submit" class="boutonBleu" value="Proposer ce jeu"/>

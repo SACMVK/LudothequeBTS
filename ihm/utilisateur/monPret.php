@@ -1,15 +1,15 @@
 <div class="blocList"> 
     Identifiant du prêt : <?= $pret->getIdPret() ?><br/>
-    Jeu prêté : <?= $pret->getJeuP()->getJeuT()->getNom() ?><br/>
+    Jeu prêté : <?= $pret->getExemplaire()->getjeu()->getNom() ?><br/>
     Emprunteur : <?= $pret->getEmprunteur()->getPseudo() ?><br/>    
-    Propriétaire : <?= $pret->getJeuP()->getProprietaire()->getPseudo() ?><br/>
+    Propriétaire : <?= $pret->getExemplaire()->getProprietaire()->getPseudo() ?><br/>
     Statut : <?= $pret->getStatutDemande() ?><br/>
     Sujet notification : <?= $pret->getNotification()["sujetPreteur"] ?><br/>
     <!--id notification : <?= $pret->getidNotification() ?><br/>-->
     <?php
     $corpsPreteur = $pret->getNotification()["corpsPreteur"];
     $corpsPreteur = str_replace("#nomEmprunteur#", $pret->getEmprunteur()->getPseudo(), $corpsPreteur);
-    $corpsPreteur = str_replace("#nomJeu#", $pret->getJeuP()->getJeuT()->getNom(), $corpsPreteur);
+    $corpsPreteur = str_replace("#nomJeu#", $pret->getExemplaire()->getjeu()->getNom(), $corpsPreteur);
     $corpsPreteur = str_replace("#propositionEmprunteurDateDebut#", screenDate($pret->getPropositionEmprunteurDateDebut()), $corpsPreteur);
     $corpsPreteur = str_replace("#propositionEmprunteurDateFin#", screenDate($pret->getPropositionEmprunteurDateFin()), $corpsPreteur);
     if ($pret->getPropositionPreteurDateDebut() != null) {

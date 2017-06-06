@@ -1,7 +1,7 @@
 <div class="blocList">
     <form action="" method="post" accept-charset="utf-8">
-        <b><?= $pret->getJeuP()->getProprietaire()->getPseudo() ?></b> vous propose d'autres dates 
-        pour le prêt de son jeu <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b> : 
+        <b><?= $pret->getExemplaire()->getProprietaire()->getPseudo() ?></b> vous propose d'autres dates 
+        pour le prêt de son jeu <b><?= $pret->getExemplaire()->getJeu()->getNom() ?></b> : 
         du <?= screenDate($pret->getPropositionPreteurDateDebut()) ?> au <?= screenDate($pret->getPropositionPreteurDateFin()) ?>. 
         Les dates initiales étaient du <?= screenDate($pret->getPropositionEmprunteurDateDebut()) ?> 
         au <?= screenDate($pret->getPropositionEmprunteurDateFin()) ?>.

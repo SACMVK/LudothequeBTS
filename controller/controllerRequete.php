@@ -103,11 +103,11 @@ switch ($actionToDoWithObject) {
                 // stefan : on met [0] car select retourne une liste (à un seul élément) et on ne prend que le premier
                 $_SESSION["monProfil"] = select("WHERE individu.idUser = " . $lastId)[0];
                 break;
-            case "Jeu_P":
-                $_SESSION["maLudotheque"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+            case "Exemplaire":
+                $_SESSION["maLudotheque"] = select("WHERE exemplaire.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
                 $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';
                 break;
-            case "Jeu_T":
+            case "Jeu":
                 $pageAAfficher = 'ihm/utilisateur/maLudotheque.php'; // ?
                 break;
             case "Message":
@@ -150,11 +150,11 @@ switch ($actionToDoWithObject) {
                 $listeDroits = getArrayFromSQL("droit_d", "droit");
                 $pageAAfficher = 'ihm/administrateur/voir_liste_comptes.php';
                 break;
-            case "Jeu_P":
-                $_SESSION["maLudotheque"] = select("WHERE jeu_p.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
+            case "Exemplaire":
+                $_SESSION["maLudotheque"] = select("WHERE exemplaire.idProprietaire = " . $_SESSION["monProfil"]->getIdUser());
                 $pageAAfficher = 'ihm/utilisateur/maLudotheque.php';
                 break;
-            case "Jeu_T":
+            case "Jeu":
                 $pageAAfficher = 'ihm/utilisateur/maLudotheque.php'; // ?
                 break;
             case "mesMessageRecus":
