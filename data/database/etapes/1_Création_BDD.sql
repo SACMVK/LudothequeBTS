@@ -11,21 +11,21 @@ use ludotheque;
 #    Tables : 
 #  * compte -
 #  * individu -
-#  * jeu_p -
-#  * pret_p 
+#  * exemplaire -
+#  * pret 
 #  * departement
-#  * user_prefere_genre
-#  * produit_culturel_t
-#  * a_pour_image
-#  * jeu_t
-#  * commentaire_p_c_t
+#  * compte_prefere_genre
+#  * produit_culturel
+#  * produit_culturel_a_pour_image
+#  * jeu
+#  * commentaire_produit_culturel
 #  * jeu_a_pour_genre
 #  * genre
 #  * message
 #  * notification
 #  * pret_a_pour_message
 #  * expedition
-#  * note_jeu_t
+#  * note_produit_culturel
 
 #    Tables dictionnaires :
 #  * droit_d
@@ -70,21 +70,21 @@ CREATE TABLE individu (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-# Création de la table jeu_p (M)
-DROP TABLE IF EXISTS jeu_p;
+# Création de la table exemplaire (M)
+DROP TABLE IF EXISTS exemplaire;
 
-CREATE TABLE jeu_p (
-  idJeuP smallint(8) UNSIGNED NOT NULL AUTO_INCREMENT,  
+CREATE TABLE exemplaire (
+  idExemplaire smallint(8) UNSIGNED NOT NULL AUTO_INCREMENT,  
   idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
   idProprietaire smallint(8) unsigned NOT NULL, #FK
 
-  PRIMARY KEY (idJeuP)
+  PRIMARY KEY (idExemplaire)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table note_jeu_t (M)
-DROP TABLE IF EXISTS note_jeu_t;
+# Création de la table note_produit_culturel (M)
+DROP TABLE IF EXISTS note_produit_culturel;
 
-CREATE TABLE note_jeu_t (
+CREATE TABLE note_produit_culturel (
   idNote smallint(8) UNSIGNED NOT NULL AUTO_INCREMENT,  
   idPC smallint(8) UNSIGNED NOT NULL,  #FK
   idUser smallint(8) UNSIGNED NOT NULL,  #FK
@@ -93,12 +93,12 @@ CREATE TABLE note_jeu_t (
   PRIMARY KEY (idNote)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table pret_p (M)
-DROP TABLE IF EXISTS pret_p;
+# Création de la table pret (M)
+DROP TABLE IF EXISTS pret;
 
-CREATE TABLE pret_p (
+CREATE TABLE pret (
   idPret smallint(8) unsigned NOT NULL AUTO_INCREMENT, #PK
-  idJeuP smallint(8) unsigned NOT NULL,  #FK
+  idExemplaire smallint(8) unsigned NOT NULL,  #FK
   idEmprunteur smallint(8) unsigned NOT NULL, #FK idUser
   propositionEmprunteurDateDebut date NOT NULL,
   propositionEmprunteurDateFin date NOT NULL,
@@ -140,20 +140,20 @@ CREATE TABLE departement (
   PRIMARY KEY (numDept)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table user_prefere_genre (M)
-DROP TABLE IF EXISTS user_prefere_genre;
+# Création de la table compte_prefere_genre (M)
+DROP TABLE IF EXISTS compte_prefere_genre;
 
-CREATE TABLE user_prefere_genre (
+CREATE TABLE compte_prefere_genre (
   idUser smallint(8) unsigned NOT NULL, #FK
   genre VARCHAR(200) NOT NULL, #FK
 
   PRIMARY KEY (idUser, genre) # la combinaison des 2 FK contsituent la PK
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table produit_culturel_t (C)
-DROP TABLE IF EXISTS produit_culturel_t;
+# Création de la table produit_culturel (C)
+DROP TABLE IF EXISTS produit_culturel;
 
-create table produit_culturel_t(
+create table produit_culturel(
   idPC SMALLINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   nom VARCHAR(200) NOT NULL,
   public VARCHAR(20) NOT NULL, #FK dico (tous public, adultes, enfants)
@@ -176,10 +176,10 @@ create table produit_culturel_t(
 #) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
 
 
-# Création de la table a_pour_image
-DROP TABLE IF EXISTS a_pour_image;
+# Création de la table produit_culturel_a_pour_image
+DROP TABLE IF EXISTS produit_culturel_a_pour_image;
 
-CREATE TABLE a_pour_image(
+CREATE TABLE produit_culturel_a_pour_image(
   source VARCHAR(250) NOT NULL,
   idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
   
@@ -187,39 +187,39 @@ CREATE TABLE a_pour_image(
   PRIMARY KEY (source)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table commentaire_jeu_p (M)
-DROP TABLE IF EXISTS commentaire_jeu_p;
+# Création de la table commentaire_exemplaire (M)
+DROP TABLE IF EXISTS commentaire_exemplaire;
 
-CREATE TABLE commentaire_jeu_p (
+CREATE TABLE commentaire_exemplaire (
   idPret smallint(8) unsigned NOT NULL,  #FK
   commentaire text NOT NULL,
 
   PRIMARY KEY (idPret)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table jeu_t
-DROP TABLE IF EXISTS jeu_t;
+# Création de la table jeu
+DROP TABLE IF EXISTS jeu;
 
-create table jeu_t(
+create table jeu(
   idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
   nbJoueursMin SMALLINT NOT NULL,
   nbJoueursMax SMALLINT NOT NULL,
-  -- passage du nom de jeu dans la table produit_culturel_t
+  -- passage du nom de jeu dans la table produit_culturel
   editeur VARCHAR(30) NOT NULL, #FK dico option autre 
   #illustrateurPrincipal VARCHAR(100) NOT NULL, --FK option autre (nom, prenom) -> pas utile
   regles TEXT,
   difficulte VARCHAR(200) NOT NULL, #FK dico option autre
-  -- passage du dico public dans produit_culturel_t
+  -- passage du dico public dans produit_culturel
   listePieces TEXT,
   dureePartie VARCHAR(200),
 
   PRIMARY KEY (idPC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table commentaire_p_c_t
-DROP TABLE IF EXISTS commentaire_p_c_t;
+# Création de la table commentaire_produit_culturel
+DROP TABLE IF EXISTS commentaire_produit_culturel;
 
-create table commentaire_p_c_t(
+create table commentaire_produit_culturel(
   idCommentaire smallint(8) unsigned NOT NULL AUTO_INCREMENT,
   idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
   commentaireT TEXT,
@@ -309,7 +309,7 @@ CREATE TABLE etat_d (
   PRIMARY KEY (etat)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table Dico type_p_c du produit_culturel_t (M)
+# Création de la table Dico type_p_c du produit_culturel (M)
 DROP TABLE IF EXISTS type_p_c_d;
 
 CREATE TABLE type_p_c_d (
@@ -318,7 +318,7 @@ CREATE TABLE type_p_c_d (
   PRIMARY KEY (typePC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table Dico editeur du jeu_t (M)
+# Création de la table Dico editeur du jeu (M)
 DROP TABLE IF EXISTS editeur_d;
 
 CREATE TABLE editeur_d (
@@ -327,7 +327,7 @@ CREATE TABLE editeur_d (
   PRIMARY KEY (editeur)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table Dico difficulte du jeu_t (M)
+# Création de la table Dico difficulte du jeu (M)
 DROP TABLE IF EXISTS difficulte_d;
 
 CREATE TABLE difficulte_d (
@@ -336,7 +336,7 @@ CREATE TABLE difficulte_d (
   PRIMARY KEY (difficulte)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table Dico public du produit_culturel_t (M)
+# Création de la table Dico public du produit_culturel (M)
 DROP TABLE IF EXISTS public_d;
 
 CREATE TABLE public_d (
@@ -394,86 +394,86 @@ ALTER TABLE individu
 ADD CONSTRAINT fk_idUser_individu FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
 
 
-# Clés étrangères de la table jeu_p
+# Clés étrangères de la table exemplaire
   # Clé étrangère idPC
-ALTER TABLE jeu_p 
-ADD CONSTRAINT fk_idPC_jeu_p FOREIGN KEY (idPC) REFERENCES jeu_t(idPC) ON DELETE CASCADE;
+ALTER TABLE exemplaire 
+ADD CONSTRAINT fk_idPC_exemplaire FOREIGN KEY (idPC) REFERENCES jeu(idPC) ON DELETE CASCADE;
 
   # Clé étrangère idProprietaire
-ALTER TABLE jeu_p 
-ADD CONSTRAINT fk_idProprietaire_jeu_p FOREIGN KEY (idProprietaire) REFERENCES compte(idUser) ON DELETE CASCADE;
+ALTER TABLE exemplaire 
+ADD CONSTRAINT fk_idProprietaire_exemplaire FOREIGN KEY (idProprietaire) REFERENCES compte(idUser) ON DELETE CASCADE;
 
 
 
 
 
-#Clés étrangères de la table pret_p
-  # Clé étrangère idJeuP
-ALTER TABLE pret_p 
-ADD CONSTRAINT fk_idJeuP_pret_p FOREIGN KEY (idJeuP) REFERENCES jeu_p(idJeuP) ON DELETE CASCADE;
+#Clés étrangères de la table pret
+  # Clé étrangère idExemplaire
+ALTER TABLE pret 
+ADD CONSTRAINT fk_idJeu_pret FOREIGN KEY (idExemplaire) REFERENCES exemplaire(idExemplaire) ON DELETE CASCADE;
 
   # Clé étrangère idEmprunteur
-ALTER TABLE pret_p 
-ADD CONSTRAINT fk_idEmprunteur_pret_p FOREIGN KEY (idEmprunteur) REFERENCES compte(idUser) ON DELETE CASCADE;
+ALTER TABLE pret 
+ADD CONSTRAINT fk_idEmprunteur_pret FOREIGN KEY (idEmprunteur) REFERENCES compte(idUser) ON DELETE CASCADE;
 
   # Clé étrangère notification
-ALTER TABLE pret_p 
-ADD CONSTRAINT fk_notification_pret_p FOREIGN KEY (notification) REFERENCES notification(idNotification);
+ALTER TABLE pret 
+ADD CONSTRAINT fk_notification_pret FOREIGN KEY (notification) REFERENCES notification(idNotification);
 
   # Clé étrangère statut demande
-ALTER TABLE pret_p 
+ALTER TABLE pret 
 ADD CONSTRAINT fk_statut_demande FOREIGN KEY (statutDemande) REFERENCES statut_demande_d(statut);
 
-# Clés étrangères de la table user_prefere_genre
+# Clés étrangères de la table compte_prefere_genre
   # Clé étrangère idUser
-ALTER TABLE user_prefere_genre 
-ADD CONSTRAINT fk_idUser_user_prefere_genre FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
+ALTER TABLE compte_prefere_genre 
+ADD CONSTRAINT fk_idUser_compte_prefere_genre FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
 
   # Clé étrangère genre 
-ALTER TABLE user_prefere_genre 
-ADD CONSTRAINT fk_genre_user_prefere_genre FOREIGN KEY (genre) REFERENCES genre(genre);
+ALTER TABLE compte_prefere_genre 
+ADD CONSTRAINT fk_genre_compte_prefere_genre FOREIGN KEY (genre) REFERENCES genre(genre);
 
-# Clés étrangères de la table produit_culturel_t
+# Clés étrangères de la table produit_culturel
   # Clé étrangère typePC
-ALTER TABLE produit_culturel_t 
-ADD CONSTRAINT fk_typePC_produit_culturel_t FOREIGN KEY (typePC) REFERENCES type_p_c_d(typePC);
+ALTER TABLE produit_culturel 
+ADD CONSTRAINT fk_typePC_produit_culturel FOREIGN KEY (typePC) REFERENCES type_p_c_d(typePC);
 
   # Clé étrangère public
-ALTER TABLE produit_culturel_t 
-ADD CONSTRAINT fk_public_produit_culturel_t FOREIGN KEY (public) REFERENCES public_d(public);
+ALTER TABLE produit_culturel 
+ADD CONSTRAINT fk_public_produit_culturel FOREIGN KEY (public) REFERENCES public_d(public);
 
-# Clés étrangères de la table a_pour_image
+# Clés étrangères de la table produit_culturel_a_pour_image
   # Clé étrangère idPC
-ALTER TABLE a_pour_image 
-ADD CONSTRAINT fk_idPC_a_pour_image FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC) ON DELETE CASCADE;
+ALTER TABLE produit_culturel_a_pour_image 
+ADD CONSTRAINT fk_idPC_produit_culturel_a_pour_image FOREIGN KEY (idPC) REFERENCES produit_culturel(idPC) ON DELETE CASCADE;
 
-# Clés étrangères de la table jeu_t
+# Clés étrangères de la table jeu
   # Clé étrangère typePC
-ALTER TABLE jeu_t 
-ADD CONSTRAINT fk_idPC_jeu_t FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC) ON DELETE CASCADE;
+ALTER TABLE jeu 
+ADD CONSTRAINT fk_idPC_jeu FOREIGN KEY (idPC) REFERENCES produit_culturel(idPC) ON DELETE CASCADE;
 
   # Clé étrangère editeur
-ALTER TABLE jeu_t 
-ADD CONSTRAINT fk_editeur_jeu_t FOREIGN KEY (editeur) REFERENCES editeur_d(editeur) ON DELETE CASCADE;
+ALTER TABLE jeu 
+ADD CONSTRAINT fk_editeur_jeu FOREIGN KEY (editeur) REFERENCES editeur_d(editeur) ON DELETE CASCADE;
 
   # Clé étrangère difficulte
-ALTER TABLE jeu_t 
-ADD CONSTRAINT fk_difficulte_jeu_t FOREIGN KEY (difficulte) REFERENCES difficulte_d(difficulte);
+ALTER TABLE jeu 
+ADD CONSTRAINT fk_difficulte_jeu FOREIGN KEY (difficulte) REFERENCES difficulte_d(difficulte);
 
 
-# Clés étrangères de la table commentaire_p_c_t
+# Clés étrangères de la table commentaire_produit_culturel
   # Clé étrangère idPC
-ALTER TABLE commentaire_p_c_t 
-ADD CONSTRAINT fk_idPC_commentaire_p_c_t FOREIGN KEY (idPC) REFERENCES produit_culturel_t(idPC) ON DELETE CASCADE;
+ALTER TABLE commentaire_produit_culturel 
+ADD CONSTRAINT fk_idPC_commentaire_produit_culturel FOREIGN KEY (idPC) REFERENCES produit_culturel(idPC) ON DELETE CASCADE;
 
   # Clé étrangère idUser
-ALTER TABLE commentaire_p_c_t 
-ADD CONSTRAINT fk_idUser_commentaire_p_c_t FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
+ALTER TABLE commentaire_produit_culturel 
+ADD CONSTRAINT fk_idUser_commentaire_produit_culturel FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
 
 # Clés étrangères de la table jeu_a_pour_genre
   # Clé étrangère idPC
 ALTER TABLE jeu_a_pour_genre 
-ADD CONSTRAINT fk_idPC_jeu_a_pour_genre FOREIGN KEY (idPC) REFERENCES jeu_t(idPC) ON DELETE CASCADE;
+ADD CONSTRAINT fk_idPC_jeu_a_pour_genre FOREIGN KEY (idPC) REFERENCES jeu(idPC) ON DELETE CASCADE;
 
   # Clé étrangère genre
 ALTER TABLE jeu_a_pour_genre 
@@ -490,7 +490,7 @@ ADD CONSTRAINT fk_idDest_message FOREIGN KEY (idDest) REFERENCES compte(idUser) 
 
 # Clés étrangères de la table pret_a_pour_message
 ALTER TABLE pret_a_pour_message 
-ADD CONSTRAINT fk_idPret FOREIGN KEY (idPret) REFERENCES pret_p(idPret) ON DELETE CASCADE;
+ADD CONSTRAINT fk_idPret FOREIGN KEY (idPret) REFERENCES pret(idPret) ON DELETE CASCADE;
 ALTER TABLE pret_a_pour_message 
 ADD CONSTRAINT fk_idMessage FOREIGN KEY (idMessage) REFERENCES message(idMessage) ON DELETE CASCADE;
 ALTER TABLE pret_a_pour_message 
@@ -498,22 +498,22 @@ ADD CONSTRAINT fk_idNotification FOREIGN KEY (idNotification) REFERENCES notific
 
 # Clés étrangères de la table expedition
 ALTER TABLE expedition 
-ADD CONSTRAINT fk_idPretExpedition FOREIGN KEY (idPret) REFERENCES pret_p(idPret) ON DELETE CASCADE;
+ADD CONSTRAINT fk_idPretExpedition FOREIGN KEY (idPret) REFERENCES pret(idPret) ON DELETE CASCADE;
 ALTER TABLE expedition 
 ADD CONSTRAINT fk_idEtatEnvoi FOREIGN KEY (envoiEtatJeu) REFERENCES etat_d(etat);
 ALTER TABLE expedition 
 ADD CONSTRAINT fk_idEtatReception FOREIGN KEY (retourEtatJeu) REFERENCES etat_d(etat);
 
 
-# Clés étrangères de la table note_jeu_t
-  # Clé étrangère idJeuP
-ALTER TABLE note_jeu_t 
-ADD CONSTRAINT fk_note_jeu_t_idPC FOREIGN KEY (idPC) REFERENCES jeu_t(idPC) ON DELETE CASCADE;
-ALTER TABLE note_jeu_t 
-ADD CONSTRAINT fk_note_jeu_t_idUser FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
+# Clés étrangères de la table note_produit_culturel
+  # Clé étrangère idExemplaire
+ALTER TABLE note_produit_culturel 
+ADD CONSTRAINT fk_note_produit_culturel_idPC FOREIGN KEY (idPC) REFERENCES jeu(idPC) ON DELETE CASCADE;
+ALTER TABLE note_produit_culturel 
+ADD CONSTRAINT fk_note_produit_culturel_idUser FOREIGN KEY (idUser) REFERENCES compte(idUser) ON DELETE CASCADE;
 
 
-# Clés étrangères de la table commentaire_jeu_p
-  # Clé étrangère idJeuP
-ALTER TABLE commentaire_jeu_p 
-ADD CONSTRAINT fk_idJeuP_commentaire_jeu_p FOREIGN KEY (idPret) REFERENCES pret_p(idPret) ON DELETE CASCADE;
+# Clés étrangères de la table commentaire_exemplaire
+  # Clé étrangère idExemplaire
+ALTER TABLE commentaire_exemplaire 
+ADD CONSTRAINT fk_idJeu_commentaire_exemplaire FOREIGN KEY (idPret) REFERENCES pret(idPret) ON DELETE CASCADE;
