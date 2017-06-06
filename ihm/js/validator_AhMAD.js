@@ -32,16 +32,20 @@ $(function () {
      $.validator.addMethod('accountExists', function (value, element) {
 	var listeMail = document.inscription.listeMail.value;
 	var emails = listeMail.split("#");
-	emails.splice(emails.length - 1);
         return this.optional(element) ||  emails.indexOf(value) === -1;
 				
     },' cette adresse électronique  est déjà existé, merci de choisir un autre.\'.');
+    
+    //AhMaD: expression régulière pour l'email
+    $.validator.addMethod('expressionRequlière', function(value, element){
+         var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+         return this.optional(element) || regex.test(value);
+    }," Veuillez corriger votre email");
     
     //AhMaD: pour vérifier que le pseudo existe pas dans la BD
     $.validator.addMethod('pseudoExists', function (value, element) {
 	var listePseudo = document.inscription.listePseudo.value;
 	var pseudos = listePseudo.split("#");
-	pseudos.splice(pseudos.length - 1);
         return this.optional(element) ||  pseudos.indexOf(value) === -1;
 				
     },' ce pseudo  est déjà existé, merci de choisir un autre.\'.');
@@ -51,16 +55,22 @@ $(function () {
         return this.optional(element) || /^[a-z]+$/i.test(value);
     }, "Caractères seulement sont acceptable ");
     
- //AhMaD: pour valider chaque champe on regarde si il est required, et si il y a autre contrainte
-    $("#CreationForm").validate({
+    $.validator.addMethod( "phoneFR", function( value, element ) {
+        return this.optional( element ) || /^((\+|00(\s|\s?\-\s?)?)33(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)[1-9]((\s|\s?\-\s?)?[0-9]){8}$/.test( value );
+}, "Veuillez corriger votre nombre de telephone, il faudrait commencer par (+33) et avec dix chiffre." );
+ 
+ //AhMaD: pour valider chaque champ on regarde si il est required, et si il y a autre contrainte 
+    $("#CreationForm,  #monProfile").validate({
         rules: {
             email: {
                 required: true,
                 email: true,
-                accountExists: true
+                accountExists: true,
+                expressionRequlière : true
             },
-            phone: {
-                required: true
+            telephone: {
+                required: true,
+                phoneFR: true
             },
             prenom: {
                 required: true,
@@ -83,13 +93,21 @@ $(function () {
                 required: true,
                 strongPassword: true
             },
+            ville: {
+                required: true,
+                 lettersonly: true
+            },
             mdp2: {
                 required: true,
                 equalTo: "#mdp"
             },
+            adresse: {
+                required: true,
+            },
             codePostal: {
                 required: true,
-                digits: true
+                digits: true,
+                
             }
         },
         messages: {
