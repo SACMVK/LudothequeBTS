@@ -3,7 +3,7 @@
 ?>
 <?php
 if (!empty($element)):
-    foreach ($element as $jeu_t) :
+
         ?> 
         <div>
             <h1><?= $element->getNom() ?></h1>  
@@ -84,10 +84,10 @@ if (!empty($element)):
         <?php endif; ?>
 
         <?php
-    endforeach;
+
 endif;
 ?>
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+<form action="" method="post" accept-charset="utf-8" class="form" >
     <input type=hidden name="nom" value="<?= $element->getNom() ?>" />
     <input type='hidden' name='page' value='recherche/jeu_p.php' />
     <input type="submit" name="submit" class="boutonBleu" value="Recherche un exemplaire de ce jeu">

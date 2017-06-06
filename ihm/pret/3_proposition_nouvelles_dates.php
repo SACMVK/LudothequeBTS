@@ -1,5 +1,6 @@
 <div class="blocList">
-    <form action=" " method="post" accept-charset="utf-8">
+    <span id="reservedDates" data-reservedDates="<?= getDatesReservation($jeuP) ?>"></span>
+    <form action="" method="post" accept-charset="utf-8">
         Vous souhaitez proposer de nouvelles dates d'emprunt de votre jeu 
         <b><?= $pret->getJeuP()->getJeuT()->getNom() ?></b>
         à <b><?= $pret->getEmprunteur()->getPseudo() ?></b>.
@@ -8,8 +9,8 @@
         au <?= screenDate($pret->getPropositionEmprunteurDateFin()) ?>.
         <br />
         <br />
-        Du <input type="text"  name="propositionPreteurDateDebut" onclick="new calendar(this);">
-        au <input type="text"  name="propositionPreteurDateFin" onclick="new calendar(this);">
+        Du <input type="text" id="propositionPreteurDateDebut" name="propositionPreteurDateDebut" onclick="new calendar(this);">
+        au <input type="text" id="propositionPreteurDateFin" name="propositionPreteurDateFin" onclick="new calendar(this);">
         <br />
         <br />
         Message à destination de l'emprunteur :

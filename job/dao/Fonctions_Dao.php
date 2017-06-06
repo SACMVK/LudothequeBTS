@@ -163,7 +163,7 @@ function renommerFichier($nomFichier, $repertoire) {
 function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
     $message = '';
 
-    $target_dir = "C:/xampp/htdocs/LudothequeBTS/data/images/vignettes/"; //J'ai dû mettre l'url en absolu car ne me trouve pas le fichier en relative
+    $target_dir = "data/images/vignettes/"; //J'ai dû mettre l'url en absolu car ne me trouve pas le fichier en relative
     // Ne pas oublier la gestion de l'utf8
     $target_file = $target_dir . utf8_decode(basename($sourceName));
     $uploadOk = 1;
@@ -263,8 +263,125 @@ function uploadImage($sourceName, $sourceTmpName, $sourceSize) {
             $message .= "Il y a eu une erreur lors du chargement. ";
         }
     }
-    
+
 
     return [$message, $nouveauNom];
+}
+
+function selectTopJeuT($nombreJeuxT) {
+    $requete = "SELECT produit_culturel_t.nom, produit_culturel_t.idPC, AVG(note_jeu_t.note) as 'noteMoyenne' "
+            . "FROM note_jeu_t JOIN produit_culturel_t ON note_jeu_t.idPC = produit_culturel_t.idPC "
+            . "JOIN jeu_t ON produit_culturel_t.idPC = jeu_t.idPC "
+            . "GROUP BY produit_culturel_t.idPC "
+            . "ORDER BY AVG(note_jeu_t.note) DESC LIMIT " . $nombreJeuxT . ";";
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $topJeuxT = [];
+    while ($champ = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $JeuT = [];
+        $JeuT ["nom"] = $champ["nom"];
+        $JeuT ["idPC"] = $champ["idPC"];
+        $JeuT ["noteMoyenne"] = $champ["noteMoyenne"];
+        $topJeuxT[] = $JeuT;
+    }
+    $db = closeConnexion();
+    return $topJeuxT;
+}
+
+function getDatesReservation($jeu_p) {
+    $requete = "SELECT * FROM pret_p WHERE idJeuP='" . $jeu_p->getIdJeuP() . "';";
+    $db = openConnexion();
+    $stmt = $db->prepare($requete);
+    $stmt->execute();
+    $datesReservation = [];
+    while ($champ = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $debut = $champ["propositionEmprunteurDateDebut"];
+        $fin = $champ["propositionEmprunteurDateFin"];
+        if (!empty($champ["propositionPreteurDateDebut"])) {
+            $debut = $champ["propositionPreteurDateDebut"];
+            $fin = $champ["propositionPreteurDateFin"];
+        }
+        $debutAsArray = explode("-", $debut);
+        $finAsArray = explode("-", $fin);
+        $debutAsIntegers = ["annee" => (int) $debutAsArray[0], "mois" => (int) $debutAsArray[1], "jour" => (int) $debutAsArray[2]];
+        $finAsIntegers = ["annee" => (int) $finAsArray[0], "mois" => (int) $finAsArray[1], "jour" => (int) $finAsArray[2]];
+        $datesReservation[] = ["debut" => $debutAsIntegers, "fin" => $finAsIntegers];
+    }
+    $db = closeConnexion();
+    // stefan : passage de dates début et fin en liste complète de dates
+    $listeDates = [];
+    foreach ($datesReservation as $datesDebutFin) {
+
+
+
+        $anneeDebut = $datesDebutFin["debut"]["annee"];
+        $anneeFin = $datesDebutFin["fin"]["annee"];
+        $moisDebut = $datesDebutFin["debut"]["mois"];
+        $moisFin = $datesDebutFin["fin"]["mois"];
+        $jourDebut = $datesDebutFin["debut"]["jour"];
+        $jourFin = $datesDebutFin["fin"]["jour"];
+
+
+
+
+
+        for ($indiceAnnee = $anneeDebut; $indiceAnnee <= $anneeFin; $indiceAnnee++) {
+            if ($anneeDebut == $anneeFin) {
+                for ($indiceMois = $moisDebut; $indiceMois <= $moisFin; $indiceMois++) {
+                    mois($listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin);
+                }
+            } else if ($indiceAnnee == $anneeDebut) {
+                for ($indiceMois = $moisDebut; $indiceMois <= 31; $indiceMois++) {
+                    mois($listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin);
+                }
+            } else if ($indiceAnnee == $anneeFin) {
+                for ($indiceMois = 1; $indiceMois <= $moisFin; $indiceMois++) {
+                    mois($listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin);
+                }
+            } else {
+                for ($indiceMois = 1; $indiceMois <= 12; $indiceMois++) {
+                    mois($listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin);
+                }
+            }
+        }
+    }
+
+
+    // stefan : passage en string pour transmission à javascript
+    $stringReservation = "";
+    foreach ($listeDates as $date) {
+        $stringReservation .= $date["annee"] . "-" . $date["mois"] . "-" . $date["jour"] . "#";
+    }
+    $stringReservation = substr($stringReservation, 0, strlen($stringReservation) - 1);
+
+    return $stringReservation;
+}
+
+// stefan : fonction utilisée dans getDatesReservation
+function jour(&$listeDates, $indiceAnnee, $indiceMois, $indiceJour) {
+    $listeDates [] = ["annee" => $indiceAnnee, "mois" => $indiceMois, "jour" => $indiceJour];
+}
+
+// stefan : fonction utilisée dans getDatesReservation
+function mois(&$listeDates, $indiceAnnee, $indiceMois, $moisDebut, $moisFin, $jourDebut, $jourFin) {
+    if ($moisDebut == $moisFin) {
+        for ($indiceJour = $jourDebut; $indiceJour <= $jourFin; $indiceJour++) {
+            jour($listeDates, $indiceAnnee, $indiceMois, $indiceJour);
+        }
+    } else
+    if ($indiceMois == $moisDebut) {
+        for ($indiceJour = $jourDebut; $indiceJour <= 31; $indiceJour++) {
+            jour($listeDates, $indiceAnnee, $indiceMois, $indiceJour);
+        }
+    } else if ($indiceMois == $moisFin) {
+        for ($indiceJour = 1; $indiceJour <= $jourFin; $indiceJour++) {
+            jour($listeDates, $indiceAnnee, $indiceMois, $indiceJour);
+        }
+    } else {
+        for ($indiceJour = 1; $indiceJour <= 31; $indiceJour++) {
+            jour($listeDates, $indiceAnnee, $indiceMois, $indiceJour);
+        }
+    }
 }
 ?>

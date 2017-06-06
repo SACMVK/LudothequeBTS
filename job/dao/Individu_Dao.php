@@ -72,6 +72,8 @@ function insert($list_Values) {
     return $lastIdIndividu;
 }
 
+
+
 //AMaD:function select en gros il s'agit de FIND!
 function select($requete) {
 
@@ -121,28 +123,50 @@ function select($requete) {
 
 //AhMaD: function updat pour modifer le table
 function update($list_Values) {
-
-    //AhMaD: déclaration les values
     $idUser = $list_Values['idUser'];
-    $ville = $list_Values['ville'];
-    $numDept = $list_Values['numDept'];
-    $codePostal = $list_Values['codePostal'];
-    $email = $list_Values['email'];
-    $telephone = $list_Values['telephone'];
-    $pseudo = $list_Values['pseudo'];
-    $dateInscription = $list_Values['dateInscription'];
-    $mdp = $list_Values['mdp'];
-    $droit = $list_Values['droit'];
-    $prenom = $list_Values['prenom'];
-    $nom = $list_Values['nom'];
-    $dateNaiss = $list_Values['dateNaiss'];
-
-    //AhMaD:ouvrire la connexion avec BD  
-    $db = openConnexion();
-
-
-
-
+    $listeSet = [];
+    //AhMaD: déclaration les values
+    if (!empty($list_Values["dateNaiss"])) {
+        $listeSet [] = "dateNaiss = '" . $list_Values["dateNaiss"] . "'";
+    }
+    if (!empty($list_Values["nom"])) {
+        $listeSet [] = "nom = '" . $list_Values["nom"] . "'";
+    }
+    if (!empty($list_Values["prenom"])) {
+        $listeSet [] = "prenom = '" . $list_Values["prenom"] . "'";
+    }
+    if (!empty($list_Values["droit"])) {
+        $listeSet [] = "droit = '" . $list_Values["droit"] . "'";
+    }
+    if (!empty($list_Values["mdp"])) {
+        $listeSet [] = "mdp = '" . $list_Values["mdp"] . "'";
+    }
+    if (!empty($list_Values["dateInscription"])) {
+        $listeSet [] = "dateInscription = '" . $list_Values["dateInscription"] . "'";
+    }
+    if (!empty($list_Values["pseudo"])) {
+        $listeSet [] = "pseudo = '" . $list_Values["pseudo"] . "'";
+    }
+    if (!empty($list_Values["telephone"])) {
+        $listeSet [] = "telephone = '" . $list_Values["telephone"] . "'";
+    }
+    if (!empty($list_Values["email"])) {
+        $listeSet [] = "email = '" . $list_Values["email"] . "'";
+    }
+    if (!empty($list_Values["codePostal"])) {
+        $listeSet [] = "codePostal = '" . $list_Values["codePostal"] . "'";
+    }
+    if (!empty($list_Values["numDept"])) {
+        $listeSet [] = "numDept = '" . $list_Values["numDept"] . "'";
+    }
+    if (!empty($list_Values["ville"])) {
+        $listeSet [] = "ville = '" . $list_Values["ville"] . "'";
+    }
+    $set = "";
+    for ($i = 0; $i < count($listeSet) - 1; $i++) {
+        $set .= $listeSet[$i] . ", ";
+    }
+    $set .= $listeSet[count($listeSet) - 1];
 
 
     //AhMaD:on vas faire une requete pour savoir si le droit était changé.    ps :   IN  ici  une oprétion logique comme (!=) ou (==) 
@@ -151,9 +175,10 @@ function update($list_Values) {
 //    $stmt->execute();
 //    $le_droit = $stmt->execute();
     //AhMaD:prepration de requete qui vas modifier l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "UPDATE " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser SET ville = '" . $ville . "', codePostal = '" . $codePostal . "', numDept = '" . $numDept . "', email = '" . $email . "', telephone = '" . $telephone . "', pseudo = '" . $pseudo . "', dateInscription = '" . $dateInscription . "', mdp = '" . $mdp . "', droit = '" . $droit . "', nom = '" . $nom . "',  prenom = '" . $prenom . "', dateNaiss= '" . $dateNaiss . "' WHERE " . TABLE_INDIVIDU . ".idUser = " . $idUser . ";";
+    $requete = "UPDATE " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser = " . TABLE_COMPTE . ".idUser SET " . $set. " WHERE " . TABLE_INDIVIDU . ".idUser = " . $idUser . ";";
 
-
+    //AhMaD:ouvrire la connexion avec BD  
+    $db = openConnexion();
 
 
     //AhMaD: on va préparer la requête et l'exécuter et tu vas bien.
@@ -177,7 +202,7 @@ function delete($idOfLineToDelete) {
     $db = openConnexion();
 
     //AhMaD:prepration de requete qui vas supprimer l'utilisateur entre deux table pour cela il y a jointeur
-    $requete = "DELETE " . TABLE_INDIVIDU . " FROM  " . TABLE_INDIVIDU . " JOIN " . TABLE_COMPTE . " ON " . TABLE_INDIVIDU . ".idUser  =  " . TABLE_COMPTE . ".idUser  WHERE  ". TABLE_INDIVIDU . ". idUser =  '" . $idOfLineToDelete['idUser'] . "' ;";
+    $requete = "DELETE FROM " . TABLE_COMPTE . " WHERE  " . TABLE_COMPTE . ".idUser =  '" . $idOfLineToDelete['idUser'] . "' ;";
 
     //AhMaD: on vas préparer la requête et l'exécuter et tu vas bien.
     $stmt = $db->prepare($requete);

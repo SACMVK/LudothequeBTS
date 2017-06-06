@@ -1,5 +1,5 @@
 <?php if (!empty($_SESSION)): ?>
-    <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+    <form action="" method="post" accept-charset="utf-8" class="form" >
         <!--stefan : on ne peut mettre une valeur à zéro, hypothèse PHP confond avec false -->
         <input type=hidden name="pret" value=-1 >
         <input type=hidden name="idJeuP" value="<?= $element->getIdJeuP() ?>" >

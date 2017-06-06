@@ -1,30 +1,51 @@
 
-<p style="color:red;">@team : Attention, le mail et le pseudo doivent être uniques dans la BD, il faut modifier les valeurs par défaut</p>
-<form action="" method="post" accept-charset="utf-8" class="form" role="form"  name="CreationForm" onclick="return ValidateForm();">   
+
+<form action="" method="post" accept-charset="utf-8" class="form"   id="CreationForm"  name="inscription" >   
     <legend>Créer mon compte</legend>
     Nom :
-    <input type="text" name="nom" size="10" maxlength="10" required value="nom" class="form-control input-lg"  placeholder="Nom"/>
+    <div id="form-champ"  >
+    <input type="text"  name="nom" size="10" maxlength="10" required value="" class="form-control input-lg"  placeholder="Nom"/>
+    </div>
     Prénom :
-    <input type="text" name="prenom" size="10" maxlength="10" required value="prenom" class="form-control input-lg" placeholder="Prénom"/>             
+       <div id="form-champ"  >
+    <input type="text"   name="prenom" size="10" maxlength="10" required value="" class="form-control input-lg" placeholder="Prénom"/>             
+   </div>
     Date de naissance :
-    <input type="date" name="dateNaiss" size="10" maxlength="10" required value="14-02-1990" class="form-control input-lg" placeholder="Date de naissance"/>
+       <div id="form-champ"  >
+    <input type="date"   name="dateNaiss" size="10" maxlength="10" required value="" class="form-control input-lg" placeholder="Date de naissance"/>
+    </div>
     Pseudo :
-    <input type="text" name="pseudo" size="20" maxlength="20" required value="pseudo"  class="form-control input-lg" placeholder="Pseudo"/>        
+       <div id="form-champ"  >
+    <input type="text"  name="pseudo" size="20" maxlength="20" required value=""  class="form-control input-lg" placeholder="Pseudo"/>        
+    </div>
     Mot de passe :
-    <input type="password" name="mdp" size="20" maxlength="20" required value="mdp"  onclick="EnableDisable(this);" class="form-control input-lg" placeholder=" Mot de passe"/>
+       <div id="form-champ"  >
+    <input type="password"   name="mdp" id="mdp" size="20" maxlength="20" required value=""   class="form-control input-lg" placeholder=" Mot de passe"/>
+    </div>
     Confirmation du mot de passe :
-    <input type="password" name="mdp2" size="20" maxlength="20" required value="mdp"  class="form-control input-lg" placeholder=" Confirmation du mot de passe"/>
+       <div id="form-champ"  >
+    <input type="password"  name="mdp2" size="20" maxlength="20" required value=""  class="form-control input-lg" placeholder=" Confirmation du mot de passe"/>
+    </div>
     Adresse e-mail :
-    <input type="email" name="email" size="100" maxlength="100" required value="a@a.fr"  onblur="verifMail(this)" class="form-control input-lg"  placeholder="   Adresse e-mail"/>
+       <div id="form-champ"  >
+    <input type="email" name="email"  size="100" maxlength="100" required value=""  class="form-control input-lg"  placeholder="   Adresse e-mail"/>
+    </div>
     Téléphone :
-    <input type="text" name="telephone" size="10" maxlength="10" required  value="0612345678"  class="form-control input-lg" placeholder="Téléphone"/>
+       <div id="form-champ"  >
+    <input type="text" name="telephone"   size="10" maxlength="10" required  value=""  class="form-control input-lg" placeholder="Téléphone"/>
+    </div>
     Adresse :
-    <input type=text name="adresse" size="100" maxlength="100" required value="9 rue test"  class="form-control input-lg" placeholder="Adresse"/>
+       <div id="form-champ"  >
+    <input type=text name="adresse"  size="100" maxlength="100" required value=""  class="form-control input-lg" placeholder="Adresse"/>
+    </div>
     Code Postal :
-    <input type=text name="codePostal" size="5" maxlength="5" required value="56000"  class="form-control input-lg" placeholder="Code Postal"/>
+       <div id="form-champ"  >
+    <input type=text name="codePostal"  size="5" maxlength="5" required value=""  class="form-control input-lg" placeholder="Code Postal"/>
+    </div>
     Ville :
-    <input type=text name="ville" rows="5" size="100" maxlength="100" required value="Vannes"  class="form-control input-lg" placeholder="Ville"/>
-
+       <div id="form-champ"  >
+    <input type=text name="ville" rows="5"  size="100" maxlength="100" required value=""  class="form-control input-lg" placeholder="Ville"/>
+</div>
     <input type=hidden name="objectToWorkWith" value="Individu" />
     <input type=hidden name="actionToDoWithObject" value="insert" />
 
@@ -53,4 +74,3 @@
 
 
 </form>          
-

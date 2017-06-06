@@ -155,10 +155,12 @@ DROP TABLE IF EXISTS produit_culturel_t;
 
 create table produit_culturel_t(
   idPC SMALLINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  nom VARCHAR(200) NOT NULL,
+  public VARCHAR(20) NOT NULL, #FK dico (tous public, adultes, enfants)
   typePC VARCHAR(50) NOT NULL,	#FK
   anneeSortie	year NOT NULL,
   description TEXT NOT NULL,
-  valider TINYINT(1) NOT NULL DEFAULT '1',
+  valide TINYINT(1) NOT NULL DEFAULT '0',
 
   PRIMARY KEY (idPC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -178,7 +180,7 @@ create table produit_culturel_t(
 DROP TABLE IF EXISTS a_pour_image;
 
 CREATE TABLE a_pour_image(
-  source VARCHAR(50) NOT NULL,
+  source VARCHAR(250) NOT NULL,
   idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
   
 
@@ -202,12 +204,12 @@ create table jeu_t(
   idPC SMALLINT(8) UNSIGNED NOT NULL, #FK
   nbJoueursMin SMALLINT NOT NULL,
   nbJoueursMax SMALLINT NOT NULL,
-  nom VARCHAR(200) NOT NULL,
+  -- passage du nom de jeu dans la table produit_culturel_t
   editeur VARCHAR(30) NOT NULL, #FK dico option autre 
   #illustrateurPrincipal VARCHAR(100) NOT NULL, --FK option autre (nom, prenom) -> pas utile
   regles TEXT,
   difficulte VARCHAR(200) NOT NULL, #FK dico option autre
-  public VARCHAR(20) NOT NULL, #FK dico (tous public, adultes, enfants)
+  -- passage du dico public dans produit_culturel_t
   listePieces TEXT,
   dureePartie VARCHAR(200),
 
@@ -334,7 +336,7 @@ CREATE TABLE difficulte_d (
   PRIMARY KEY (difficulte)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Création de la table Dico public du jeu_t (M)
+# Création de la table Dico public du produit_culturel_t (M)
 DROP TABLE IF EXISTS public_d;
 
 CREATE TABLE public_d (
@@ -436,6 +438,10 @@ ADD CONSTRAINT fk_genre_user_prefere_genre FOREIGN KEY (genre) REFERENCES genre(
 ALTER TABLE produit_culturel_t 
 ADD CONSTRAINT fk_typePC_produit_culturel_t FOREIGN KEY (typePC) REFERENCES type_p_c_d(typePC);
 
+  # Clé étrangère public
+ALTER TABLE produit_culturel_t 
+ADD CONSTRAINT fk_public_produit_culturel_t FOREIGN KEY (public) REFERENCES public_d(public);
+
 # Clés étrangères de la table a_pour_image
   # Clé étrangère idPC
 ALTER TABLE a_pour_image 
@@ -454,9 +460,6 @@ ADD CONSTRAINT fk_editeur_jeu_t FOREIGN KEY (editeur) REFERENCES editeur_d(edite
 ALTER TABLE jeu_t 
 ADD CONSTRAINT fk_difficulte_jeu_t FOREIGN KEY (difficulte) REFERENCES difficulte_d(difficulte);
 
-  # Clé étrangère public
-ALTER TABLE jeu_t 
-ADD CONSTRAINT fk_public_jeu_t FOREIGN KEY (public) REFERENCES public_d(public);
 
 # Clés étrangères de la table commentaire_p_c_t
   # Clé étrangère idPC

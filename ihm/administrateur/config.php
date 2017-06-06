@@ -41,7 +41,7 @@ Function afficherConfig($config, $liste_droits) {
      */
     //$affichage_config = '<DIV id=config><FORM name=config action="index.php" method="POST"><HR/>';
     ?>
-                <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+                <form action="" method="post" accept-charset="utf-8" class="form" >
                     <p style="color:red;">@team : les modifications sont enregistrées mais ne sont pas encore prises en compte</p>
                     <legend>Configuration</legend>
 

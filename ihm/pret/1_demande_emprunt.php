@@ -1,11 +1,12 @@
 <div class="blocList">
-    <form action=" " method="post" accept-charset="utf-8">
+    <span id="reservedDates" data-reservedDates="<?= getDatesReservation($jeuP) ?>"></span>
+    <form action="" method="post" accept-charset="utf-8">
         Envoyer une demande de prêt à <b><?= $jeuP->getProprietaire()->getPseudo() ?></b>
         de son jeu <b><?= $jeuP->getJeuT()->getNom() ?></b>
         <br />
         <br />
-        du <input type="text"  name="propositionEmprunteurDateDebut" onclick="new calendar(this);">
-        au <input type="text"  name="propositionEmprunteurDateFin" onclick="new calendar(this);">
+        du <input type="text" id="propositionEmprunteurDateDebut" name="propositionEmprunteurDateDebut" onclick="new calendar(this);">
+        au <input type="text" id="propositionEmprunteurDateFin" name="propositionEmprunteurDateFin" onclick="new calendar(this);">
         <br />
         <br />
         Message à destination du prêteur :

@@ -1,5 +1,5 @@
 <p style="color:red;">@team : TODO</p>
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form" enctype="multipart/form-data">   
+<form action="" method="post" accept-charset="utf-8" class="form"  enctype="multipart/form-data">   
     <?php
     /*
      * Il faut créer ici un formulaire renseigannt tous les champs du constructeur d'un jeu_t et du produit culturel
@@ -79,7 +79,7 @@
     
     <input type="file" multiple class="form-control" name="source[]" accept="image/*,application/pdf">
 
-
+    <input type=hidden name="valide" value="0" />
 
     <input type=hidden name="objectToWorkWith" value="Jeu_T" />
     <input type=hidden name="actionToDoWithObject" value="insert" />

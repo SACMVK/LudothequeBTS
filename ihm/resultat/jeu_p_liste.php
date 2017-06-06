@@ -8,7 +8,7 @@
                  Nom du jeu : <?= $jeu_p->getJeuT()->getNom() ?><br/>
                  Propriétaire : <?= $jeu_p->getProprietaire()->getPseudo() ?><br/>
                  Code postal : <?= $jeu_p->getProprietaire()->getCodePostal() ?><br/>
-                    <form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+                    <form action="" method="post" accept-charset="utf-8" class="form" >
                         <input type=hidden name="idJeuP" value="<?= $jeu_p->getIdJeuP() ?>" />
                         <input type=hidden name="objectToWorkWith" value="jeu_p" />
                         <input type=hidden name="actionToDoWithObject" value="selectOne" />

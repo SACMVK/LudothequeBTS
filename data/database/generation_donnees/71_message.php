@@ -1,50 +1,45 @@
 <?php
 
-
-
 function generer_donnees_message(int $nombreMessages, int $nombreIndividus, string $aujourdhui) {
 
     // Fonction définie dans 81_prets
     $listeUsers = getAllUsers();
-    
-$aujourdhui = dateToJour($aujourdhui);
- 
+
+    $aujourdhui = dateToJour($aujourdhui);
+
     for ($indice = 1; $indice <= $nombreMessages; $indice++) {
 
         // fonctions dateToJour et jourToDate définies dans 81_prets
- 
-        $idExped = rand(1, $nombreIndividus);
+
+        $idExped = random_int(1, $nombreIndividus);
         $dateInscriptionExped = $listeUsers[$idExped]["dateInscription"];
         $inscriptionExped = dateToJour($dateInscriptionExped);
 
-        $idDest = rand(1, $nombreIndividus);
+        $idDest = random_int(1, $nombreIndividus);
         $dateInscriptionDest = $listeUsers[$idDest]["dateInscription"];
         $inscriptionDest = dateToJour($dateInscriptionDest);
-        
-        $inscriptionDest > $inscriptionExped ? $inscriptionMax = $inscriptionDest : $inscriptionMax = $inscriptionExped;
- 
 
-        
-        $list['idExped'] = rand(1, $nombreIndividus);
-        $list['idDest'] = rand(1, $nombreIndividus);
+        $inscriptionDest > $inscriptionExped ? $inscriptionMax = $inscriptionDest : $inscriptionMax = $inscriptionExped;
+
+
+
+        $list['idExped'] = $idExped;
+        $list['idDest'] = $idDest;
         $list['sujet'] = getTexte(true);
         $list['texte'] = getTexte();
 
         $list['dateEnvoi'] = jourToDate(rand($inscriptionMax, $aujourdhui));
- 
+
         //echo "idExped : " . $list['idExped'] . "<br>idDest : " . $list['idDest'] . "<br>sujet : " . $list['sujet'] . "<br>texte :<br>" . $list['texte'] . "<br><br>";
-        
-echo 'INSERT INTO message ( idExped, idDest, sujet, texte, dateEnvoi)';
-echo '<br>';
-echo 'VALUES ( "'.$list['idExped'].'","' .$list['idDest'].'", "'.$list['sujet'].'"," '.$list['texte'].'"," '.$list['dateEnvoi'].'");';
-echo '<br>';
+
+        echo 'INSERT INTO message (idExped, idDest, sujet, texte, dateEnvoi)';
+        echo '<br>';
+        echo 'VALUES ("' . $list['idExped'] . '","' . $list['idDest'] . '", "' . $list['sujet'] . '","' . $list['texte'] . '","' . $list['dateEnvoi'] . '");';
+        echo '<br>';
 
 //insert($list);
     }
 }
-
-
-
 
 function getTexte(bool $sujet = false) {
     $listeMots = [
@@ -119,8 +114,7 @@ function getTexte(bool $sujet = false) {
         $casse = rand(0, 3);
         if ($casse == 2) {
             $text = strtoupper($text);
-        }
-        else if ($casse == 1){
+        } else if ($casse == 1) {
             $text = ucfirst($text);
         }
     } else {

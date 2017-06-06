@@ -18,7 +18,7 @@
 
         include 'job/dao/fonctions_dao.php';
         include 'ihm/css/css.php';
-  
+
         include 'job/dao/Connexion_DataBase.php';
 
         session_start();
@@ -45,6 +45,10 @@
             include 'controller/controllerConnexion.php';
         } else if (!empty($_REQUEST['objectToWorkWith'])) {
             include 'controller/controllerRequete.php';
+        } else if (!empty($_REQUEST['administrateur'])) {
+            include 'controller/controllerAdministrateur.php';
+        } else if (!empty($_REQUEST['moderateur'])) {
+            include 'controller/controllerModerateur.php';
         } else if (!empty($_REQUEST['user']) && empty($_REQUEST['idPret'])) {
             include 'controller/controllerUser.php';
         } else if (!empty($_REQUEST['formulaire'])) {
@@ -65,8 +69,8 @@
         <!-- *************************************** CONTROLEUR (FIN) *************************************** -->
         <!-- ************************************************************************************************ -->      
 
-     
-            
+
+
     </head>
 
 
@@ -112,7 +116,6 @@
 
         <div class="container" id="wrap">
             <div class="row">
-                <!--                <div class="col-md-6 col-md-offset-3">-->
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 toppad" >
                     <?php include $pageAAfficher; ?>
                 </div>

@@ -1,4 +1,4 @@
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form">
+<form action="" method="post" accept-charset="utf-8" class="form" >
     <legend>
         Rechercher un jeu
     </legend>
@@ -35,7 +35,7 @@
         <?php selectDico("jeu_t", "dureePartie") ?>
     </select>
 
-
+    <input type=hidden name="valide" value="1" />
 
     <input type=hidden name="objectToWorkWith" value="Jeu_T" />
     <input type=hidden name="actionToDoWithObject" value="selectList" />

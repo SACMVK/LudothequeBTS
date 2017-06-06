@@ -15,10 +15,10 @@ function getListeFichier($repertoire) {
     return $listeFichiersExistant;
 }
 
-function generation_donnees_jeu_t_aPourImage(int $nombreJeuxT, string $repertoire) {
+function generation_donnees_jeu_aPourImage(int $nombreJeux, string $repertoire) {
     $listeFichiers = getListeFichier($repertoire);
     $indiceImage = 0;
-    for ($indice = 1; $indice <= $nombreJeuxT; $indice++) {
+    for ($indice = 1; $indice <= $nombreJeux; $indice++) {
         echo 'INSERT INTO a_pour_image (idPC, source)';
         // Ne pas oublier de gérer l'utf-8
         echo 'VALUES ("' . $indice . '", "' . utf8_decode($listeFichiers[$indiceImage]) . '");';

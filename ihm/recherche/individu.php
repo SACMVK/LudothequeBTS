@@ -1,4 +1,4 @@
-<form action=" " method="post" accept-charset="utf-8" class="form" role="form">   
+<form action="" method="post" accept-charset="utf-8" class="form" >   
     <legend>Trouver un compte</legend>
     Nom :
     <input type="text" name="nom" class="form-control input-lg" maxlength="12" placeholder="Nom" />
