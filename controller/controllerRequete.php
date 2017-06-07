@@ -132,7 +132,7 @@ switch ($actionToDoWithObject) {
             $_SESSION["monProfil"] = select("WHERE individu.idUser = " . $idUserConnecte)[0];
             $pageAAfficher = 'ihm/utilisateur/monProfil.php';
         } else {
-            $listeComptes = select();
+            $listeComptes = select("");
             $listeDroits = getArrayFromSQL("droit_d", "droit");
             $pageAAfficher = 'ihm/administrateur/voir_liste_comptes.php';
         }
