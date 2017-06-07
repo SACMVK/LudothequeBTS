@@ -171,7 +171,7 @@ switch ($_REQUEST['pret']) {
         $emprunt = Pret::getEmpruntFromId($_REQUEST["idPret"]);
         $listeData = getValuesFromREQUEST();
         $listeData["notification"] = "9";
-        $listeData["idPC"] = $emprunt->getExemplaire()->getJeuT()->getIdPC();
+        $listeData["idPC"] = $emprunt->getExemplaire()->getJeu()->getIdPC();
         $listeData["idUser"] = $emprunt->getEmprunteur()->getIdUser();
         updatePret($listeData);
         updateExpedition($listeData);
