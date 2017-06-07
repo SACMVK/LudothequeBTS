@@ -2,24 +2,24 @@
 
 include 'emprunt.php';
 
-function generer_prets(int $nombreEmprunteurs, int $nombreJeuxP, string $aujourdhui, int $nombreMessages) {
+function generer_prets(int $nombreEmprunteurs, int $nombreExemplaires, string $aujourdhui, int $nombreMessages) {
 
     // Création de la liste des emprunts
     $listeEmprunt = null;
 
     $listeJeux = getAllNomJeux();
     $listeUsers = getAllUsers();
-
+echo count($listeUsers);
 
     $aujourdhui = dateToJour($aujourdhui);
 
     $inscriptionMax = -1;
 
     // pour chaque jeu ...
-    for ($indiceJeu = 1; $indiceJeu <= $nombreJeuxP; $indiceJeu++) {
+    for ($indiceJeu = 1; $indiceJeu <= $nombreExemplaires; $indiceJeu++) {
         // .. on détermine un nombre d'emprunt ...
         $nomJeu = $listeJeux[$indiceJeu]["nom"];
-        $idJeuT = $listeJeux[$indiceJeu]["idPC"];
+        $idJeu = $listeJeux[$indiceJeu]["idPC"];
         $idPreteur = $listeJeux[$indiceJeu]["idProprietaire"];
         $nomPreteur = [$listeUsers[$idPreteur]["nom"], $listeUsers[$idPreteur]["prenom"]];
         $dateInscriptionPreteur = $listeUsers[$idPreteur]["dateInscription"];
@@ -27,11 +27,11 @@ function generer_prets(int $nombreEmprunteurs, int $nombreJeuxP, string $aujourd
 
 
         $nombreMaxPrets = (int) ($inscriptionPreteur / 60);
-        $nombreEmpruntJeuP = rand(0, $nombreMaxPrets);
+        $nombreEmpruntExemplaire = rand(0, $nombreMaxPrets);
 
-//        echo "idJeuP : " . $indiceJeu . "<br>";
+//        echo "idExemplaire : " . $indiceJeu . "<br>";
 //        echo "Nombre max d'emprunts : " . $nombreMaxPrets . "<br>";
-//        echo "Nombre d'emprunts : " . $nombreEmpruntJeuP . "<br>";
+//        echo "Nombre d'emprunts : " . $nombreEmpruntExemplaire . "<br>";
 
         $joursPrets = null;
         $joursPrets[] = -1;
@@ -40,9 +40,9 @@ function generer_prets(int $nombreEmprunteurs, int $nombreJeuxP, string $aujourd
         $listeEmprunteurs = null;
         $listeEmprunteurs [] = "null";
 
-        if ($nombreEmpruntJeuP != 0) {
+        if ($nombreEmpruntExemplaire != 0) {
             // Création liste de dates d'emprunt
-            for ($indiceEmprunt = 1; $indiceEmprunt <= $nombreEmpruntJeuP; $indiceEmprunt++) {
+            for ($indiceEmprunt = 1; $indiceEmprunt <= $nombreEmpruntExemplaire; $indiceEmprunt++) {
                 // On a un nouvel emprunteur pour chaque emprunt
                 $idEmprunteur = rand(1, $nombreEmprunteurs);
                 $dateInscriptionEmprunteur = $listeUsers[$idEmprunteur]["dateInscription"];
@@ -67,14 +67,14 @@ function generer_prets(int $nombreEmprunteurs, int $nombreJeuxP, string $aujourd
             }
         }
 
-        if ($nombreEmpruntJeuP != 0) {
+        if ($nombreEmpruntExemplaire != 0) {
 
 
             // ... pour chaque emprunt, définition de l'emprunt
-            for ($indiceEmprunt = 1; $indiceEmprunt <= $nombreEmpruntJeuP; $indiceEmprunt++) {
+            for ($indiceEmprunt = 1; $indiceEmprunt <= $nombreEmpruntExemplaire; $indiceEmprunt++) {
                 $emprunt = new emprunt();
-                $emprunt->idJeuP = $indiceJeu;
-                $emprunt->idJeuT = $idJeuT;
+                $emprunt->idExemplaire = $indiceJeu;
+                $emprunt->idJeu = $idJeu;
                 $emprunt->nomJeu = $nomJeu;
                 $emprunt->idPreteur = $idPreteur;
                 $emprunt->nomPreteur = $nomPreteur;
@@ -175,12 +175,12 @@ function generer_prets(int $nombreEmprunteurs, int $nombreJeuxP, string $aujourd
 //        echo $emprunt2->nomEmprunteur[0] . " " . $emprunt2->nomEmprunteur[1];
 //        echo "<br>";
         if ($emprunt2->propositionPreteurDateDebut != null) {
-            echo 'INSERT INTO pret_p (idJeuP, idEmprunteur, propositionEmprunteurDateDebut, propositionEmprunteurDateFin, propositionPreteurDateDebut, propositionPreteurDateFin, notification, statutDemande )';
-            echo 'VALUES ("' . $emprunt2->idJeuP . '", "' . $emprunt2->idEmprunteur . '", "' . $emprunt2->propositionEmprunteurDateDebut . '", "' . $emprunt2->propositionEmprunteurDateFin . '", "' . $emprunt2->propositionPreteurDateDebut . '", "' . $emprunt2->propositionPreteurDateFin . '", "' . $emprunt2->notification . '", "' . $emprunt2->statut . '");';
+            echo 'INSERT INTO pret (idExemplaire, idEmprunteur, propositionEmprunteurDateDebut, propositionEmprunteurDateFin, propositionPreteurDateDebut, propositionPreteurDateFin, notification, statutDemande )';
+            echo 'VALUES ("' . $emprunt2->idExemplaire . '", "' . $emprunt2->idEmprunteur . '", "' . $emprunt2->propositionEmprunteurDateDebut . '", "' . $emprunt2->propositionEmprunteurDateFin . '", "' . $emprunt2->propositionPreteurDateDebut . '", "' . $emprunt2->propositionPreteurDateFin . '", "' . $emprunt2->notification . '", "' . $emprunt2->statut . '");';
             echo '<br>';
         } else {
-            echo 'INSERT INTO pret_p (idJeuP, idEmprunteur, propositionEmprunteurDateDebut, propositionEmprunteurDateFin, notification, statutDemande )';
-            echo 'VALUES ("' . $emprunt2->idJeuP . '", "' . $emprunt2->idEmprunteur . '", "' . $emprunt2->propositionEmprunteurDateDebut . '", "' . $emprunt2->propositionEmprunteurDateFin . '", "' . $emprunt2->notification . '", "' . $emprunt2->statut . '");';
+            echo 'INSERT INTO pret (idExemplaire, idEmprunteur, propositionEmprunteurDateDebut, propositionEmprunteurDateFin, notification, statutDemande )';
+            echo 'VALUES ("' . $emprunt2->idExemplaire . '", "' . $emprunt2->idEmprunteur . '", "' . $emprunt2->propositionEmprunteurDateDebut . '", "' . $emprunt2->propositionEmprunteurDateFin . '", "' . $emprunt2->notification . '", "' . $emprunt2->statut . '");';
             echo '<br>';
         }
         if ($emprunt2->statut != "Annulée") {
@@ -209,12 +209,12 @@ function generer_prets(int $nombreEmprunteurs, int $nombreJeuxP, string $aujourd
                 echo 'VALUES ("' . $idEmprunt . '", "' . $emprunt2->envoiDateEnvoi . '", "' . $emprunt2->envoiDateReception . '", "' . $emprunt2->envoiEtatJeu . '", "' . $emprunt2->envoiPiecesManquantes . '", "' . $emprunt2->retourDateEnvoi . '", "' . $emprunt2->retourDateReception . '", "' . $emprunt2->retourEtatJeu . '", "' . $emprunt2->retourPiecesManquantes . '");';
                 echo '<br>';
                 // Si le jeu a été rendu, l'emprunteur lui donne une note
-                echo 'INSERT INTO note_jeu_t (idPC, idUser, note)';
-                echo 'VALUES ("' . $emprunt2->idJeuT . '", "' . $emprunt2->idEmprunteur . '", "' . rand(0, 6) . '");';
+                echo 'INSERT INTO note_produit_culturel (idPC, idUser, note)';
+                echo 'VALUES ("' . $emprunt2->idJeu . '", "' . $emprunt2->idEmprunteur . '", "' . rand(0, 6) . '");';
                 echo '<br>';
                 // et fait un commentaire
-                echo 'INSERT INTO commentaire_p_c_t (idPC, commentaireT, idUser)';
-                echo 'VALUES ("' . $emprunt2->idJeuT . '", "' . getCommentaire() . '", "' . $emprunt2->idEmprunteur . '");';
+                echo 'INSERT INTO commentaire_produit_culturel (idPC, commentaireT, idUser)';
+                echo 'VALUES ("' . $emprunt2->idJeu . '", "' . getCommentaire() . '", "' . $emprunt2->idEmprunteur . '");';
                 echo '<br>';
             }
         }
@@ -365,12 +365,12 @@ function jourToDate(int $nombreJours) {
 
 function getAllNomJeux() {
     $pdo = openConnexion();
-    $requete = "SELECT * FROM jeu_p JOIN jeu_t ON jeu_p.idPC = jeu_t.idPC JOIN produit_culturel_t ON produit_culturel_t.idPC = jeu_t.idPC;";
+    $requete = "SELECT * FROM exemplaire JOIN jeu ON exemplaire.idPC = jeu.idPC JOIN produit_culturel ON produit_culturel.idPC = jeu.idPC;";
     $stmt = $pdo->prepare($requete);
     $stmt->execute();
     $list = null;
     while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $list [$ligne ["idJeuP"]] = ["nom" => $ligne ["nom"], "idProprietaire" => $ligne ["idProprietaire"], "idPC" => $ligne ["idPC"]];
+        $list [$ligne ["idExemplaire"]] = ["nom" => $ligne ["nom"], "idProprietaire" => $ligne ["idProprietaire"], "idPC" => $ligne ["idPC"]];
     }
     $pdo = closeConnexion();
     return $list;

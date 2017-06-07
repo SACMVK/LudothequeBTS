@@ -56,15 +56,15 @@
         $nombreCommentaires_pc = 800;
 
         //
-        generer_donnees_individu($nombreIndividus);
+        //generer_donnees_individu($nombreIndividus);
         //generer_donnees_genre_individu($nombreGenreIndividu,$nombreIndividus);
-       // generer_donnees_jeu($nombreJeux);
+        //generer_donnees_jeu($nombreJeux);
         //generer_donnees_genre_jeu($nombreJeux);
         //generation_donnees_jeu_aPourImage($nombreJeux, $repertoireVignettes);
         //generer_commentaires_pc($nombreCommentaires_pc, $nombreJeux, $nombreIndividus);
         //generer_donnees_exemplaires($nombreExemplaires, $nombreJeux, $nombreIndividus);
         //generer_donnees_message($nombreMessages, $nombreIndividus, $aujourdhui);
-        //generer_prets($nombreIndividus, $nombreExemplaires, $aujourdhui, $nombreMessages);
+        generer_prets($nombreIndividus, $nombreExemplaires, $aujourdhui, $nombreMessages);
         ?>
     </body>
 </html>

@@ -11,7 +11,7 @@ function generer_donnees_exemplaires(int $nombreExemplaires, int $nombreJeux , i
 
         
         //echo "idPC : ".$list["idPC"]."<br>idProprietaire : ".$list["idProprietaire"]."<br>Etat du jeu : ".$list["etat"]."<br><br>";
-        echo 'INSERT INTO jeu_p (idPC, idProprietaire)';
+        echo 'INSERT INTO exemplaire (idPC, idProprietaire)';
         echo 'VALUES ("'.$list["idPC"].'", "'.$list["idProprietaire"].'");';
 echo '<br>';        
 //insert($list);

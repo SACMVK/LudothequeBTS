@@ -2,8 +2,8 @@
 
 class emprunt {
 
-    public $idJeuP = null;
-    public $idJeuT = null;
+    public $idExemplaire = null;
+    public $idJeu = null;
     public $nomJeu = null;
     public $idPreteur = null;
     public $nomPreteur = null;

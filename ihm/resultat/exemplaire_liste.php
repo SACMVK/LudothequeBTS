@@ -1,5 +1,5 @@
 
-<a href="index.php?page=recherche/jeu_p.php" class="boutonBlanc">Modifier ma recherche</a>
+<a href="index.php?page=recherche/exemplaire.php" class="boutonBlanc">Modifier ma recherche</a>
     <?php
     if (!empty($listOfElements)):
         foreach ($listOfElements as $jeu_p) :
@@ -26,5 +26,5 @@ Aucun résultat
     ?>
 
 
-<a href="index.php?page=recherche/jeu_p.php" class="boutonBlanc">Modifier ma recherche</a>
+<a href="index.php?page=recherche/exemplaire.php" class="boutonBlanc">Modifier ma recherche</a>
 

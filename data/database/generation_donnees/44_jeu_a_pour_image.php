@@ -19,7 +19,7 @@ function generation_donnees_jeu_aPourImage(int $nombreJeux, string $repertoire) 
     $listeFichiers = getListeFichier($repertoire);
     $indiceImage = 0;
     for ($indice = 1; $indice <= $nombreJeux; $indice++) {
-        echo 'INSERT INTO a_pour_image (idPC, source)';
+        echo 'INSERT INTO produit_culturel_a_pour_image (idPC, source)';
         // Ne pas oublier de gérer l'utf-8
         echo 'VALUES ("' . $indice . '", "' . utf8_decode($listeFichiers[$indiceImage]) . '");';
         echo '<br>';
