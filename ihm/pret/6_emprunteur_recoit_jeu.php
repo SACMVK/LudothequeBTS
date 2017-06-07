@@ -1,4 +1,5 @@
 <div class="blocList">
+    <span id="reservedDates" data-reservedDates=""></span>
     <form action="" method="post" accept-charset="utf-8">
         Vous confirmez à <b><?= $pret->getExemplaire()->getProprietaire()->getPseudo() ?></b> 
         que vous avez bien reçu son jeu <b><?= $pret->getExemplaire()->getJeu()->getNom() ?></b> 

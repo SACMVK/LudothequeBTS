@@ -1,4 +1,5 @@
 <div class="blocList">
+    <span id="reservedDates" data-reservedDates=""></span>
     <form action="" method="post" accept-charset="utf-8">
         Vous confirmez à <b><?= $pret->getExemplaire()->getProprietaire()->getPseudo() ?></b> 
         que vous lui avez bien renvoyé son jeu <b><?= $pret->getExemplaire()->getJeu()->getNom() ?></b> 
@@ -29,7 +30,7 @@
         <br />
         <br />
         <input type=hidden name="pret" value=7 />
-        <input type=hidden name="idPret" value="<?=$pret->getIdPret() ?>" />
+        <input type=hidden name="idPret" value="<?= $pret->getIdPret() ?>" />
         <input class="boutonGris" name="confirmer" type="submit" value="Confirmer le renvoi"/>
 
 
