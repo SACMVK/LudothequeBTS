@@ -1,7 +1,7 @@
 Il y a <?= count($listeComptes) ?> utilisateurs enregistrés.
 
 <?php foreach ($listeComptes as $compte) : ?>
-    <div class="blocList">
+    <div class="blocList" >
         <?= $compte->getPseudo() ?>
         <form action="" method="post" accept-charset="utf-8" class="form" >
             <input type=hidden name="Compte#idUser" value="<?= $compte->getIdUser() ?>" />

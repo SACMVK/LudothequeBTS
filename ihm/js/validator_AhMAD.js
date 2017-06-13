@@ -20,21 +20,21 @@ $(function () {
             }
         }
     });
-    //AhMaD: function pour la sécurité de la  mot de passe
+    //AhMaD: function pour la sécurité du mot de passe
     $.validator.addMethod('strongPassword', function (value, element) {
         return this.optional(element)
                 || value.length <= 20
                 && /\d/.test(value)
                 && /[a-z]/i.test(value);
-    },'Votre mot de passe faudra consiste des nombres et des caractères\.');
+    },'Votre mot de passe doit être constitué de chiffres et de caractères\.');
     
-    //AhMaD: pour vérifier que l'email existe pas dans la BD
+    //AhMaD: pour vérifier que l'email n'existe pas dans la BD
      $.validator.addMethod('accountExists', function (value, element) {
 	var listeMail = document.inscription.listeMail.value;
 	var emails = listeMail.split("#");
         return this.optional(element) ||  emails.indexOf(value) === -1;
 				
-    },' cette adresse électronique  est déjà existé, merci de choisir un autre.\'.');
+    },' cette adresse électronique existe déjà, veuillez en choisir une autre.\'.');
     
     //AhMaD: expression régulière pour l'email
     $.validator.addMethod('expressionRequlière', function(value, element){
@@ -48,16 +48,16 @@ $(function () {
 	var pseudos = listePseudo.split("#");
         return this.optional(element) ||  pseudos.indexOf(value) === -1;
 				
-    },' ce pseudo  est déjà existé, merci de choisir un autre.\'.');
+    },' ce pseudo existe déjà, merci de choisir un autre.\'.');
 
- //AhMaD: pour forcer l'usr de choisir seulement les lettres
+ //AhMaD: pour forcer l'user de choisir seulement les lettres
     $.validator.addMethod("lettersonly", function (value, element) {
         return this.optional(element) || /^[a-z]+$/i.test(value);
-    }, "Caractères seulement sont acceptable ");
+    }, "Seuls les caractères sont acceptés ");
     
     $.validator.addMethod( "phoneFR", function( value, element ) {
         return this.optional( element ) || /^((\+|00(\s|\s?\-\s?)?)33(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)[1-9]((\s|\s?\-\s?)?[0-9]){8}$/.test( value );
-}, "Veuillez corriger votre nombre de telephone, il faudrait commencer par (+33) et avec dix chiffre." );
+}, "Veuillez écrire votre numéro de téléphone comme suit : (+33) suivi de 9 chiffres." );
  
  //AhMaD: pour valider chaque champ on regarde si il est required, et si il y a autre contrainte 
     $("#CreationForm,  #monProfile").validate({
@@ -102,11 +102,11 @@ $(function () {
                 equalTo: "#mdp"
             },
             adresse: {
-                required: true,
+                required: true
             },
             codePostal: {
                 required: true,
-                digits: true,
+                digits: true
                 
             }
         },
@@ -114,7 +114,7 @@ $(function () {
             email: {
                 required: "Ce champ est obligatoire.",
                 email: "Veuillez fournir une adresse électronique valide.",
-                remote: $.validator.format("{0}  cette adresse électronique  est déjà existé, merci de choisir un autre.")
+                remote: $.validator.format("{0}  cette adresse électronique existe déjà, merci de choisir une autre.")
             }
         }
 
