@@ -7,7 +7,7 @@
        
             ?>
     <div class="row">
-            <tr><td><?= $message->getIdMessage()  ?></td>                 
+            <tr>               
                 <td><?= $message->getExp()->getNom()  ?></td>
                 <td><?= $message->getExp()->getPrenom()  ?></td>          
                 <td><?= $message->getSujet()?> </td>
